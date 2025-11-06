@@ -45,8 +45,36 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') fail(405, 'Método no permitido.');
 $env  = $cfg['app_env'] ?? 'production';
 $host = $_SERVER['HTTP_HOST'] ?? '';
 if ($env === 'production') {
-  if (!in_array($host, $cfg['hostnames'] ?? [], true)) {
-    fail(403, 'Hostname no permitido. Revisa Turnstile hostnames y config.php.');
+  // Normaliza y valida host considerando proxies/CDN
+  $rawHosts = [];
+  if (!empty($host)) $rawHosts[] = $host;
+  if (!empty($_SERVER['HTTP_X_FORWARDED_HOST'])) $rawHosts[] = $_SERVER['HTTP_X_FORWARDED_HOST'];
+  if (!empty($_SERVER['HTTP_X_ORIGINAL_HOST'])) $rawHosts[] = $_SERVER['HTTP_X_ORIGINAL_HOST'];
+
+  // X-Forwarded-Host puede traer lista separada por comas; explotar y normalizar
+  $requestHosts = [];
+  foreach ($rawHosts as $h) {
+    foreach (explode(',', $h) as $part) {
+      $trimmed = strtolower(trim($part));
+      // elimina puerto si viene (e.g. example.com:443)
+      $withoutPort = explode(':', $trimmed)[0];
+      if ($withoutPort !== '') $requestHosts[] = $withoutPort;
+    }
+  }
+  $requestHosts = array_values(array_unique($requestHosts));
+
+  $allowedHosts = array_map(function($h){ return strtolower($h); }, $cfg['hostnames'] ?? []);
+
+  $hostOk = false;
+  foreach ($requestHosts as $rh) {
+    if (in_array($rh, $allowedHosts, true)) { $hostOk = true; break; }
+  }
+
+  if (!$hostOk) {
+    app_log('HOSTNAME_MISMATCH request_hosts=' . json_encode($requestHosts) . ' allowed_hosts=' . json_encode($allowedHosts));
+    fail(403, 'Hostname no permitido. En config.php agrega el dominio recibido.', [
+      'received_hosts' => $requestHosts,
+    ]);
   }
 } else {
   // In development, log and allow any host to ease local testing
