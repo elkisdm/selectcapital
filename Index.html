@@ -258,6 +258,7 @@
           <input type="hidden" name="gclid">
           <input type="hidden" name="fbclid">
           <input type="hidden" name="ttclid">
+          <input type="hidden" name="cf-turnstile-response" id="ts-token">
           <!-- Honeypot -->
           <input type="text" name="honey" class="hidden" tabindex="-1" autocomplete="off">
 
@@ -432,7 +433,9 @@
     let turnstileOk = false;
     const tsContainer = document.querySelector('.cf-turnstile');
     const tsError = document.getElementById('t-error');
+    const tsToken = document.getElementById('ts-token');
     window.onTurnstileSuccess = function(token){
+      if (tsToken) tsToken.value = token;
       turnstileOk = !!token; if(tsContainer && tsError) hideErr(tsContainer, tsError);
     };
     const reCL   = /^(?:\+?56\s?)?9\s?\d{4}\s?\d{4}$/;
@@ -463,7 +466,7 @@
       if(!reCL.test(wInput.value.trim())){ showErr(wInput,wError,'Usa formato chileno: +56 9 xxxx xxxx'); ok=false; }
       if(!eInput.validity.valid){ showErr(eInput,eError,'Ingresa un correo válido'); ok=false; }
       if(iSelect && !iSelect.value){ showErr(iSelect, iError, 'Selecciona tu rango de ingresos.'); ok=false; }
-      if(tsContainer && !turnstileOk){ showErr(tsContainer, tsError, 'Confirma que no eres un robot.'); ok=false; }
+      if(tsContainer && (!turnstileOk || !tsToken || !tsToken.value)) { showErr(tsContainer, tsError, 'Confirma que no eres un robot.'); ok=false; }
       if(!ok) return;
 
       sBtn.disabled = true; sText.classList.add('hidden'); sLoad.classList.remove('hidden');

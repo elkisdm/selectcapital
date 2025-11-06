@@ -8,7 +8,7 @@
 
 return [
   // Entorno y zona horaria
-  'app_env'   => 'development',                          // 'development' | 'production'
+  'app_env'   => 'production',                          // 'development' | 'production'
   'timezone'  => 'America/Santiago',
 
   // Dominios permitidos (para seguridad y CORS)
@@ -64,7 +64,8 @@ return [
     ],
     'allowed_fields' => [              // whitelisting de campos aceptados
       'nombre', 'whatsapp', 'email', 'ingresos_mensuales_clp',
-      'utm_source', 'utm_medium', 'utm_campaign', 'gclid', 'fbclid', 'ttclid'
+      'utm_source', 'utm_medium', 'utm_campaign', 'gclid', 'fbclid', 'ttclid',
+      'cf-turnstile-response'
     ],
     'required_fields' => ['nombre','whatsapp','email','ingresos_mensuales_clp'],
   ],
