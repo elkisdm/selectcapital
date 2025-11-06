@@ -8,14 +8,14 @@
 
 return [
   // Entorno y zona horaria
-  'app_env'   => 'production',                          // 'development' | 'production'
+  'app_env'   => 'development',                          // 'development' | 'production'
   'timezone'  => 'America/Santiago',
 
   // Dominios permitidos (para seguridad y CORS)
-  'hostnames' => ['selectcapital.cl', 'www.selectcapital.cl'],
+  'hostnames' => ['selectcapital.cl', 'www.selectcapital.cl', 'dev.selectcapital.cl'],
   'cors' => [
     'enabled'        => true,
-    'allow_origins'  => ['https://selectcapital.cl', 'https://www.selectcapital.cl'],
+    'allow_origins'  => ['https://selectcapital.cl', 'https://www.selectcapital.cl', 'https://dev.selectcapital.cl'],
     'allow_methods'  => ['POST', 'OPTIONS'],
     'allow_headers'  => ['Content-Type'],
   ],
