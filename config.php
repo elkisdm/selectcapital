@@ -8,7 +8,7 @@
 
 return [
   // Entorno y zona horaria
-  'app_env'   => 'production',                          // 'development' | 'production'
+  'app_env'   => 'development',                          // 'development' | 'production'
   'timezone'  => 'America/Santiago',
 
   // Dominios permitidos (para seguridad y CORS)
