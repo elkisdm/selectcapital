@@ -21,7 +21,7 @@
           <path d="M20 6L9 17l-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-      <h1 class="mt-8 text-4xl font-extrabold text-white">¡Registro exitoso!</h1>
+      <h1 id="heroTitle" class="mt-8 text-4xl font-extrabold text-white">¡Registro exitoso!</h1>
       <p class="mt-4 text-white/80 text-lg">Te contactaremos pronto con información del lanzamiento en La Florida.</p>
 
       <!-- Próximos pasos (mobile-first) -->
@@ -86,17 +86,21 @@
         </div>
       </div>
 
-      <div class="mt-8">
+      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
         <a id="wa" href="#" class="inline-flex items-center justify-center rounded-3xl px-6 py-4 text-sm font-medium border border-white/40 bg-white/10 text-white hover:bg-white/20 transition-all duration-200 backdrop-blur-sm">Hablar por WhatsApp ahora</a>
+        <a href="index.html#evento" class="inline-flex items-center justify-center rounded-3xl px-6 py-4 text-sm font-medium border border-white/40 bg-white/10 text-white hover:bg-white/20 transition-all duration-200 backdrop-blur-sm" rel="noopener">Ver detalles del evento</a>
+        <button id="shareBtn" class="inline-flex items-center justify-center rounded-3xl px-6 py-4 text-sm font-medium border border-white/40 bg-white/10 text-white hover:bg-white/20 transition-all duration-200 backdrop-blur-sm">Compartir</button>
       </div>
       <p class="mt-8 text-xs text-white/60">Si no ves nuestro correo, revisa Spam/Promociones.</p>
     </div>
   </main>
 
   <script>
-    const WA_NUMBER = "56993481594";
+    const WA_NUMBER = "56966013182";
     const params = new URLSearchParams(window.location.search);
     const nombre = params.get('nombre') || 'inversionista';
+    const title = document.getElementById('heroTitle');
+    if (title && nombre) { title.textContent = `¡Registro exitoso, ${nombre}!`; }
     const msg = `Hola, soy ${nombre}. Acabo de registrarme para el lanzamiento en La Florida y quiero más información.`;
     document.getElementById('wa').href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
     const wa2 = document.getElementById('wa2');
@@ -138,6 +142,18 @@
       ical.href = url; ical.download = 'evento-selectcapital.ics';
     }
 
+    // Share button
+    const shareBtn = document.getElementById('shareBtn');
+    if (shareBtn) {
+      shareBtn.addEventListener('click', async ()=>{
+        const shareData = { title: 'Lanzamiento La Florida — Select Capital', text: 'Me acabo de registrar. ¿Vamos juntos?', url: location.href };
+        try {
+          if (navigator.share) { await navigator.share(shareData); }
+          else { await navigator.clipboard.writeText(location.href); shareBtn.textContent = 'Enlace copiado'; setTimeout(()=> shareBtn.textContent = 'Compartir', 2000); }
+        } catch(e) { /* silencio UX */ }
+      });
+    }
+
     // ================================
     // TESTS ligeros (no intrusivos)
     // ================================
@@ -167,6 +183,8 @@
         return el && el.href && el.download && typeof el.href === 'string';
       });
       test('toCal formato UTC básico', ()=> /Z$/.test(toCal(new Date())) );
+      // Personalización de H1
+      test('H1 personalizado con nombre', ()=> document.getElementById('heroTitle') && document.getElementById('heroTitle').textContent.length > 0);
       
       const pass = results.filter(r=>r.ok).length;
       console.log(`[UNIT TESTS] ${pass}/${results.length} ok`, results);
