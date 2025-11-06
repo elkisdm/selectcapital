@@ -267,7 +267,7 @@
         <p class="text-sm text-hint mb-3">Completa tus datos y te confirmaremos por correo/WhatsApp.</p>
         <div class="mb-6 flex items-center justify-between rounded-xl border border-line bg-white p-3">
           <div class="text-sm"><span class="font-semibold">Cupos restantes:</span> <span id="cupos-restantes-form">--</span></div>
-          <span class="text-xs text-ink/70">Cierre en <span id="cd-small">--d --h</span></span>
+          <span class="text-xs text-ink/70">Cierre en <span id="cd-small">-- días -- horas</span></span>
         </div>
 
         <!-- Opción B: backend propio -->
@@ -421,7 +421,7 @@
       if(small){
         const dayLabel = d === 1 ? 'día' : 'días';
         const hourLabel = h === 1 ? 'hora' : 'horas';
-        small.textContent = `${d} ${dayLabel} ${h} ${hourLabel}`;
+        small.textContent = `${d} ${dayLabel} y ${fmt2(h)} ${hourLabel}`;
       }
     }
     tick(); setInterval(tick, 1000);
@@ -575,4 +575,3 @@
   </script>
 </body>
 </html>
-
