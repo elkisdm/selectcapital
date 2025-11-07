@@ -215,7 +215,7 @@
           <picture>
             <source srcset="/images/evento.avif" type="image/avif" />
             <source srcset="/images/evento.webp" type="image/webp" />
-            <img src="/images/evento.jpg" alt="Sala del evento" class="w-full aspect-video object-cover rounded-xl" loading="lazy" width="1280" height="720" />
+            <img src="/images/evento.jpg" alt="Sala del evento" class="w-full aspect-video object-cover rounded-xl" loading="lazy" width="1280" height="720" onerror="console.error('Error loading image:', this.src); this.style.display='none';" />
           </picture>
         </div>
       </div>
