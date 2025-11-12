@@ -88,7 +88,7 @@ $allowed = $cfg['security']['allowed_fields'] ?? [];
 $data = [];
 foreach ($allowed as $f) { $data[$f] = trim((string)($_POST[$f] ?? '')); }
 
-$required = $cfg['security']['required_fields'] ?? ['nombre','email','whatsapp','ingresos_mensuales_clp'];
+$required = $cfg['security']['required_fields'] ?? ['nombre','rut','email','whatsapp','objetivo','tipo_ingreso','renta_liquida','monto_ahorro','comunas_interes','canal_preferido','franja_preferida','consentimiento_privacidad','consentimiento_contacto'];
 foreach ($required as $f) if (empty($data[$f])) fail(400, "Falta el campo requerido: $f");
 
 if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) fail(400, 'Email inválido.');
@@ -129,9 +129,21 @@ if ($env === 'production') {
 $payload = [
   'timestamp' => date('c'),
   'nombre'    => $data['nombre'],
+  'rut'       => $data['rut'],
   'email'     => $data['email'],
   'whatsapp'  => $data['whatsapp'],
-  'ingresos_mensuales_clp' => $data['ingresos_mensuales_clp'],
+  'objetivo'  => $data['objetivo'],
+  'tipo_ingreso' => $data['tipo_ingreso'],
+  'tipo_contrato' => $data['tipo_contrato'] ?? '',
+  'tipo_ingreso_independiente' => $data['tipo_ingreso_independiente'] ?? '',
+  'renta_liquida' => $data['renta_liquida'],
+  'monto_ahorro' => $data['monto_ahorro'],
+  'comunas_interes' => $data['comunas_interes'],
+  'comentarios' => $data['comentarios'] ?? '',
+  'canal_preferido' => $data['canal_preferido'],
+  'franja_preferida' => $data['franja_preferida'],
+  'consentimiento_privacidad' => $data['consentimiento_privacidad'],
+  'consentimiento_contacto' => $data['consentimiento_contacto'],
   'utm_source'=> $data['utm_source'] ?? '',
   'utm_medium'=> $data['utm_medium'] ?? '',
   'utm_campaign'=> $data['utm_campaign'] ?? '',
@@ -168,7 +180,11 @@ if ($env === 'production') {
 if (!empty($cfg['email']['enabled'])) {
   $to = $cfg['email']['notify_to'];
   $subj = ($cfg['email']['subject_prefix'] ?? '[Nueva solicitud]') . ' ' . $data['nombre'];
-  $body = "Nombre: {$data['nombre']}\nEmail: {$data['email']}\nWhatsApp: {$data['whatsapp']}\nIngresos: {$data['ingresos_mensuales_clp']}\n"
+  $body = "Nombre: {$data['nombre']}\nRUT: {$data['rut']}\nEmail: {$data['email']}\nWhatsApp: {$data['whatsapp']}\n"
+        . "Objetivo: {$data['objetivo']}\nTipo Ingreso: {$data['tipo_ingreso']}\n"
+        . "Renta Líquida: {$data['renta_liquida']}\nMonto Ahorro: {$data['monto_ahorro']}\n"
+        . "Comunas: {$data['comunas_interes']}\nComentarios: {$data['comentarios']}\n"
+        . "Canal Preferido: {$data['canal_preferido']}\nFranja: {$data['franja_preferida']}\n"
         . "UTM: {$data['utm_source']} / {$data['utm_medium']} / {$data['utm_campaign']}\n"
         . "IP: {$payload['ip']}\nUA: {$payload['ua']}\nFecha: {$payload['timestamp']}\n";
   $headers = 'From: ' . ($cfg['email']['from_name'] ?? 'Select Capital') . ' <' . ($cfg['email']['from_address'] ?? 'no-reply@selectcapital.cl') . '>';

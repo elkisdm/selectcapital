@@ -63,11 +63,13 @@ return [
       'max_per_minute' => 5,
     ],
     'allowed_fields' => [              // whitelisting de campos aceptados
-      'nombre', 'whatsapp', 'email', 'ingresos_mensuales_clp',
+      'nombre', 'rut', 'whatsapp', 'email', 'objetivo', 'tipo_ingreso', 'tipo_contrato', 'tipo_ingreso_independiente',
+      'renta_liquida', 'monto_ahorro', 'comunas_interes', 'comentarios', 'canal_preferido', 'franja_preferida',
+      'consentimiento_privacidad', 'consentimiento_contacto', 'honey',
       'utm_source', 'utm_medium', 'utm_campaign', 'gclid', 'fbclid', 'ttclid',
       'cf-turnstile-response'
     ],
-    'required_fields' => ['nombre','whatsapp','email','ingresos_mensuales_clp'],
+    'required_fields' => ['nombre','rut','whatsapp','email','objetivo','tipo_ingreso','renta_liquida','monto_ahorro','comunas_interes','canal_preferido','franja_preferida','consentimiento_privacidad','consentimiento_contacto'],
   ],
 
   // Redirecciones post-submit
