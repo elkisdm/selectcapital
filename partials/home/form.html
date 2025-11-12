@@ -1,0 +1,329 @@
+<!-- Formulario principal -->
+    <section class="section" id="form">
+      <div class="section-inner">
+        <h2 class="text-center">Recibir asesoría integral</h2>
+        <div class="form-container">
+          <form action="/submit.php" method="POST" data-track-form data-home-wizard novalidate>
+            <input type="hidden" name="utm_source" />
+            <input type="hidden" name="utm_medium" />
+            <input type="hidden" name="utm_campaign" />
+            <input type="hidden" name="gclid" />
+            <input type="hidden" name="fbclid" />
+            <input type="hidden" name="ttclid" />
+            <input type="hidden" name="cf-turnstile-response" id="ts-token" />
+            <input type="text" name="honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" aria-hidden="true" />
+
+            <div class="form-wizard" data-form-wizard>
+              <div class="wizard-shell">
+                <aside class="wizard-steps">
+                  <div class="wizard-progress-bar" data-progress-bar role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" aria-valuetext="Paso 1 de 3">
+                    <span class="wizard-progress-value" data-progress-value></span>
+                  </div>
+                  <p class="wizard-progress-label" data-progress-label>Paso 1 de 3</p>
+                  <p class="wizard-summary sc-text-muted" data-step-summary>Informacion personal</p>
+                  <div id="form-error" class="sc-error" role="alert" aria-live="polite" aria-hidden="true"></div>
+                  <div class="form-steps-progress" role="tablist" aria-live="polite">
+                    <button type="button" class="form-step-pill is-active" data-step-pill="0" role="tab" aria-selected="true" aria-controls="home-step-1">
+                      <span>1</span>
+                      <div>
+                        <strong>Datos personales</strong>
+                        <p>Identidad y contacto.</p>
+                      </div>
+                    </button>
+                    <button type="button" class="form-step-pill" data-step-pill="1" role="tab" aria-selected="false" aria-controls="home-step-2">
+                      <span>2</span>
+                      <div>
+                        <strong>Perfil e ingresos</strong>
+                        <p>Objetivo, tipo de ingreso y montos.</p>
+                      </div>
+                    </button>
+                    <button type="button" class="form-step-pill" data-step-pill="2" role="tab" aria-selected="false" aria-controls="home-step-3">
+                      <span>3</span>
+                      <div>
+                        <strong>Comunas y cierre</strong>
+                        <p>Zona de interes, notas y consentimiento.</p>
+                      </div>
+                    </button>
+                  </div>
+                </aside>
+
+                <div class="wizard-main">
+                  <div class="form-wizard-viewport">
+                    <div class="form-wizard-track" data-step-track style="--wizard-step:0;">
+                      <section class="wizard-step" data-step-panel="0" data-next-label="Continuar a Perfil e ingresos" aria-labelledby="home-step-1">
+                    <div class="step-header">
+                      <p class="step-kicker">Paso 1</p>
+                      <h3 id="home-step-1">Informacion personal</h3>
+                      <p class="sc-hint">Validamos tus datos para enviarte la propuesta personalizada.</p>
+                    </div>
+                    <div class="form-grid">
+                      <label class="sc-field">
+                        <span class="sc-label">Nombre completo</span>
+                        <input type="text" name="nombre" id="nombre" class="sc-input" placeholder="Tu nombre completo" autocomplete="name" autocapitalize="words" data-step-required required />
+                      </label>
+                      <label class="sc-field">
+                        <span class="sc-label">RUT</span>
+                        <input type="text" name="rut" id="rut" class="sc-input" placeholder="12.345.678-9" data-mask="rut" autocomplete="off" data-step-required required />
+                        <p class="sc-error" id="r-error" aria-hidden="true">Ingresa un RUT valido.</p>
+                      </label>
+                      <label class="sc-field form-field-full">
+                        <span class="sc-label">Correo electronico</span>
+                        <input type="email" name="email" id="email" class="sc-input" placeholder="correo@ejemplo.com" autocomplete="email" data-step-required required />
+                        <p class="sc-error" id="e-error" aria-hidden="true">Ingresa un correo valido.</p>
+                      </label>
+                      <label class="sc-field form-field-full">
+                        <span class="sc-label">Telefono / WhatsApp</span>
+                        <input type="tel" name="whatsapp" id="whatsapp" class="sc-input" data-mask="phone" placeholder="+56 9 1234 5678" inputmode="tel" autocomplete="tel" data-step-required required />
+                        <p class="sc-hint">Prefijo +56 autocompletado · Validamos largo automaticamente.</p>
+                        <p class="sc-error" id="w-error" aria-hidden="true">Usa un numero chileno valido.</p>
+                      </label>
+                    </div>
+                    <div class="form-wizard-nav">
+                      <button type="button" class="btn-primary" data-step-next>Continuar a Perfil e ingresos</button>
+                    </div>
+                  </section>
+
+                  <section class="wizard-step" data-step-panel="1" data-next-label="Ir a Comunas y cierre" aria-labelledby="home-step-2">
+                    <div class="step-header">
+                      <p class="step-kicker">Paso 2</p>
+                      <h3 id="home-step-2">Perfil del cliente e ingresos</h3>
+                      <p class="sc-hint">Selecciona el objetivo, tipo de ingreso y montos aproximados.</p>
+                    </div>
+
+                    <fieldset>
+                      <legend class="sc-label">Objetivo principal</legend>
+                      <p class="sc-hint">Elige una opcion para enfocar la asesoria.</p>
+                      <div class="option-grid">
+                        <label class="option-card" data-card>
+                          <input type="radio" name="objetivo" value="Vivir" data-card-input data-step-required required />
+                          <span class="option-icon" aria-hidden="true">🏠</span>
+                          <strong>Vivir</strong>
+                          <p>Buscas tu proxima vivienda para uso propio.</p>
+                        </label>
+                        <label class="option-card" data-card>
+                          <input type="radio" name="objetivo" value="Invertir" data-card-input data-step-required required />
+                          <span class="option-icon" aria-hidden="true">💼</span>
+                          <strong>Invertir</strong>
+                          <p>Quieres generar ingresos y construir patrimonio.</p>
+                        </label>
+                        <label class="option-card" data-card>
+                          <input type="radio" name="objetivo" value="No lo se" data-card-input data-step-required required />
+                          <span class="option-icon" aria-hidden="true">❔</span>
+                          <strong>No lo se todavia</strong>
+                          <p>Te ayudamos a descubrir que te conviene hoy.</p>
+                        </label>
+                      </div>
+                    </fieldset>
+
+                    <fieldset>
+                      <legend class="sc-label">Tipo de ingreso</legend>
+                      <p class="sc-hint">Seleccion unica. Mostramos chips extra segun tu eleccion.</p>
+                      <div class="option-grid">
+                        <label class="option-card" data-card data-ingreso-card="dependiente">
+                          <input type="radio" name="tipo_ingreso" value="Dependiente" data-card-input data-step-required required />
+                          <strong>Dependiente</strong>
+                          <p>Recibes sueldo fijo con contrato y liquidaciones.</p>
+                        </label>
+                        <label class="option-card" data-card data-ingreso-card="independiente">
+                          <input type="radio" name="tipo_ingreso" value="Independiente" data-card-input data-step-required required />
+                          <strong>Independiente</strong>
+                          <p>Ingresos variables como profesional, freelancer o empresario.</p>
+                        </label>
+                        <label class="option-card" data-card data-ingreso-card="mixto">
+                          <input type="radio" name="tipo_ingreso" value="Mixto" data-card-input data-step-required required />
+                          <strong>Mixto</strong>
+                          <p>Combinacion de sueldo fijo + ingresos adicionales.</p>
+                        </label>
+                      </div>
+                    </fieldset>
+
+                    <div class="option-secondary" data-ingreso-extra="dependiente" hidden aria-hidden="true">
+                      <span class="sc-label">Tipo de contrato (Dependiente)</span>
+                      <div class="chip-set" data-chip-group="tipo_contrato" role="radiogroup" aria-label="Tipo de contrato">
+                        <button type="button" class="chip" data-chip-value="Indefinido" data-chip-target="tipo_contrato" role="radio" aria-checked="false">
+                          <strong>Indefinido</strong>
+                          <span>Mayor estabilidad laboral. Mejor evaluacion crediticia.</span>
+                        </button>
+                        <button type="button" class="chip" data-chip-value="Plazo fijo" data-chip-target="tipo_contrato" role="radio" aria-checked="false">
+                          <strong>Plazo fijo</strong>
+                          <span>Contrato con termino definido. Revisamos antiguedad.</span>
+                        </button>
+                        <button type="button" class="chip" data-chip-value="Sin contrato / Informal" data-chip-target="tipo_contrato" role="radio" aria-checked="false">
+                          <strong>Sin contrato / Informal</strong>
+                          <span>Ingresos no formales. Es clave detallar montos.</span>
+                        </button>
+                      </div>
+                      <input type="hidden" name="tipo_contrato" data-chip-store="tipo_contrato" data-required-when="tipo_ingreso=Dependiente">
+                      <p class="sc-error" data-chip-error="tipo_contrato" aria-hidden="true">Selecciona el tipo de contrato.</p>
+                    </div>
+
+                    <div class="option-secondary" data-ingreso-extra="independiente" hidden aria-hidden="true">
+                      <span class="sc-label">Tipo de ingresos (Independiente)</span>
+                      <div class="chip-set" data-chip-group="tipo_ingreso_independiente" role="radiogroup" aria-label="Tipo de ingresos independientes">
+                        <button type="button" class="chip" data-chip-value="Boletas de honorarios" data-chip-target="tipo_ingreso_independiente" role="radio" aria-checked="false">
+                          <strong>Boletas de honorarios</strong>
+                          <span>Ingresos declarados como profesional independiente.</span>
+                        </button>
+                        <button type="button" class="chip" data-chip-value="Retiros de empresa" data-chip-target="tipo_ingreso_independiente" role="radio" aria-checked="false">
+                          <strong>Retiros de empresa</strong>
+                          <span>Ingresos derivados de utilidades o participaciones.</span>
+                        </button>
+                      </div>
+                      <input type="hidden" name="tipo_ingreso_independiente" data-chip-store="tipo_ingreso_independiente" data-required-when="tipo_ingreso=Independiente">
+                      <p class="sc-error" data-chip-error="tipo_ingreso_independiente" aria-hidden="true">Selecciona el tipo de ingreso.</p>
+                    </div>
+
+                    <div class="form-grid">
+                      <label class="sc-field">
+                        <span class="sc-label">Ingreso mensual liquido (CLP)</span>
+                        <input type="text" name="renta_liquida" class="sc-input" inputmode="numeric" data-money-input="renta_liquida" placeholder="$ 1.200.000" data-step-required required />
+                        <p class="sc-error" id="renta-error" aria-hidden="true">Ingresa tu renta liquida aproximada.</p>
+                      </label>
+                      <label class="sc-field">
+                        <span class="sc-label">Monto de ahorro disponible</span>
+                        <input type="text" name="monto_ahorro" class="sc-input" inputmode="numeric" data-money-input="monto_ahorro" placeholder="$ 2.000.000" data-step-required required />
+                        <span class="sc-hint">Solo ingresa el monto total ahorrado.</span>
+                        <p class="sc-error" id="ahorro-error" aria-hidden="true">Ingresa el monto ahorrado.</p>
+                      </label>
+                    </div>
+                    <div class="form-wizard-nav">
+                      <button type="button" class="btn-ghost" data-step-prev aria-label="Volver al paso anterior">Volver</button>
+                      <button type="button" class="btn-primary" data-step-next>Ir a Comunas y cierre</button>
+                    </div>
+                  </section>
+
+                  <section class="wizard-step" data-step-panel="2" aria-labelledby="home-step-3">
+                    <div class="step-header">
+                      <p class="step-kicker">Paso 3</p>
+                      <h3 id="home-step-3">Zona y cierre</h3>
+                      <p class="sc-hint">Selecciona comunas, agrega notas y autoriza el contacto.</p>
+                    </div>
+
+                    <div class="sc-field">
+                      <span class="sc-label">Zona o comuna de interes</span>
+                      <div class="commune-enhanced" data-commune-enhanced>
+                        <p class="sc-hint">Elige rapidamente o escribe para buscar. Presiona Enter para confirmar.</p>
+                        <div class="commune-quick" data-commune-pills>
+                          <button type="button" class="pill-chip" data-commune-pill="La Florida" aria-pressed="false">La Florida</button>
+                          <button type="button" class="pill-chip" data-commune-pill="Santiago Centro" aria-pressed="false">Santiago Centro</button>
+                          <button type="button" class="pill-chip" data-commune-pill="Independencia" aria-pressed="false">Independencia</button>
+                          <button type="button" class="pill-chip" data-commune-pill="Estacion Central" aria-pressed="false">Estacion Central</button>
+                          <button type="button" class="pill-chip" data-commune-pill="Ñuñoa" aria-pressed="false">Ñuñoa</button>
+                          <button type="button" class="pill-chip" data-commune-pill="San Miguel" aria-pressed="false">San Miguel</button>
+                          <button type="button" class="pill-chip" data-commune-pill="Macul" aria-pressed="false">Macul</button>
+                        </div>
+                        <label class="sc-field">
+                          <span class="sc-label sc-optional">Buscador</span>
+                          <input type="text" class="sc-input" placeholder="Escribe una comuna (ej: Ñuñoa, La Florida…)" list="comunas-populares" data-commune-input autocomplete="off">
+                        </label>
+                        <datalist id="comunas-populares">
+                          <option value="Cerrillos"></option>
+                          <option value="Cerro Navia"></option>
+                          <option value="Conchali"></option>
+                          <option value="El Bosque"></option>
+                          <option value="Estacion Central"></option>
+                          <option value="Huechuraba"></option>
+                          <option value="Independencia"></option>
+                          <option value="La Cisterna"></option>
+                          <option value="La Florida"></option>
+                          <option value="La Granja"></option>
+                          <option value="La Pintana"></option>
+                          <option value="La Reina"></option>
+                          <option value="Las Condes"></option>
+                          <option value="Lo Barnechea"></option>
+                          <option value="Lo Espejo"></option>
+                          <option value="Lo Prado"></option>
+                          <option value="Macul"></option>
+                          <option value="Maipu"></option>
+                          <option value="Ñuñoa"></option>
+                          <option value="Pedro Aguirre Cerda"></option>
+                          <option value="Peñalolen"></option>
+                          <option value="Providencia"></option>
+                          <option value="Pudahuel"></option>
+                          <option value="Quilicura"></option>
+                          <option value="Quinta Normal"></option>
+                          <option value="Recoleta"></option>
+                          <option value="Renca"></option>
+                          <option value="San Joaquin"></option>
+                          <option value="San Miguel"></option>
+                          <option value="San Ramon"></option>
+                          <option value="Santiago Centro"></option>
+                          <option value="Vitacura"></option>
+                        </datalist>
+                        <div class="commune-selected" data-commune-selected aria-live="polite"></div>
+                      </div>
+                      <div class="sc-field" data-commune-fallback>
+                        <span class="sc-label sc-optional">Escribe tus comunas (fallback)</span>
+                        <textarea name="comunas_interes" rows="2" class="sc-input" placeholder="Ej: Ñuñoa, La Florida, Santiago Centro" data-commune-store data-step-required required></textarea>
+                      </div>
+                      <p class="sc-error" id="comunas-error" aria-hidden="true">Selecciona al menos una comuna.</p>
+                    </div>
+
+                    <label class="sc-field">
+                      <span class="sc-label">Comentarios adicionales (opcional)</span>
+                      <textarea name="comentarios" rows="3" class="sc-input" placeholder="¿Quieres contarnos algo mas sobre lo que buscas?" style="resize:vertical;"></textarea>
+                    </label>
+
+                    <div class="form-grid">
+                      <label class="sc-field">
+                        <span class="sc-label">¿Como prefieres que te contactemos?</span>
+                        <select name="canal_preferido" class="sc-input" data-step-required required>
+                          <option value="">Selecciona el canal</option>
+                          <option value="whatsapp">WhatsApp</option>
+                          <option value="correo">Correo</option>
+                          <option value="llamada">Llamada</option>
+                        </select>
+                      </label>
+                      <label class="sc-field">
+                        <span class="sc-label">Franja horaria</span>
+                        <select name="franja_preferida" class="sc-input" data-step-required required>
+                          <option value="">Selecciona la franja</option>
+                          <option value="manana">Mañana</option>
+                          <option value="tarde">Tarde</option>
+                          <option value="indiferente">Indiferente</option>
+                        </select>
+                      </label>
+                    </div>
+
+                    <label class="consent-field">
+                      <input type="checkbox" name="consentimiento_privacidad" data-step-required required>
+                      <span>
+                        <strong>Acepto el tratamiento de mis datos segun la Ley 19.628.</strong>
+                        <span class="sc-hint">Consulta nuestra <a href="https://www.selectcapital.cl/privacidad" target="_blank" rel="noopener">Politica de Privacidad</a>.</span>
+                      </span>
+                    </label>
+
+                    <label class="consent-field">
+                      <input type="checkbox" name="consentimiento_contacto" data-step-required required>
+                      <span>
+                        <strong>Autorizo a ser contactado por un asesor inmobiliario de Capital Inteligente.</strong>
+                        <span class="sc-hint">Tus datos se utilizan unicamente para brindarte una asesoria personalizada. No seran compartidos con terceros sin tu consentimiento.</span>
+                      </span>
+                    </label>
+
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAAB_bjq2YOWp-yEXx" data-theme="auto" data-callback="onTurnstileSuccess"></div>
+                    <p id="t-error" class="sc-error" aria-hidden="true">Confirma que no eres un bot</p>
+                    
+                    <div class="form-wizard-nav">
+                      <button type="button" class="btn-ghost" data-step-prev aria-label="Volver al paso anterior">Volver</button>
+                      <button type="submit" id="submitBtn" class="btn-primary" data-step-submit>
+                        <span id="s-text">Recibir mi propuesta personalizada</span>
+                        <span id="s-load" style="display:none;">Enviando…</span>
+                      </button>
+                    </div>
+                  </section>
+                </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-success" id="form-success">
+              ¡Listo! En breve te contactaremos con <strong>3 opciones ajustadas a tu perfil</strong> y los <strong>primeros pasos</strong> del proceso.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    

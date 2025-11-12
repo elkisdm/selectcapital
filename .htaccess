@@ -23,3 +23,9 @@ DirectoryIndex index.html index.php default.php
     ExpiresByType image/avif "access plus 1 year"
 </IfModule>
 
+
+
+
+
+
+

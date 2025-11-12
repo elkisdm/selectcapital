@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark" data-theme-transition>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" data-meta="description" />
+    <link rel="icon" type="image/png" href="/images/icono.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="/lenguaje visual/theme/select-capital-theme.css"
+    />
+    <link rel="stylesheet" href="/lenguaje visual/forms/sc-forms.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title data-meta="title">Proyecto Inmobiliario — Select Capital</title>
+  </head>
+  <body>
+    <main id="lp-main">
+      <section class="hero" id="hero" data-section="hero">
+        <div class="page-shell hero__layout">
+          <article class="surface hero__card sc-noise">
+            <div class="hero__urgency-banner">
+              <span class="urgency-badge">⏰ Solo 3 unidades disponibles</span>
+              <span class="urgency-text">Respuesta en menos de 2 horas</span>
+            </div>
+
+            <span class="hero__eyebrow" data-slot="hero-stage"></span>
+            <div class="hero__headline">
+              <h1 class="hero__title" data-slot="hero-title">
+                Duplica tu dinero en 7 años con arriendo garantizado
+              </h1>
+              <p class="hero__subtitle" data-slot="hero-subtitle">
+                Pie desde UF 219 en cuotas · Rentabilidad 7,2% · Entrega Q4 2026
+              </p>
+            </div>
+
+            <div class="hero__trust-indicators">
+              <div class="trust-item">
+                <span class="trust-icon">✅</span>
+                <span>127 familias ya invirtieron</span>
+              </div>
+              <div class="trust-item">
+                <span class="trust-icon">🏦</span>
+                <span>Financiamiento aprobado por bancos tradicionales</span>
+              </div>
+              <div class="trust-item">
+                <span class="trust-icon">📞</span>
+                <span>Asesoría gratuita sin compromiso</span>
+              </div>
+            </div>
+
+            <div class="hero__badges" data-slot="hero-badges"></div>
+            <ul class="hero__points" data-slot="hero-points"></ul>
+
+            <div class="hero__cta" data-slot="hero-ctas">
+              <button
+                class="btn btn-primary btn-large"
+                type="button"
+                data-action="scroll-form"
+                data-analytics="cta_click"
+                data-cta-context="hero_primary"
+              >
+                <span class="btn-text">Calcular mi inversión ideal</span>
+                <span class="btn-subtext">Gratis · Sin compromiso</span>
+              </button>
+              <a
+                class="btn btn-ghost"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-action="download-ficha"
+                data-analytics="cta_click"
+                data-cta-context="hero_secondary"
+              >
+                📄 Descargar ficha completa
+              </a>
+            </div>
+
+            <div class="hero__guarantee">
+              <div class="guarantee-icon">🛡️</div>
+              <div class="guarantee-text">
+                <strong>100% devolución garantizada</strong> si no calificas al crédito hipotecario
+              </div>
+            </div>
+
+            <div class="hero__stats" data-slot="hero-stats"></div>
+          </article>
+
+          <aside class="surface hero__media sc-noise" data-slot="hero-media">
+            <img
+              class="hero__image lazy-image"
+              data-src="/images/hero-la-florida.jpg"
+              alt="Vista del proyecto inmobiliario"
+              loading="lazy"
+            />
+            <div class="hero__overlay" data-slot="hero-overlay"></div>
+            <div class="image-placeholder" aria-hidden="true">
+              <span>Cargando imagen...</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="highlights" data-section="highlights">
+        <div class="page-shell">
+          <header class="section__header">
+            <h2 class="section__title">Datos clave del proyecto</h2>
+            <p class="section__lead">
+              Resumen rápido: precio de entrada, etapas y condiciones de pie.
+            </p>
+          </header>
+          <div class="surface">
+            <div class="highlights-grid" data-slot="highlights-grid"></div>
+            <p class="field-hint">
+              *Valores referenciales sujetos a evaluación de la inmobiliaria y
+              banco.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials moved above the fold -->
+      <section class="section testimonials-above-fold" id="testimonios-principales" data-section="testimonials-main">
+        <div class="page-shell">
+          <header class="section__header">
+            <h2 class="section__title">Historias reales de inversionistas</h2>
+            <p class="section__lead">
+              Familias que ya están recibiendo arriendo mensual con Select Capital
+            </p>
+          </header>
+          <div class="testimonials-grid-above-fold" data-slot="testimonials-above-fold">
+            <div class="testimonial-card featured">
+              <div class="testimonial-rating">
+                ⭐⭐⭐⭐⭐
+              </div>
+              <p class="testimonial-text">
+                "Reservé mi departamento en 48 horas. La asesoría fue clave para entender los números y asegurar el crédito. Ya estoy recibiendo $520.000 mensuales de arriendo."
+              </p>
+              <div class="testimonial-author">
+                <strong>Carolina R., 32 años</strong>
+                <span>Ñuñoa · Inversión desde UF 2.590</span>
+              </div>
+            </div>
+            <div class="testimonial-card featured">
+              <div class="testimonial-rating">
+                ⭐⭐⭐⭐⭐
+              </div>
+              <p class="testimonial-text">
+                "Excelente proceso. Me guiaron desde la reserva hasta la entrega. El pie en cuotas me permitió invertir sin tanto capital inicial."
+              </p>
+              <div class="testimonial-author">
+                <strong>Mario G., 41 años</strong>
+                <span>Puente Alto · Inversión desde UF 2.190</span>
+              </div>
+            </div>
+            <div class="testimonial-card featured">
+              <div class="testimonial-rating">
+                ⭐⭐⭐⭐⭐
+              </div>
+              <p class="testimonial-text">
+                "La transparencia es total. Me mostraron escenarios reales de rentabilidad y me ayudaron con el subsidio DS19. Muy recomendado."
+              </p>
+              <div class="testimonial-author">
+                <strong>Valentina M., 28 años</strong>
+                <span>La Florida · Inversión desde UF 2.390</span>
+              </div>
+            </div>
+          </div>
+          <div class="social-proof-stats">
+            <div class="stat-item">
+              <strong>127+</strong>
+              <span>Familias invirtieron</span>
+            </div>
+            <div class="stat-item">
+              <strong>$65M+</strong>
+              <span>En arriendos pagados</span>
+            </div>
+            <div class="stat-item">
+              <strong>4.9/5</strong>
+              <span>Calificación promedio</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="galeria" data-section="gallery">
+        <div class="page-shell">
+          <header class="section__header">
+            <h2 class="section__title">Experiencia del proyecto</h2>
+            <p class="section__lead">
+              Mira los espacios comunes, amenities y el piloto en detalle.
+            </p>
+          </header>
+          <div class="gallery-grid" data-slot="gallery-grid"></div>
+        </div>
+      </section>
+
+      <section class="section" id="tipologias" data-section="typologies">
+        <div class="page-shell">
+          <header class="section__header">
+            <h2 class="section__title">Tipologías y precios</h2>
+            <p class="section__lead">
+              Todas las tipologías aplican a la Promoción 10% + Descuento 5% y al esquema de pie 10%.
+              <a href="#" class="pie-modal-link" data-action="open-pie-modal">Ver cómo pago mi pie</a>
+            </p>
+          </header>
+          <div class="typology-grid" data-slot="typology-grid"></div>
+        </div>
+      </section>
+
+      <section class="section" id="simulador" data-section="simulator">
+        <div class="page-shell">
+          <header class="section__header">
+            <h2 class="section__title">Simulador express</h2>
+            <p class="section__lead">
+              Ingresa tu renta y te mostramos dividendo estimado, rango UF y
+              tipologías alcanzables.
+            </p>
+          </header>
+
+          <div class="surface simulator-interactive" data-component="interactive-simulator">
+            <div class="simulator-header">
+              <h3>Calcula tu inversión ideal</h3>
+              <p>Descubre qué propiedades puedes adquirir con tu renta actual</p>
+            </div>
+
+            <div class="simulator-content">
+              <div class="simulator-controls">
+                <div class="control-group">
+                  <label for="sim-income" class="control-label">
+                    <span class="label-text">Renta mensual</span>
+                    <span class="label-value" data-income-display>$1.200.000</span>
+                  </label>
+                  <input
+                    type="range"
+                    id="sim-income"
+                    name="income"
+                    min="500000"
+                    max="5000000"
+                    step="50000"
+                    value="1200000"
+                    class="sim-slider"
+                  />
+                  <div class="slider-marks">
+                    <span>$500K</span>
+                    <span>$3M</span>
+                    <span>$5M</span>
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <label for="sim-downpayment" class="control-label">
+                    <span class="label-text">Pie disponible (UF)</span>
+                    <span class="label-value" data-downpayment-display>200 UF</span>
+                  </label>
+                  <input
+                    type="range"
+                    id="sim-downpayment"
+                    name="downpayment"
+                    min="0"
+                    max="1000"
+                    step="50"
+                    value="200"
+                    class="sim-slider"
+                  />
+                  <div class="slider-marks">
+                    <span>0 UF</span>
+                    <span>500 UF</span>
+                    <span>1000 UF</span>
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <label for="sim-years" class="control-label">
+                    <span class="label-text">Plazo</span>
+                    <span class="label-value" data-years-display>30 años</span>
+                  </label>
+                  <select id="sim-years" name="years" class="sim-select">
+                    <option value="20">20 años</option>
+                    <option value="25">25 años</option>
+                    <option value="30" selected>30 años</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="simulator-results" data-simulator-results>
+                <div class="results-loading" data-results-loading>
+                  <div class="loading-spinner"></div>
+                  <p>Calculando tu capacidad de inversión...</p>
+                </div>
+
+                <div class="results-content" data-results-content style="display: none;">
+                  <div class="results-summary">
+                    <div class="summary-metric">
+                      <span class="metric-label">Dividendo mensual</span>
+                      <span class="metric-value" data-monthly-payment>$285.000</span>
+                    </div>
+                    <div class="summary-metric">
+                      <span class="metric-label">Rango de inversión</span>
+                      <span class="metric-value" data-investment-range>UF 2.190 - 3.200</span>
+                    </div>
+                    <div class="summary-metric">
+                      <span class="metric-label">Arriendo estimado</span>
+                      <span class="metric-value" data-rent-estimate>$420.000 - 680.000</span>
+                    </div>
+                  </div>
+
+                  <div class="affordable-properties" data-affordable-properties>
+                    <h4>Propiedades que puedes adquirir:</h4>
+                    <div class="properties-grid">
+                      <!-- Properties will be populated by JavaScript -->
+                    </div>
+                  </div>
+
+                  <div class="simulator-actions">
+                    <button
+                      type="button"
+                      class="btn btn-primary btn-large"
+                      data-action="get-personalized-proposal"
+                      data-analytics="cta_click"
+                      data-cta-context="simulator"
+                    >
+                      <span class="btn-icon">📊</span>
+                      Recibir propuesta personalizada
+                    </button>
+                    <p class="action-disclaimer">
+                      Te enviamos análisis detallado en menos de 2 horas
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <form id="miniSimulatorForm" style="display: none;">
+              <input type="hidden" name="income" value="1200000">
+              <input type="hidden" name="downpayment" value="200">
+              <input type="hidden" name="years" value="30">
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="ubicacion" data-section="location">
+        <div class="page-shell">
+          <header class="section__header">
+            <h2 class="section__title">Ubicación y conectividad</h2>
+            <p class="section__lead">
+              Conoce la micro-localización, transporte y servicios cercanos.
+            </p>
+          </header>
+          <div class="surface location-grid">
+            <div class="location-map" data-slot="location-map"></div>
+            <div class="location-details">
+              <div class="chips" data-slot="location-chips"></div>
+              <p class="field-hint" data-slot="location-plusvalia"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="porque-ahora" data-section="why-now">
+        <div class="page-shell">
+          <header class="section__header">
+            <h2 class="section__title">¿Por qué invertir ahora?</h2>
+            <p class="section__lead">
+              Factores de mercado, subsidios y oportunidades concretas del
+              proyecto.
+            </p>
+          </header>
+          <div class="surface why-now" data-slot="why-now"></div>
+        </div>
+      </section>
+
+      <section class="section" id="acompanamiento" data-section="accompaniment">
+        <div class="page-shell">
+          <header class="section__header">
+            <h2 class="section__title">Acompañamiento Select Capital</h2>
+            <p class="section__lead">
+              Te guiamos desde el diagnóstico hasta el primer arriendo sin costo
+              adicional.
+            </p>
+          </header>
+          <div class="timeline" data-slot="accompaniment-steps"></div>
+          <div class="badge" data-slot="accompaniment-badge">
+            Asesoría sin costo · Sin comisión al comprador
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="testimonios" data-section="testimonials">
+        <div class="page-shell">
+          <header class="section__header">
+            <h2 class="section__title">Historias reales</h2>
+            <p class="section__lead">
+              Inversionistas que ya están recibiendo arriendo con Select Capital.
+            </p>
+          </header>
+          <div class="testimonials-grid" data-slot="testimonials-grid"></div>
+          <div class="partners" data-slot="partners"></div>
+        </div>
+      </section>
+
+      <section class="section" id="faq" data-section="faq">
+        <div class="page-shell">
+          <header class="section__header">
+            <h2 class="section__title">Preguntas frecuentes</h2>
+            <p class="section__lead">
+              Respondemos las dudas más comunes sobre pies, garantías y entrega.
+            </p>
+          </header>
+          <div class="faq-list" data-slot="faq-list"></div>
+        </div>
+      </section>
+
+      <section class="section" id="formulario" data-section="form">
+        <div class="page-shell">
+          <div class="form-shell">
+            <div class="form-intro surface">
+              <h2 class="section__title">
+                Déjanos tus datos y te enviamos números claros
+              </h2>
+              <p class="section__lead">
+                Recibe dividendo estimado, pie, arriendo y ROI para tu tipología
+                ideal en menos de 24 horas.
+              </p>
+              <ul class="micro-faq">
+                <li>Tipologías sugeridas según tu renta y ahorro.</li>
+                <li>WhatsApp con asesor especializado.</li>
+                <li>Agenda reuniones online o presenciales.</li>
+              </ul>
+            </div>
+
+            <form
+              class="lp-form wizard-form"
+              id="leadForm"
+              method="post"
+              novalidate
+              data-component="lead-form"
+              data-analytics="generate_lead"
+            >
+              <!-- Progress Indicator -->
+              <div class="wizard-progress" data-wizard-progress>
+                <div class="wizard-steps">
+                  <div class="wizard-step-item active" data-step="1">
+                    <span class="step-number">1</span>
+                    <span class="step-label">Contacto</span>
+                  </div>
+                  <div class="wizard-step-item" data-step="2">
+                    <span class="step-number">2</span>
+                    <span class="step-label">Perfil</span>
+                  </div>
+                  <div class="wizard-step-item" data-step="3">
+                    <span class="step-number">3</span>
+                    <span class="step-label">Confirmar</span>
+                  </div>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" data-progress-fill style="width: 33%"></div>
+                </div>
+              </div>
+
+              <!-- Step 1: Contact Info -->
+              <div class="wizard-step active" data-step-content="1">
+                <div class="step-header">
+                  <h3>Cuéntanos sobre ti</h3>
+                  <p>Validamos tus datos para enviarte una propuesta personalizada.</p>
+                </div>
+
+                <div class="form-group">
+                  <label class="sc-label" for="lead-name">Nombre completo</label>
+                  <input
+                    class="form-control sc-input"
+                    id="lead-name"
+                    name="nombre"
+                    autocomplete="name"
+                    placeholder="Ana Pérez"
+                    required
+                  />
+                  <small class="sc-hint">Usa tu nombre completo.</small>
+                </div>
+
+                <div class="form-group">
+                  <label class="sc-label" for="lead-phone">Teléfono WhatsApp</label>
+                  <input
+                    class="form-control sc-input"
+                    id="lead-phone"
+                    name="telefono"
+                    type="tel"
+                    placeholder="+56 9 1234 5678"
+                    inputmode="tel"
+                    data-mask="phone"
+                    autocomplete="tel"
+                    required
+                  />
+                  <small class="sc-hint">Te contactaremos por WhatsApp para agendar tu asesoría.</small>
+                </div>
+
+                <div class="form-group">
+                  <label class="sc-label" for="lead-email">Correo electrónico</label>
+                  <input
+                    class="form-control sc-input"
+                    id="lead-email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    placeholder="hola@tuemail.cl"
+                    required
+                  />
+                </div>
+              </div>
+
+              <!-- Step 2: Financial Profile -->
+              <div class="wizard-step" data-step-content="2">
+                <div class="step-header">
+                  <h3>Tu perfil de inversión</h3>
+                  <p>Nos ayuda a mostrarte opciones que se ajusten a tu realidad.</p>
+                </div>
+
+                <div class="form-group">
+                  <label class="sc-label" for="lead-goal">¿Cuál es tu objetivo?</label>
+                  <select
+                    class="form-control"
+                    id="lead-goal"
+                    name="objetivo"
+                    required
+                  >
+                    <option value="" disabled selected>Selecciona tu objetivo</option>
+                    <option value="invertir">Invertir para generar renta</option>
+                    <option value="vivir">Comprar para vivir</option>
+                    <option value="no_se">Aún no lo tengo claro</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="sc-label" for="lead-income">Renta líquida mensual (CLP)</label>
+                  <input
+                    class="form-control sc-input"
+                    id="lead-income"
+                    name="renta_liquida_clp"
+                    inputmode="numeric"
+                    placeholder="1.200.000"
+                    aria-describedby="lead-income-hint"
+                    required
+                  />
+                  <small class="sc-hint" id="lead-income-hint">
+                    Promedio mensual después de descuentos e imposiciones.
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label class="sc-label" for="lead-savings">Ahorro disponible para pie (UF)</label>
+                  <div class="sc-input-affix">
+                    <input
+                      id="lead-savings"
+                      name="ahorro_uf"
+                      data-mask="uf"
+                      inputmode="decimal"
+                      placeholder="200"
+                      required
+                    />
+                    <span>UF</span>
+                  </div>
+                  <small class="sc-hint">
+                    Si aún no tienes definido el monto, puedes usar 0.
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label class="sc-label" for="lead-timeline">¿Cuándo te gustaría invertir?</label>
+                  <select
+                    class="form-control"
+                    id="lead-timeline"
+                    name="ventana_decision"
+                    required
+                  >
+                    <option value="" disabled selected>Selecciona el momento</option>
+                    <option value="0-30">Los próximos 30 días</option>
+                    <option value="60-90">Entre 60-90 días</option>
+                    <option value="120-plus">Más de 120 días</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Step 3: Preferences & Consent -->
+              <div class="wizard-step" data-step-content="3">
+                <div class="step-header">
+                  <h3>Último paso</h3>
+                  <p>Confirma tus preferencias y autoriza el contacto.</p>
+                </div>
+
+                <div class="form-group">
+                  <label class="sc-label" for="lead-property-type">¿Qué tipo de propiedad te interesa?</label>
+                  <select
+                    class="form-control"
+                    id="lead-property-type"
+                    name="tipo_interes"
+                    required
+                  >
+                    <option value="" disabled selected>Selecciona el tipo</option>
+                    <option value="studio">Studio (28-38 m²)</option>
+                    <option value="1dorm">1 Dormitorio</option>
+                    <option value="2dorm">2 Dormitorios</option>
+                    <option value="todas">Todas las opciones</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="sc-label" for="lead-contact-pref">¿Cómo prefieres que te contactemos?</label>
+                  <select
+                    class="form-control"
+                    id="lead-contact-pref"
+                    name="canal_preferido"
+                    required
+                  >
+                    <option value="" disabled selected>Selecciona tu preferencia</option>
+                    <option value="whatsapp">WhatsApp (recomendado)</option>
+                    <option value="email">Correo electrónico</option>
+                    <option value="llamada">Llamada telefónica</option>
+                  </select>
+                </div>
+
+                <div class="form-group consent">
+                  <input
+                    type="checkbox"
+                    id="lead-consent"
+                    name="consentimiento"
+                    required
+                  />
+                  <label for="lead-consent">
+                    <strong>Acepto el tratamiento de mis datos</strong> según la Ley 19.628 y autorizo contacto por WhatsApp y correo para recibir información sobre este proyecto inmobiliario.
+                  </label>
+                </div>
+
+                <div class="urgency-notice">
+                  <div class="urgency-icon">⏰</div>
+                  <div class="urgency-text">
+                    <strong>¡Oferta limitada!</strong> Solo quedan 3 unidades en tu rango de precio. Te contactaremos en menos de 2 horas.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Navigation -->
+              <div class="wizard-navigation">
+                <button
+                  type="button"
+                  class="btn btn-ghost"
+                  data-wizard-prev
+                  style="display: none;"
+                >
+                  ← Volver
+                </button>
+                <div class="nav-spacer"></div>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-wizard-next
+                >
+                  Continuar →
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  data-wizard-submit
+                  style="display: none;"
+                  data-state="idle"
+                  data-label-default="Recibir mi propuesta personalizada"
+                  data-label-loading="Enviando..."
+                >
+                  Recibir mi propuesta personalizada
+                </button>
+              </div>
+
+              <input type="hidden" name="proyecto" data-slot="hidden-project" />
+              <input type="hidden" name="comuna" data-slot="hidden-commune" />
+              <input type="hidden" name="etapa" data-slot="hidden-stage" />
+              <input type="hidden" name="tipologia_interes" />
+              <input type="hidden" name="simulador_dividendo" />
+              <input type="hidden" name="simulador_rango_uf" />
+              <input type="hidden" name="simulador_tipologias" />
+              <input type="hidden" name="utm_source" />
+              <input type="hidden" name="utm_medium" />
+              <input type="hidden" name="utm_campaign" />
+              <input type="hidden" name="utm_id" />
+              <input type="hidden" name="gclid" />
+              <input type="hidden" name="fbclid" />
+              <input type="hidden" name="ttclid" />
+              <input
+                type="hidden"
+                name="cf-turnstile-response"
+                data-slot="turnstile-token"
+              />
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="legal" data-section="legal">
+        <div class="page-shell">
+          <div class="surface legal-surface">
+            <h2 class="section__title">Confianza y respaldo Select Capital</h2>
+            <div class="legal-grid">
+              <div class="agent-card" data-slot="agent-card">
+                <div class="agent-card__header">
+                  <div class="agent-card__image-placeholder" data-slot="agent-image">
+                    <span>Foto agente</span>
+                  </div>
+                  <div class="agent-card__info">
+                    <h3 class="agent-card__name" data-slot="agent-name">Select Capital</h3>
+                    <p class="agent-card__role" data-slot="agent-role">Asesoría Inmobiliaria</p>
+                  </div>
+                </div>
+                <div class="agent-card__contact" data-slot="legal-contact"></div>
+              </div>
+              <div>
+                <h3>Avisos legales</h3>
+                <ul class="legal-list" data-slot="legal-notes"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="cta-floating" data-component="floating-cta">
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-action="scroll-form"
+        data-analytics="cta_click"
+        data-cta-context="floating"
+      >
+        Quiero mi propuesta
+      </button>
+    </div>
+
+    <footer class="lp-footer">
+      <div class="page-shell">
+        <p>
+          &copy; <span data-slot="footer-year"></span> Select Capital. Todos los
+          derechos reservados.
+        </p>
+      </div>
+    </footer>
+
+    <dialog class="gallery-lightbox" data-component="gallery-lightbox">
+      <div class="gallery-lightbox__content">
+        <button
+          type="button"
+          class="gallery-lightbox__close"
+          aria-label="Cerrar galería"
+        >
+          &times;
+        </button>
+        <figure data-slot="lightbox-figure"></figure>
+      </div>
+    </dialog>
+
+    <dialog class="pie-modal" data-component="pie-modal">
+      <div class="pie-modal__content">
+        <button
+          type="button"
+          class="pie-modal__close"
+          aria-label="Cerrar modal"
+        >
+          &times;
+        </button>
+        <h2>Cómo pago mi pie 10%</h2>
+        <p>El pie se divide en dos partes para mayor flexibilidad financiera.</p>
+        <table class="pie-table">
+          <thead>
+            <tr>
+              <th>Tipología</th>
+              <th>Pie Total (10%)</th>
+              <th>7,5% en 36 cuotas</th>
+              <th>2,5% en 12 cuotas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Estudio</td>
+              <td>UF 240</td>
+              <td>UF 188<br><small>(≈ UF 5,21 c/u)</small></td>
+              <td>UF 63<br><small>(≈ UF 5,21 c/u)</small></td>
+            </tr>
+            <tr>
+              <td>1D</td>
+              <td>UF 335</td>
+              <td>UF 263<br><small>(≈ UF 7,29 c/u)</small></td>
+              <td>UF 88<br><small>(≈ UF 7,29 c/u)</small></td>
+            </tr>
+            <tr>
+              <td>2D</td>
+              <td>UF 470</td>
+              <td>UF 375<br><small>(≈ UF 10,42 c/u)</small></td>
+              <td>UF 125<br><small>(≈ UF 10,42 c/u)</small></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="field-hint">*Valores referenciales. La conversión $ depende del valor UF vigente.</p>
+      </div>
+    </dialog>
+
+    <script type="module" src="/lenguaje visual/forms/sc-masks.js"></script>
+    <script type="module" src="./base-viva-marin.js"></script>
+  </body>
+</html>
+

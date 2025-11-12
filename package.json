@@ -1,0 +1,25 @@
+{
+  "name": "selec-capital",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:home": "node scripts/build-home.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elkisdm/selectcapital.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/elkisdm/selectcapital/issues"
+  },
+  "homepage": "https://github.com/elkisdm/selectcapital#readme",
+  "dependencies": {
+    "playwright": "^1.56.1"
+  }
+}

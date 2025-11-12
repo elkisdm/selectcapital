@@ -1,0 +1,2095 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panel de Proyectos — Select Capital</title>
+  <link rel="stylesheet" href="../lenguaje visual/theme/select-capital-theme.css" />
+  <style>
+    :root {
+      --sc-bg: radial-gradient(circle at 25% 20%, rgba(255,255,255,0.08), transparent 45%),
+                radial-gradient(circle at 80% 0%, rgba(140,82,255,0.15), transparent 40%),
+                #05080F;
+      --sc-card: rgba(11,16,25,0.82);
+      --sc-border: rgba(255,255,255,0.12);
+      --sc-border-strong: rgba(255,255,255,0.22);
+      --sc-chip: rgba(255,255,255,0.06);
+      --sc-chip-active: rgba(205,127,50,0.2);
+      --sc-gradient: linear-gradient(135deg, #CD7F32 0%, #DAA520 45%, #F4C430 80%);
+      --sc-text: #F8FAFC;
+      --sc-text-soft: rgba(248,250,252,0.7);
+      --sc-success: #34D399;
+      --sc-warning: #FBBF24;
+      --sc-danger: #F87171;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--sc-bg);
+      color: var(--sc-text);
+      font-family: inherit;
+      line-height: 1.5;
+    }
+    .app-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 140px;
+    }
+    header {
+      margin: 32px 0 16px;
+    }
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px clamp(16px,4vw,48px) 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      text-align: center;
+    }
+    .logo-mark {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      color: var(--sc-text);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+    .logo-mark img {
+      height: 46px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 12px 24px rgba(0,0,0,0.35));
+    }
+    .logo-mark span {
+      white-space: nowrap;
+    }
+    .header-tagline {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 600;
+      color: var(--sc-text);
+      margin: 0;
+    }
+    .search-box {
+      width: min(640px, 90vw);
+      position: relative;
+    }
+    .search-box input {
+      width: 100%;
+      background: rgba(12,18,36,0.85);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      padding: 12px 20px 12px 46px;
+      color: var(--sc-text);
+      font-size: 1rem;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+    }
+    .search-box svg {
+      position: absolute;
+      top: 50%;
+      left: 18px;
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: var(--sc-text-soft);
+      stroke-width: 1.5;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    main {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: clamp(20px,4vw,48px);
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .panel {
+      border: 1px solid var(--sc-border);
+      border-radius: 28px;
+      background: var(--sc-card);
+      padding: 24px clamp(20px,3vw,32px);
+    }
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .panel-header h2 {
+      margin: 0;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4em;
+      color: var(--sc-text-soft);
+    }
+    label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sc-text-soft);
+      display: block;
+      margin-bottom: 6px;
+    }
+    select,
+    input[type="range"] {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--sc-border);
+      border-radius: 14px;
+      padding: 10px 14px;
+      color: var(--sc-text);
+      font-size: 0.95rem;
+    }
+    input[type="range"] {
+      padding: 12px 0;
+      accent-color: #cd7f32;
+    }
+    .range-value {
+      font-size: 0.9rem;
+      margin-top: 4px;
+      color: var(--sc-text-soft);
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .filters-divider {
+      height: 1px;
+      margin: 12px 0 24px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      border: none;
+    }
+    .chip {
+      border-radius: 999px;
+      padding: 6px 14px;
+      background: var(--sc-chip);
+      border: 1px solid transparent;
+      font-size: 0.85rem;
+      color: var(--sc-text-soft);
+    }
+    .chip.active {
+      border-color: var(--sc-border-strong);
+      background: var(--sc-chip-active);
+      color: var(--sc-text);
+    }
+    .chip[data-chip="filter"] {
+      cursor: pointer;
+      user-select: none;
+    }
+    .filter-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .filters-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 14px;
+    }
+    .filter-control {
+      position: relative;
+    }
+    .filter-badge {
+      border-radius: 999px;
+      padding: 4px 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--sc-text-soft);
+      font-size: 0.8rem;
+    }
+    .advanced-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 16px;
+      border: 1px solid var(--sc-border);
+      background: rgba(255,255,255,0.03);
+      padding: 8px 14px;
+      color: var(--sc-text);
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .advanced-body {
+      margin-top: 16px;
+    }
+    .advanced-body.collapsed {
+      display: none;
+    }
+    .filter-pill {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--sc-border);
+      background: rgba(255,255,255,0.04);
+      color: var(--sc-text);
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+    .filter-pill span.chevron {
+      font-size: 1rem;
+      opacity: 0.6;
+    }
+    .filter-panel {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      border-radius: 20px;
+      border: 1px solid var(--sc-border);
+      background: rgba(6,10,17,0.98);
+      padding: 16px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+      z-index: 60;
+      display: none;
+    }
+    .filter-panel.open {
+      display: block;
+    }
+    .filter-panel-search {
+      margin-bottom: 12px;
+    }
+    .filter-panel-search input {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--sc-border);
+      background: rgba(255,255,255,0.03);
+      padding: 10px 14px;
+      color: var(--sc-text);
+    }
+    .filter-options {
+      max-height: 220px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-right: 4px;
+    }
+    .filter-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.92rem;
+      color: var(--sc-text);
+      padding: 6px 8px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+    }
+    .filter-option input {
+      accent-color: #cd7f32;
+    }
+    .filter-option:hover {
+      border-color: var(--sc-border);
+      background: rgba(255,255,255,0.02);
+    }
+    .filter-panel-actions {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .filter-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(5,8,15,0.55);
+      backdrop-filter: blur(6px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      z-index: 55;
+    }
+    .filter-backdrop.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .toggle-group {
+      display: inline-flex;
+      border-radius: 16px;
+      border: 1px solid var(--sc-border);
+      background: rgba(255,255,255,0.03);
+      overflow: hidden;
+    }
+    .toggle-group button {
+      border: none;
+      padding: 8px 18px;
+      background: transparent;
+      color: var(--sc-text-soft);
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .toggle-group button.active {
+      background: var(--sc-gradient);
+      color: #05080f;
+      font-weight: 600;
+    }
+    .range-field {
+      border-radius: 16px;
+      border: 1px solid var(--sc-border);
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.02);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .slider-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--sc-text-soft);
+      margin-bottom: 2px;
+    }
+    .slider-subtitle {
+      font-size: 0.8rem;
+      color: var(--sc-text-soft);
+    }
+    .btn {
+      border: none;
+      border-radius: 14px;
+      padding: 11px 22px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .btn-primary {
+      background: var(--sc-gradient);
+      color: #0b0f16;
+    }
+    .btn-ghost {
+      background: rgba(255,255,255,0.04);
+      color: var(--sc-text);
+      border: 1px solid var(--sc-border);
+    }
+    .btn-link {
+      background: transparent;
+      color: var(--sc-text-soft);
+      text-decoration: underline;
+      padding: 0;
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .btn:not(:disabled):hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 20px;
+    }
+    .kpi-card {
+      border: 1px solid var(--sc-border);
+      border-radius: 24px;
+      padding: 20px;
+      background: rgba(255,255,255,0.02);
+    }
+    .kpi-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .kpi-card small {
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--sc-text-soft);
+    }
+    .kpi-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--sc-text);
+    }
+    .kpi-card strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 2rem;
+    }
+    .kpi-card span {
+      font-size: 0.85rem;
+      color: var(--sc-text-soft);
+    }
+    .table-panel {
+      overflow: hidden;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .table-wrapper {
+      overflow-x: auto;
+    }
+    thead th {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--sc-text-soft);
+      text-align: left;
+      padding-bottom: 12px;
+    }
+    tbody td {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 16px 0;
+      vertical-align: top;
+      font-size: 0.95rem;
+    }
+    .row-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .row-actions .btn {
+      flex: 1 1 140px;
+      min-width: 140px;
+      text-align: center;
+    }
+    @media (max-width: 720px) {
+      .row-actions {
+        flex-direction: column;
+      }
+      .row-actions .btn {
+        width: 100%;
+      }
+    }
+    .compare-pill {
+      border-radius: 999px;
+      padding: 8px 16px;
+    }
+    tbody tr:hover td {
+      background: rgba(255,255,255,0.02);
+    }
+    .cond-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      background: rgba(255,255,255,0.05);
+      margin: 0 6px 6px 0;
+    }
+    .cond-chip strong {
+      font-weight: 600;
+      color: var(--sc-text);
+    }
+    .cond-chip.muted {
+      background: rgba(255,255,255,0.02);
+      border: 1px dashed rgba(255,255,255,0.2);
+    }
+    .payment-note {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      color: var(--sc-text-soft);
+    }
+    .table-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .sort-button {
+      border: none;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      padding: 0;
+    }
+    .sort-button .indicator {
+      font-size: 0.85rem;
+      opacity: 0.6;
+    }
+    .active-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .filter-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      font-size: 0.82rem;
+    }
+    .filter-tag button {
+      border: none;
+      background: transparent;
+      color: var(--sc-text);
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--sc-text-soft);
+    }
+    .drawer {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      pointer-events: none;
+      z-index: 80;
+    }
+    .drawer.open {
+      pointer-events: auto;
+    }
+    .drawer-backdrop {
+      flex: 1;
+      background: rgba(0,0,0,0.5);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .drawer.open .drawer-backdrop {
+      opacity: 1;
+    }
+    .drawer-panel {
+      width: min(480px, 100%);
+      background: #060A12;
+      border-left: 1px solid var(--sc-border);
+      padding: 32px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      overflow-y: auto;
+    }
+    .drawer.open .drawer-panel {
+      transform: translateX(0);
+    }
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .drawer-header h3 {
+      margin: 0;
+      font-size: 1.35rem;
+    }
+    .meta {
+      font-size: 0.85rem;
+      color: var(--sc-text-soft);
+    }
+    .drawer-section {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .drawer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .drawer-metric {
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 12px;
+      background: rgba(255,255,255,0.02);
+    }
+    .drawer-metric small {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--sc-text-soft);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .drawer-metric strong {
+      font-size: 1.1rem;
+    }
+    .drawer-section ul {
+      padding-left: 18px;
+      margin: 12px 0;
+      color: var(--sc-text-soft);
+    }
+    .payment-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .payment-card {
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 14px;
+      background: rgba(255,255,255,0.02);
+    }
+    .payment-card small {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.65rem;
+      color: var(--sc-text-soft);
+      margin-bottom: 6px;
+    }
+    .payment-card strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+    .payment-card span.helper {
+      font-size: 0.85rem;
+      color: var(--sc-text-soft);
+    }
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .note-card {
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 12px;
+      background: rgba(255,255,255,0.02);
+      font-size: 0.9rem;
+      color: var(--sc-text-soft);
+    }
+    .compare-tray {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: min(420px, calc(100% - 32px));
+      border-radius: 24px;
+      border: 1px solid var(--sc-border);
+      background: rgba(5,8,15,0.96);
+      backdrop-filter: blur(18px);
+      padding: 18px 22px 20px;
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      z-index: 70;
+      max-height: calc(100vh - 80px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+      overflow: hidden;
+    }
+    .compare-tray.visible {
+      display: flex;
+    }
+    .compare-content {
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .compare-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .compare-card {
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.02);
+    }
+    .compare-card span {
+      font-weight: 600;
+    }
+    .compare-card button {
+      border: none;
+      background: transparent;
+      color: var(--sc-text-soft);
+      cursor: pointer;
+    }
+    .compare-table-wrapper {
+      overflow-x: auto;
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .compare-table th {
+      text-align: left;
+      color: var(--sc-text-soft);
+      font-weight: 600;
+      padding: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .compare-table td {
+      padding: 10px 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .compare-table td.diff {
+      background: rgba(205,127,50,0.08);
+    }
+    .compare-section th {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--sc-text-soft);
+      text-transform: uppercase;
+      padding-top: 16px;
+      background: transparent;
+    }
+    .compare-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .compare-head h3 {
+      margin: 0;
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--sc-text-soft);
+    }
+    .compare-head p {
+      margin: 4px 0 0;
+      color: var(--sc-text-soft);
+      font-size: 0.85rem;
+    }
+    .compare-tray.collapsed .compare-content {
+      display: none;
+    }
+    .compare-tray.collapsed {
+      padding-bottom: 12px;
+    }
+    .compare-empty {
+      text-align: center;
+      color: var(--sc-text-soft);
+      font-size: 0.9rem;
+      padding: 12px 0;
+    }
+    .toast {
+      position: fixed;
+      right: 24px;
+      bottom: 160px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: rgba(7,11,18,0.92);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--sc-text);
+      font-size: 0.9rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      z-index: 99;
+    }
+    .toast.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .pagination button {
+      border: 1px solid var(--sc-border);
+      background: rgba(255,255,255,0.03);
+      color: var(--sc-text);
+      border-radius: 12px;
+      padding: 6px 14px;
+      cursor: pointer;
+    }
+    .pagination button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    @media (max-width: 960px) {
+      .panel {
+        border-radius: 20px;
+      }
+      tbody td {
+        font-size: 0.85rem;
+      }
+      .drawer-panel {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <div class="header-inner">
+        <div class="logo-mark">
+          <img src="../images/logo_blanco.png" alt="Select Capital" />
+          <span>Portfolio Proyectos</span>
+        </div>
+        <p class="header-tagline">Explora, filtra y comparte oportunidades Select Capital</p>
+        <div class="search-box">
+          <input type="search" placeholder="Buscar proyecto, comuna o inmobiliaria..." data-filter="search" />
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="16.65" y1="16.65" x2="21" y2="21"></line>
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel">
+        <div class="panel-header">
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <h2>Filtros</h2>
+            <span class="filter-badge" data-filter-count>0 activos</span>
+          </div>
+          <button class="btn-link" data-action="clear-filters">✕ Limpiar</button>
+        </div>
+        <div class="filter-row">
+          <div class="filter-control" data-filter-control="comuna">
+            <label>Comuna</label>
+            <button class="filter-pill" type="button" data-filter-trigger="comuna" aria-haspopup="true" aria-expanded="false">
+              <span data-filter-label="comuna">Todas</span>
+              <span class="chevron">⌄</span>
+            </button>
+            <div class="filter-panel" data-filter-panel="comuna" role="menu" aria-hidden="true">
+              <div class="filter-panel-search">
+                <input type="search" placeholder="Buscar comuna..." data-filter-search="comuna" />
+              </div>
+              <div class="filter-options" data-filter-options="comuna"></div>
+              <div class="filter-panel-actions">
+                <button class="btn btn-link" data-action="clear-filter-panel" data-key="comuna">Limpiar</button>
+                <button class="btn btn-primary" data-action="close-filter-panel">Listo</button>
+              </div>
+            </div>
+          </div>
+          <div class="filter-control">
+            <label>Entrega</label>
+            <div class="toggle-group" role="group" aria-label="Filtro entrega">
+              <button type="button" data-entrega-value="all" class="active">Todas</button>
+              <button type="button" data-entrega-value="inmediata">Inmediata</button>
+              <button type="button" data-entrega-value="pronta">Pronta</button>
+              <button type="button" data-entrega-value="futura">Futura</button>
+            </div>
+          </div>
+          <div class="filter-control">
+            <label>Renta corta</label>
+            <div class="toggle-group" role="group" aria-label="Filtro renta corta">
+              <button type="button" data-renta-value="all" class="active">Todos</button>
+              <button type="button" data-renta-value="true">Sí</button>
+              <button type="button" data-renta-value="false">No</button>
+            </div>
+          </div>
+        </div>
+        <button class="advanced-toggle" data-action="toggle-advanced">
+          <span data-advanced-toggle-label>Mostrar filtros avanzados (0)</span>
+        </button>
+        <div class="advanced-body collapsed" data-advanced-body>
+          <div class="filters-grid">
+            <div class="filter-control" data-filter-control="estado">
+              <label>Estado</label>
+              <button class="filter-pill" type="button" data-filter-trigger="estado" aria-haspopup="true" aria-expanded="false">
+                <span data-filter-label="estado">Todos</span>
+                <span class="chevron">⌄</span>
+              </button>
+              <div class="filter-panel" data-filter-panel="estado" role="menu" aria-hidden="true">
+                <div class="filter-panel-search">
+                  <input type="search" placeholder="Buscar estado..." data-filter-search="estado" />
+                </div>
+                <div class="filter-options" data-filter-options="estado"></div>
+                <div class="filter-panel-actions">
+                  <button class="btn btn-link" data-action="clear-filter-panel" data-key="estado">Limpiar</button>
+                  <button class="btn btn-primary" data-action="close-filter-panel">Listo</button>
+                </div>
+              </div>
+            </div>
+            <div class="filter-control">
+              <label>Pie en cuotas ≥</label>
+              <div class="range-field">
+                <div class="slider-label">
+                  <span>Cuotas mínimas</span>
+                  <span data-range-display="pie">0</span>
+                </div>
+                <div class="slider-subtitle">Ajusta el mínimo de cuotas del pie</div>
+                <input id="f-pie" type="range" min="0" max="36" step="4" value="0" data-filter="pieMin" />
+              </div>
+            </div>
+            <div class="filter-control">
+              <label>Bono pie ≥</label>
+              <div class="range-field">
+                <div class="slider-label">
+                  <span>Bono mínimo</span>
+                  <span data-range-display="bono">0%</span>
+                </div>
+                <div class="slider-subtitle">Selecciona el bono mínimo deseado</div>
+                <input id="f-bono" type="range" min="0" max="20" step="5" value="0" data-filter="bonoMin" />
+              </div>
+            </div>
+          </div>
+          <div class="chips" data-active-chips></div>
+        </div>
+      </section>
+
+      <hr class="filters-divider" />
+
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Indicadores</h2>
+        </div>
+        <div class="kpi-grid" data-kpi-grid></div>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="table-actions">
+          <div class="active-filters" data-active-tags></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn btn-ghost compare-pill" data-action="toggle-compare-panel" data-compare-toggle>
+              Comparador (<span data-compare-count-pill>0</span>)
+            </button>
+            <button class="btn btn-ghost" data-action="copy-results">Copiar resumen</button>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  <button class="sort-button" data-sort-key="proyecto">
+                    Proyecto
+                    <span class="indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th>
+                  <button class="sort-button" data-sort-key="comuna">
+                    Ubicación
+                    <span class="indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th>
+                  <button class="sort-button" data-sort-key="entrega">
+                    Entrega
+                    <span class="indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th>Condiciones</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody data-table-body></tbody>
+          </table>
+          <div class="empty-state" data-empty hidden>
+            Sin resultados con los filtros seleccionados. Ajusta los parámetros para ver más proyectos.
+          </div>
+        </div>
+        <div class="pagination" data-pagination></div>
+      </section>
+    </main>
+  </div>
+
+  <section class="drawer" data-drawer role="dialog" aria-modal="true" aria-labelledby="project-drawer-title">
+    <div class="drawer-backdrop" data-action="close-drawer"></div>
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <div>
+          <h3 data-drawer-title id="project-drawer-title">Proyecto</h3>
+          <div class="meta" data-drawer-meta></div>
+        </div>
+        <button class="btn-ghost btn" data-action="close-drawer">Cerrar</button>
+      </div>
+      <div class="drawer-body" data-drawer-body>
+        <p>Selecciona un proyecto para ver detalle.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="compare-tray" data-compare-tray>
+    <div class="compare-head">
+      <div>
+        <h3>Comparador</h3>
+        <p>Selecciona hasta 3 proyectos.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="color:var(--sc-text-soft);font-size:0.85rem;" data-compare-count></span>
+        <button class="btn-link" data-action="close-compare-tray">Cerrar</button>
+      </div>
+    </div>
+    <div class="compare-content">
+      <div class="compare-items" data-compare-items></div>
+      <div class="compare-empty" data-compare-empty>Agrega proyectos usando “Comparar” para ver el detalle lado a lado.</div>
+      <div class="compare-table-wrapper">
+        <table class="compare-table" data-compare-table></table>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="btn btn-primary" data-action="copy-compare">Copiar resumen comparado</button>
+      <button class="btn btn-ghost" data-action="clear-compare">Limpiar comparador</button>
+    </div>
+  </section>
+  <div class="toast" data-toast role="status" aria-live="polite"></div>
+  <div class="filter-backdrop" data-filter-backdrop></div>
+  <script src="./data/projects.js"></script>
+  <script>
+    let projects = Array.isArray(window.SELECT_PROJECTS) ? window.SELECT_PROJECTS : [];
+    delete window.SELECT_PROJECTS;
+
+    const state = {
+      search: '',
+      comuna: [],
+      estado: [],
+      renta: 'all',
+      entregaCategory: 'all',
+      pieMin: 0,
+      bonoMin: 0,
+      page: 1,
+      pageSize: 25,
+      sortKey: null,
+      sortDir: 'asc'
+    };
+
+    let currentView = [];
+    const compareList = [];
+    const filterOptionsCache = {
+      comuna: [],
+      estado: []
+    };
+    const filterSearchCache = {
+      comuna: '',
+      estado: ''
+    };
+    let activeFilterPanel = null;
+    let advancedOpen = false;
+    let compareTrayOpen = false;
+    let advancedFilterCount = 0;
+    const advancedKeys = new Set(['estado','pieMin','bonoMin']);
+
+    const els = {
+      tableBody: document.querySelector('[data-table-body]'),
+      empty: document.querySelector('[data-empty]'),
+      activeTags: document.querySelector('[data-active-tags]'),
+      activeChips: document.querySelector('[data-active-chips]'),
+      kpiGrid: document.querySelector('[data-kpi-grid]'),
+      drawer: document.querySelector('[data-drawer]'),
+      drawerTitle: document.querySelector('[data-drawer-title]'),
+      drawerMeta: document.querySelector('[data-drawer-meta]'),
+      drawerBody: document.querySelector('[data-drawer-body]'),
+      compareTray: document.querySelector('[data-compare-tray]'),
+      compareItems: document.querySelector('[data-compare-items]'),
+      compareTable: document.querySelector('[data-compare-table]'),
+      toast: document.querySelector('[data-toast]'),
+      filterBackdrop: document.querySelector('[data-filter-backdrop]'),
+      filterCount: document.querySelector('[data-filter-count]'),
+      advancedToggleLabel: document.querySelector('[data-advanced-toggle-label]'),
+      advancedBody: document.querySelector('[data-advanced-body]'),
+      compareToggle: document.querySelector('[data-compare-toggle]'),
+      compareCountPill: document.querySelector('[data-compare-count-pill]')
+    };
+    els.filterBackdrop?.addEventListener('click', closeFilterPanel);
+
+    function formatUF(value) {
+      if (value == null) return '—';
+      return `UF ${Number(value).toLocaleString('es-CL', { maximumFractionDigits: 0 })}`;
+    }
+
+    function renderPagination(totalPages) {
+      const container = document.querySelector('[data-pagination]');
+      if (!container) return;
+      if (totalPages <= 1) {
+        container.innerHTML = '';
+        return;
+      }
+      container.innerHTML = `
+        <button data-action="paginate" data-direction="prev" ${state.page === 1 ? 'disabled' : ''}>Anterior</button>
+        <span>Página ${state.page} de ${totalPages} · ${currentView.length} proyectos</span>
+        <button data-action="paginate" data-direction="next" ${state.page === totalPages ? 'disabled' : ''}>Siguiente</button>
+      `;
+    }
+
+    function formatPercent(value) {
+      if (value == null) return '—';
+      return `${value}%`;
+    }
+
+    const clpFormatter = new Intl.NumberFormat('es-CL', {
+      style: 'currency',
+      currency: 'CLP',
+      maximumFractionDigits: 0
+    });
+
+    function formatCLP(value) {
+      if (value == null) return '—';
+      return clpFormatter.format(Number(value));
+    }
+
+    function formatYesNo(value, fallback = '—') {
+      if (value === true) return 'Sí';
+      if (value === false) return 'No';
+      return fallback;
+    }
+
+    function formatBoolean(value) {
+      if (value === true) return 'Sí';
+      if (value === false) return 'No';
+      return 'N/A';
+    }
+
+    function escapeAttr(value) {
+      return String(value ?? '').replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+    }
+
+    function categorizeEntrega(value) {
+      if (!value) return 'futura';
+      const lower = value.toLowerCase();
+      if (lower.includes('inmedi')) return 'inmediata';
+      if (lower.includes('pronta')) return 'pronta';
+      const yearMatch = lower.match(/20(\d{2})/);
+      if (yearMatch) {
+        const year = Number(`20${yearMatch[1]}`);
+        const currentYear = new Date().getFullYear();
+        if (year <= currentYear + 1) {
+          return 'pronta';
+        }
+      }
+      return 'futura';
+    }
+
+    function uniqueValuesFor(key) {
+      const set = new Set();
+      projects.forEach(project => {
+        const value = project[key];
+        if (value) set.add(value);
+      });
+      return Array.from(set).sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' }));
+    }
+
+    function populateDynamicFilters() {
+      if (!projects.length) return;
+      filterOptionsCache.comuna = uniqueValuesFor('comuna');
+      filterOptionsCache.estado = uniqueValuesFor('estado');
+      ['comuna','estado'].forEach(key => {
+        renderFilterOptions(key);
+      });
+      updateFilterLabels();
+    }
+
+    function renderFilterOptions(key) {
+      const container = document.querySelector(`[data-filter-options="${key}"]`);
+      if (!container) return;
+      const values = filterOptionsCache[key] || [];
+      const query = filterSearchCache[key]?.toLowerCase() ?? '';
+      const filtered = query ? values.filter(value => value.toLowerCase().includes(query)) : values;
+      if (!filtered.length) {
+        container.innerHTML = `<div class="filter-option" style="justify-content:center;color:var(--sc-text-soft);">Sin resultados</div>`;
+        return;
+      }
+      container.innerHTML = filtered.map(value => {
+        const checked = state[key].includes(value) ? 'checked' : '';
+        const safeValue = escapeAttr(value);
+        return `
+          <label class="filter-option">
+            <input type="checkbox" value="${safeValue}" data-filter-option="${key}" ${checked} />
+            <span>${value}</span>
+          </label>
+        `;
+      }).join('');
+    }
+
+    function updateRangeDisplays() {
+      const pieEl = document.querySelector('[data-range-display="pie"]');
+      if (pieEl) pieEl.textContent = state.pieMin;
+      const bonoEl = document.querySelector('[data-range-display="bono"]');
+      if (bonoEl) bonoEl.textContent = `${state.bonoMin}%`;
+    }
+
+    function updateFilterLabels() {
+      ['comuna','estado'].forEach(key => {
+        const label = document.querySelector(`[data-filter-label="${key}"]`);
+        if (!label) return;
+        const values = state[key];
+        if (!values.length) {
+          label.textContent = key === 'estado' ? 'Todos' : 'Todas';
+        } else if (values.length === 1) {
+          label.textContent = values[0];
+        } else {
+          label.textContent = `${values.length} seleccionadas`;
+        }
+      });
+      document.querySelectorAll('[data-renta-value]').forEach(button => {
+        button.classList.toggle('active', button.dataset.rentaValue === state.renta);
+      });
+      document.querySelectorAll('[data-entrega-value]').forEach(button => {
+        button.classList.toggle('active', button.dataset.entregaValue === state.entregaCategory);
+      });
+    }
+
+    function updateAdvancedToggleLabel(count = advancedFilterCount) {
+      if (els.advancedToggleLabel) {
+        els.advancedToggleLabel.textContent = `${advancedOpen ? 'Ocultar' : 'Mostrar'} filtros avanzados (${count})`;
+      }
+    }
+
+    function updateAdvancedVisibility() {
+      if (!els.advancedBody) return;
+      if (advancedOpen) {
+        els.advancedBody.classList.remove('collapsed');
+      } else {
+        els.advancedBody.classList.add('collapsed');
+      }
+      updateAdvancedToggleLabel();
+    }
+
+    function openFilterPanel(key) {
+      if (activeFilterPanel && activeFilterPanel !== key) {
+        closeFilterPanel();
+      }
+      const panel = document.querySelector(`[data-filter-panel="${key}"]`);
+      const trigger = document.querySelector(`[data-filter-trigger="${key}"]`);
+      if (!panel || !trigger) return;
+      panel.classList.add('open');
+      panel.setAttribute('aria-hidden', 'false');
+      trigger.setAttribute('aria-expanded', 'true');
+      activeFilterPanel = key;
+      els.filterBackdrop?.classList.add('visible');
+    }
+
+    function closeFilterPanel() {
+      if (!activeFilterPanel) return;
+      const panel = document.querySelector(`[data-filter-panel="${activeFilterPanel}"]`);
+      const trigger = document.querySelector(`[data-filter-trigger="${activeFilterPanel}"]`);
+      if (panel) {
+        panel.classList.remove('open');
+        panel.setAttribute('aria-hidden', 'true');
+      }
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      activeFilterPanel = null;
+      els.filterBackdrop?.classList.remove('visible');
+    }
+
+    function getFilteredProjects() {
+      const searchTerm = state.search.trim().toLowerCase();
+      return projects.filter((project) => {
+        const matchesSearch = !searchTerm ||
+          [project.proyecto, project.inmobiliaria, project.comuna]
+            .filter(Boolean)
+            .some(text => text.toLowerCase().includes(searchTerm));
+
+        const matchesComuna = !state.comuna.length || state.comuna.includes(project.comuna);
+        const matchesEntrega = state.entregaCategory === 'all' || categorizeEntrega(project.entrega) === state.entregaCategory;
+        const matchesEstado = !state.estado.length || state.estado.includes(project.estado);
+        const matchesRenta = state.renta === 'all' ||
+          (state.renta === 'true' && project.aceptaRentaCorta === true) ||
+          (state.renta === 'false' && project.aceptaRentaCorta === false);
+        const matchesPie = (project.pieEnCuotas ?? 0) >= state.pieMin;
+        const matchesBono = (project.bonoPiePct ?? 0) >= state.bonoMin;
+
+        return matchesSearch && matchesComuna && matchesEntrega && matchesEstado &&
+          matchesRenta && matchesPie && matchesBono;
+      });
+    }
+
+    function applySorting(items) {
+      if (!state.sortKey) return [...items];
+      return [...items].sort((a, b) => {
+        const valueA = a[state.sortKey];
+        const valueB = b[state.sortKey];
+        if (valueA == null && valueB == null) return 0;
+        if (valueA == null) return 1;
+        if (valueB == null) return -1;
+        if (typeof valueA === 'number' && typeof valueB === 'number') {
+          return state.sortDir === 'asc' ? valueA - valueB : valueB - valueA;
+        }
+        return state.sortDir === 'asc'
+          ? String(valueA).localeCompare(String(valueB), 'es', { sensitivity: 'base' })
+          : String(valueB).localeCompare(String(valueA), 'es', { sensitivity: 'base' });
+      });
+    }
+
+    function updateSortIndicators() {
+      document.querySelectorAll('[data-sort-key]').forEach(button => {
+        const key = button.dataset.sortKey;
+        const indicator = button.querySelector('.indicator');
+        const isActive = state.sortKey === key;
+        button.classList.toggle('active', isActive);
+        if (indicator) {
+          indicator.textContent = isActive
+            ? (state.sortDir === 'asc' ? '↑' : '↓')
+            : '↕';
+        }
+      });
+    }
+
+    function renderKPIs(data) {
+      const total = data.length;
+      const entregaStats = data.reduce((acc, project) => {
+        const category = categorizeEntrega(project.entrega);
+        acc[category] = (acc[category] || 0) + 1;
+        return acc;
+      }, { inmediata: 0, pronta: 0, futura: 0 });
+      const immediate = entregaStats.inmediata || 0;
+      const pronta = entregaStats.pronta || 0;
+      const futura = entregaStats.futura || 0;
+      const immediatePct = total ? Math.round((immediate / total) * 100) : 0;
+      const prontaPct = total ? Math.round((pronta / total) * 100) : 0;
+      const futuraPct = total ? Math.round((futura / total) * 100) : 0;
+
+      const comunaCounts = data.reduce((acc, p) => {
+        acc[p.comuna] = (acc[p.comuna] || 0) + 1;
+        return acc;
+      }, {});
+      const topComuna = Object.entries(comunaCounts).sort((a,b) => b[1]-a[1])[0]?.[0] || '—';
+
+      const rentaGarantizada = data.filter(p => !!p.arriendoGarantizado).length;
+      const inmobiliariaCounts = data.reduce((acc, p) => {
+        if (!p.inmobiliaria) return acc;
+        acc[p.inmobiliaria] = (acc[p.inmobiliaria] || 0) + 1;
+        return acc;
+      }, {});
+      const topInmo = Object.entries(inmobiliariaCounts).sort((a,b) => b[1]-a[1])[0]?.[0] || '—';
+
+      const kpis = [
+        { label: '# Proyectos', value: total, helper: 'Resultados de la búsqueda' },
+        { label: 'Entrega inmediata', value: `${immediatePct}%`, helper: `${immediate} activos` },
+        { label: 'Pronta entrega', value: `${prontaPct}%`, helper: `${pronta} próximos` },
+        { label: 'Entrega futura', value: `${futuraPct}%`, helper: `${futura} proyectos` },
+        { label: 'Top inmobiliaria', value: topInmo, helper: 'Mayor presencia' },
+        { label: 'Arriendo garantizado', value: rentaGarantizada, helper: 'Con beneficios activos' }
+      ];
+
+      els.kpiGrid.innerHTML = kpis.map(kpi => `
+        <article class="kpi-card">
+          <small>${kpi.label}</small>
+          <strong>${kpi.value}</strong>
+          <span>${kpi.helper}</span>
+        </article>
+      `).join('');
+    }
+
+    function renderTable(data) {
+      if (!data.length) {
+        els.tableBody.innerHTML = '';
+        els.empty.hidden = false;
+        return;
+      }
+      els.empty.hidden = true;
+      els.tableBody.innerHTML = data.map(project => `
+        <tr>
+          <td>
+            <div style="font-weight:600;">${project.proyecto}</div>
+            <div style="color:var(--sc-text-soft);">${project.inmobiliaria ?? '—'}</div>
+          </td>
+          <td>
+            <div>${project.comuna ?? '—'}</div>
+            ${project.direccion ? `<div style="color:var(--sc-text-soft); font-size:0.85rem;">${project.direccion}</div>` : ''}
+          </td>
+          <td>
+            <div>${project.entrega ?? '—'}</div>
+            <div style="color:var(--sc-text-soft); font-size:0.85rem;">Estado ${project.estado ?? '—'}</div>
+          </td>
+          <td>
+            ${renderConditionChips(project)}
+            ${project.formaDePago ? `<div class="payment-note">Forma de pago: ${project.formaDePago}</div>` : ''}
+          </td>
+          <td>
+            <div class="row-actions">
+              <button class="btn btn-ghost" data-action="view-detail" data-id="${project.id}">Ver detalle</button>
+              <button class="btn btn-primary" data-action="toggle-compare" data-id="${project.id}">
+                ${compareList.includes(project.id) ? 'En comparador' : 'Comparar'}
+              </button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderConditionChips(project) {
+      const chips = [];
+      if (project.precioDesdeUF) chips.push(`Precio desde ${formatUF(project.precioDesdeUF)}`);
+      if (project.valorReserva) chips.push(`Reserva ${formatCLP(project.valorReserva)}`);
+      if (project.pieEnCuotas != null) chips.push(`Pie total ${project.pieEnCuotas} cuotas`);
+      if (project.bonoPiePct != null) chips.push(`Bono pie ${formatPercent(project.bonoPiePct)}`);
+      if (project.descuentoPct != null) chips.push(`Descuento ${formatPercent(project.descuentoPct)}`);
+      if (project.abonoInicial != null) chips.push(`Abono inicial ${formatPercent(project.abonoInicial)}`);
+      if (project.cuotasAntesEntrega != null) {
+        const pct = formatPercent(project.pctPieAntesEntrega);
+        chips.push(`Antes entrega ${project.cuotasAntesEntrega} cuotas (${pct})`);
+      }
+      if (project.cuotasDespuesEntrega != null) {
+        const pct = formatPercent(project.pctPieDespuesEntrega);
+        chips.push(`Después entrega ${project.cuotasDespuesEntrega} cuotas (${pct})`);
+      }
+      if (project.cuotasCuoton || project.pctCuoton) {
+        const pct = formatPercent(project.pctCuoton);
+        chips.push(`Cuotón ${project.cuotasCuoton ?? '—'} (${pct})`);
+      }
+      if (project.cuotasAntesEntregaDesde) chips.push(`Cuota antes desde ${formatCLP(project.cuotasAntesEntregaDesde)}`);
+      if (project.cuotasDespuesEntregaDesde) chips.push(`Cuota después desde ${formatCLP(project.cuotasDespuesEntregaDesde)}`);
+      if (project.cuotasCuotonDesde) chips.push(`Cuotón desde ${formatCLP(project.cuotasCuotonDesde)}`);
+      if (project.aceptaRentaCorta === true) chips.push('Renta corta Sí');
+      else if (project.aceptaRentaCorta === false) chips.push('Renta corta No');
+      if (project.arriendoGarantizado) chips.push(`Arriendo garantizado ${project.arriendoGarantizado}`);
+      if (project.comisionCI) chips.push(`CI ${project.comisionCI}`);
+      if (project.comisionBP) chips.push(`BP ${project.comisionBP}`);
+      if (project.evento) chips.push(`Evento ${project.evento}`);
+      if (project.precioIncluyeBonoPie != null) chips.push(`Precio incluye BP ${formatYesNo(project.precioIncluyeBonoPie, 'N/A')}`);
+
+      const visible = chips.slice(0, 4).map(chip => `<span class="cond-chip">${chip}</span>`).join('');
+      const hiddenList = chips.slice(4).join(' • ');
+      const hidden = chips.length > 4 ? `<span class="cond-chip muted" title="${escapeAttr(hiddenList)}">+${chips.length - 4} más</span>` : '';
+      return visible + hidden;
+    }
+
+    function renderActiveFilters() {
+      const chips = [];
+      state.comuna.filter(Boolean).forEach(value => chips.push({ key: 'comuna', value, label: `Comuna: ${value}` }));
+      state.estado.filter(Boolean).forEach(value => chips.push({ key: 'estado', value, label: `Estado: ${value}` }));
+      if (state.entregaCategory !== 'all') {
+        const labelMap = { inmediata: 'Inmediata', pronta: 'Pronta', futura: 'Futura' };
+        chips.push({ key: 'entregaCategory', label: `Entrega: ${labelMap[state.entregaCategory] ?? state.entregaCategory}` });
+      }
+      if (state.renta !== 'all') chips.push({ key: 'renta', value: state.renta, label: `Renta corta: ${state.renta === 'true' ? 'Sí' : 'No'}` });
+      if (state.pieMin > 0) chips.push({ key: 'pieMin', label: `Pie ≥ ${state.pieMin} cuotas` });
+      if (state.bonoMin > 0) chips.push({ key: 'bonoMin', label: `Bono ≥ ${state.bonoMin}%` });
+      if (state.search.trim()) chips.push({ key: 'search', label: `Busca “${state.search.trim()}”` });
+
+      els.activeTags.innerHTML = chips.map(chip => `
+        <span class="filter-tag">
+          ${chip.label}
+          <button data-action="clear-filter" data-key="${chip.key}" ${chip.value ? `data-value="${encodeURIComponent(chip.value)}"` : ''} aria-label="Quitar filtro ${chip.label}">✕</button>
+        </span>
+      `).join('');
+
+      els.activeChips.innerHTML = chips.length
+        ? chips.map(chip => `<span class="chip active">${chip.label}</span>`).join('')
+        : '<span class="chip">Sin filtros adicionales</span>';
+      if (els.filterCount) {
+        els.filterCount.textContent = `${chips.length} activos`;
+      }
+      advancedFilterCount = chips.filter(chip => advancedKeys.has(chip.key)).length;
+      updateAdvancedToggleLabel();
+    }
+
+    function renderDrawer(project) {
+      if (!project) return;
+      els.drawerTitle.textContent = `${project.proyecto}`;
+      els.drawerMeta.textContent = `${project.inmobiliaria} · ${project.comuna} · Entrega ${project.entrega}`;
+      els.drawerBody.innerHTML = `
+        <div class="drawer-section">
+          <strong>Condiciones financieras</strong>
+          <div class="payment-cards">
+            <div class="payment-card">
+              <small>Precio desde</small>
+              <strong>${formatUF(project.precioDesdeUF)}</strong>
+              <span class="helper">Reserva ${formatCLP(project.valorReserva)}</span>
+            </div>
+            <div class="payment-card">
+              <small>Pie total</small>
+              <strong>${project.pieEnCuotas != null ? `${project.pieEnCuotas} cuotas` : '—'}</strong>
+              <span class="helper">Bono ${formatPercent(project.bonoPiePct)} · Abono ${formatPercent(project.abonoInicial)}</span>
+            </div>
+            <div class="payment-card">
+              <small>Descuento</small>
+              <strong>${formatPercent(project.descuentoPct)}</strong>
+              <span class="helper">${project.precioIncluyeBonoPie != null ? `Precio incluye BP: ${formatYesNo(project.precioIncluyeBonoPie)}` : ''}</span>
+            </div>
+          </div>
+        </div>
+        <div class="drawer-section">
+          <strong>Calendario de pagos</strong>
+          <div class="payment-cards">
+            <div class="payment-card">
+              <small>Antes de entrega</small>
+              <strong>${project.cuotasAntesEntrega != null ? `${project.cuotasAntesEntrega} cuotas` : '—'}</strong>
+              <span class="helper">${formatPercent(project.pctPieAntesEntrega)} · Desde ${formatCLP(project.cuotasAntesEntregaDesde)}</span>
+            </div>
+            <div class="payment-card">
+              <small>Después de entrega</small>
+              <strong>${project.cuotasDespuesEntrega != null ? `${project.cuotasDespuesEntrega} cuotas` : '—'}</strong>
+              <span class="helper">${formatPercent(project.pctPieDespuesEntrega)} · Desde ${formatCLP(project.cuotasDespuesEntregaDesde)}</span>
+            </div>
+            <div class="payment-card">
+              <small>Cuotón</small>
+              <strong>${project.cuotasCuoton != null ? `${project.cuotasCuoton} pagos` : '—'}</strong>
+              <span class="helper">${formatPercent(project.pctCuoton)} · Desde ${formatCLP(project.cuotasCuotonDesde)}</span>
+            </div>
+            <div class="payment-card">
+              <small>Beneficios</small>
+              <strong>${formatBoolean(project.aceptaRentaCorta)}</strong>
+              <span class="helper">Renta corta · Arriendo ${project.arriendoGarantizado ?? '—'}</span>
+            </div>
+          </div>
+        </div>
+        <div class="drawer-section">
+          <strong>Operativa</strong>
+          <ul>
+            <li>Comisión CI: ${project.comisionCI ?? '—'}</li>
+            <li>Comisión BP: ${project.comisionBP ?? '—'}</li>
+            <li>Evento: ${project.evento ?? '—'}</li>
+            <li>Precio incluye BP: ${formatYesNo(project.precioIncluyeBonoPie)}</li>
+            <li>BP aplica a secundarios: ${formatYesNo(project.bpAplicaSecundarios)}</li>
+            <li>Estacionamiento: ${project.estacionamiento ?? '—'}</li>
+            <li>Bodega: ${project.bodega ?? '—'}</li>
+          </ul>
+        </div>
+        <div class="drawer-section">
+          <strong>Forma de pago y notas</strong>
+          <div class="notes-grid">
+            <div class="note-card">
+              <strong>Forma de pago</strong><br/>
+              ${project.formaDePago ?? '—'}
+            </div>
+            <div class="note-card">
+              <strong>Condiciones especiales</strong><br/>
+              ${project.condicionesEspeciales ?? '—'}
+            </div>
+            <div class="note-card">
+              <strong>Observaciones</strong><br/>
+              ${project.observaciones ?? '—'}
+            </div>
+            <div class="note-card">
+              <strong>Datos de reserva</strong><br/>
+              ${project.datosReserva ?? '—'}
+            </div>
+          </div>
+        </div>
+        <div class="drawer-section" style="display:flex;gap:12px;flex-wrap:wrap;">
+          <button class="btn btn-primary" data-action="copy-project" data-id="${project.id}">Copiar resumen</button>
+          <button class="btn btn-ghost" data-action="toggle-compare" data-id="${project.id}">
+            ${compareList.includes(project.id) ? 'En comparador' : 'Agregar a comparador'}
+          </button>
+        </div>
+      `;
+    }
+
+    function openDrawer(project) {
+      renderDrawer(project);
+      els.drawer.classList.add('open');
+      els.drawer.dataset.currentId = project.id;
+      els.drawer.setAttribute('aria-hidden', 'false');
+      const focusTarget = els.drawer.querySelector('[data-action="close-drawer"]');
+      focusTarget?.focus();
+    }
+
+    function closeDrawer() {
+      els.drawer.classList.remove('open');
+      delete els.drawer.dataset.currentId;
+      els.drawer.setAttribute('aria-hidden', 'true');
+    }
+
+    function toggleCompare(projectId) {
+      const index = compareList.indexOf(projectId);
+      if (index >= 0) {
+        compareList.splice(index, 1);
+      } else {
+        if (compareList.length >= 3) {
+          showToast('Máximo 3 proyectos en comparador.');
+          return;
+        }
+        compareList.push(projectId);
+      }
+      if (!compareList.length) {
+        compareTrayOpen = false;
+      }
+      render();
+      renderCompareTray();
+    }
+
+    function renderCompareTray() {
+      const emptyState = els.compareTray.querySelector('[data-compare-empty]');
+      if (els.compareCountPill) {
+        els.compareCountPill.textContent = compareList.length;
+      }
+      if (els.compareToggle) {
+        els.compareToggle.disabled = !compareList.length;
+      }
+      const countLabel = els.compareTray.querySelector('[data-compare-count]');
+      if (countLabel) {
+        countLabel.textContent = compareList.length ? `${compareList.length}/3 proyectos` : '';
+      }
+      if (!compareTrayOpen || !compareList.length) {
+        els.compareTray.classList.remove('visible');
+        els.compareItems.innerHTML = '';
+        els.compareTable.innerHTML = '';
+        if (emptyState) emptyState.style.display = compareList.length ? 'none' : 'block';
+        return;
+      }
+      els.compareTray.classList.add('visible');
+      const compareProjects = compareList.map(id => projects.find(p => p.id === id)).filter(Boolean);
+      if (emptyState) emptyState.style.display = 'none';
+      els.compareItems.innerHTML = compareProjects.map(project => `
+        <div class="compare-card">
+          <span>${project.proyecto}</span>
+          <button data-action="remove-compare" data-id="${project.id}">✕</button>
+        </div>
+      `).join('');
+
+      const sections = [
+        {
+          title: 'Entrega & Precio',
+          fields: [
+            { key: 'entrega', label: 'Entrega' },
+            { key: 'precioDesdeUF', label: 'Precio desde' },
+            { key: 'valorReserva', label: 'Reserva' },
+            { key: 'descuentoPct', label: 'Descuento' }
+          ]
+        },
+        {
+          title: 'Pie & Bono',
+          fields: [
+            { key: 'pieEnCuotas', label: 'Pie en cuotas' },
+            { key: 'bonoPiePct', label: 'Bono pie' },
+            { key: 'abonoInicial', label: 'Abono inicial' }
+          ]
+        },
+        {
+          title: 'Cuotas',
+          fields: [
+            { key: 'cuotasAntesEntrega', label: 'Antes de entrega' },
+            { key: 'cuotasDespuesEntrega', label: 'Después de entrega' },
+            { key: 'cuotasCuoton', label: 'Cuotón' },
+            { key: 'cuotasAntesEntregaDesde', label: 'Cuota antes desde' },
+            { key: 'cuotasDespuesEntregaDesde', label: 'Cuota después desde' },
+            { key: 'cuotasCuotonDesde', label: 'Cuotón desde' }
+          ]
+        },
+        {
+          title: 'Condiciones',
+          fields: [
+            { key: 'aceptaRentaCorta', label: 'Renta corta' },
+            { key: 'arriendoGarantizado', label: 'Arriendo garantizado' },
+            { key: 'comisionCI', label: 'Comisión CI' },
+            { key: 'comisionBP', label: 'Comisión BP' },
+            { key: 'evento', label: 'Evento' },
+            { key: 'precioIncluyeBonoPie', label: 'Precio incluye BP' },
+            { key: 'bpAplicaSecundarios', label: 'BP secundarios' }
+          ]
+        }
+      ];
+
+      const baseline = compareProjects[0];
+
+      const header = `
+        <tr>
+          <th></th>
+          ${compareProjects.map(project => `<th>${project.proyecto}</th>`).join('')}
+        </tr>
+      `;
+      const rows = sections.map(section => `
+        <tr class="compare-section">
+          <th colspan="${compareProjects.length + 1}">${section.title}</th>
+        </tr>
+        ${section.fields.map(field => `
+          <tr>
+            <th>${field.label}</th>
+            ${compareProjects.map(project => {
+              const value = formatField(project, field.key);
+              const diff = baseline && project[field.key] !== baseline[field.key];
+              return `<td class="${diff ? 'diff' : ''}">${value}</td>`;
+            }).join('')}
+          </tr>
+        `).join('')}
+      `).join('');
+
+      els.compareTable.innerHTML = header + rows;
+    }
+
+    function formatField(project, key) {
+      const value = project[key];
+      if (key === 'aceptaRentaCorta') return formatBoolean(value);
+      if (key === 'pieEnCuotas') return value ? `${value} cuotas` : '—';
+      if (['bonoPiePct', 'abonoInicial', 'descuentoPct', 'pctPieAntesEntrega', 'pctPieDespuesEntrega', 'pctCuoton'].includes(key)) {
+        return formatPercent(value);
+      }
+      if (key === 'cuotasAntesEntrega') {
+        return value != null ? `${value} · ${formatPercent(project.pctPieAntesEntrega)}` : '—';
+      }
+      if (key === 'cuotasDespuesEntrega') {
+        return value != null ? `${value} · ${formatPercent(project.pctPieDespuesEntrega)}` : '—';
+      }
+      if (key === 'cuotasCuoton') {
+        return value != null ? `${value} · ${formatPercent(project.pctCuoton)}` : '—';
+      }
+      if (key === 'valorReserva' || key === 'cuotasAntesEntregaDesde' || key === 'cuotasDespuesEntregaDesde' || key === 'cuotasCuotonDesde') {
+        return formatCLP(value);
+      }
+      if (key === 'precioDesdeUF') {
+        return formatUF(value);
+      }
+      if (key === 'precioIncluyeBonoPie' || key === 'bpAplicaSecundarios') {
+        return formatYesNo(value);
+      }
+      return value || '—';
+    }
+
+    function copySummary(project) {
+      const summary = `
+Proyecto: ${project.proyecto} — ${project.comuna}
+Entrega: ${project.entrega} | Estado: ${project.estado}
+Finanzas: Precio ${formatUF(project.precioDesdeUF)} | Reserva ${formatCLP(project.valorReserva)} | Pie ${project.pieEnCuotas ?? '—'} cuotas | Bono ${formatPercent(project.bonoPiePct)} | Abono ${formatPercent(project.abonoInicial)} | Descuento ${formatPercent(project.descuentoPct)}
+Cuotas: Antes ${project.cuotasAntesEntrega ?? '—'} (${formatPercent(project.pctPieAntesEntrega)}) | Después ${project.cuotasDespuesEntrega ?? '—'} (${formatPercent(project.pctPieDespuesEntrega)}) | Cuotón ${project.cuotasCuoton ?? '—'} (${formatPercent(project.pctCuoton)})
+Condiciones: Renta corta ${formatBoolean(project.aceptaRentaCorta)} · Arriendo ${project.arriendoGarantizado ?? '—'} · CI ${project.comisionCI ?? '—'} · BP ${project.comisionBP ?? '—'} · Evento ${project.evento ?? '—'}
+Notas: ${project.formaDePago ?? ''} ${project.condicionesEspeciales ?? ''} ${project.observaciones ?? ''} ${project.datosReserva ? `Datos reserva: ${project.datosReserva}` : ''}`.trim();
+
+      navigator.clipboard.writeText(summary).then(() => showToast('Resumen copiado.'));
+    }
+
+    function copyCompareSummary() {
+      if (!compareList.length) return;
+      const compareProjects = compareList.map(id => projects.find(p => p.id === id)).filter(Boolean);
+      const text = compareProjects.map(p => `
+${p.proyecto} — ${p.comuna}
+Precio ${formatUF(p.precioDesdeUF)} | Reserva ${formatCLP(p.valorReserva)} | Pie ${p.pieEnCuotas ?? '—'} cuotas | Bono ${formatPercent(p.bonoPiePct)} | Abono ${formatPercent(p.abonoInicial)}
+Cuotas: Antes ${p.cuotasAntesEntrega ?? '—'} (${formatPercent(p.pctPieAntesEntrega)}) · Después ${p.cuotasDespuesEntrega ?? '—'} (${formatPercent(p.pctPieDespuesEntrega)}) · Cuotón ${p.cuotasCuoton ?? '—'} (${formatPercent(p.pctCuoton)})
+Condiciones: RC ${formatBoolean(p.aceptaRentaCorta)} · Arriendo ${p.arriendoGarantizado ?? '—'} · CI ${p.comisionCI ?? '—'} · BP ${p.comisionBP ?? '—'} · Evento ${p.evento ?? '—'}
+      `.trim()).join('\n\n');
+      navigator.clipboard.writeText(text).then(() => showToast('Comparación copiada.'));
+    }
+
+    function copyResultsSummary() {
+      if (!currentView.length) {
+        showToast('No hay resultados para copiar.');
+        return;
+      }
+      const lines = currentView.slice(0, 5).map(p =>
+        `${p.proyecto} (${p.comuna}) · Entrega ${p.entrega} · Pie ${p.pieEnCuotas ?? '—'} cuotas · Antes ${p.cuotasAntesEntrega ?? '—'} / Después ${p.cuotasDespuesEntrega ?? '—'} · Bono ${formatPercent(p.bonoPiePct)} · Descuento ${formatPercent(p.descuentoPct)} · Reserva ${formatCLP(p.valorReserva)} · RC ${formatBoolean(p.aceptaRentaCorta)}`
+      );
+      navigator.clipboard.writeText(lines.join('\n')).then(() => showToast('Resumen copiado.'));
+    }
+
+    function showToast(message) {
+      els.toast.textContent = message;
+      els.toast.classList.add('visible');
+      clearTimeout(showToast.timeout);
+      showToast.timeout = setTimeout(() => els.toast.classList.remove('visible'), 2400);
+    }
+
+    function clearFilters() {
+      state.search = '';
+      state.comuna = [];
+      state.estado = [];
+      state.renta = 'all';
+      state.entregaCategory = 'all';
+      state.pieMin = 0;
+      state.bonoMin = 0;
+      state.page = 1;
+      state.sortKey = null;
+      state.sortDir = 'asc';
+      advancedOpen = false;
+      advancedFilterCount = 0;
+      document.querySelectorAll('[data-filter]').forEach(el => {
+        if (el.type === 'range') {
+          el.value = 0;
+        } else if (el.tagName === 'SELECT') {
+          el.value = 'all';
+        } else {
+          el.value = '';
+        }
+      });
+      updateRangeDisplays();
+      Object.keys(filterSearchCache).forEach(key => {
+        filterSearchCache[key] = '';
+        const input = document.querySelector(`[data-filter-search="${key}"]`);
+        if (input) input.value = '';
+      });
+      ['comuna','estado'].forEach(key => renderFilterOptions(key));
+      updateFilterLabels();
+      updateAdvancedVisibility();
+      closeFilterPanel();
+      render();
+    }
+
+    function setSort(key) {
+      if (state.sortKey === key) {
+        state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
+      } else {
+        state.sortKey = key;
+        state.sortDir = 'asc';
+      }
+      state.page = 1;
+      render();
+    }
+
+    function render() {
+      if (!projects.length) {
+        els.kpiGrid.innerHTML = `
+          <article class="kpi-card">
+            <small>Base</small>
+            <strong>Sin datos</strong>
+            <span>Ejecuta python3 dashboard/scripts/normalize_projects.py</span>
+          </article>
+        `;
+        els.tableBody.innerHTML = '';
+        els.empty.hidden = false;
+        els.empty.textContent = 'Aún no cargas la base normalizada. Ejecuta “python3 dashboard/scripts/normalize_projects.py”.';
+        els.activeTags.innerHTML = '';
+        els.activeChips.innerHTML = '<span class="chip">Base de datos no cargada</span>';
+        return;
+      }
+
+      els.empty.textContent = 'Sin resultados con los filtros seleccionados. Ajusta los parámetros para ver más proyectos.';
+      const filtered = getFilteredProjects();
+      currentView = applySorting(filtered);
+      const totalPages = Math.max(1, Math.ceil(currentView.length / state.pageSize));
+      if (state.page > totalPages) state.page = totalPages;
+      const start = (state.page - 1) * state.pageSize;
+      const paginated = currentView.slice(start, start + state.pageSize);
+      renderKPIs(currentView);
+      renderTable(paginated);
+      renderPagination(totalPages);
+      renderActiveFilters();
+      updateAdvancedVisibility();
+      updateFilterLabels();
+      updateSortIndicators();
+      if (els.drawer.dataset.currentId) {
+        const refreshed = projects.find(p => p.id === els.drawer.dataset.currentId);
+        if (refreshed) renderDrawer(refreshed);
+      }
+    }
+
+    document.addEventListener('input', (event) => {
+      const target = event.target;
+      if (target.matches('[data-filter-search]')) {
+        const key = target.dataset.filterSearch;
+        if (!key) return;
+        filterSearchCache[key] = target.value;
+        renderFilterOptions(key);
+        return;
+      }
+      if (target.matches('[data-filter="search"]')) {
+        state.search = target.value;
+        state.page = 1;
+        render();
+        return;
+      }
+      if (!target.matches('[data-filter]')) return;
+      const key = target.dataset.filter;
+      if (target.type === 'range') {
+        state[key] = Number(target.value);
+        updateRangeDisplays();
+      } else {
+        state[key] = target.value;
+      }
+      state.page = 1;
+      render();
+    });
+
+    document.addEventListener('click', (event) => {
+      const trigger = event.target.closest('[data-filter-trigger]');
+      if (trigger) {
+        const key = trigger.dataset.filterTrigger;
+        if (activeFilterPanel === key) {
+          closeFilterPanel();
+        } else {
+          openFilterPanel(key);
+        }
+        return;
+      }
+
+      if (activeFilterPanel && !event.target.closest(`[data-filter-panel="${activeFilterPanel}"]`)) {
+        if (!event.target.closest('[data-filter-trigger]')) {
+          closeFilterPanel();
+        }
+      }
+
+      const rentaButton = event.target.closest('[data-renta-value]');
+      if (rentaButton) {
+        state.renta = rentaButton.dataset.rentaValue;
+        state.page = 1;
+        updateFilterLabels();
+        render();
+        return;
+      }
+
+      const entregaButton = event.target.closest('[data-entrega-value]');
+      if (entregaButton) {
+        state.entregaCategory = entregaButton.dataset.entregaValue;
+        state.page = 1;
+        updateFilterLabels();
+        render();
+        return;
+      }
+
+      const sortButton = event.target.closest('[data-sort-key]');
+      if (sortButton) {
+        setSort(sortButton.dataset.sortKey);
+        return;
+      }
+
+      const button = event.target.closest('[data-action]');
+      if (!button) return;
+      const action = button.dataset.action;
+      const projectId = button.dataset.id;
+      if (action === 'toggle-advanced') {
+        advancedOpen = !advancedOpen;
+        updateAdvancedVisibility();
+        return;
+      }
+      if (action === 'view-detail' && projectId) {
+        const project = projects.find(p => p.id === projectId);
+        if (project) openDrawer(project);
+      }
+      if (action === 'toggle-compare' && projectId) {
+        toggleCompare(projectId);
+      }
+      if (action === 'remove-compare' && projectId) {
+        const index = compareList.indexOf(projectId);
+        if (index >= 0) {
+          compareList.splice(index, 1);
+          render();
+          renderCompareTray();
+        }
+      }
+      if (action === 'clear-compare') {
+        compareList.splice(0, compareList.length);
+        compareTrayOpen = false;
+        render();
+        renderCompareTray();
+      }
+      if (action === 'toggle-compare-panel') {
+        if (!compareList.length) {
+          showToast('Agrega proyectos al comparador.');
+          return;
+        }
+        compareTrayOpen = !compareTrayOpen;
+        renderCompareTray();
+        return;
+      }
+      if (action === 'close-compare-tray') {
+        compareTrayOpen = false;
+        renderCompareTray();
+        return;
+      }
+      if (action === 'copy-project' && projectId) {
+        const project = projects.find(p => p.id === projectId);
+        if (project) copySummary(project);
+      }
+      if (action === 'copy-compare') {
+        copyCompareSummary();
+      }
+      if (action === 'copy-results') {
+        copyResultsSummary();
+      }
+      if (action === 'clear-filters') {
+        clearFilters();
+      }
+      if (action === 'paginate') {
+        const direction = button.dataset.direction;
+        if (direction === 'prev' && state.page > 1) {
+          state.page -= 1;
+          render();
+        }
+        if (direction === 'next') {
+          const totalPages = Math.max(1, Math.ceil(currentView.length / state.pageSize));
+          if (state.page < totalPages) {
+            state.page += 1;
+            render();
+          }
+        }
+      }
+      if (action === 'close-drawer') {
+        closeDrawer();
+      }
+      if (action === 'clear-filter') {
+        const key = button.dataset.key;
+        const encodedValue = button.dataset.value;
+        const value = encodedValue ? decodeURIComponent(encodedValue) : null;
+        if (key && key in state) {
+          if (Array.isArray(state[key])) {
+            if (value) {
+              state[key] = state[key].filter(item => item !== value);
+            } else {
+              state[key] = [];
+            }
+            renderFilterOptions(key);
+            updateFilterLabels();
+          } else if (typeof state[key] === 'number') {
+            state[key] = 0;
+            const el = document.querySelector(`[data-filter="${key}"]`);
+            if (el) el.value = 0;
+            updateRangeDisplays();
+          } else if (key === 'search') {
+            state.search = '';
+            const searchInput = document.querySelector('[data-filter="search"]');
+            if (searchInput) searchInput.value = '';
+          } else if (key === 'entregaCategory') {
+            state.entregaCategory = 'all';
+            updateFilterLabels();
+          } else {
+            state[key] = 'all';
+          }
+          state.page = 1;
+          render();
+        }
+      }
+      if (action === 'clear-filter-panel') {
+        const key = button.dataset.key;
+        if (key && Array.isArray(state[key])) {
+          state[key] = [];
+          state.page = 1;
+          renderFilterOptions(key);
+          updateFilterLabels();
+          render();
+          closeFilterPanel();
+        }
+      }
+      if (action === 'close-filter-panel') {
+        closeFilterPanel();
+      }
+    });
+
+    document.addEventListener('change', (event) => {
+      const checkbox = event.target;
+      if (!checkbox.matches('[data-filter-option]')) return;
+      const key = checkbox.dataset.filterOption;
+      const value = checkbox.value;
+      if (!key) return;
+      if (!Array.isArray(state[key])) state[key] = [];
+      if (checkbox.checked) {
+        if (!state[key].includes(value)) state[key].push(value);
+      } else {
+        state[key] = state[key].filter(item => item !== value);
+      }
+      state.page = 1;
+      updateFilterLabels();
+      renderFilterOptions(key);
+      render();
+    });
+
+    updateRangeDisplays();
+    populateDynamicFilters();
+    render();
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        if (activeFilterPanel) {
+          closeFilterPanel();
+          return;
+        }
+        if (els.drawer.classList.contains('open')) {
+          closeDrawer();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+/* Select Capital form primitives */
+.sc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.sc-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--sc-text-secondary, #64748B);
+}
+
+.sc-optional {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--sc-text-tertiary, #94A3B8);
+}
+
+.sc-input,
+.sc-input-affix {
+  border-radius: var(--sc-radius-xl, 28px);
+  border: 1px solid var(--sc-border-glass, rgba(255,255,255,0.16));
+  background: var(--sc-glass-bg, rgba(255,255,255,0.06));
+  padding: 0.9rem 1.25rem;
+  color: var(--sc-text-primary, #0F172A);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  font-variant-numeric: tabular-nums;
+}
+
+.sc-input::placeholder {
+  color: var(--sc-text-tertiary, rgba(255,255,255,0.55));
+  font-weight: 500;
+}
+
+.sc-input:focus,
+.sc-input-affix:focus-within {
+  border-color: var(--sc-jade-500, #35E1A6);
+  box-shadow: 0 0 0 3px var(--sc-focus-ring, rgba(53,225,166,0.25));
+  outline: none;
+}
+
+.sc-input[data-invalid='true'],
+.sc-input-affix[data-invalid='true'] {
+  border-color: var(--sc-danger-500, #EF4444);
+  box-shadow: 0 0 0 3px var(--sc-error-ring, rgba(239,68,68,0.2));
+}
+
+.sc-input-affix {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 1rem;
+}
+
+.sc-input-affix span {
+  font-size: 0.88rem;
+  color: var(--sc-text-secondary, #94A3B8);
+}
+
+.sc-input-affix input,
+.sc-input-affix output {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  padding: 0;
+  outline: none;
+}
+
+.sc-hint {
+  font-size: 0.75rem;
+  color: var(--sc-text-tertiary, #94A3B8);
+}
+
+.sc-error {
+  font-size: 0.75rem;
+  color: var(--sc-danger-500, #EF4444);
+  display: none;
+}
+
+.sc-error[aria-hidden='false'] {
+  display: block;
+}
+
+input[data-mask],
+input[data-mask]::placeholder {
+  letter-spacing: 0.02em;
+}
+
+[data-field-grid] {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  [data-field-grid='two'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  [data-field-grid='three'] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

@@ -1,577 +1,1437 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="dark" data-theme-transition>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Evento Gratuito de inversión inmobiliaria</title>
-  <meta name="description" content="Evento gratuito de inversión inmobiliaria — Lanzamiento de nuevo proyecto en Mirador de La Florida. Cupos limitados. Regístrate para asegurar tu asistencia y recibir condiciones del lanzamiento." />
-  <meta property="og:title" content="Evento Gratuito de inversión inmobiliaria" />
-  <meta property="og:description" content="Evento gratuito de inversión inmobiliaria — Lanzamiento de nuevo proyecto en Mirador de La Florida." />
+  <title>Select Capital — Mirador La Florida</title>
+  <meta name="description" content="Evento privado de inversion inmobiliaria. Cupos limitados, asesoria 1:1 y propuesta personalizada para Mirador La Florida." />
+  <meta property="og:title" content="Select Capital — Mirador La Florida" />
+  <meta property="og:description" content="Reserva tu cupo en el lanzamiento y recibe condiciones exclusivas, simulador y propuesta PDF personalizada." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/images/hero-la-florida.jpg" />
+  <meta property="og:image" content="/images/evento.jpg" />
   <meta property="og:url" content="https://www.selectcapital.cl/la-florida" />
-  <meta name="theme-color" content="#0F172A" />
-  <link rel="icon" href="favicon.ico" />
+  <meta name="theme-color" content="#0B0E12" />
+  <link rel="icon" href="images/icono.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] },
-          colors: {
-            ink:'#0F1217', accent:'#1E40AF', soft:'#F8FAFC', line:'#E5E7EB', hint:'#64748B', ok:'#16A34A'
-          },
-          boxShadow: { soft:'0 12px 32px rgba(2,6,23,.08)' }
-        }
-      }
-    }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="lenguaje visual/theme/select-capital-theme.css" />
+  <link rel="stylesheet" href="lenguaje visual/forms/sc-forms.css" />
+  <link rel="stylesheet" href="lenguaje visual/theme/sc-header-footer.css" />
   <style>
-    html{scroll-behavior:smooth}
-    .g-bg{background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 60%,#1E40AF 100%)}
+    :root {
+      --lp-max: 1200px;
+      --lp-gutter: clamp(1.5rem, 4vw, 3rem);
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: var(--sc-font-sans, 'Inter', sans-serif);
+      margin: 0;
+      background: var(--sc-surface-page, #05080F);
+      color: var(--sc-text-primary, #F8FAFC);
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    .page-shell { max-width: 1440px; margin: 0 auto; padding: 0 var(--lp-gutter) 4rem; }
+    .btn, .btn-ghost {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 0.85rem 1.4rem; border-radius: 999px; font-weight: 600;
+      font-size: 0.95rem; border: 1px solid transparent; cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.2s ease;
+    }
+    .btn { background: #1A237E; color: #F8FAFC; box-shadow: 0 12px 30px rgba(26,35,126,0.35); }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-ghost { border-color: var(--sc-border-glass, rgba(255,255,255,0.16)); background: var(--sc-glass-bg, rgba(255,255,255,0.06)); color: var(--sc-text-primary); }
+    main { display: flex; flex-direction: column; gap: clamp(2.5rem, 5vw, 4rem); margin-top: 2rem; }
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(1.5rem, 4vw, 3rem);
+      align-items: center;
+    }
+    .hero-card {
+      background: rgba(11,14,18,0.88);
+      border: 1px solid var(--sc-border-glass);
+      border-radius: 32px;
+      padding: clamp(1.5rem, 4vw, 2.6rem);
+      box-shadow: var(--sc-shadow-e2, 0 30px 90px rgba(2,6,23,0.65));
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--sc-glass-highlight, radial-gradient(120% 80% at 8% 6%, rgba(255,255,255,0.12), transparent 60%));
+      pointer-events: none;
+    }
+    .hero-card > * { position: relative; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      border-radius: 999px; border: 1px solid var(--sc-border-glass);
+      padding: 0.35rem 0.9rem; font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--sc-text-secondary);
+    }
+    .hero h1 { margin: 0.8rem 0 0.4rem; font-size: clamp(2.3rem, 6vw, 3.6rem); line-height: 1.1; }
+    .hero-desc { color: var(--sc-text-secondary); max-width: 46ch; margin-bottom: 1rem; }
+    .hero-info { display: flex; flex-wrap: wrap; gap: 0.65rem; margin: 1rem 0 1.2rem; }
+    .hero-info span { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.9rem; border-radius: 999px; border: 1px solid var(--sc-border-glass); background: rgba(255,255,255,0.05); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--sc-text-secondary); }
+    .hero-points { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+    .hero-points li { display: flex; gap: 0.5rem; color: var(--sc-text-secondary); }
+    .hero-points li strong { color: var(--sc-text-primary); }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1.4rem 0; }
+    .video-btn { border-color: transparent; background: rgba(255,255,255,0.08); color: var(--sc-text-secondary); font-weight: 500; }
+    .value-grid { margin-top: 1.2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.8rem; }
+    .value-card { border-radius: 20px; border: 1px solid var(--sc-border-glass); padding: 0.9rem 1rem; background: rgba(255,255,255,0.03); font-size: 0.9rem; }
+    .value-card span { font-size: 1.4rem; display: inline-block; margin-bottom: 0.3rem; }
+    .hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
+    .hero-stats dl { margin: 0; padding: 1rem; border-radius: 20px; border: 1px solid var(--sc-border-glass); background: var(--sc-glass-bg); }
+    .hero-stats dt { font-size: 0.65rem; letter-spacing: 0.32em; color: var(--sc-text-tertiary); text-transform: uppercase; }
+    .hero-stats dd { margin: 0.4rem 0 0; font-size: 1.5rem; font-weight: 600; }
+    .hero-media {
+      border-radius: 28px; overflow: hidden;
+      border: 1px solid var(--sc-border-glass);
+      background: var(--sc-glass-bg);
+      box-shadow: var(--sc-shadow-e1, 0 8px 24px rgba(0,0,0,0.35));
+      position: relative;
+    }
+    .hero-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-logo {
+      position: absolute; bottom: 1rem; left: 1rem; padding: 0.75rem 1rem;
+      background: rgba(5,8,15,0.65); border-radius: 999px;
+      border: 1px solid var(--sc-border-soft);
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .hero-logo img { height: 32px; width: auto; }
+    .hero-overlay {
+      position: absolute; top: 1rem; right: 1rem;
+      max-width: 240px; border-radius: 18px;
+      background: rgba(5,8,15,0.7); border: 1px solid var(--sc-border-soft);
+      padding: 0.9rem 1rem; font-size: 0.85rem; color: var(--sc-text-secondary);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    }
+    .hero-overlay span { display: block; margin-top: 0.35rem; font-size: 0.75rem; color: var(--sc-text-tertiary); }
+    .section h2 { font-size: 1.8rem; margin-bottom: 0.3rem; }
+    .section p.lead { color: var(--sc-text-secondary); max-width: 65ch; margin-bottom: 1.5rem; }
+    .surface {
+      border-radius: 28px; border: 1px solid var(--sc-border-glass);
+      background: var(--sc-glass-bg);
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+    }
+    .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .process-step { border-radius: 22px; border: 1px solid var(--sc-border-glass); padding: 1.2rem; background: rgba(255,255,255,0.04); position: relative; }
+    .process-step span { display: inline-flex; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--sc-border-glass); align-items: center; justify-content: center; font-weight: 600; margin-bottom: 0.6rem; }
+    .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.3rem; }
+    .benefit-card { border-radius: 22px; border: 1px solid var(--sc-border-glass); padding: 1.4rem; background: rgba(255,255,255,0.04); }
+    .benefit-card h3 { margin-top: 0; margin-bottom: 0.5rem; }
+    .benefit-card ul { padding-left: 1.1rem; margin: 0; color: var(--sc-text-secondary); }
+    .trusted-row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-top: 0.8rem; }
+    .trusted-row img { height: 32px; width: auto; opacity: 0.85; mix-blend-mode: screen; }
+    .testimonial { margin-top: 1.5rem; border-radius: 24px; border: 1px solid var(--sc-border-glass); padding: 1.2rem 1.4rem; background: rgba(5,8,15,0.55); font-size: 0.95rem; color: var(--sc-text-secondary); display: flex; flex-direction: column; gap: 0.6rem; }
+    .testimonial strong { font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sc-text-primary); }
+    .project-highlight { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.8rem; margin-bottom: 1rem; }
+    .project-highlight div { border-radius: 18px; border: 1px solid var(--sc-border-glass); padding: 0.8rem 1rem; background: rgba(255,255,255,0.03); }
+    .project-highlight span { display: block; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--sc-text-tertiary); margin-bottom: 0.2rem; }
+    .form-shell { display: grid; grid-template-columns: 1fr; gap: 1.8rem; position: relative; }
+    .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+    .faq-card { border-radius: 20px; border: 1px solid var(--sc-border-glass); padding: 1rem; background: rgba(255,255,255,0.04); }
+    footer { margin-top: 3rem; padding: 2.5rem 0; border-top: 1px solid var(--sc-border-soft); color: var(--sc-text-secondary); font-size: 0.9rem; }
+    .form-badge { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.9rem; border-radius: 999px; border: 1px solid var(--sc-border-glass); background: rgba(255,255,255,0.05); font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sc-text-secondary); }
+    .form-wizard { display: flex; flex-direction: column; gap: 1rem; }
+    .form-steps-progress { border-radius: 28px; border: 1px solid var(--sc-border-glass); background: rgba(255,255,255,0.03); padding: 1rem; display: flex; flex-direction: column; gap: 0.8rem; }
+    .form-step-pill { display: flex; gap: 0.8rem; align-items: flex-start; padding: 0.8rem 1rem; border-radius: 24px; border: 1px solid transparent; transition: border-color 180ms ease, background 180ms ease, opacity 180ms ease; }
+    .form-step-pill span { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--sc-border-glass); display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.9rem; }
+    .form-step-pill strong { display: block; font-size: 0.92rem; }
+    .form-step-pill p { margin: 0.15rem 0 0; font-size: 0.75rem; color: var(--sc-text-tertiary); }
+    .form-step-pill.is-active { border-color: var(--sc-jade-500, #35E1A6); background: rgba(53,225,166,0.08); }
+    .form-step-pill.is-active span { border-color: var(--sc-jade-500, #35E1A6); }
+    .form-step-pill.is-complete { opacity: 0.75; }
+    .form-wizard-viewport { overflow: hidden; border-radius: 32px; border: 1px solid var(--sc-border-glass); background: rgba(5,8,15,0.4); position: relative; }
+    .form-wizard-track { display: flex; width: 100%; transform: translateX(calc(var(--wizard-step, 0) * -100%)); transition: transform 320ms cubic-bezier(0.22, 0.61, 0.36, 1); }
+    .wizard-step { width: 100%; flex-shrink: 0; padding: clamp(1.25rem, 3vw, 1.8rem); display: flex; flex-direction: column; gap: 1rem; }
+    .wizard-step[aria-hidden='true'] { opacity: 0.5; }
+    .step-header { display: flex; flex-direction: column; gap: 0.35rem; }
+    .step-kicker { font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--sc-text-tertiary); margin: 0; }
+    .option-grid { display: grid; gap: 0.9rem; }
+    .option-card { position: relative; border-radius: 24px; border: 1px solid var(--sc-border-glass); padding: 1rem; background: rgba(255,255,255,0.03); cursor: pointer; display: flex; flex-direction: column; gap: 0.4rem; transition: border-color 160ms ease, background 160ms ease, transform 160ms ease; min-height: 100%; }
+    .option-card input { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+    .option-card strong { font-size: 1rem; }
+    .option-card p { margin: 0; font-size: 0.85rem; color: var(--sc-text-secondary); }
+    .option-card.is-selected { border-color: var(--sc-jade-500); background: rgba(53,225,166,0.12); box-shadow: 0 25px 50px rgba(2,6,23,0.4); }
+    .option-card.has-error { border-color: var(--sc-danger-500); }
+    .option-icon { font-size: 1.2rem; }
+    .option-secondary { border-radius: 24px; border: 1px dashed var(--sc-border-glass); padding: 1rem; background: rgba(255,255,255,0.02); display: flex; flex-direction: column; gap: 0.65rem; transition: opacity 200ms ease; }
+    .option-secondary[hidden] { display: none; }
+    .option-secondary.is-visible { border-style: solid; border-color: rgba(53,225,166,0.5); }
+    .chip-set { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .chip { border-radius: 18px; border: 1px solid var(--sc-border-glass); padding: 0.55rem 0.85rem; background: rgba(255,255,255,0.03); color: inherit; cursor: pointer; display: flex; flex-direction: column; gap: 0.25rem; text-align: left; min-width: 180px; transition: border-color 150ms ease, background 150ms ease; }
+    .chip strong { font-size: 0.9rem; }
+    .chip span { font-size: 0.75rem; color: var(--sc-text-tertiary); }
+    .chip.is-selected { border-color: var(--sc-jade-500); background: rgba(53,225,166,0.12); }
+    .chip-set.has-error .chip { border-color: var(--sc-danger-500); }
+    .commune-quick { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.6rem; }
+    .pill-chip { border-radius: 999px; border: 1px solid var(--sc-border-glass); padding: 0.35rem 0.9rem; background: transparent; color: var(--sc-text-secondary); cursor: pointer; font-size: 0.82rem; transition: border-color 150ms ease, background 150ms ease; }
+    .pill-chip.is-selected { border-color: var(--sc-jade-500); color: var(--sc-text-primary); background: rgba(53,225,166,0.16); }
+    .commune-selected { display: flex; flex-wrap: wrap; gap: 0.45rem; min-height: 2.2rem; }
+    .commune-tag { display: inline-flex; align-items: center; gap: 0.35rem; border-radius: 999px; border: 1px solid var(--sc-border-glass); padding: 0.25rem 0.7rem; background: rgba(255,255,255,0.04); font-size: 0.8rem; }
+    .commune-tag button { border: 0; background: none; color: inherit; cursor: pointer; font-size: 0.8rem; padding: 0; line-height: 1; }
+    .form-wizard-nav { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem; }
+    .form-wizard-nav .btn, .form-wizard-nav .btn-ghost { width: 100%; }
+    .consent-field { flex-direction: row; gap: 0.9rem; align-items: flex-start; border-radius: 24px; border: 1px solid var(--sc-border-glass); padding: 1rem; background: rgba(255,255,255,0.02); }
+    .consent-field input { margin-top: 0.2rem; }
+    .floating-cta { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(5,8,15,0.9); backdrop-filter: blur(12px); padding: 0.75rem 1rem; display: none; z-index: 40; }
+    .floating-cta .btn { width: 100%; }
+    .floating-cta { display: block; }
+    .form-confirmation { margin-top: 1rem; border-radius: 18px; border: 1px solid var(--sc-border-glass); padding: 0.9rem 1rem; background: rgba(53,225,166,0.12); color: var(--sc-text-primary); font-weight: 600; text-align: center; }
+
+    @media (min-width: 768px) {
+      .hero { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+      .form-shell { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+      .form-steps-progress { flex-direction: row; justify-content: space-between; }
+      .form-wizard-nav { flex-direction: row; align-items: center; }
+      .form-wizard-nav .btn, .form-wizard-nav .btn-ghost { width: auto; min-width: 180px; }
+      .option-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+      .floating-cta { display: none; }
+    }
   </style>
 
-  <!-- JSON-LD del evento -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"Event",
-    "name":"Evento Gratuito de inversión inmobiliaria",
+    "name":"Evento Select Capital — Mirador La Florida",
     "startDate":"2025-11-11T19:30:00-03:00",
     "eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode",
     "eventStatus":"https://schema.org/EventScheduled",
     "location":{
       "@type":"Place",
       "name":"Best Western Premier Marina Las Condes",
-      "address":"Alonso de Córdova 5727, Las Condes, RM, Chile"
+      "address":"Alonso de Cordova 5727, Las Condes, RM, Chile"
     },
-    "image":"/images/hero-la-florida.jpg",
-    "description":"Lanzamiento de nuevo proyecto en Mirador de La Florida. Evento presencial con condiciones de lanzamiento y asesoría personalizada.",
-    "organizer":{"@type":"Organization","name":"Select Capital","url":""}
+    "image":"/images/evento.jpg",
+    "description":"Lanzamiento privado con asesoria Select Capital, simulador y propuesta personalizada.",
+    "organizer":{"@type":"Organization","name":"Select Capital","url":"https://www.selectcapital.cl"}
   }
   </script>
 
-  <!-- GA4 (reemplaza G-XXXXXXXXXX) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} 
+    function gtag(){ dataLayer.push(arguments); }
     (function(){
       var MID = 'G-XXXXXXXXXX';
-      if(!MID || MID === 'G-XXXXXXXXXX') return; 
-      gtag('js', new Date()); 
+      if(!MID || MID === 'G-XXXXXXXXXX') return;
+      gtag('js', new Date());
       gtag('config', MID);
     })();
   </script>
-
-  <!-- Meta Pixel (cargar solo si hay ID válido) -->
   <script>
     (function(){
       var PIXEL_ID = 'YOUR_PIXEL_ID';
       if(!PIXEL_ID || PIXEL_ID === 'YOUR_PIXEL_ID') return;
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', PIXEL_ID);
     })();
   </script>
-  <noscript>
-    <!-- Solo relevante si hay PIXEL_ID real -->
-  </noscript>
 
-  <!-- Cloudflare Turnstile -->
+
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
-<body>
-  <!-- Meta de evento y barra de urgencia (desktop) -->
+<body class="page sc-noise">
   <div id="event-meta" class="hidden" data-capacidad="60" data-registrados="42"></div>
-  <div id="top-urgency" class="hidden md:flex fixed top-0 inset-x-0 z-50 bg-ink text-white text-sm">
-    <div class="max-w-6xl mx-auto w-full px-4 py-2 flex items-center justify-between">
-      <div class="flex items-center gap-2"><span class="text-emerald-400">●</span><span id="top-urgency-text">Cierre de registro próximamente</span></div>
-      <a href="#form" class="rounded-lg bg-white text-ink px-3 py-1 font-semibold">Reservar ahora</a>
-    </div>
-  </div>
 
-  <!-- Barra superior con CTA (sticky en mobile) -->
-  <div class="fixed bottom-0 inset-x-0 z-40 md:static">
-    <div class="md:hidden bg-white/90 backdrop-blur border-t border-line px-4 py-3">
-      <div class="flex gap-3">
-        <a href="#form" class="flex-1 inline-flex items-center justify-center rounded-xl bg-accent text-white font-semibold py-3" rel="noopener">Reservar Cupo</a>
-        <a href="https://wa.me/56966013182?text=Hola%2C%20quiero%20info%20del%20evento%20La%20Florida"
-           class="px-4 rounded-xl border border-line text-ink font-semibold bg-white" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <header class="sc-appbar" data-state="default" data-menu="closed" data-micro="open">
+    <div class="sc-microbar">
+      <div class="sc-microbar__message">
+        <span>Inversión inmobiliaria curada · +250 proyectos evaluados</span>
+        <span aria-live="polite" id="status-bar">Cierre de registro en progreso</span>
+      </div>
+      <div class="sc-microbar__actions">
+        <a href="tel:+56966013182" data-track-event="micro_contact" data-track-detail='{"type":"phone"}'>+56 9 6601 3182</a>
+        <a href="mailto:contacto@selectcapital.cl" data-track-event="micro_contact" data-track-detail='{"type":"mail"}'>contacto@selectcapital.cl</a>
+        <a href="https://wa.me/56966013182?text=Quiero%20confirmar%20mi%20cupo" target="_blank" rel="noopener" data-track-event="micro_contact" data-track-detail='{"type":"whatsapp"}'>WhatsApp</a>
+        <button type="button" data-theme-toggle data-track-event="micro_contact" data-track-detail='{"type":"theme"}'>ES | EN</button>
       </div>
     </div>
-  </div>
-
-  <!-- HERO -->
-  <header class="g-bg text-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-14 md:pt-20 pb-16 md:pb-20">
-      <div class="grid md:grid-cols-2 gap-10 items-end">
-        <div>
-          <p class="inline-flex items-center gap-2 text-xs font-semibold bg-white/10 border border-white/15 rounded-full px-3 py-1 mb-4">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Cupos limitados • Evento presencial
-          </p>
-          <h1 class="text-4xl font-bold leading-tight">Evento Gratuito de inversión inmobiliaria</h1>
-          <p class="mt-3 text-white/80">Lanzamiento de nuevo proyecto en Mirador de La Florida</p>
-          <p class="mt-2 text-white/70">Desde UF 2.600 • Entrega 1S 2029 • Pre-reserva $9.990</p>
-          <div class="mt-2 text-white/80 text-sm" id="ps-registrados" aria-live="polite"></div>
-          <div class="mt-6 flex flex-col sm:flex-row gap-3">
-            <a href="#form" class="inline-flex items-center justify-center rounded-xl bg-white text-ink font-semibold px-5 py-3" rel="noopener">
-              Quiero asistir
-            </a>
-            <a href="#evento" class="inline-flex items-center justify-center rounded-xl border border-white/30 text-white px-5 py-3" rel="noopener">
-              Ver detalles
-            </a>
-          </div>
-          <div class="mt-6">
-            <div class="rounded-2xl bg-white/10 backdrop-blur border border-white/20 p-4">
-              <p class="text-xs text-white/80 mb-2">Cierre de registro en</p>
-              <div class="grid grid-cols-4 gap-2 text-center">
-                <div class="bg-white/10 rounded-lg p-3"><div id="cd-d" class="text-2xl sm:text-3xl font-bold">--</div><div class="text-[11px] opacity-80">días</div></div>
-                <div class="bg-white/10 rounded-lg p-3"><div id="cd-h" class="text-2xl sm:text-3xl font-bold">--</div><div class="text-[11px] opacity-80">horas</div></div>
-                <div class="bg-white/10 rounded-lg p-3"><div id="cd-m" class="text-2xl sm:text-3xl font-bold">--</div><div class="text-[11px] opacity-80">min</div></div>
-                <div class="bg-white/10 rounded-lg p-3"><div id="cd-s" class="text-2xl sm:text-3xl font-bold">--</div><div class="text-[11px] opacity-80">seg</div></div>
-              </div>
-              <div class="mt-4">
-                <div class="h-2 rounded-full bg-white/15 overflow-hidden" aria-label="Progreso de inscripciones" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                  <div id="progressbar" class="h-2 bg-white/80" style="width:0%"></div>
-                </div>
-                <div class="mt-2 flex items-center justify-between text-xs text-white/80">
-                  <span id="registrados-label"></span>
-                  <div class="flex items-center gap-3">
-                    <span id="cupos-text" aria-live="polite">Cupos limitados</span>
-                    <a href="#form" class="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-white text-ink font-semibold">Reservar</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Visual ligero para buen LCP (placeholder sustituible) -->
-        <div class="bg-white/10 border border-white/15 rounded-2xl p-4 shadow-soft">
-          <picture>
-            <source srcset="/images/hero-la-florida.avif" type="image/avif" />
-            <source srcset="/images/hero-la-florida.webp" type="image/webp" />
-            <img src="/images/hero-la-florida.jpg" alt="Render del proyecto en La Florida" class="w-full aspect-[4/3] object-cover rounded-xl" loading="eager" width="1600" height="1200" onerror="console.error('Error loading image:', this.src); this.style.display='none';" />
-          </picture>
-          <div class="mt-3 grid grid-cols-3 gap-3 text-center text-xs">
-            <div class="bg-white/10 rounded-lg p-3">
-              <div class="text-xl font-bold">UF 2.600</div><div class="opacity-80">Desde</div>
-            </div>
-            <div class="bg-white/10 rounded-lg p-3">
-              <div class="text-xl font-bold">2029</div><div class="opacity-80">Entrega</div>
-            </div>
-            <div class="bg-white/10 rounded-lg p-3">
-              <div class="text-xl font-bold">Cup.</div><div class="opacity-80">Limitados</div>
-            </div>
-          </div>
-        </div>
+    <div class="sc-appbar-main">
+      <a class="sc-brand" href="/">
+        <img src="images/logo_blanco.png" alt="Select Capital" loading="lazy" />
+        <span>SELECT CAPITAL</span>
+      </a>
+      <button class="sc-micro-pill" type="button" data-micro-toggle>
+        <span>Ver estado de cupos</span>
+      </button>
+      <nav class="sc-nav" aria-label="Navegación principal">
+        <a href="home.html#proyectos" data-track-event="nav_click" data-track-detail='{"item":"proyectos"}'>Proyectos</a>
+        <a href="simulador/index.html" data-track-event="nav_click" data-track-detail='{"item":"simulador"}'>Simulador</a>
+        <a href="home.html#servicios" data-track-event="nav_click" data-track-detail='{"item":"servicios"}'>Servicios</a>
+        <a href="home.html#equipo" data-track-event="nav_click" data-track-detail='{"item":"equipo"}'>Equipo</a>
+        <a href="#faq" aria-current="page" data-track-event="nav_click" data-track-detail='{"item":"recursos"}'>Recursos</a>
+      </nav>
+      <div class="sc-status-pill">
+        <span>Preventa Ñuñoa</span>
+        <span class="sc-chip">42 / 60 cupos</span>
+      </div>
+      <div class="sc-cta-cluster">
+        <a class="sc-btn-ghost" href="https://wa.me/56966013182?text=Quiero%20confirmar%20mi%20cupo" target="_blank" rel="noopener" data-track-event="cta_click" data-track-detail='{"cta_id":"header_whatsapp"}'>WhatsApp</a>
+        <a class="sc-btn-primary" href="#form" data-track-event="cta_click" data-track-detail='{"cta_id":"header_primary"}'>Agenda tu asesoría</a>
+      </div>
+      <button class="sc-menu-toggle" type="button" aria-label="Abrir menú principal" aria-expanded="false" data-menu-toggle>
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
+    <div class="sc-mobile-panel" role="dialog" aria-modal="true" aria-label="Menú principal">
+      <nav>
+        <a href="home.html#proyectos" data-track-event="nav_click" data-track-detail='{"item":"proyectos_mobile"}'>Proyectos</a>
+        <a href="simulador/index.html" data-track-event="nav_click" data-track-detail='{"item":"simulador_mobile"}'>Simulador</a>
+        <a href="home.html#servicios" data-track-event="nav_click" data-track-detail='{"item":"servicios_mobile"}'>Servicios</a>
+        <a href="home.html#equipo" data-track-event="nav_click" data-track-detail='{"item":"equipo_mobile"}'>Equipo</a>
+        <a href="#faq" aria-current="page" data-track-event="nav_click" data-track-detail='{"item":"recursos_mobile"}'>Recursos</a>
+      </nav>
+      <div class="sc-chip">Seguimiento 1:1 · WhatsApp y correo</div>
+      <div class="sc-mobile-cta">
+        <a class="sc-btn-primary" href="#form" data-track-event="cta_click" data-track-detail='{"cta_id":"mobile_menu_primary"}'>Reservar cupo</a>
+        <a class="sc-btn-ghost" href="https://wa.me/56966013182?text=Quiero%20confirmar%20mi%20cupo" target="_blank" rel="noopener" data-track-event="cta_click" data-track-detail='{"cta_id":"mobile_menu_whatsapp"}'>WhatsApp inmediato</a>
       </div>
     </div>
   </header>
 
-  <!-- PROBADOR RÁPIDO -->
-  <section class="bg-white border-b border-line">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
-      <ul class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
-        <li class="flex items-center gap-3 bg-soft rounded-xl p-3"><span class="w-2 h-2 rounded-full bg-ok"></span> Ubicación top (metro + mall)</li>
-        <li class="flex items-center gap-3 bg-soft rounded-xl p-3"><span class="w-2 h-2 rounded-full bg-ok"></span> Unidades desde UF 2.600 y pie en cuotas</li>
-        <li class="flex items-center gap-3 bg-soft rounded-xl p-3"><span class="w-2 h-2 rounded-full bg-ok"></span> Asesoría personalizada en sala</li>
-      </ul>
-    </div>
-  </section>
+  <div class="page-shell">
 
-  <!-- DETALLES DEL EVENTO -->
-  <section id="evento" class="bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-14">
-      <div class="grid md:grid-cols-2 gap-10 items-start">
-        <div class="order-2 md:order-1">
-          <h2 class="text-2xl md:text-3xl font-bold mb-2">Evento presencial</h2>
-          <p class="text-hint mb-6">Condiciones de lanzamiento y selección guiada de unidades.</p>
-          <div class="space-y-4">
-            <div class="flex items-start gap-3">
-              <div class="shrink-0 w-9 h-9 rounded-full bg-soft flex items-center justify-center border border-line" aria-hidden="true">📅</div>
-              <div><div class="font-semibold">Martes 11 de noviembre • 19:30</div><div class="text-sm text-hint">Ingreso desde 19:10</div></div>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="shrink-0 w-9 h-9 rounded-full bg-soft flex items-center justify-center border border-line" aria-hidden="true">📍</div>
-              <div><div class="font-semibold">Best Western Premier Marina Las Condes</div><div class="text-sm text-hint">Alonso de Córdova 5727, Las Condes</div></div>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="shrink-0 w-9 h-9 rounded-full bg-soft flex items-center justify-center border border-line" aria-hidden="true">🎁</div>
-              <div><div class="font-semibold">Beneficios para asistentes</div><div class="text-sm text-hint">Cupos preferentes, condiciones del lanzamiento y asesoría 1:1.</div></div>
-            </div>
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero-card">
+          <p class="pill"><img src="images/logo_blanco.png" alt="" style="height:20px;"> Lanzamiento Mirador La Florida</p>
+          <h1>Reserva tu cupo gratuito y accede a condiciones preferenciales con asesoría 1:1 en Las Condes.</h1>
+          <p class="hero-desc">Evento presencial el 11 de noviembre donde simulamos tu inversión, ajustamos financiamiento y te entregamos una propuesta personalizada en 10 minutos.</p>
+          <div class="hero-info">
+            <span>11 / 11 · 19:30 h</span>
+            <span>Las Condes</span>
+            <span>60 cupos · costo $0</span>
           </div>
-          <div class="mt-6 flex gap-3">
-            <a href="#form" class="inline-flex items-center justify-center rounded-xl bg-accent text-white font-semibold px-5 py-3">Reservar cupo</a>
-            <a class="inline-flex items-center justify-center rounded-xl border border-line px-5 py-3"
-               href="https://wa.me/56966013182?text=Hola%2C%20quiero%20confirmar%20mi%20asistencia%20al%20evento%20La%20Florida" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          </div>
-        </div>
-
-        <div class="order-1 md:order-2 bg-soft rounded-2xl p-4 border border-line shadow-soft">
-          <picture>
-            <source srcset="/images/evento.avif" type="image/avif" />
-            <source srcset="/images/evento.webp" type="image/webp" />
-            <img src="/images/evento.jpg" alt="Sala del evento" class="w-full aspect-video object-cover rounded-xl" loading="lazy" width="1280" height="720" onerror="console.error('Error loading image:', this.src); this.style.display='none';" />
-          </picture>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BENEFICIOS -->
-  <section id="beneficios" class="bg-white border-y border-line">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-      <div class="mb-8">
-        <h2 class="text-2xl md:text-3xl font-bold">Beneficios clave</h2>
-        <p class="text-sm text-hint mt-1">Lo más importante en una mirada: por qué este proyecto y por qué estar en el lanzamiento.</p>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="bg-soft rounded-2xl p-6 border border-line">
-          <h3 class="text-lg font-semibold mb-4">Del proyecto</h3>
-          <ul class="space-y-3 text-sm">
-            <li class="flex gap-3"><span class="w-6 h-6 shrink-0 rounded-full bg-ok/15 text-ok flex items-center justify-center">✓</span><span>Unidades desde UF 2.600 y pie en cuotas.</span></li>
-            <li class="flex gap-3"><span class="w-6 h-6 shrink-0 rounded-full bg-ok/15 text-ok flex items-center justify-center">✓</span><span>Entrega planificada 1S 2029, permitiendo preparar financiamiento.</span></li>
-            <li class="flex gap-3"><span class="w-6 h-6 shrink-0 rounded-full bg-ok/15 text-ok flex items-center justify-center">✓</span><span>Amenidades funcionales (cowork, gimnasio, salas multiuso, quinchos).</span></li>
+          <ul class="hero-points">
+            <li><strong>Diagnóstico express:</strong> en 10 min conoces tu capacidad real.</li>
+            <li><strong>Propuesta PDF:</strong> lista para compartir con familia o socios.</li>
+            <li><strong>Seguimiento Select:</strong> WhatsApp + CRM hasta firmar.</li>
           </ul>
+          <div class="hero-ctas">
+            <a href="#form" class="btn" data-track-event="cta_click" data-track-detail='{"cta_id":"hero_primary"}'>Reserva tu cupo gratuito</a>
+            <a class="btn-ghost" href="https://wa.me/56966013182?text=Quiero%20confirmar%20mi%20cupo" target="_blank" rel="noopener" data-track-event="cta_click" data-track-detail='{"cta_id":"hero_secondary"}'>Hablar con un asesor</a>
+            <button class="btn-ghost video-btn" type="button" data-track-event="cta_click" data-track-detail='{"cta_id":"hero_video"}'>▶︎ Ver resumen 45s</button>
+          </div>
+          <div class="value-grid">
+            <div class="value-card"><span>⚡</span>Diagnóstico express 10 min.</div>
+            <div class="value-card"><span>💰</span>Propuesta PDF inmediata.</div>
+            <div class="value-card"><span>📲</span>Seguimiento WhatsApp.</div>
+            <div class="value-card"><span>🏦</span>Asesoría bancaria y legal.</div>
+          </div>
+          <div class="hero-stats">
+            <dl>
+              <dt>Capacidad</dt>
+              <dd id="hero-capacidad">60</dd>
+              <small id="hero-registrados" class="sc-text-muted">42 confirmados</small>
+            </dl>
+            <dl>
+              <dt>Countdown</dt>
+              <dd><span id="cd-d">00</span>d <span id="cd-h">00</span>h</dd>
+              <small class="sc-text-muted" id="cd-small">-- dias -- horas</small>
+            </dl>
+            <dl>
+              <dt>Ubicacion</dt>
+              <dd>Las Condes</dd>
+              <small>Best Western Premier</small>
+            </dl>
+            <dl>
+              <dt>Modalidad</dt>
+              <dd>Presencial</dd>
+              <small>Asesoria personalizada</small>
+            </dl>
+          </div>
         </div>
-
-        <div class="bg-soft rounded-2xl p-6 border border-line">
-          <h3 class="text-lg font-semibold mb-4">De asistir al lanzamiento</h3>
-          <ul class="space-y-3 text-sm">
-            <li class="flex gap-3"><span class="w-6 h-6 shrink-0 rounded-full bg-ok/15 text-ok flex items-center justify-center">★</span><span>Prioridad para elegir unidades con mejores condiciones.</span></li>
-            <li class="flex gap-3"><span class="w-6 h-6 shrink-0 rounded-full bg-ok/15 text-ok flex items-center justify-center">★</span><span>Acceso a condiciones de lanzamiento y stock reservado para sala.</span></li>
-            <li class="flex gap-3"><span class="w-6 h-6 shrink-0 rounded-full bg-ok/15 text-ok flex items-center justify-center">★</span><span>Asesoría personalizada 1:1 (evaluación de presupuesto y estrategia).</span></li>
-            <li class="flex gap-3"><span class="w-6 h-6 shrink-0 rounded-full bg-ok/15 text-ok flex items-center justify-center">★</span><span>Orientación sobre financiamiento y bancos según tu perfil.</span></li>
-            <li class="flex gap-3"><span class="w-6 h-6 shrink-0 rounded-full bg-ok/15 text-ok flex items-center justify-center">★</span><span>Confirmación de pre-reserva en sala (cupos limitados).</span></li>
-          </ul>
+        <div class="hero-media">
+          <img src="images/hero-la-florida.jpg" alt="Salon del evento Select Capital" loading="lazy" />
+          <div class="hero-logo">
+            <img src="images/logo_blanco.png" alt="Select Capital" />
+            <span class="sc-text-muted">Mirador La Florida</span>
+          </div>
+          <div class="hero-overlay">
+            <p>“El evento donde tomas decisiones con toda la data y soporte en la misma mesa.”</p>
+            <span>— Equipo Select Capital</span>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div class="mt-8 text-center">
-        <a href="#form" class="inline-flex items-center justify-center rounded-xl bg-accent text-white font-semibold px-6 py-3">Quiero mi cupo en el lanzamiento</a>
-        <p class="text-xs text-hint mt-2">Cupos limitados • Confirmación por WhatsApp/email</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FORMULARIO -->
-  <section id="form" class="bg-white border-y border-line">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
-      <div class="bg-soft rounded-2xl p-6 md:p-8 border border-line shadow-soft">
-        <h2 class="text-xl md:text-2xl font-bold mb-1">Reserva tu asistencia</h2>
-        <p class="text-sm text-hint mb-3">Completa tus datos y te confirmaremos por correo/WhatsApp.</p>
-        <div class="mb-6 flex items-center justify-between rounded-xl border border-line bg-white p-3">
-          <div class="text-sm"><span class="font-semibold">Cupos restantes:</span> <span id="cupos-restantes-form">--</span></div>
-          <span class="text-xs text-ink/70">Cierre en <span id="cd-small">-- días -- horas</span></span>
-        </div>
-
-        <!-- Opción B: backend propio -->
-        <form action="/submit.php" method="POST" class="space-y-5" novalidate>
-          <!-- UTM -->
-          <input type="hidden" name="utm_source">
-          <input type="hidden" name="utm_medium">
-          <input type="hidden" name="utm_campaign">
-          <input type="hidden" name="gclid">
-          <input type="hidden" name="fbclid">
-          <input type="hidden" name="ttclid">
-          <input type="hidden" name="cf-turnstile-response" id="ts-token">
-          <!-- Honeypot -->
-          <input type="text" name="honey" class="hidden" tabindex="-1" autocomplete="off">
-
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label for="nombre" class="block text-sm font-semibold mb-1">Nombre completo</label>
-              <input id="nombre" name="nombre" type="text" required autocomplete="name" autocapitalize="words"
-                     class="w-full rounded-xl border border-line bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Tu nombre" />
+      <section class="section" id="beneficios">
+        <h2>Beneficios del lanzamiento</h2>
+        <p class="lead">El mismo flujo de la versión inicial, pero narrado como historia completa: reserva, vive la experiencia y toma decisiones con datos claros.</p>
+        <div class="surface">
+          <div class="process-grid">
+            <div class="process-step">
+              <span>1</span>
+              <h3>Reserva y confirma</h3>
+              <p class="sc-text-muted">Completa el formulario o escribe por WhatsApp. Te guardamos un slot y recibes checklist previo al evento.</p>
             </div>
-            <div>
-              <label for="whatsapp" class="block text-sm font-semibold mb-1">WhatsApp</label>
-              <input id="whatsapp" name="whatsapp" type="tel" required inputmode="tel" autocomplete="tel"
-                     class="w-full rounded-xl border border-line bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent" placeholder="+56 9 xxxx xxxx" />
-              <p id="w-error" class="mt-1 text-xs text-red-600 hidden" aria-live="polite"></p>
+            <div class="process-step">
+              <span>2</span>
+              <h3>Simulación guiada</h3>
+              <p class="sc-text-muted">Diagnóstico express (10 min), comparación de bancos y ajuste de pie/tasa según tu perfil.</p>
+            </div>
+            <div class="process-step">
+              <span>3</span>
+              <h3>Propuesta PDF + follow-up</h3>
+              <p class="sc-text-muted">Te llevas un documento imprimible y activamos seguimiento vía CRM/WhatsApp para resolver dudas.</p>
             </div>
           </div>
-
-          <div>
-            <label for="email" class="block text-sm font-semibold mb-1">Email</label>
-            <input id="email" name="email" type="email" required autocomplete="email"
-                   class="w-full rounded-xl border border-line bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent" placeholder="correo@ejemplo.com" />
-            <p id="e-error" class="mt-1 text-xs text-red-600 hidden" aria-live="polite"></p>
+          <div class="callout">El 70% de los asistentes concreta su inversión durante el evento. Cupos confirmados: 42 de 60.</div>
+          <div class="benefits-grid">
+            <div class="benefit-card">
+              <h3>Del proyecto</h3>
+              <div class="project-highlight">
+                <div><span>Desde</span><strong>UF 2.600</strong></div>
+                <div><span>Entrega</span><strong>1S 2029</strong></div>
+                <div><span>Pie</span><strong>20% · 24 cuotas</strong></div>
+                <div><span>Rentabilidad</span><strong>5.4%</strong></div>
+              </div>
+              <p class="sc-text-muted">Incluye administración Select Capital los primeros 12 meses y acompañamiento legal/bancario.</p>
+            </div>
+            <div class="benefit-card">
+              <h3>Del evento</h3>
+              <ul>
+                <li>Diagnostico express (10 min) y simulacion en sala.</li>
+                <li>Propuesta PDF inmediata + seguimiento CRM.</li>
+                <li>Agenda 1:1 con asesores bancarios y legales.</li>
+              </ul>
+            </div>
+            <div class="benefit-card">
+              <h3>Confianza</h3>
+              <p class="sc-text-muted">Respaldado por Select Capital y partners financieros con presencia nacional.</p>
+              <div class="trusted-row">
+                <img src="images/logo_blanco.png" alt="Select Capital" />
+                <img src="images/logo_negro.png" alt="Select Capital Dark" />
+                <img src="images/icono.png" alt="Icono Select" />
+              </div>
+              <button class="btn" type="button" data-pdf-download data-track-event="pdf_download" style="margin-top:1rem; width:100%;">Descargar propuesta (PDF)</button>
+            </div>
           </div>
-
-          <div>
-            <label for="ingresos" class="block text-sm font-semibold mb-1">Rango de ingresos mensuales (CLP)</label>
-            <select id="ingresos" name="ingresos_mensuales_clp" required
-                    class="w-full rounded-xl border border-line bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent">
-              <option value="" disabled selected>Selecciona tu rango</option>
-              <option value="<700k">Menos de $700.000</option>
-              <option value="700k-1m">$700.000 – $1.000.000</option>
-              <option value="1m-1.5m">$1.000.001 – $1.500.000</option>
-              <option value="1.5m-2m">$1.500.001 – $2.000.000</option>
-              <option value="2m-3m">$2.000.001 – $3.000.000</option>
-              <option value="3m-4m">$3.000.001 – $4.000.000</option>
-              <option value=">5m">Más de $5.000.000</option>
-            </select>
-            <p class="mt-1 text-xs text-hint">Usamos esta info para sugerirte la mejor estrategia de financiamiento.</p>
-            <p id="i-error" class="mt-1 text-xs text-red-600 hidden" aria-live="polite"></p>
+          <div class="testimonials-grid">
+            <div class="testimonial-card">
+              <p>“Salí con mi inversión simulada, pie definido y propuesta PDF lista para discutir con mi pareja.”</p>
+              <strong>Francisca · Inversionista Select</strong>
+            </div>
+            <div class="testimonial-card">
+              <p>“La asesoría bancaria en sala nos permitió comparar tasas realistas sin perder tiempo.”</p>
+              <strong>Rodrigo · Cliente 2023</strong>
+            </div>
+            <div class="testimonial-card">
+              <p>“Confirmé el cupo por WhatsApp y en menos de un día ya tenía la agenda del evento y el checklist.”</p>
+              <strong>Paula · Nueva inversionista</strong>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <label class="flex items-start gap-3 text-sm">
-            <input type="checkbox" required name="consentimiento"
-                   class="mt-1 rounded border-gray-300 text-accent focus:ring-accent" />
-            <span>Acepto el tratamiento de mis datos según la <strong>Ley 19.628</strong> y autorizo el contacto. Consulta nuestra 
-              <a href="https://www.selectcapital.cl/privacidad" class="underline" target="_blank" rel="noopener noreferrer">Política de Privacidad</a>.</span>
-          </label>
+      <section class="section form-section" id="form">
+        <h2>Reserva tu asistencia</h2>
+        <p class="lead">Confirmaremos por correo y WhatsApp en menos de 24h. Cupos limitados.</p>
+        <div class="form-shell surface">
+          <div>
+            <div class="sc-field">
+              <span class="sc-label">Cupos restantes</span>
+              <div class="sc-input" id="cupos-restantes-form">--</div>
+            </div>
+            <div class="sc-field">
+              <span class="sc-label">Countdown</span>
+              <div class="sc-input" id="cd-small-side">-- dias -- horas</div>
+            </div>
+            <div class="sc-field">
+              <span class="sc-label">Motivos para asistir</span>
+              <ul class="sc-hint" style="margin:0; padding-left:1.1rem; list-style:disc;">
+                <li>Asesoria financiera 1:1</li>
+                <li>Propuesta PDF al instante</li>
+                <li>Agenda exclusiva WhatsApp</li>
+              </ul>
+            </div>
+            <div class="sc-field">
+              <span class="sc-label">Canales directos</span>
+              <div class="hero-ctas">
+                <a href="tel:+56966013182" class="btn-ghost">Llamar</a>
+                <a href="mailto:contacto@selectcapital.cl" class="btn-ghost">Escribir</a>
+              </div>
+            </div>
+          </div>
+          <form action="/submit.php" method="POST" class="space-y-4" data-lead-form data-track-form novalidate>
+            <input type="hidden" name="utm_source">
+            <input type="hidden" name="utm_medium">
+            <input type="hidden" name="utm_campaign">
+            <input type="hidden" name="gclid">
+            <input type="hidden" name="fbclid">
+            <input type="hidden" name="ttclid">
+            <input type="hidden" name="cf-turnstile-response" id="ts-token">
+            <input type="text" name="honey" class="hidden" tabindex="-1" autocomplete="off">
+            <div class="form-badge">Formulario guiado · Confirmacion 24h</div>
+            <div class="form-wizard" data-form-wizard>
+              <div class="form-steps-progress" aria-live="polite">
+                <div class="form-step-pill is-active" data-step-pill="0">
+                  <span>1</span>
+                  <div>
+                    <strong>Datos personales</strong>
+                    <p>Validamos identidad y contacto.</p>
+                  </div>
+                </div>
+                <div class="form-step-pill" data-step-pill="1">
+                  <span>2</span>
+                  <div>
+                    <strong>Perfil e ingresos</strong>
+                    <p>Definimos objetivo y capacidad.</p>
+                  </div>
+                </div>
+                <div class="form-step-pill" data-step-pill="2">
+                  <span>3</span>
+                  <div>
+                    <strong>Zonas y cierre</strong>
+                    <p>Comunas, comentarios y consentimiento.</p>
+                  </div>
+                </div>
+              </div>
 
-          <!-- Turnstile (anti-bot) -->
-          <div class="cf-turnstile mt-2" data-sitekey="0x4AAAAAAB_bjq2YOWp-yEXx" data-theme="auto" data-callback="onTurnstileSuccess"></div>
-          <p id="t-error" class="mt-1 text-xs text-red-600 hidden" aria-live="polite"></p>
+              <div class="form-wizard-viewport">
+                <div class="form-wizard-track" data-step-track style="--wizard-step:0;">
+                  <section class="wizard-step" data-step-panel="0" data-next-label="Continuar a Perfil e ingresos" aria-labelledby="step-personal-title">
+                    <div class="step-header">
+                      <p class="step-kicker">Paso 1</p>
+                      <h3 id="step-personal-title">Informacion personal</h3>
+                      <p class="sc-hint">Confirma tus datos para enviarte la propuesta personalizada en menos de 24h.</p>
+                    </div>
+                    <div data-field-grid="two">
+                      <label class="sc-field">
+                        <span class="sc-label">Nombre completo</span>
+                        <input id="nombre" name="nombre" type="text" required class="sc-input" placeholder="Tu nombre completo" autocomplete="name" data-step-required>
+                      </label>
+                      <label class="sc-field">
+                        <span class="sc-label">RUT</span>
+                        <input id="rut" name="rut" type="text" class="sc-input" placeholder="12.345.678-9" autocomplete="off" data-mask="rut" data-step-required>
+                        <p class="sc-hint">Validamos el formato automaticamente.</p>
+                        <p class="sc-error" id="r-error" aria-hidden="true">Ingresa un RUT valido.</p>
+                      </label>
+                      <label class="sc-field">
+                        <span class="sc-label">Correo electronico</span>
+                        <input id="email" name="email" type="email" required class="sc-input" placeholder="correo@ejemplo.com" autocomplete="email" data-step-required>
+                        <p class="sc-error" id="e-error" aria-hidden="true">Ingresa un correo valido.</p>
+                      </label>
+                      <label class="sc-field">
+                        <span class="sc-label">Telefono / WhatsApp</span>
+                        <input id="whatsapp" name="whatsapp" type="tel" required class="sc-input" data-mask="phone" placeholder="+56 9 1234 5678" autocomplete="tel" data-step-required>
+                        <p class="sc-hint">Prefijo +56 autocompletado • Formato sugerido: +56 9 1234 5678</p>
+                        <p class="sc-error" id="w-error" aria-hidden="true">Usa un numero chileno valido.</p>
+                      </label>
+                    </div>
+                  </section>
 
-          <div id="form-error" class="hidden text-sm text-red-600" role="alert" aria-live="polite"></div>
+                  <section class="wizard-step" data-step-panel="1" data-next-label="Ir a Comunas y envio" aria-labelledby="step-profile-title">
+                    <div class="step-header">
+                      <p class="step-kicker">Paso 2</p>
+                      <h3 id="step-profile-title">Perfil del cliente e ingresos</h3>
+                      <p class="sc-hint">Selecciona el objetivo y detalla tu tipo de ingreso para ajustar la propuesta.</p>
+                    </div>
 
-          <button id="submitBtn" type="submit"
-                  class="w-full rounded-xl bg-accent text-white font-semibold py-3 hover:opacity-95 transition">
-            <span id="s-text">Reservar mi cupo</span>
-            <span id="s-load" class="hidden">Enviando…</span>
-          </button>
+                    <fieldset class="option-fieldset" data-radio-group="objetivo">
+                      <legend class="sc-label">Objetivo principal</legend>
+                      <p class="sc-hint">Elige una opcion para enfocar la asesoria.</p>
+                      <div class="option-grid">
+                        <label class="option-card" data-card>
+                          <input type="radio" name="objetivo" value="Vivir" required data-card-input data-step-required>
+                          <span class="option-icon" aria-hidden="true">🏠</span>
+                          <strong>Vivir</strong>
+                          <p class="sc-hint">Buscas tu proxima vivienda para uso propio.</p>
+                        </label>
+                        <label class="option-card" data-card>
+                          <input type="radio" name="objetivo" value="Invertir" data-card-input data-step-required>
+                          <span class="option-icon" aria-hidden="true">💼</span>
+                          <strong>Invertir</strong>
+                          <p class="sc-hint">Quieres generar ingresos y construir patrimonio.</p>
+                        </label>
+                        <label class="option-card" data-card>
+                          <input type="radio" name="objetivo" value="No lo se" data-card-input data-step-required>
+                          <span class="option-icon" aria-hidden="true">❔</span>
+                          <strong>No lo se todavia</strong>
+                          <p class="sc-hint">Te ayudamos a descubrir cual te conviene hoy.</p>
+                        </label>
+                      </div>
+                    </fieldset>
 
-          <p class="text-[11px] text-hint text-center">🔒 Datos protegidos • Cupos limitados • Confirmación por email/WhatsApp (en menos de 24h)</p>
-        </form>
+                    <fieldset class="option-fieldset" data-radio-group="tipo_ingreso">
+                      <legend class="sc-label">Tipo de ingreso</legend>
+                      <p class="sc-hint">Seleccion unica. Mostramos campos extra segun tu eleccion.</p>
+                      <div class="option-grid">
+                        <label class="option-card" data-card data-ingreso-card="dependiente">
+                          <input type="radio" name="tipo_ingreso" value="Dependiente" required data-card-input data-step-required>
+                          <strong>Dependiente</strong>
+                          <p class="sc-hint">Recibes sueldo fijo con contrato y liquidaciones.</p>
+                        </label>
+                        <label class="option-card" data-card data-ingreso-card="independiente">
+                          <input type="radio" name="tipo_ingreso" value="Independiente" data-card-input data-step-required>
+                          <strong>Independiente</strong>
+                          <p class="sc-hint">Ingresos variables como profesional, freelancer o empresario.</p>
+                        </label>
+                        <label class="option-card" data-card data-ingreso-card="mixto">
+                          <input type="radio" name="tipo_ingreso" value="Mixto" data-card-input data-step-required>
+                          <strong>Mixto</strong>
+                          <p class="sc-hint">Combinacion de sueldo fijo + ingresos adicionales.</p>
+                        </label>
+                      </div>
+                    </fieldset>
+
+                    <div class="option-secondary" data-ingreso-extra="dependiente" aria-hidden="true" hidden>
+                      <span class="sc-label">Tipo de contrato (Dependiente)</span>
+                      <div class="chip-set" data-chip-group="tipo_contrato">
+                        <button type="button" class="chip" data-chip-value="Indefinido" data-chip-target="tipo_contrato">
+                          <strong>Indefinido</strong>
+                          <span>Mayor estabilidad laboral. Mejor evaluacion crediticia.</span>
+                        </button>
+                        <button type="button" class="chip" data-chip-value="Plazo fijo" data-chip-target="tipo_contrato">
+                          <strong>Plazo fijo</strong>
+                          <span>Contrato con termino definido. Requiere analisis segun antiguedad.</span>
+                        </button>
+                        <button type="button" class="chip" data-chip-value="Sin contrato / Informal" data-chip-target="tipo_contrato">
+                          <strong>Sin contrato / Informal</strong>
+                          <span>Ingresos no formales. Detalla montos y respaldo.</span>
+                        </button>
+                      </div>
+                      <input type="hidden" name="tipo_contrato" data-chip-store="tipo_contrato" data-required-when="tipo_ingreso=Dependiente">
+                      <p class="sc-error" data-chip-error="tipo_contrato" aria-hidden="true">Selecciona el tipo de contrato.</p>
+                    </div>
+
+                    <div class="option-secondary" data-ingreso-extra="independiente" aria-hidden="true" hidden>
+                      <span class="sc-label">Tipo de ingresos (Independiente)</span>
+                      <div class="chip-set" data-chip-group="tipo_ingreso_independiente">
+                        <button type="button" class="chip" data-chip-value="Boletas de honorarios" data-chip-target="tipo_ingreso_independiente">
+                          <strong>Boletas de honorarios</strong>
+                          <span>Ingresos declarados como profesional independiente.</span>
+                        </button>
+                        <button type="button" class="chip" data-chip-value="Retiros de empresa" data-chip-target="tipo_ingreso_independiente">
+                          <strong>Retiros de empresa</strong>
+                          <span>Ingresos derivados de participacion o utilidades.</span>
+                        </button>
+                      </div>
+                      <input type="hidden" name="tipo_ingreso_independiente" data-chip-store="tipo_ingreso_independiente" data-required-when="tipo_ingreso=Independiente">
+                      <p class="sc-error" data-chip-error="tipo_ingreso_independiente" aria-hidden="true">Selecciona el tipo de ingreso.</p>
+                    </div>
+
+                    <div data-field-grid="two">
+                      <label class="sc-field">
+                        <span class="sc-label">Ingreso mensual liquido (CLP)</span>
+                        <input type="text" class="sc-input" inputmode="numeric" data-money-input="renta_liquida" placeholder="$ 1.200.000" data-step-required>
+                        <input type="hidden" name="renta_liquida" data-money-store="renta_liquida">
+                        <p class="sc-error" id="renta-error" aria-hidden="true">Ingresa tu renta liquida aproximada.</p>
+                      </label>
+                      <label class="sc-field">
+                        <span class="sc-label">Monto de ahorro disponible</span>
+                        <input type="text" class="sc-input" inputmode="numeric" data-money-input="monto_ahorro" placeholder="$ 2.000.000" data-step-required>
+                        <span class="sc-hint">Solo ingresa el monto total ahorrado.</span>
+                        <input type="hidden" name="monto_ahorro" data-money-store="monto_ahorro">
+                        <p class="sc-error" id="ahorro-error" aria-hidden="true">Ingresa el monto ahorrado.</p>
+                      </label>
+                    </div>
+                  </section>
+
+                  <section class="wizard-step" data-step-panel="2" aria-labelledby="step-location-title">
+                    <div class="step-header">
+                      <p class="step-kicker">Paso 3</p>
+                      <h3 id="step-location-title">Zona de interes y comentarios</h3>
+                      <p class="sc-hint">Selecciona comunas, deja notas y autoriza el contacto para finalizar.</p>
+                    </div>
+
+                    <div class="sc-field">
+                      <span class="sc-label">Zona o comuna de interes</span>
+                      <p class="sc-hint">Puedes elegir varias comunas populares o buscarlas. Presiona Enter para agregarlas.</p>
+                      <div class="commune-quick" data-commune-pills>
+                        <button type="button" class="pill-chip" data-commune-pill="La Florida">La Florida</button>
+                        <button type="button" class="pill-chip" data-commune-pill="Santiago Centro">Santiago Centro</button>
+                        <button type="button" class="pill-chip" data-commune-pill="Independencia">Independencia</button>
+                        <button type="button" class="pill-chip" data-commune-pill="Estacion Central">Estacion Central</button>
+                        <button type="button" class="pill-chip" data-commune-pill="Ñuñoa">Ñuñoa</button>
+                        <button type="button" class="pill-chip" data-commune-pill="San Miguel">San Miguel</button>
+                        <button type="button" class="pill-chip" data-commune-pill="Macul">Macul</button>
+                      </div>
+                      <label class="sc-field">
+                        <span class="sc-label sc-optional">Buscador</span>
+                        <input type="text" class="sc-input" placeholder="Escribe una comuna (ej: Ñuñoa, La Florida…)" list="comunas-populares" data-commune-input autocomplete="off">
+                      </label>
+                      <datalist id="comunas-populares">
+                        <option value="Cerrillos"></option>
+                        <option value="Cerro Navia"></option>
+                        <option value="Conchali"></option>
+                        <option value="El Bosque"></option>
+                        <option value="Estacion Central"></option>
+                        <option value="Huechuraba"></option>
+                        <option value="Independencia"></option>
+                        <option value="La Cisterna"></option>
+                        <option value="La Florida"></option>
+                        <option value="La Granja"></option>
+                        <option value="La Pintana"></option>
+                        <option value="La Reina"></option>
+                        <option value="Las Condes"></option>
+                        <option value="Lo Barnechea"></option>
+                        <option value="Lo Espejo"></option>
+                        <option value="Lo Prado"></option>
+                        <option value="Macul"></option>
+                        <option value="Maipu"></option>
+                        <option value="Ñuñoa"></option>
+                        <option value="Pedro Aguirre Cerda"></option>
+                        <option value="Peñalolen"></option>
+                        <option value="Providencia"></option>
+                        <option value="Pudahuel"></option>
+                        <option value="Quilicura"></option>
+                        <option value="Quinta Normal"></option>
+                        <option value="Recoleta"></option>
+                        <option value="Renca"></option>
+                        <option value="San Joaquin"></option>
+                        <option value="San Miguel"></option>
+                        <option value="San Ramon"></option>
+                        <option value="Santiago Centro"></option>
+                        <option value="Vitacura"></option>
+                      </datalist>
+                      <div class="commune-selected" data-commune-selected aria-live="polite"></div>
+                      <input type="hidden" name="comunas_interes" data-commune-store data-step-required>
+                      <p class="sc-error" id="comunas-error" aria-hidden="true">Selecciona al menos una comuna.</p>
+                    </div>
+
+                    <label class="sc-field">
+                      <span class="sc-label">Comentarios adicionales (opcional)</span>
+                      <textarea name="comentarios" rows="3" class="sc-input" placeholder="¿Quieres contarnos algo mas sobre lo que buscas?" style="resize:vertical;"></textarea>
+                    </label>
+
+                    <label class="sc-field consent-field">
+                      <input type="checkbox" required name="consentimiento" data-step-required>
+                      <span>
+                        <strong>Autorizo a ser contactado por un asesor inmobiliario de Capital Inteligente.</strong>
+                        <span class="sc-hint">Tus datos se utilizan unicamente para brindarte una asesoria personalizada. No seran compartidos con terceros sin tu consentimiento.</span>
+                      </span>
+                    </label>
+
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAAB_bjq2YOWp-yEXx" data-theme="auto" data-callback="onTurnstileSuccess"></div>
+                    <p class="sc-error" id="t-error" aria-hidden="true">Confirma que no eres un bot</p>
+                  </section>
+                </div>
+              </div>
+
+              <div class="form-wizard-nav" data-wizard-nav>
+                <button type="button" class="btn-ghost" data-step-prev aria-label="Volver al paso anterior">Volver</button>
+                <button type="button" class="btn" data-step-next>Continuar</button>
+                <button id="submitBtn" class="btn" type="submit" data-step-submit hidden>
+                  <span id="s-text">Recibir mi propuesta personalizada</span>
+                  <span id="s-load" style="display:none;">Enviando...</span>
+                </button>
+              </div>
+              <div id="form-error" class="sc-error" aria-hidden="true">Verifica los datos</div>
+              <p class="sc-hint" style="text-align:center;">Confirmaremos por email/WhatsApp en menos de 24h · Datos protegidos</p>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <h2>Preguntas frecuentes</h2>
+        <div class="faq-grid">
+          <div class="faq-card">
+            <h4>¿Tiene costo?</h4>
+            <p class="sc-text-muted">No. Es gratuito pero con cupos limitados y confirmacion previa.</p>
+          </div>
+          <div class="faq-card">
+            <h4>¿Debo llevar documentos?</h4>
+            <p class="sc-text-muted">Solo tu cedula y, si tienes, pre aprobacion bancaria para acelerar la simulacion.</p>
+          </div>
+          <div class="faq-card">
+            <h4>¿Y si no puedo asistir?</h4>
+            <p class="sc-text-muted">Agendamos reunion online y enviamos la propuesta PDF con los mismos beneficios.</p>
+          </div>
+          <div class="faq-card">
+            <h4>¿Confirman asistencia?</h4>
+            <p class="sc-text-muted">Si, te contactaremos por WhatsApp y correo para validar tu cupo.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="sc-footer">
+      <div class="sc-footer__inner">
+        <section class="sc-footer-cta sc-glass">
+          <div>
+            <h2>¿Listo para curar tu próxima inversión?</h2>
+            <p>Agenda una asesoría sin costo para revisar tus números, comparar proyectos y recibir tu propuesta PDF en minutos.</p>
+            <div class="sc-chip-stack">
+              <span class="sc-chip">+250 proyectos evaluados</span>
+              <span class="sc-chip">Sin costo para el inversionista</span>
+              <span class="sc-chip">Respuesta &lt; 10 min</span>
+            </div>
+          </div>
+          <div class="sc-footer-cta-actions">
+            <a class="sc-btn-primary" href="#form" data-track-event="cta_click" data-track-detail='{"cta_id":"footer_primary"}'>Agenda tu asesoría</a>
+            <a class="sc-btn-ghost" href="https://wa.me/56966013182?text=Quiero%20confirmar%20mi%20cupo" target="_blank" rel="noopener" data-track-event="cta_click" data-track-detail='{"cta_id":"footer_whatsapp"}'>WhatsApp inmediato</a>
+            <a class="sc-link" href="pdf/proposal-template.html" target="_blank" rel="noopener">Descargar brochure</a>
+          </div>
+        </section>
+
+        <div class="sc-footer-grid">
+          <div>
+            <h3>Propósito</h3>
+            <p>Seleccionamos proyectos con demanda real, negociamos beneficios y te acompañamos hasta la puesta en arriendo.</p>
+            <div class="sc-chip">Liquid Glass · Selección curada</div>
+          </div>
+          <div>
+            <h3>Soluciones</h3>
+            <ul>
+              <li><a href="home.html#servicios">Asesoría integral</a></li>
+              <li><a href="home.html#equipo">Gestión de compra</a></li>
+              <li><a href="simulador/index.html">Simulador hipotecario</a></li>
+              <li><a href="#form">Eventos privados</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Recursos</h3>
+            <ul>
+              <li><a href="home.html#proyectos">Proyectos destacados</a><span class="sc-footer-badge">Actualizado</span></li>
+              <li><a href="pdf/proposal-template.html" target="_blank" rel="noopener">Propuesta PDF demo</a></li>
+              <li><a href="dashboard/insights-dashboard.html" target="_blank" rel="noopener">Dashboard funnel</a></li>
+              <li><a href="#faq">Preguntas frecuentes</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Contacto</h3>
+            <div class="sc-footer-contact">
+              <span><a href="mailto:contacto@selectcapital.cl">contacto@selectcapital.cl</a></span>
+              <span><a href="tel:+56966013182">+56 9 6601 3182</a></span>
+              <span>Las Condes · Santiago de Chile</span>
+            </div>
+            <div class="sc-footer-social" aria-label="Redes sociales">
+              <a href="https://www.linkedin.com/company/selectcapital" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+              <a href="https://www.instagram.com/selectcapital" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+              <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="sc-footer-legal">
+          <span>© <span id="year"></span> Select Capital. No constituye oferta de valores.</span>
+          <div class="sc-footer-links">
+            <a href="#faq">Política de privacidad</a>
+            <span>·</span>
+            <a href="#faq">Aviso legal</a>
+            <span>·</span>
+            <span>ES | EN</span>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </footer>
+  </div>
 
-  <!-- FAQ breve -->
-  <section class="bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-10">
-      <h3 class="text-lg font-bold mb-4">Preguntas frecuentes</h3>
-      <div class="grid md:grid-cols-2 gap-4 text-sm">
-        <div class="border border-line rounded-xl p-4">
-          <p class="font-semibold mb-1">¿Tiene costo asistir?</p>
-          <p class="text-hint">No. El evento es gratuito, con cupos limitados y confirmación previa.</p>
-        </div>
-        <div class="border border-line rounded-xl p-4">
-          <p class="font-semibold mb-1">¿Debo llevar algo?</p>
-          <p class="text-hint">Solo tu cédula y, si quieres, pre-aprobación bancaria. Nosotros te guiamos.</p>
-        </div>
-        <div class="border border-line rounded-xl p-4">
-          <p class="font-semibold mb-1">¿Si no puedo ir?</p>
-          <p class="text-hint">Puedes solicitar una reunión online y recibir condiciones del lanzamiento.</p>
-        </div>
-        <div class="border border-line rounded-xl p-4">
-          <p class="font-semibold mb-1">¿Confirman asistencia?</p>
-          <p class="text-hint">Sí, te contactaremos por WhatsApp/email para confirmar tu cupo.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="bg-ink text-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div class="text-sm text-white/70">© <span id="year"></span> Select Capital. Todos los derechos reservados.</div>
-        <div class="flex gap-3 text-sm">
-          <a class="underline underline-offset-2" href="#form">Reservar cupo</a>
-          <a class="underline underline-offset-2" href="mailto:contacto@selectcapital.cl">contacto@selectcapital.cl</a>
-          <a class="underline underline-offset-2" href="tel:+56966013182">+56 9 6601 3182</a>
-        </div>
-      </div>
-      <p class="mt-4 text-xs text-white/50">Valores y condiciones sujetos a disponibilidad. Ley 19.628 sobre protección de datos.</p>
-    </div>
-  </footer>
-
+  <script src="scripts/sc-header.js" defer></script>
+  <script src="analytics/sc-tracking.js" defer></script>
+  <script type="module" src="lenguaje visual/forms/sc-masks.js" defer></script>
+  <script type="module" src="lenguaje visual/theme/theme-toggle.js"></script>
   <script>
-    // Año
-    document.getElementById('year').textContent = new Date().getFullYear();
+    (function(){
+      const statusBar = document.getElementById('status-bar');
+      const eventMeta = document.getElementById('event-meta');
+      const cap = eventMeta ? parseInt(eventMeta.dataset.capacidad || '0', 10) : 0;
+      const regs = eventMeta ? parseInt(eventMeta.dataset.registrados || '0', 10) : 0;
+      const restantes = Math.max(0, cap - regs);
+      const pct = cap ? Math.round((regs / cap) * 100) : 0;
+      if(statusBar && cap){ statusBar.textContent = `Quedan ${restantes} de ${cap} cupos (${pct}% ocupado)`; }
+      const heroCap = document.getElementById('hero-capacidad');
+      const heroRegs = document.getElementById('hero-registrados');
+      if(heroCap) heroCap.textContent = `${cap}`;
+      if(heroRegs) heroRegs.textContent = `${regs} confirmados`;
 
-    // UTM autollenado
-    const params = new URLSearchParams(location.search);
-    const utmFields = ['utm_source','utm_medium','utm_campaign','gclid','fbclid','ttclid'];
-    const form = document.querySelector('#form form');
-    utmFields.forEach(k=>{
-      const el = form.querySelector(`[name="${k}"]`);
-      if(el) el.value = params.get(k) || '';
-    });
-
-    // Countdown visible hacia 11 Nov 2025 19:30 America/Santiago
-    const target = new Date('2025-11-11T19:30:00-03:00').getTime();
-    function fmt2(n){ return String(n).padStart(2,'0'); }
-    function tick(){
-      const now = Date.now();
-      let diff = Math.max(0, target - now);
-      const d = Math.floor(diff/86400000); diff%=86400000;
-      const h = Math.floor(diff/3600000);  diff%=3600000;
-      const m = Math.floor(diff/60000);    diff%=60000;
-      const s = Math.floor(diff/1000);
-      const cdD = document.getElementById('cd-d');
-      const cdH = document.getElementById('cd-h');
-      const cdM = document.getElementById('cd-m');
-      const cdS = document.getElementById('cd-s');
-      if(cdD) cdD.textContent = String(d);
-      if(cdH) cdH.textContent = fmt2(h);
-      if(cdM) cdM.textContent = fmt2(m);
-      if(cdS) cdS.textContent = fmt2(s);
-      const small = document.getElementById('cd-small');
-      if(small){
-        const dayLabel = d === 1 ? 'día' : 'días';
-        const hourLabel = h === 1 ? 'hora' : 'horas';
-        small.textContent = `${d} ${dayLabel} y ${fmt2(h)} ${hourLabel}`;
+      const params = new URLSearchParams(location.search);
+      const form = document.querySelector('[data-lead-form]');
+      const utmFields = ['utm_source','utm_medium','utm_campaign','gclid','fbclid','ttclid'];
+      if(form){
+        utmFields.forEach((key) => {
+          const input = form.querySelector(`[name="${key}"]`);
+          if(input) input.value = params.get(key) || '';
+        });
       }
-    }
-    tick(); setInterval(tick, 1000);
 
-    // Urgencia de cupos
-    const meta = document.getElementById('event-meta');
-    let capacidad = 0, registrados = 0;
-    if(meta){
-      capacidad = parseInt(meta.dataset.capacidad||'0',10) || 0;
-      registrados = parseInt(meta.dataset.registrados||'0',10) || 0;
-    }
-    const restantes = Math.max(0, capacidad - registrados);
-    const cuposText = document.getElementById('cupos-text');
-    const topUrg = document.getElementById('top-urgency-text');
-    const topUrgBar = document.getElementById('top-urgency');
-    const restForm = document.getElementById('cupos-restantes-form');
-    const prog = document.getElementById('progressbar');
-    const regLbl = document.getElementById('registrados-label');
-    const pct = capacidad? Math.min(100, Math.round((registrados/capacidad)*100)) : 0;
-    if(cuposText){ cuposText.textContent = capacidad ? `Quedan ${restantes} cupos` : 'Cupos limitados'; }
-    if(topUrg){ topUrg.textContent = capacidad ? `Cierre de registro • Quedan ${restantes} cupos` : 'Cierre de registro • Cupos limitados'; }
-    if(topUrgBar && capacidad){ topUrgBar.classList.remove('hidden'); }
-    if(restForm){ restForm.textContent = capacidad ? `${restantes}` : 'pocos'; }
-    if(regLbl){ regLbl.textContent = capacidad ? `${registrados}/${capacidad} inscritos (${pct}%)` : ''; }
-    const ps = document.getElementById('ps-registrados');
-    if(ps){ ps.textContent = capacidad ? `+${registrados} inversionistas registrados` : ''; }
-    if(prog){ prog.style.width = pct + '%'; prog.setAttribute('aria-valuenow', String(pct)); }
+      const target = new Date('2025-11-11T19:30:00-03:00').getTime();
+      const fmt = (n) => String(n).padStart(2,'0');
+      function tick(){
+        const now = Date.now();
+        let diff = Math.max(0, target - now);
+        const d = Math.floor(diff/86400000); diff%=86400000;
+        const h = Math.floor(diff/3600000); diff%=3600000;
+        document.getElementById('cd-d').textContent = String(d);
+        document.getElementById('cd-h').textContent = fmt(h);
+        const label = `${d} dias y ${fmt(h)} horas`;
+        document.getElementById('cd-small').textContent = label;
+        const side = document.getElementById('cd-small-side');
+        if(side) side.textContent = label;
+      }
+      tick(); setInterval(tick, 1000);
 
-    // Validación ligera CL + correo + honeypot + UX de envío
-    const wInput = document.getElementById('whatsapp');
-    const eInput = document.getElementById('email');
-    const wError = document.getElementById('w-error');
-    const eError = document.getElementById('e-error');
-    const sBtn   = document.getElementById('submitBtn');
-    const sText  = document.getElementById('s-text');
-    const sLoad  = document.getElementById('s-load');
-    const formError = document.getElementById('form-error');
-    const honey  = form.querySelector('input[name="honey"]');
-    const iSelect = document.getElementById('ingresos');
-    const iError  = document.getElementById('i-error');
-    let turnstileOk = false;
-    const tsContainer = document.querySelector('.cf-turnstile');
-    const tsError = document.getElementById('t-error');
-    const tsToken = document.getElementById('ts-token');
-    window.onTurnstileSuccess = function(token){
-      if (tsToken) tsToken.value = token;
-      turnstileOk = !!token; if(tsContainer && tsError) hideErr(tsContainer, tsError);
-    };
-    const reCL   = /^(?:\+?56\s?)?9\s?\d{4}\s?\d{4}$/;
+      const cuposEl = document.getElementById('cupos-restantes-form');
+      if(cuposEl){ cuposEl.textContent = cap ? restantes : 'Cupos limitados'; }
 
-    const showErr = (el, box, msg)=>{ el.setAttribute('aria-invalid','true'); box.textContent=msg; box.classList.remove('hidden'); }
-    const hideErr = (el, box)=>{ el.setAttribute('aria-invalid','false'); box.classList.add('hidden'); }
+      const tsError = document.getElementById('t-error');
+      window.onTurnstileSuccess = function(token){
+        const tsToken = document.getElementById('ts-token');
+        if(tsToken) tsToken.value = token;
+        if(tsError){ tsError.setAttribute('aria-hidden','true'); }
+      };
 
-    wInput.addEventListener('input', ()=>{
-      let v = wInput.value.replace(/\s+/g,' ').trim();
-      // Formateo suave: fuerza prefijo +56 9 si parte con 9 o 56
-      v = v.replace(/^\+?56\s*9?\s*(\d{4})\s*(\d{4})$/, '+56 9 $1 $2')
-           .replace(/^9\s*(\d{4})\s*(\d{4})$/, '+56 9 $1 $2');
-      wInput.value = v;
-      if(v && !reCL.test(v.replace(/\s/g,''))) showErr(wInput, wError, 'Usa formato chileno: +56 9 xxxx xxxx'); else hideErr(wInput, wError);
-    });
+      const reCL = /^(?:\+?56)?9\d{8}$/;
+      const STEP_ERROR_MSG = 'Completa los campos del paso actual para seguir.';
 
-    eInput.addEventListener('input', ()=>{
-      const v = eInput.value.trim();
-      if(v && !eInput.validity.valid) showErr(eInput, eError, 'Ingresa un correo válido'); else hideErr(eInput, eError);
-    });
+      if(form){
+        const wInput = document.getElementById('whatsapp');
+        const eInput = document.getElementById('email');
+        const rutInput = document.getElementById('rut');
+        const formError = document.getElementById('form-error');
+        const submitBtn = document.getElementById('submitBtn');
+        const sText = document.getElementById('s-text');
+        const sLoad = document.getElementById('s-load');
+        const wError = document.getElementById('w-error');
+        const eError = document.getElementById('e-error');
+        const rutError = document.getElementById('r-error');
+        const rentaError = document.getElementById('renta-error');
+        const ahorroError = document.getElementById('ahorro-error');
+        const communeError = document.getElementById('comunas-error');
+        const wizard = form.querySelector('[data-form-wizard]');
+        const track = wizard ? wizard.querySelector('[data-step-track]') : null;
+        const stepPanels = wizard ? Array.from(wizard.querySelectorAll('[data-step-panel]')) : [];
+        const stepPills = wizard ? Array.from(wizard.querySelectorAll('[data-step-pill]')) : [];
+        const prevBtn = wizard ? wizard.querySelector('[data-step-prev]') : null;
+        const nextBtn = wizard ? wizard.querySelector('[data-step-next]') : null;
+        const moneyInputs = form.querySelectorAll('[data-money-input]');
+        const moneyStores = {};
+        moneyInputs.forEach((input) => {
+          const key = input.dataset.moneyInput;
+          moneyStores[key] = form.querySelector(`[data-money-store="${key}"]`);
+        });
+        const chipStores = form.querySelectorAll('[data-chip-store]');
+        const chipGroups = {};
+        const chipErrors = {};
+        chipStores.forEach((store) => {
+          const name = store.dataset.chipStore;
+          chipGroups[name] = form.querySelector(`[data-chip-group="${name}"]`);
+          chipErrors[name] = form.querySelector(`[data-chip-error="${name}"]`);
+        });
+        const cardInputs = form.querySelectorAll('[data-card-input]');
+        const ingresoExtras = form.querySelectorAll('[data-ingreso-extra]');
+        const communeStore = form.querySelector('[data-commune-store]');
+        const communeInput = form.querySelector('[data-commune-input]');
+        const communeSelected = form.querySelector('[data-commune-selected]');
+        const communePills = form.querySelectorAll('[data-commune-pill]');
+        const communeSelections = new Map();
+        let currentStep = 0;
 
-    if(iSelect){
-      iSelect.addEventListener('change', ()=>{
-        if(iSelect.value) hideErr(iSelect, iError);
-      });
-    }
-
-    form.addEventListener('submit', async (ev)=>{
-      ev.preventDefault();
-      if(honey.value) return; // bot
-      let ok = true;
-      if(!reCL.test(wInput.value.trim())){ showErr(wInput,wError,'Usa formato chileno: +56 9 xxxx xxxx'); ok=false; }
-      if(!eInput.validity.valid){ showErr(eInput,eError,'Ingresa un correo válido'); ok=false; }
-      if(iSelect && !iSelect.value){ showErr(iSelect, iError, 'Selecciona tu rango de ingresos.'); ok=false; }
-      if(tsContainer && (!turnstileOk || !tsToken || !tsToken.value)) { showErr(tsContainer, tsError, 'Confirma que no eres un robot.'); ok=false; }
-      if(!ok) return;
-
-      sBtn.disabled = true; sText.classList.add('hidden'); sLoad.classList.remove('hidden');
-
-      // Micrométrica simple
-      try { console.log('form_submit_intent'); } catch(e){}
-
-      // Envío a tu backend (submit.php)
-      try{
-        const res = await fetch(form.action, { method:'POST', body:new FormData(form) });
-        if(res.ok){
-          console.log('form_submit_success');
-          // Tracking de conversión
-          try {
-            if(window.gtag){ gtag('event','generate_lead',{event_category:'form', event_label:'evento_form'}); }
-            window.dataLayer = window.dataLayer || []; window.dataLayer.push({event:'form_submit_success', form_id:'evento_form'});
-            if(window.fbq){ fbq('track','CompleteRegistration'); }
-          } catch(e) { console.warn('tracking_error', e); }
-          // Redirige a Gracias con el nombre (aunque el backend también 302)
-          const nombreVal = (document.getElementById('nombre')?.value || '').trim();
-          const url = 'gracias.html?' + new URLSearchParams({ nombre: nombreVal }).toString();
-          setTimeout(()=>{ location.href = url; }, 200);
-        } else {
-          throw new Error('submit_failed');
+        function updateError(node, shouldShow, message){
+          if(!node) return;
+          if(message) node.textContent = message;
+          node.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
         }
-      }catch(e){
-        console.error('form_submit_error', e);
-        if(formError){ formError.textContent = 'No pudimos registrar tu asistencia. Intenta nuevamente en unos segundos.'; formError.classList.remove('hidden'); }
-        sBtn.disabled = false; sText.classList.remove('hidden'); sLoad.classList.add('hidden');
-      }
-    });
 
-    // ================================
-    // TESTS (unitarios ligeros en runtime)
-    // ================================
-    (function runUnitTests(){
-      const results = [];
-      function test(name, fn){
-        try { const ok = !!fn(); results.push({name, ok}); }
-        catch(e){ results.push({name, ok:false, error: String(e)}); }
+        function setFieldValidity(field, isValid){
+          if(!field) return;
+          if(isValid){ field.removeAttribute('data-invalid'); }
+          else { field.setAttribute('data-invalid','true'); }
+        }
+
+        function chunkThousands(value){
+          return value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+
+        function formatMoneyInput(input){
+          const key = input.dataset.moneyInput;
+          const store = moneyStores[key];
+          if(!store) return;
+          const digits = (input.value.match(/\d+/g) || []).join('');
+          if(!digits){
+            input.value = '';
+            store.value = '';
+            return;
+          }
+          store.value = digits;
+          input.value = `$ ${chunkThousands(digits)}`;
+          setFieldValidity(input, true);
+          if(key === 'renta_liquida'){ updateError(rentaError, false); }
+          if(key === 'monto_ahorro'){ updateError(ahorroError, false); }
+        }
+
+        function normalizeCommune(raw){
+          if(!raw) return null;
+          const clean = raw.trim();
+          if(!clean) return null;
+          const collapsed = clean.replace(/\s+/g, ' ');
+          const words = collapsed.split(' ');
+          const label = words.map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+          const key = collapsed.toLocaleLowerCase('es-CL');
+          return { key, label };
+        }
+
+        function syncCommuneUI(){
+          if(communeStore){
+            communeStore.value = Array.from(communeSelections.values()).join(', ');
+          }
+          if(communeSelected){
+            communeSelected.innerHTML = '';
+            if(!communeSelections.size){
+              const empty = document.createElement('p');
+              empty.className = 'sc-hint';
+              empty.textContent = 'Selecciona una o mas comunas.';
+              communeSelected.appendChild(empty);
+            } else {
+              communeSelections.forEach((label, key) => {
+                const tag = document.createElement('span');
+                tag.className = 'commune-tag';
+                const text = document.createElement('span');
+                text.textContent = label;
+                const removeBtn = document.createElement('button');
+                removeBtn.type = 'button';
+                removeBtn.dataset.removeCommune = key;
+                removeBtn.setAttribute('aria-label', `Quitar ${label}`);
+                removeBtn.textContent = '×';
+                tag.appendChild(text);
+                tag.appendChild(removeBtn);
+                communeSelected.appendChild(tag);
+              });
+            }
+          }
+          communePills.forEach((pill) => {
+            const normalized = normalizeCommune(pill.dataset.communePill);
+            const isActive = normalized && communeSelections.has(normalized.key);
+            pill.classList.toggle('is-selected', Boolean(isActive));
+            pill.setAttribute('aria-pressed', String(Boolean(isActive)));
+          });
+          if(communeSelections.size){
+            updateError(communeError, false);
+          }
+        }
+
+        function addCommune(raw){
+          const normalized = normalizeCommune(raw);
+          if(!normalized) return;
+          communeSelections.set(normalized.key, normalized.label);
+          syncCommuneUI();
+        }
+
+        function toggleCommune(raw){
+          const normalized = normalizeCommune(raw);
+          if(!normalized) return;
+          if(communeSelections.has(normalized.key)){
+            communeSelections.delete(normalized.key);
+          } else {
+            communeSelections.set(normalized.key, normalized.label);
+          }
+          syncCommuneUI();
+        }
+
+        function chipIsRequired(store){
+          const condition = store.dataset.requiredWhen;
+          if(!condition) return true;
+          const [fieldName, expectedValue] = condition.split('=');
+          const selected = form.querySelector(`input[name="${fieldName}"]:checked`);
+          if(!selected) return false;
+          return selected.value === expectedValue;
+        }
+
+        function validateChipStore(store){
+          const groupName = store.dataset.chipStore;
+          const required = chipIsRequired(store);
+          const group = chipGroups[groupName];
+          const errorNode = chipErrors[groupName];
+          if(!required){
+            updateError(errorNode, false);
+            if(group) group.classList.remove('has-error');
+            return true;
+          }
+          const hasValue = Boolean(store.value);
+          updateError(errorNode, !hasValue, 'Selecciona una opcion.');
+          if(group){
+            group.classList.toggle('has-error', !hasValue);
+          }
+          return hasValue;
+        }
+
+        function validateField(field){
+          if(!field) return true;
+          if(field === eInput){
+            const valid = Boolean(field.value.trim()) && field.checkValidity();
+            setFieldValidity(field, valid);
+            updateError(eError, !valid, 'Ingresa un correo valido.');
+            return valid;
+          }
+          if(field === wInput){
+            const digits = (wInput ? wInput.dataset.maskNormalized || '' : '').replace(/\D/g,'');
+            const valid = reCL.test(digits);
+            setFieldValidity(field, valid);
+            updateError(wError, !valid, 'Formato +56 9 1234 5678');
+            return valid;
+          }
+          if(field === rutInput){
+            const value = field.value.trim();
+            const valid = Boolean(value) && field.dataset.maskValid === 'true';
+            setFieldValidity(field, valid);
+            updateError(rutError, !valid, value ? 'Ingresa un RUT valido.' : 'El RUT es obligatorio.');
+            return valid;
+          }
+          if(field.dataset.moneyInput === 'renta_liquida'){
+            const store = moneyStores.renta_liquida;
+            const valid = Boolean(store && store.value);
+            setFieldValidity(field, valid);
+            updateError(rentaError, !valid, 'Ingresa tu renta liquida aproximada.');
+            return valid;
+          }
+          if(field.dataset.moneyInput === 'monto_ahorro'){
+            const store = moneyStores.monto_ahorro;
+            const valid = Boolean(store && store.value);
+            setFieldValidity(field, valid);
+            updateError(ahorroError, !valid, 'Ingresa el monto ahorrado.');
+            return valid;
+          }
+          if(field.hasAttribute('data-commune-store')){
+            const valid = Boolean(field.value);
+            updateError(communeError, !valid, 'Selecciona al menos una comuna.');
+            return valid;
+          }
+          if(field.type === 'checkbox'){
+            const valid = field.checked;
+            setFieldValidity(field, valid);
+            return valid;
+          }
+          if(field.type === 'radio'){
+            const groupInputs = form.querySelectorAll(`input[name="${field.name}"]`);
+            const anyChecked = Array.from(groupInputs).some((radio) => radio.checked);
+            groupInputs.forEach((radio) => {
+              const card = radio.closest('[data-card]');
+              if(card){
+                card.classList.toggle('has-error', !anyChecked);
+              }
+            });
+            return anyChecked;
+          }
+          const value = field.value.trim();
+          const valid = Boolean(value);
+          setFieldValidity(field, valid);
+          return valid;
+        }
+
+        function validateStep(stepIndex, options = {}){
+          if(!stepPanels[stepIndex]) return true;
+          let isValid = true;
+          let firstInvalid = null;
+          const panel = stepPanels[stepIndex];
+          const required = panel.querySelectorAll('[data-step-required]');
+          required.forEach((field) => {
+            const fieldValid = validateField(field);
+            if(!fieldValid){
+              isValid = false;
+              if(!firstInvalid){
+                if(field.type === 'hidden'){
+                  const parentField = field.closest('.sc-field');
+                  const proxy = parentField ? parentField.querySelector('input, textarea, button') : null;
+                  firstInvalid = proxy || communeInput || field;
+                } else {
+                  firstInvalid = field;
+                }
+              }
+            }
+          });
+          const chipStoresInPanel = panel.querySelectorAll('[data-chip-store]');
+          chipStoresInPanel.forEach((store) => {
+            const chipValid = validateChipStore(store);
+            if(!chipValid){
+              isValid = false;
+              if(!firstInvalid){
+                firstInvalid = chipGroups[store.dataset.chipStore] || store;
+              }
+            }
+          });
+          if(!isValid){
+            formError.textContent = STEP_ERROR_MSG;
+            formError.setAttribute('aria-hidden','false');
+            if(options.focus && firstInvalid && typeof firstInvalid.focus === 'function'){
+              firstInvalid.focus();
+            }
+          } else if(stepIndex === currentStep){
+            formError.setAttribute('aria-hidden','true');
+          }
+          return isValid;
+        }
+
+        function validateAllSteps(){
+          let firstInvalid = -1;
+          stepPanels.forEach((_, idx) => {
+            if(firstInvalid === -1 && !validateStep(idx)){
+              firstInvalid = idx;
+            }
+          });
+          if(firstInvalid >= 0){
+            goToStep(firstInvalid);
+            return false;
+          }
+          return true;
+        }
+
+        function goToStep(index){
+          if(!stepPanels.length) return;
+          const targetStep = Math.max(0, Math.min(stepPanels.length - 1, index));
+          currentStep = targetStep;
+          if(track){
+            track.style.setProperty('--wizard-step', targetStep);
+          }
+          stepPanels.forEach((panel, idx) => {
+            panel.setAttribute('aria-hidden', String(idx !== targetStep));
+          });
+          stepPills.forEach((pill, idx) => {
+            pill.classList.toggle('is-active', idx === targetStep);
+            pill.classList.toggle('is-complete', idx < targetStep);
+          });
+          if(prevBtn){
+            prevBtn.disabled = targetStep === 0;
+          }
+          if(nextBtn){
+            if(targetStep === stepPanels.length - 1){
+              nextBtn.hidden = true;
+            } else {
+              nextBtn.hidden = false;
+              const label = stepPanels[targetStep].dataset.nextLabel || 'Continuar';
+              nextBtn.textContent = label;
+            }
+          }
+          if(submitBtn){
+            submitBtn.hidden = targetStep !== stepPanels.length - 1;
+          }
+          const focusTarget = stepPanels[targetStep].querySelector('[data-step-required]:not([type="hidden"]), input:not([type="hidden"]), textarea');
+          if(focusTarget && typeof focusTarget.focus === 'function'){
+            requestAnimationFrame(() => focusTarget.focus());
+          }
+        }
+
+        moneyInputs.forEach((input) => {
+          input.addEventListener('input', () => formatMoneyInput(input));
+          input.addEventListener('blur', () => formatMoneyInput(input));
+        });
+
+        if(eInput){
+          eInput.addEventListener('input', () => {
+            if(eInput.validity.valid){
+              updateError(eError, false);
+              setFieldValidity(eInput, true);
+            }
+          });
+        }
+
+        if(wInput){
+          wInput.addEventListener('input', () => {
+            updateError(wError, false);
+            setFieldValidity(wInput, true);
+          });
+          wInput.addEventListener('blur', () => validateField(wInput));
+        }
+
+        if(rutInput){
+          rutInput.addEventListener('blur', () => validateField(rutInput));
+        }
+
+        cardInputs.forEach((input) => {
+          const card = input.closest('[data-card]');
+          if(card && input.checked){
+            card.classList.add('is-selected');
+          }
+          input.addEventListener('change', () => {
+            const group = form.querySelectorAll(`input[name="${input.name}"]`);
+            group.forEach((radio) => {
+              const radioCard = radio.closest('[data-card]');
+              if(radioCard){
+                radioCard.classList.toggle('is-selected', radio.checked);
+                radioCard.classList.remove('has-error');
+              }
+            });
+            if(input.name === 'tipo_ingreso'){
+              handleIngresoExtras(input.value);
+            }
+          });
+        });
+
+        Object.entries(chipGroups).forEach(([name, group]) => {
+          if(!group) return;
+          const store = form.querySelector(`[data-chip-store="${name}"]`);
+          group.addEventListener('click', (event) => {
+            const chip = event.target.closest('.chip');
+            if(!chip) return;
+            event.preventDefault();
+            group.querySelectorAll('.chip').forEach((btn) => {
+              btn.classList.toggle('is-selected', btn === chip);
+            });
+            if(store){
+              store.value = chip.dataset.chipValue || '';
+            }
+            updateError(chipErrors[name], false);
+            group.classList.remove('has-error');
+          });
+        });
+
+        if(communeSelected){
+          communeSelected.addEventListener('click', (event) => {
+            const removeBtn = event.target.closest('[data-remove-commune]');
+            if(!removeBtn) return;
+            communeSelections.delete(removeBtn.dataset.removeCommune);
+            syncCommuneUI();
+          });
+        }
+        communePills.forEach((pill) => {
+          pill.addEventListener('click', (event) => {
+            event.preventDefault();
+            toggleCommune(pill.dataset.communePill);
+          });
+        });
+        if(communeInput){
+          communeInput.addEventListener('keydown', (event) => {
+            if(event.key === 'Enter'){
+              event.preventDefault();
+              addCommune(communeInput.value);
+              communeInput.value = '';
+            }
+          });
+          communeInput.addEventListener('blur', () => {
+            if(communeInput.value.trim()){
+              addCommune(communeInput.value);
+              communeInput.value = '';
+            }
+          });
+        }
+
+        function handleIngresoExtras(selectedValue){
+          const normalized = (selectedValue || '').toLowerCase();
+          ingresoExtras.forEach((block) => {
+            const match = block.dataset.ingresoExtra;
+            const isActive = normalized && match === normalized;
+            block.hidden = !isActive;
+            block.setAttribute('aria-hidden', String(!isActive));
+            block.classList.toggle('is-visible', isActive);
+            if(!isActive){
+              const store = block.querySelector('[data-chip-store]');
+              if(store){
+                store.value = '';
+                const chipName = store.dataset.chipStore;
+                const group = chipGroups[chipName];
+                if(group){
+                  group.querySelectorAll('.chip').forEach((chip) => chip.classList.remove('is-selected'));
+                  group.classList.remove('has-error');
+                }
+                updateError(chipErrors[chipName], false);
+              }
+            }
+          });
+        }
+
+        const initialIngreso = form.querySelector('input[name="tipo_ingreso"]:checked');
+        handleIngresoExtras(initialIngreso ? initialIngreso.value : '');
+        syncCommuneUI();
+        moneyInputs.forEach((input) => formatMoneyInput(input));
+        if(stepPanels.length){ goToStep(0); }
+
+        if(nextBtn){
+          nextBtn.addEventListener('click', () => {
+            if(validateStep(currentStep, { focus: true })){
+              goToStep(currentStep + 1);
+            }
+          });
+        }
+        if(prevBtn){
+          prevBtn.addEventListener('click', () => {
+            if(currentStep > 0){
+              goToStep(currentStep - 1);
+            }
+          });
+        }
+        stepPills.forEach((pill, index) => {
+          pill.addEventListener('click', () => {
+            if(index < currentStep){
+              goToStep(index);
+            }
+          });
+        });
+
+        form.addEventListener('submit', async (ev) => {
+          ev.preventDefault();
+          if(form.querySelector('[name="honey"]').value) return;
+          if(!validateAllSteps()) return;
+          const tsToken = document.getElementById('ts-token');
+          if(!tsToken || !tsToken.value){
+            updateError(tsError, true, 'Confirma que no eres un bot');
+            formError.textContent = 'Confirma el captcha antes de enviar.';
+            formError.setAttribute('aria-hidden','false');
+            return;
+          }
+          updateError(tsError, false);
+          formError.setAttribute('aria-hidden','true');
+          submitBtn.disabled = true;
+          sText.style.display = 'none';
+          sLoad.style.display = 'inline-flex';
+          const data = new FormData(form);
+          try {
+            await fetch(form.action, { method:'POST', body:data });
+            form.dispatchEvent(new CustomEvent('sc:form:success', { detail: { source:'landing' }, bubbles:true }));
+            form.reset();
+            communeSelections.clear();
+            syncCommuneUI();
+            moneyInputs.forEach((input) => {
+              input.value = '';
+              const store = moneyStores[input.dataset.moneyInput];
+              if(store) store.value = '';
+            });
+            cardInputs.forEach((input) => {
+              const card = input.closest('[data-card]');
+              if(card) card.classList.toggle('is-selected', input.checked);
+            });
+            handleIngresoExtras('');
+            goToStep(0);
+            const existing = form.querySelector('.form-confirmation');
+            if(existing) existing.remove();
+            const confirmation = document.createElement('div');
+            confirmation.className = 'form-confirmation';
+            confirmation.textContent = '¡Gracias! Revisaremos tu solicitud y te contactaremos en menos de 24 horas.';
+            form.appendChild(confirmation);
+            const tsInput = document.getElementById('ts-token');
+            if(tsInput) tsInput.value = '';
+            if(tsError) tsError.setAttribute('aria-hidden','true');
+            formError.setAttribute('aria-hidden','true');
+            if(window.SelectTracking){ window.SelectTracking.trackEvent('form_submit_success', { source:'landing' }); }
+          } catch (err){
+            formError.textContent = 'No pudimos completar el envio. Intenta nuevamente.';
+            formError.setAttribute('aria-hidden','false');
+          } finally {
+            submitBtn.disabled = false;
+            sText.style.display = 'inline-flex';
+            sLoad.style.display = 'none';
+          }
+        });
       }
-      // Teléfono Chile
-      const reCL = /^(?:\+?56\s?)?9\s?\d{4}\s?\d{4}$/;
-      test('CL phone +56 9 1234 5678 válido', ()=> reCL.test('+56 9 1234 5678'));
-      test('CL phone 9 1234 5678 válido',   ()=> reCL.test('9 1234 5678'));
-      test('CL phone 912345678 válido',      ()=> reCL.test('912345678'));
-      test('Teléfono inválido 12345678',     ()=> !reCL.test('12345678'));
-      // Email (nativa)
-      test('Email válido simple', ()=> { const i=document.createElement('input'); i.type='email'; i.value='a@b.cl'; return i.checkValidity();});
-      test('Email inválido',      ()=> { const i=document.createElement('input'); i.type='email'; i.value='abc'; return !i.checkValidity();});
-      // Select ingresos requerido presente
-      const iSelect = document.getElementById('ingresos');
-      test('Select ingresos existe y es required', ()=> iSelect && iSelect.hasAttribute('required'));
-      // Turnstile presente
-      test('Turnstile contenedor presente', ()=> !!document.querySelector('.cf-turnstile'));
-      // Cupos: cálculos
-      const meta = document.getElementById('event-meta');
-      let capacidad = 0, registrados = 0;
-      if(meta){ capacidad = parseInt(meta.dataset.capacidad||'0',10) || 0; registrados = parseInt(meta.dataset.registrados||'0',10) || 0; }
-      const restantes = Math.max(0, capacidad - registrados);
-      const prog = document.getElementById('progressbar');
-      test('Cupos restantes calculado', ()=> { if(!meta||!capacidad) return true; return (capacidad-registrados)===restantes;});
-      test('Progressbar porcentaje válido', ()=> { if(!meta||!capacidad) return true; const n=parseInt((prog.style.width||'0').replace('%',''),10); return n>=0 && n<=100; });
-      // Error inline render
-      test('Form error inline existe', ()=> !!document.getElementById('form-error'));
-      // Reporte
-      const pass = results.filter(r=>r.ok).length;
-      console.log(`[UNIT TESTS] ${pass}/${results.length} ok`, results);
+
+      const pdfBtn = document.querySelector('[data-pdf-download]');
+      if(pdfBtn){
+        pdfBtn.addEventListener('click', async () => {
+          pdfBtn.disabled = true;
+          try {
+            if(window.SelectTracking){ window.SelectTracking.trackEvent('pdf_download', { project_name:'Mirador La Florida' }); }
+          } finally {
+            setTimeout(() => { pdfBtn.disabled = false; }, 1500);
+          }
+        });
+      }
+
+      const year = document.getElementById('year');
+      if(year) year.textContent = new Date().getFullYear();
     })();
   </script>
+
 </body>
 </html>
+  <div class="floating-cta">
+    <a href="#form" class="btn" data-track-event="cta_click" data-track-detail='{"cta_id":"sticky_mobile"}'>Quiero mi propuesta ahora</a>
+  </div>
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+    .testimonial-card { border-radius: 18px; border: 1px solid var(--sc-border-glass); padding: 1rem; background: rgba(255,255,255,0.04); font-size: 0.9rem; color: var(--sc-text-secondary); }
+    .testimonial-card strong { display: block; margin-top: 0.6rem; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sc-text-primary); }
+    .callout { margin-bottom: 1.2rem; border-radius: 20px; border: 1px solid var(--sc-jade-500); padding: 0.8rem 1rem; background: rgba(53,225,166,0.1); color: var(--sc-text-primary); font-weight: 600; }
