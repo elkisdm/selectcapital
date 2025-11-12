@@ -1,0 +1,2886 @@
+<!doctype html>
+<html lang="es" data-theme="dark" data-theme-transition>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Select Capital — Asesoría Integral Inmobiliaria</title>
+  <meta name="description" content="Asesoría integral desde preevaluación hasta entrega de llaves. Te mostramos 3 proyectos según tu perfil y te acompañamos en todo el proceso." />
+  <meta property="og:title" content="Select Capital — Asesoría Integral Inmobiliaria" />
+  <meta property="og:description" content="Te encontramos el departamento ideal. Nosotros nos encargamos del resto." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/images/hero-la-florida.jpg" />
+  <meta name="theme-color" content="#0B0E12" />
+  <link rel="icon" href="images/icono.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="lenguaje visual/theme/select-capital-theme.css" />
+  <link rel="stylesheet" href="lenguaje visual/forms/sc-forms.css" />
+  <link rel="stylesheet" href="lenguaje visual/theme/sc-header-footer.css" />
+  <style>
+    :root {
+      --lp-max: 1200px;
+      --lp-gutter: clamp(1.5rem, 4vw, 3rem);
+      
+      /* Premium World Member Color Scheme - Rose Gold/Copper + Metallic Gold */
+      --sc-rose-gold: #CD7F32;
+      --sc-rose-gold-light: #D4A574;
+      --sc-rose-gold-dark: #B87333;
+      --sc-copper: #C19A6B;
+      --sc-copper-light: #D4A574;
+      --sc-gold-500: #DAA520;
+      --sc-gold-400: #F4C430;
+      --sc-gold-600: #B8860B;
+      --sc-gold-metallic: #C9A961;
+      --sc-gold-dark: #8B6914;
+      --sc-gold-glow: rgba(205,127,50,0.4);
+      --sc-gold-glow-strong: rgba(205,127,50,0.6);
+      --sc-gold-glow-soft: rgba(205,127,50,0.2);
+      --sc-gold-gradient: linear-gradient(135deg, #CD7F32 0%, #DAA520 40%, #F4C430 70%, #D4A574 100%);
+      --sc-gold-gradient-hover: linear-gradient(135deg, #D4A574 0%, #F4C430 30%, #FFD700 70%, #FFF8DC 100%);
+      --sc-rose-gradient: linear-gradient(135deg, #B87333 0%, #CD7F32 50%, #C19A6B 100%);
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: var(--sc-font-sans, 'Inter', sans-serif);
+      margin: 0;
+      background: var(--sc-surface-page, #05080F);
+      color: var(--sc-text-primary, #F8FAFC);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    
+    .page-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 var(--lp-gutter);
+    }
+    
+    
+    /* Sections */
+    section {
+      margin-bottom: clamp(3rem, 8vw, 6rem);
+    }
+    .section-inner {
+      max-width: var(--lp-max);
+      margin: 0 auto;
+      padding: 0 var(--lp-gutter);
+    }
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      line-height: 1.1;
+      margin: 0 0 1rem;
+      color: var(--sc-text-primary);
+    }
+    h2 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 600;
+      line-height: 1.15;
+      margin: 0 0 1.5rem;
+      color: var(--sc-text-primary);
+    }
+    h3 {
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 600;
+      line-height: 1.2;
+      margin: 0 0 0.75rem;
+      color: var(--sc-text-primary);
+    }
+    
+    /* Buttons */
+    .btn-primary {
+      --btn-border: linear-gradient(135deg, rgba(255,221,200,0.7), rgba(205,127,50,0.5));
+      --btn-fill: rgba(14,18,26,0.55);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      padding: 0.7rem 1.75rem;
+      border-radius: 999px;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      color: #F7F2EC;
+      position: relative;
+      isolation: isolate;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+      background: transparent;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .btn-primary::before,
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      border-radius: inherit;
+      inset: 0;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .btn-primary::before {
+      inset: -1px;
+      background: var(--btn-border);
+      z-index: -2;
+    }
+    .btn-primary::after {
+      background: var(--btn-fill);
+      backdrop-filter: blur(14px) saturate(1.3);
+      -webkit-backdrop-filter: blur(14px) saturate(1.3);
+      box-shadow:
+        inset 0 1px rgba(255,255,255,0.08),
+        0 6px 18px rgba(5,8,15,0.35);
+      z-index: -1;
+    }
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      transform: translateY(-2px);
+    }
+    .btn-primary:hover::after,
+    .btn-primary:focus-visible::after {
+      background: rgba(17,21,32,0.5);
+      box-shadow:
+        inset 0 1px rgba(255,255,255,0.18),
+        0 10px 28px rgba(205,127,50,0.25);
+    }
+    .btn-primary:focus-visible {
+      outline: 2px solid rgba(255,221,200,0.7);
+      outline-offset: 3px;
+    }
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+    .btn-primary:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+    @media (hover: none) {
+      .btn-primary:hover {
+        transform: none;
+      }
+    }
+    .hero-cta .btn-primary,
+    .cta-section .btn-primary {
+      min-width: clamp(200px, 50vw, 260px);
+    }
+    .form-submit .btn-primary {
+      width: 100%;
+      letter-spacing: 0.08em;
+    }
+    
+    /* Hero Section */
+    .hero {
+      position: relative;
+      padding: clamp(3rem, 8vw, 5rem) 0;
+      margin-bottom: clamp(3rem, 8vw, 5rem);
+      overflow: hidden;
+    }
+    .hero::before,
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+    .hero::before {
+      background-image:
+        linear-gradient(120deg, rgba(5,8,15,0.85), rgba(5,8,15,0.55)),
+        url('images/hero-la-florida.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: saturate(0.7) contrast(1.05);
+      transform: scale(1.02);
+    }
+    .hero::after {
+      background: radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 50%);
+      mix-blend-mode: screen;
+    }
+    .hero .section-inner {
+      position: relative;
+      z-index: 1;
+    }
+    .hero-card {
+      max-width: 760px;
+      margin: 0 auto;
+      background: rgba(7,10,16,0.45);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--sc-radius-xxl, 32px);
+      padding: clamp(2rem, 5vw, 3.25rem);
+      backdrop-filter: blur(22px) saturate(1.4);
+      -webkit-backdrop-filter: blur(22px) saturate(1.4);
+      box-shadow: 0 30px 60px rgba(5,8,15,0.45), inset 0 1px rgba(255,255,255,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      inset: 1px;
+      border-radius: inherit;
+      border: 1px solid rgba(255,255,255,0.08);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(circle at 30% 0%, rgba(255,255,255,0.18), transparent 45%);
+      pointer-events: none;
+    }
+    .hero-card > * {
+      position: relative;
+    }
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .hero h1 {
+      margin-bottom: 1rem;
+    }
+    .hero-cta {
+      margin-bottom: 1.5rem;
+    }
+    .trust-line {
+      font-size: 0.8rem;
+      color: var(--sc-text-tertiary);
+      letter-spacing: 0.1em;
+    }
+    
+    /* Steps Section */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .step-card {
+      background: var(--sc-glass-bg);
+      border: 1px solid var(--sc-border-glass);
+      border-radius: var(--sc-radius-lg);
+      padding: 2rem;
+      backdrop-filter: blur(var(--sc-glass-blur-md)) saturate(1.2);
+      -webkit-backdrop-filter: blur(var(--sc-glass-blur-md)) saturate(1.2);
+      box-shadow: var(--sc-shadow-e1), inset 0 1px rgba(255,255,255,0.18);
+      position: relative;
+    }
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--sc-gold-gradient);
+      color: var(--sc-ink-950);
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 15px var(--sc-gold-glow-soft), inset 0 1px 0 rgba(255,255,255,0.3);
+      border: 1px solid rgba(205,127,50,0.4);
+    }
+    .step-card h3 {
+      margin-bottom: 0.75rem;
+    }
+    .step-card p {
+      color: var(--sc-text-secondary);
+      margin: 0;
+    }
+    
+    /* Pillars Section */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .pillar-card {
+      background: var(--sc-glass-bg);
+      border: 1px solid var(--sc-border-glass);
+      border-radius: var(--sc-radius-lg);
+      padding: 2rem;
+      backdrop-filter: blur(var(--sc-glass-blur-md)) saturate(1.2);
+      -webkit-backdrop-filter: blur(var(--sc-glass-blur-md)) saturate(1.2);
+      box-shadow: var(--sc-shadow-e1), inset 0 1px rgba(255,255,255,0.18);
+    }
+    .pillar-card h3 {
+      margin-bottom: 0.75rem;
+      background: var(--sc-rose-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 600;
+    }
+    .pillar-card p {
+      color: var(--sc-text-secondary);
+      margin: 0;
+    }
+    
+    /* Zones Section */
+    .zones-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .zone-card {
+      background: var(--sc-glass-bg);
+      border: 1px solid var(--sc-border-glass);
+      border-radius: var(--sc-radius-lg);
+      overflow: hidden;
+      backdrop-filter: blur(var(--sc-glass-blur-md)) saturate(1.2);
+      -webkit-backdrop-filter: blur(var(--sc-glass-blur-md)) saturate(1.2);
+      box-shadow: var(--sc-shadow-e1), inset 0 1px rgba(255,255,255,0.18);
+    }
+    .zone-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: linear-gradient(135deg, var(--sc-slate-700), var(--sc-graphite-900));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--sc-text-tertiary);
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    .zone-content {
+      padding: 1.5rem;
+    }
+    .zone-card h3 {
+      margin-bottom: 0.5rem;
+      background: var(--sc-rose-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 600;
+    }
+    .zone-card p {
+      color: var(--sc-text-secondary);
+      margin: 0;
+      font-style: italic;
+    }
+    .zones-note {
+      text-align: center;
+      color: var(--sc-text-tertiary);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+    
+    /* Team Section */
+    .team-section {
+      position: relative;
+    }
+    .team-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+    }
+    .team-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.75rem;
+    }
+    .team-header h2 {
+      margin-bottom: 0.5rem;
+    }
+    .team-subtitle {
+      margin: 0 auto 1.5rem;
+      color: var(--sc-text-secondary);
+      max-width: 560px;
+    }
+    .team-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sc-rose-gold-light);
+      border-bottom: 1px solid rgba(205,127,50,0.35);
+      padding-bottom: 0.1rem;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+    .team-cta:hover,
+    .team-cta:focus-visible {
+      color: var(--sc-gold-400);
+      border-color: var(--sc-gold-400);
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+    .team-card {
+      background: rgba(8,11,18,0.78);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 1.5rem;
+      backdrop-filter: blur(18px) saturate(1.25);
+      -webkit-backdrop-filter: blur(18px) saturate(1.25);
+      box-shadow:
+        0 18px 40px rgba(0,0,0,0.45),
+        inset 0 1px rgba(255,255,255,0.12);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      min-height: auto;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .team-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, rgba(53,225,166,0.16), rgba(7,10,16,0.92));
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .team-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(120% 80% at 8% 6%, rgba(255,255,255,0.16), transparent 60%);
+      pointer-events: none;
+    }
+    .team-card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 24px 54px rgba(0,0,0,0.55),
+        inset 0 1px rgba(255,255,255,0.18);
+    }
+    .team-card-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .team-chips {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.3rem;
+      width: 100%;
+      justify-items: stretch;
+      min-height: 42px;
+      grid-auto-rows: 1fr;
+    }
+    .team-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.16rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 18px;
+      font-size: 0.6rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-weight: 500;
+      background: rgba(205,127,50,0.08);
+      border: 1px solid rgba(205,127,50,0.28);
+      color: rgba(212,165,116,0.95);
+      box-shadow:
+        inset 0 1px rgba(255,255,255,0.08),
+        0 2px 10px rgba(0,0,0,0.25);
+      width: 100%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .team-chip--accent {
+      background: linear-gradient(130deg, rgba(205,127,50,0.95), rgba(212,165,116,0.75));
+      color: #0B0E12;
+      border-color: rgba(255,255,255,0.35);
+      box-shadow:
+        inset 0 1px rgba(255,255,255,0.45),
+        0 8px 20px rgba(205,127,50,0.45);
+    }
+    .team-chip--muted {
+      color: rgba(212,165,116,0.9);
+      border-color: rgba(212,165,116,0.28);
+      background: rgba(212,165,116,0.16);
+    }
+    .team-chip--wide {
+      grid-column: 1 / -1;
+      width: 100%;
+    }
+    .team-chips .team-chip:only-child {
+      grid-column: 1 / -1;
+      justify-self: center;
+      max-width: 220px;
+      padding: 0.22rem 1rem;
+    }
+    .team-photo {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 3 / 4;
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: linear-gradient(135deg, rgba(205,127,50,0.2), rgba(11,14,18,0.85));
+    }
+    .team-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.05);
+      aspect-ratio: 3 / 4;
+    }
+    /* Placeholder cuando no hay imagen - fallback con background */
+    .team-photo img[src=""],
+    .team-photo img:not([src]) {
+      display: none;
+    }
+    /* El background gradient ya actúa como placeholder visual */
+    .team-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(5,8,15,0) 20%, rgba(5,8,15,0.6) 100%),
+        linear-gradient(135deg, rgba(53,225,166,0.25), rgba(203,160,122,0.25));
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+    .team-status-dot {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid rgba(8,11,18,0.9);
+      background: var(--sc-jade-500);
+      box-shadow: 0 0 12px rgba(53,225,166,0.45);
+      bottom: 16px;
+      right: 16px;
+    }
+    .team-info h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+    .team-meta-list {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+    }
+    .team-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .team-meta-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+    .team-meta-value {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--sc-text-primary);
+    }
+    .team-primary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.05);
+      color: var(--sc-text-primary);
+      font-weight: 600;
+      padding: 0.85rem 1.25rem;
+      text-decoration: none;
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    }
+    .team-primary-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+    }
+    .team-primary-btn:hover,
+    .team-primary-btn:focus-visible {
+      border-color: rgba(53,225,166,0.8);
+      background: rgba(53,225,166,0.16);
+      transform: translateY(-1px);
+    }
+    .team-actions {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .team-icon-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #F7F2EC;
+      background: rgba(255,255,255,0.04);
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .team-icon-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+    }
+    .team-icon-btn .icon-solid {
+      fill: currentColor;
+      stroke: none;
+    }
+    .team-icon-btn:hover,
+    .team-icon-btn:focus-visible {
+      border-color: rgba(53,225,166,0.6);
+      background: rgba(53,225,166,0.18);
+      transform: translateY(-1px);
+      box-shadow: 0 0 0 6px rgba(53,225,166,0.14);
+    }
+    @media (max-width: 640px) {
+      .team-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .team-card {
+        padding: 1.25rem;
+      }
+      .team-photo {
+        aspect-ratio: 3 / 4; /* Formato vertical 3:4 */
+      }
+      .team-meta-list {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.85rem;
+      }
+    }
+    
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .testimonial-card {
+      background: var(--sc-glass-bg);
+      border: 1px solid var(--sc-border-glass);
+      border-radius: var(--sc-radius-lg);
+      padding: 2rem;
+      backdrop-filter: blur(var(--sc-glass-blur-md)) saturate(1.2);
+      -webkit-backdrop-filter: blur(var(--sc-glass-blur-md)) saturate(1.2);
+      box-shadow: var(--sc-shadow-e1), inset 0 1px rgba(255,255,255,0.18);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 1rem;
+      left: 1.5rem;
+      font-size: 4rem;
+      line-height: 1;
+      background: var(--sc-rose-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0.4;
+    }
+    .testimonial-text {
+      color: var(--sc-text-secondary);
+      margin-bottom: 1rem;
+      font-style: italic;
+      position: relative;
+      padding-left: 1rem;
+    }
+    .testimonial-author {
+      color: var(--sc-text-primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    /* Form Section */
+    .form-container {
+      background: var(--sc-glass-bg);
+      border: 1px solid var(--sc-border-glass);
+      border-radius: var(--sc-radius-xl);
+      padding: clamp(2rem, 4vw, 3rem);
+      backdrop-filter: blur(var(--sc-glass-blur-md)) saturate(1.2);
+      -webkit-backdrop-filter: blur(var(--sc-glass-blur-md)) saturate(1.2);
+      box-shadow: var(--sc-shadow-e2), inset 0 1px rgba(255,255,255,0.18);
+      position: relative;
+    }
+    .form-container::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--sc-glass-highlight);
+      pointer-events: none;
+      border-radius: inherit;
+    }
+    .form-container > * {
+      position: relative;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-field-full {
+      grid-column: 1 / -1;
+    }
+    .form-section {
+      padding: 1.5rem 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .form-section:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+    .form-wizard {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      --wizard-progress: 0%;
+    }
+    .form-wizard[data-wizard-ready='true'] {
+      --wizard-ready: 1;
+    }
+    .wizard-shell {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .wizard-steps {
+      position: relative;
+      border-radius: var(--sc-radius-xl);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.02);
+      padding: 1.25rem;
+      padding-bottom: clamp(1.75rem, 3vw, 2.5rem);
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .wizard-steps #form-error {
+      position: absolute;
+      left: 1.25rem;
+      right: 1.25rem;
+      bottom: 0.5rem;
+      padding: 0.65rem 0.75rem;
+      border-radius: calc(var(--sc-radius-lg) / 2);
+      border: 1px solid rgba(239,68,68,0.7);
+      background: rgba(239,68,68,0.12);
+      text-align: center;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      font-size: 0.8rem;
+      line-height: 1.2;
+      display: none;
+    }
+    .wizard-steps #form-error[aria-hidden='false'] {
+      display: block;
+    }
+    .wizard-progress-bar {
+      position: relative;
+      width: 100%;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      overflow: hidden;
+    }
+    .wizard-progress-value {
+      position: absolute;
+      inset: 0;
+      width: var(--wizard-progress, 0%);
+      background: linear-gradient(90deg, var(--sc-rose-gold-dark), var(--sc-rose-gold));
+      transition: width 0.3s ease;
+    }
+    .wizard-progress-label {
+      margin: 0;
+      font-size: 0.78rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--sc-text-tertiary);
+    }
+    .wizard-summary {
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--sc-text-secondary);
+    }
+    .wizard-main {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      min-width: 0;
+    }
+    .wizard-sticky-cta {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      border-radius: var(--sc-radius-xl);
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(7,10,16,0.7);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .form-steps-progress {
+      border-radius: var(--sc-radius-xl);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.02);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .wizard-steps .form-steps-progress {
+      border: 0;
+      padding: 0;
+      background: transparent;
+    }
+    .form-step-pill {
+      border: 1px solid transparent;
+      background: none;
+      color: inherit;
+      font: inherit;
+      padding: 0.85rem 1rem;
+      width: 100%;
+      text-align: left;
+      display: flex;
+      gap: 0.9rem;
+      align-items: flex-start;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+    }
+    .form-step-pill span {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.22);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--sc-rose-gold-light);
+    }
+    .form-step-pill strong {
+      display: block;
+      font-size: 0.95rem;
+    }
+    .form-step-pill p {
+      margin: 0.15rem 0 0;
+      font-size: 0.8rem;
+      color: var(--sc-text-tertiary);
+    }
+    .form-step-pill.is-active {
+      border-color: var(--sc-rose-gold);
+      background: rgba(205,127,50,0.12);
+    }
+    .form-step-pill.is-active span {
+      border-color: var(--sc-rose-gold);
+      color: #fff;
+    }
+    .form-step-pill.is-complete {
+      opacity: 0.7;
+    }
+    .form-wizard-viewport {
+      overflow: hidden;
+      border-radius: var(--sc-radius-xl);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(11,14,18,0.75);
+      position: relative;
+      min-height: 0;
+      transition: height 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    .form-wizard-track {
+      position: relative;
+      width: 100%;
+      min-height: 100%;
+    }
+    .form-wizard .wizard-step {
+      width: 100%;
+      padding: clamp(1.25rem, 3vw, 2rem);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease;
+    }
+    .form-wizard .wizard-step.is-active {
+      position: relative;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .step-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .step-kicker {
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin: 0;
+    }
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1rem;
+    }
+    .option-card {
+      position: relative;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      min-height: 100%;
+    }
+    .option-card input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+    }
+    .option-card strong {
+      font-size: 1rem;
+    }
+    .option-card p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--sc-text-secondary);
+    }
+    .option-card.is-selected {
+      border-color: var(--sc-rose-gold);
+      background: rgba(205,127,50,0.15);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+    }
+    .option-card.has-error {
+      border-color: var(--sc-danger-500, #F87171);
+    }
+    .option-icon {
+      font-size: 1.4rem;
+    }
+    .option-secondary {
+      border-radius: 24px;
+      border: 1px dashed rgba(255,255,255,0.15);
+      padding: 1rem;
+      background: rgba(255,255,255,0.02);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .option-secondary.is-visible {
+      border-style: solid;
+      border-color: rgba(205,127,50,0.5);
+    }
+    .chip-set {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .chip {
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 0.55rem 0.85rem;
+      background: rgba(255,255,255,0.04);
+      color: inherit;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      min-width: 180px;
+      text-align: left;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .chip strong {
+      font-size: 0.9rem;
+    }
+    .chip span {
+      font-size: 0.75rem;
+      color: var(--sc-text-tertiary);
+    }
+    .chip.is-selected {
+      border-color: var(--sc-rose-gold);
+      background: rgba(205,127,50,0.15);
+    }
+    .chip-set.has-error .chip {
+      border-color: var(--sc-danger-500, #F87171);
+    }
+    .commune-enhanced {
+      display: none;
+    }
+    .form-wizard[data-wizard-ready='true'] .commune-enhanced {
+      display: block;
+    }
+    [data-commune-fallback] {
+      margin-top: 0.75rem;
+    }
+    .form-wizard[data-wizard-ready='true'] [data-commune-fallback] {
+      display: none;
+    }
+    .commune-quick {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+    .pill-chip {
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 0.35rem 0.9rem;
+      background: rgba(255,255,255,0.03);
+      color: var(--sc-text-secondary);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .pill-chip.is-selected {
+      border-color: var(--sc-rose-gold);
+      background: rgba(205,127,50,0.2);
+      color: var(--sc-text-primary);
+    }
+    .commune-selected {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      min-height: 2.4rem;
+    }
+    .commune-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 0.25rem 0.75rem;
+      background: rgba(255,255,255,0.04);
+      font-size: 0.82rem;
+    }
+    .commune-tag button {
+      border: 0;
+      background: none;
+      color: inherit;
+      cursor: pointer;
+      font-size: 0.9rem;
+      line-height: 1;
+      padding: 0;
+    }
+    .form-wizard-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .form-wizard-nav .btn-primary,
+    .form-wizard-nav .btn-ghost {
+      flex: 1 1 220px;
+      min-width: 220px;
+    }
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 0.7rem 1.4rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: transparent;
+      color: var(--sc-text-primary);
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+    .btn-ghost:hover,
+    .btn-ghost:focus-visible {
+      border-color: var(--sc-rose-gold);
+      color: #fff;
+    }
+    .consent-field {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 1rem;
+      background: rgba(255,255,255,0.03);
+    }
+    .form-section-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin: 0 0 1rem;
+    }
+    .chip-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .chip-option {
+      position: relative;
+    }
+    .chip-option input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .chip-option span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem 1.3rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: rgba(248,250,252,0.78);
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      backdrop-filter: blur(16px) saturate(1.2);
+      -webkit-backdrop-filter: blur(16px) saturate(1.2);
+      box-shadow: inset 0 1px rgba(255,255,255,0.08);
+    }
+    .chip-option input:checked + span {
+      color: #05080f;
+      background: linear-gradient(135deg, rgba(205,127,50,0.9), rgba(244,196,48,0.8));
+      border-color: rgba(255,255,255,0.35);
+      box-shadow: 0 8px 24px rgba(205,127,50,0.35);
+    }
+    .split-field {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .split-field > * {
+      flex: 1;
+    }
+    .input-hint {
+      font-size: 0.8rem;
+      color: var(--sc-text-tertiary);
+      margin-top: 0.35rem;
+    }
+    .conditional-block {
+      margin-top: 1rem;
+      padding: 1rem 1.25rem;
+      border-radius: var(--sc-radius-lg);
+      border: 1px dashed rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.02);
+    }
+    .conditional-block[hidden] {
+      display: none;
+    }
+    .form-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-consent input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-top: 0.25rem;
+      accent-color: var(--sc-rose-gold);
+      flex-shrink: 0;
+    }
+    .form-consent label {
+      color: var(--sc-text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    /* Select/Dropdown Styles with Liquid Glass */
+    select.sc-input {
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath fill='%23D4AF37' d='M7 10L2 5h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 3rem;
+      position: relative;
+    }
+    select.sc-input {
+      border-color: var(--sc-border-glass);
+    }
+    select.sc-input:focus {
+      border-color: var(--sc-rose-gold);
+      box-shadow: 0 0 0 3px var(--sc-gold-glow-soft), 0 4px 20px var(--sc-gold-glow-soft);
+    }
+    .form-success {
+      display: none;
+      background: var(--sc-gold-glow-soft);
+      border: 1px solid var(--sc-rose-gold);
+      border-radius: var(--sc-radius-md);
+      padding: 1rem 1.5rem;
+      color: var(--sc-text-primary);
+      margin-top: 1.5rem;
+      backdrop-filter: blur(8px) saturate(1.2);
+      -webkit-backdrop-filter: blur(8px) saturate(1.2);
+      box-shadow: 0 4px 20px var(--sc-gold-glow-soft);
+    }
+    .form-success.show {
+      display: block;
+    }
+    @media (min-width: 960px) {
+      .wizard-shell {
+        display: grid;
+        grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+        gap: 2rem;
+        align-items: flex-start;
+      }
+      .wizard-steps {
+        position: sticky;
+        top: 1rem;
+      }
+      .wizard-sticky-cta {
+        position: static;
+      }
+    }
+    
+    /* FAQ Section */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .faq-card {
+      background: var(--sc-glass-bg);
+      border: 1px solid var(--sc-border-glass);
+      border-radius: var(--sc-radius-lg);
+      padding: 1.5rem;
+      backdrop-filter: blur(var(--sc-glass-blur-md)) saturate(1.2);
+      -webkit-backdrop-filter: blur(var(--sc-glass-blur-md)) saturate(1.2);
+      box-shadow: var(--sc-shadow-e1), inset 0 1px rgba(255,255,255,0.18);
+    }
+    .faq-card h4 {
+      margin: 0 0 0.5rem;
+      font-size: 1.1rem;
+      color: var(--sc-text-primary);
+    }
+    .faq-card p {
+      margin: 0;
+      color: var(--sc-text-secondary);
+      font-size: 0.95rem;
+    }
+    .legal-notice {
+      background: var(--sc-glass-bg);
+      border: 1px solid var(--sc-border-soft);
+      border-radius: var(--sc-radius-md);
+      padding: 1rem 1.5rem;
+      color: var(--sc-text-tertiary);
+      font-size: 0.85rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    /* CTA Sections */
+    .cta-section {
+      text-align: center;
+      margin: 2.5rem 0;
+    }
+    
+    /* Media placeholders */
+    .media-placeholder {
+      border-radius: var(--sc-radius-xl);
+      border: 1px dashed rgba(255,221,200,0.35);
+      background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(11,14,18,0.85));
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--sc-gold-400);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+    }
+    .media-placeholder::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 55%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+    .media-placeholder span {
+      position: relative;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+    }
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    /* Footer */
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 0;
+      border-top: 1px solid var(--sc-border-soft);
+      color: var(--sc-text-tertiary);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    
+    /* Utilities */
+    .text-center {
+      text-align: center;
+    }
+    .mb-0 {
+      margin-bottom: 0;
+    }
+    .hidden {
+      display: none !important;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Focus visible for accessibility */
+    *:focus-visible {
+      outline: 2px solid var(--sc-rose-gold);
+      outline-offset: 2px;
+    }
+    
+    /* Rose gold accents for form inputs focus */
+    .sc-input:focus {
+      border-color: var(--sc-rose-gold);
+      box-shadow: 0 0 0 3px var(--sc-gold-glow-soft), 0 4px 20px var(--sc-gold-glow-soft);
+    }
+    
+    .sc-input-affix:focus-within {
+      border-color: var(--sc-rose-gold);
+      box-shadow: 0 0 0 3px var(--sc-gold-glow-soft), 0 4px 20px var(--sc-gold-glow-soft);
+    }
+    
+    /* Checkbox styling with rose gold */
+    input[type="checkbox"] {
+      accent-color: var(--sc-rose-gold);
+    }
+    
+    /* Trust line rose gold accents */
+    .trust-line {
+      color: var(--sc-text-tertiary);
+    }
+    
+    /* Zone image placeholder */
+    .zone-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--sc-text-tertiary);
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+  </style>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+</head>
+<body class="sc-noise">
+  <header class="sc-appbar" data-state="default" data-menu="closed" data-micro="open" style="display: none !important;">
+    <div class="sc-microbar">
+      <div class="sc-microbar__message">
+        <span>Asesoría integral · sin costo · datos protegidos</span>
+      </div>
+      <div class="sc-microbar__actions">
+        <a href="tel:+56966013182" data-track-event="micro_contact" data-track-detail='{"type":"phone"}'>+56 9 6601 3182</a>
+        <a href="mailto:contacto@selectcapital.cl" data-track-event="micro_contact" data-track-detail='{"type":"mail"}'>contacto@selectcapital.cl</a>
+        <a href="https://wa.me/56966013182?text=Quiero%20recibir%20mi%20asesoria" target="_blank" rel="noopener" data-track-event="micro_contact" data-track-detail='{"type":"whatsapp"}'>WhatsApp</a>
+        <button type="button" data-theme-toggle data-track-event="micro_contact" data-track-detail='{"type":"theme"}'>ES | EN</button>
+      </div>
+    </div>
+    <div class="sc-appbar-main">
+      <a class="sc-brand" href="/">
+        <img src="images/logo_blanco.png" alt="Select Capital" loading="lazy" />
+        <span>SELECT CAPITAL</span>
+      </a>
+      <button class="sc-micro-pill" type="button" data-micro-toggle>
+        <span>Ver mensaje de confianza</span>
+      </button>
+      <nav class="sc-nav" aria-label="Navegación principal">
+        <a href="#proyectos" data-track-event="nav_click" data-track-detail='{"item":"proyectos_home"}'>Proyectos</a>
+        <a href="simulador/index.html" data-track-event="nav_click" data-track-detail='{"item":"simulador"}'>Simulador</a>
+        <a href="#servicios" aria-current="page" data-track-event="nav_click" data-track-detail='{"item":"servicios_home"}'>Servicios</a>
+        <a href="#equipo" data-track-event="nav_click" data-track-detail='{"item":"equipo_home"}'>Equipo</a>
+        <a href="#form" data-track-event="nav_click" data-track-detail='{"item":"recursos_home"}'>Recursos</a>
+      </nav>
+      <div class="sc-status-pill">
+        <span>Agenda abierta</span>
+        <span class="sc-chip">Respuesta &lt; 10 min</span>
+      </div>
+      <div class="sc-cta-cluster">
+        <a class="sc-btn-ghost" href="https://wa.me/56966013182?text=Quiero%20recibir%20mi%20asesoria" target="_blank" rel="noopener" data-track-event="cta_click" data-track-detail='{"cta_id":"header_whatsapp"}'>WhatsApp</a>
+        <a class="sc-btn-primary" href="#form" data-track-event="cta_click" data-track-detail='{"cta_id":"header_primary"}'>Recibir asesoría</a>
+      </div>
+      <button class="sc-menu-toggle" type="button" aria-label="Abrir menú principal" aria-expanded="false" data-menu-toggle>
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
+    <div class="sc-mobile-panel" role="dialog" aria-modal="true" aria-label="Menú principal">
+      <nav>
+        <a href="#proyectos" data-track-event="nav_click" data-track-detail='{"item":"proyectos_mobile"}'>Proyectos</a>
+        <a href="simulador/index.html" data-track-event="nav_click" data-track-detail='{"item":"simulador_mobile"}'>Simulador</a>
+        <a href="#servicios" aria-current="page" data-track-event="nav_click" data-track-detail='{"item":"servicios_mobile"}'>Servicios</a>
+        <a href="#equipo" data-track-event="nav_click" data-track-detail='{"item":"equipo_mobile"}'>Equipo</a>
+        <a href="#form" data-track-event="nav_click" data-track-detail='{"item":"recursos_mobile"}'>Recursos</a>
+      </nav>
+      <div class="sc-chip">Sin costo para el inversionista</div>
+      <div class="sc-mobile-cta">
+        <a class="sc-btn-primary" href="#form" data-track-event="cta_click" data-track-detail='{"cta_id":"mobile_menu_primary"}'>Recibir asesoría</a>
+        <a class="sc-btn-ghost" href="https://wa.me/56966013182?text=Quiero%20recibir%20mi%20asesoria" target="_blank" rel="noopener" data-track-event="cta_click" data-track-detail='{"cta_id":"mobile_menu_whatsapp"}'>Hablar por WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="section-inner">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <h1>Sueña con tu departamento ideal.<br />Nosotros nos encargamos del resto.</h1>
+            <div class="hero-cta">
+              <a href="#form" class="btn-primary" data-track-event="cta_click" data-track-detail="{&quot;cta_id&quot;:&quot;hero_primary&quot;}"><span>Recibir asesoría integral</span></a>
+            </div>
+            <p class="trust-line">Respuesta &lt;10 min<span style="color: var(--sc-rose-gold);"> · </span>Sin costo<span style="color: var(--sc-rose-gold);"> · </span>Datos protegidos</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galería de renders placeholder -->
+    <section class="section media-gallery">
+      <div class="section-inner">
+        <h2 class="text-center">Renders & moodboard</h2>
+        <div class="media-grid">
+          <div class="media-placeholder">
+            <span>Render fachada</span>
+          </div>
+          <div class="media-placeholder">
+            <span>Interior / lobby</span>
+          </div>
+          <div class="media-placeholder">
+            <span>Lifestyle shot</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cómo funciona (3 pasos) -->
+    <section class="section" id="servicios">
+      <div class="section-inner">
+        <h2 class="text-center">Cómo funciona</h2>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Perfil y opciones</h3>
+            <p>Te mostramos <strong>3 proyectos</strong> según tu objetivo y ticket.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Simulación honesta</h3>
+            <p>Flujo, rentabilidad y sensibilidad (sin letra chica).</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Ejecución total</h3>
+            <p>Preevaluación, crédito, firma, <strong>entrega</strong> y puesta en <strong>arriendo</strong>.</p>
+          </div>
+        </div>
+        <div class="cta-section">
+          <a href="#form" class="btn-primary" data-track-event="cta_click" data-track-detail="{&quot;cta_id&quot;:&quot;steps_primary&quot;}"><span>Recibir asesoría integral</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Por qué Select Capital (pilares) -->
+    <section class="section">
+      <div class="section-inner">
+        <h2 class="text-center">Por qué Select Capital</h2>
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <h3>Curaduría experta</h3>
+            <p>Zonas con <strong>demanda real</strong> de arriendo y conectividad.</p>
+          </div>
+          <div class="pillar-card">
+            <h3>Transparencia total</h3>
+            <p>Supuestos visibles y escenarios comparables. <strong>Sin letra chica</strong>.</p>
+          </div>
+          <div class="pillar-card">
+            <h3>Acompañamiento hasta llaves</h3>
+            <p>Del <strong>crédito</strong> a la <strong>entrega</strong> y la puesta en <strong>arriendo</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Zonas con demanda -->
+    <section class="section" id="proyectos">
+      <div class="section-inner">
+        <h2 class="text-center">Zonas con demanda</h2>
+        <div class="zones-grid">
+          <div class="zone-card">
+            <div class="zone-image" style="background: linear-gradient(135deg, rgba(205,127,50,0.15), rgba(11,14,18,0.85));">
+              <span style="opacity: 0.7; color: var(--sc-rose-gold-light);">La Florida</span>
+            </div>
+            <div class="zone-content">
+              <h3>La Florida</h3>
+              <p>Conectividad y ticket accesible. <em>Entrega estimada 2026.</em></p>
+            </div>
+          </div>
+          <div class="zone-card">
+            <div class="zone-image" style="background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(11,14,18,0.85));">
+              <span style="opacity: 0.7; color: var(--sc-gold-400);">Ñuñoa</span>
+            </div>
+            <div class="zone-content">
+              <h3>Ñuñoa</h3>
+              <p>Servicios y baja vacancia. <em>Entrega estimada 2025.</em></p>
+            </div>
+          </div>
+          <div class="zone-card">
+            <div class="zone-image" style="background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(11,14,18,0.85));">
+              <span style="opacity: 0.7; color: var(--sc-gold-400);">Independencia</span>
+            </div>
+            <div class="zone-content">
+              <h3>Independencia</h3>
+              <p>Cercanía salud/educación; rotación estable.</p>
+            </div>
+          </div>
+        </div>
+        <p class="zones-note">Estas son referencias para contexto. Te guiamos a la mejor opción para ti.</p>
+      </div>
+    </section>
+
+    <!-- Equipo -->
+    <section class="section team-section" id="equipo" aria-labelledby="team-heading">
+      <div class="section-inner">
+        <div class="team-header">
+          <p class="team-eyebrow">Equipo select</p>
+          <h2 id="team-heading">Personas que acompañan tu inversión</h2>
+          <p class="team-subtitle">Perfilamos, simulamos y ejecutamos contigo. Este núcleo combina estrategia, financiamiento y customer success para que llegues a la entrega con claridad total.</p>
+          <a class="team-cta" href="mailto:asesoria@selectcapital.cl">Conoce al equipo completo &rarr;</a>
+        </div>
+        <div class="team-grid" role="list">
+          <article class="team-card" role="listitem" aria-labelledby="team-emily">
+            <div class="team-card-header">
+              <div class="team-chips">
+                <span class="team-chip team-chip--accent team-chip--wide">Master Business Partner</span>
+                <span class="team-chip team-chip--muted">Consultora senior</span>
+              </div>
+            </div>
+            <div class="team-photo">
+              <img src="images/asesores/emily.jpg" alt="Retrato de Emily Rivero" loading="lazy" />
+              <span class="team-status-dot" aria-label="Disponible"></span>
+            </div>
+            <div class="team-info">
+              <h3 id="team-emily">Emily Rivero</h3>
+            </div>
+            <dl class="team-meta-list">
+              <div class="team-meta-item">
+                <dt class="team-meta-label">Experiencia</dt>
+                <dd class="team-meta-value">14 años</dd>
+              </div>
+            </dl>
+            <a class="team-primary-btn" href="mailto:asesoria@selectcapital.cl?subject=Quiero%20hablar%20con%20Emily%20Rivero" aria-label="Agenda una sesión con Emily Rivero">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.2 2h3a2 2 0 0 1 2 1.72 12.73 12.73 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.73 12.73 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              Agenda una sesión
+            </a>
+            <div class="team-actions" role="group" aria-label="Redes de Emily Rivero">
+              <a class="team-icon-btn" href="https://www.linkedin.com/company/selectcapital" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn de Emily Rivero">
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-solid">
+                  <path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zm2.2 6.5H2.8V20h4.38zm4.32 0H15.5v1.67h.06c.58-1.1 2-2.27 4.12-2.27 4.4 0 5.2 2.9 5.2 6.68V20h-4.2v-3.9c0-.93-.02-2.14-1.3-2.14-1.3 0-1.5 1.02-1.5 2.07V20h-4.4z"/>
+                </svg>
+                <span class="sr-only">LinkedIn</span>
+              </a>
+              <a class="team-icon-btn" href="https://www.instagram.com/selectcapital" target="_blank" rel="noreferrer noopener" aria-label="Instagram de Emily Rivero">
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-solid">
+                  <path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3zm5 2.5a5.5 5.5 0 11-5.5 5.5A5.5 5.5 0 0112 6.5zm0 2a3.5 3.5 0 103.5 3.5A3.5 3.5 0 0012 8.5zm6.25-3.75a1 1 0 11-1 1 1 1 0 011-1z"/>
+                </svg>
+                <span class="sr-only">Instagram</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="team-card" role="listitem" aria-labelledby="team-deisy">
+            <div class="team-card-header">
+              <div class="team-chips">
+                <span class="team-chip team-chip--muted">Customer Success Lead</span>
+              </div>
+            </div>
+            <div class="team-photo">
+              <img src="images/asesores/deisymontilla.png" alt="Retrato de Deisy Montilla" loading="lazy" />
+              <span class="team-status-dot" aria-label="Disponible"></span>
+            </div>
+            <div class="team-info">
+              <h3 id="team-deisy">Deisy Montilla</h3>
+            </div>
+            <dl class="team-meta-list">
+              <div class="team-meta-item">
+                <dt class="team-meta-label">Experiencia</dt>
+                <dd class="team-meta-value">10 años</dd>
+              </div>
+            </dl>
+            <a class="team-primary-btn" href="mailto:asesoria@selectcapital.cl?subject=Quiero%20hablar%20con%20Deisy%20Montilla" aria-label="Agenda una sesión con Deisy Montilla">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.2 2h3a2 2 0 0 1 2 1.72 12.73 12.73 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.73 12.73 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              Agenda una sesión
+            </a>
+            <div class="team-actions" role="group" aria-label="Redes de Deisy Montilla">
+              <a class="team-icon-btn" href="https://www.linkedin.com/company/selectcapital" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn de Deisy Montilla">
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-solid">
+                  <path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zm2.2 6.5H2.8V20h4.38zm4.32 0H15.5v1.67h.06c.58-1.1 2-2.27 4.12-2.27 4.4 0 5.2 2.9 5.2 6.68V20h-4.2v-3.9c0-.93-.02-2.14-1.3-2.14-1.3 0-1.5 1.02-1.5 2.07V20h-4.4z"/>
+                </svg>
+                <span class="sr-only">LinkedIn</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="team-card" role="listitem" aria-labelledby="team-paola">
+            <div class="team-card-header">
+              <div class="team-chips">
+                <span class="team-chip team-chip--accent">Finanzas &amp; Créditos</span>
+              </div>
+            </div>
+            <div class="team-photo">
+              <img src="images/asesores/paola.png" alt="Retrato de Paola" loading="lazy" />
+              <span class="team-status-dot" aria-label="Disponible"></span>
+            </div>
+            <div class="team-info">
+              <h3 id="team-paola">Paola</h3>
+            </div>
+            <dl class="team-meta-list">
+              <div class="team-meta-item">
+                <dt class="team-meta-label">Experiencia</dt>
+                <dd class="team-meta-value">8 años</dd>
+              </div>
+            </dl>
+            <a class="team-primary-btn" href="mailto:asesoria@selectcapital.cl?subject=Quiero%20hablar%20con%20Paola" aria-label="Agenda una sesión con Paola">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.2 2h3a2 2 0 0 1 2 1.72 12.73 12.73 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.73 12.73 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              Agenda una sesión
+            </a>
+            <div class="team-actions" role="group" aria-label="Redes de Paola">
+              <a class="team-icon-btn" href="https://www.linkedin.com/company/selectcapital" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn de Paola">
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-solid">
+                  <path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zm2.2 6.5H2.8V20h4.38zm4.32 0H15.5v1.67h.06c.58-1.1 2-2.27 4.12-2.27 4.4 0 5.2 2.9 5.2 6.68V20h-4.2v-3.9c0-.93-.02-2.14-1.3-2.14-1.3 0-1.5 1.02-1.5 2.07V20h-4.4z"/>
+                </svg>
+                <span class="sr-only">LinkedIn</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="team-card" role="listitem" aria-labelledby="team-elkis">
+            <div class="team-card-header">
+              <div class="team-chips">
+                <span class="team-chip">Consultor inmobiliario</span>
+              </div>
+            </div>
+            <div class="team-photo">
+              <img src="images/asesores/elkis.PNG" alt="Retrato de Elkis Daza" loading="lazy" />
+              <span class="team-status-dot" aria-label="Disponible"></span>
+            </div>
+            <div class="team-info">
+              <h3 id="team-elkis">Elkis Daza</h3>
+            </div>
+            <dl class="team-meta-list">
+              <div class="team-meta-item">
+                <dt class="team-meta-label">Experiencia</dt>
+                <dd class="team-meta-value">12 años</dd>
+              </div>
+            </dl>
+            <a class="team-primary-btn" href="mailto:asesoria@selectcapital.cl?subject=Quiero%20hablar%20con%20Elkis%20Daza" aria-label="Agenda una sesión con Elkis Daza">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.2 2h3a2 2 0 0 1 2 1.72 12.73 12.73 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.73 12.73 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              Agenda una sesión
+            </a>
+            <div class="team-actions" role="group" aria-label="Redes de Elkis Daza">
+              <a class="team-icon-btn" href="https://www.linkedin.com/company/selectcapital" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn de Elkis Daza">
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-solid">
+                  <path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zm2.2 6.5H2.8V20h4.38zm4.32 0H15.5v1.67h.06c.58-1.1 2-2.27 4.12-2.27 4.4 0 5.2 2.9 5.2 6.68V20h-4.2v-3.9c0-.93-.02-2.14-1.3-2.14-1.3 0-1.5 1.02-1.5 2.07V20h-4.4z"/>
+                </svg>
+                <span class="sr-only">LinkedIn</span>
+              </a>
+              <a class="team-icon-btn" href="https://twitter.com/selectcapital" target="_blank" rel="noreferrer noopener" aria-label="Twitter de Elkis Daza">
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-solid">
+                  <path d="M3 3l7.5 9L3 21h3l6-7.5L18 21h3l-7.5-9L21 3h-3l-5.5 6.9L6 3z"/>
+                </svg>
+                <span class="sr-only">X</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="section">
+      <div class="section-inner">
+        <h2 class="text-center">Testimonios</h2>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <p class="testimonial-text">Entré con UF 1.200; me guiaron de la preevaluación a la entrega. Vi los escenarios difíciles antes de decidir.</p>
+            <p class="testimonial-author">— Paula R.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formulario principal -->
+    <section class="section" id="form">
+      <div class="section-inner">
+        <h2 class="text-center">Recibir asesoría integral</h2>
+        <div class="form-container">
+          <form action="/submit.php" method="POST" data-track-form data-home-wizard novalidate>
+            <input type="hidden" name="utm_source" />
+            <input type="hidden" name="utm_medium" />
+            <input type="hidden" name="utm_campaign" />
+            <input type="hidden" name="gclid" />
+            <input type="hidden" name="fbclid" />
+            <input type="hidden" name="ttclid" />
+            <input type="hidden" name="cf-turnstile-response" id="ts-token" />
+            <input type="text" name="honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" aria-hidden="true" />
+
+            <div class="form-wizard" data-form-wizard>
+              <div class="wizard-shell">
+                <aside class="wizard-steps">
+                  <div class="wizard-progress-bar" data-progress-bar role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" aria-valuetext="Paso 1 de 3">
+                    <span class="wizard-progress-value" data-progress-value></span>
+                  </div>
+                  <p class="wizard-progress-label" data-progress-label>Paso 1 de 3</p>
+                  <p class="wizard-summary sc-text-muted" data-step-summary>Informacion personal</p>
+                  <div id="form-error" class="sc-error" role="alert" aria-live="polite" aria-hidden="true"></div>
+                  <div class="form-steps-progress" role="tablist" aria-live="polite">
+                    <button type="button" class="form-step-pill is-active" data-step-pill="0" role="tab" aria-selected="true" aria-controls="home-step-1">
+                      <span>1</span>
+                      <div>
+                        <strong>Datos personales</strong>
+                        <p>Identidad y contacto.</p>
+                      </div>
+                    </button>
+                    <button type="button" class="form-step-pill" data-step-pill="1" role="tab" aria-selected="false" aria-controls="home-step-2">
+                      <span>2</span>
+                      <div>
+                        <strong>Perfil e ingresos</strong>
+                        <p>Objetivo, tipo de ingreso y montos.</p>
+                      </div>
+                    </button>
+                    <button type="button" class="form-step-pill" data-step-pill="2" role="tab" aria-selected="false" aria-controls="home-step-3">
+                      <span>3</span>
+                      <div>
+                        <strong>Comunas y cierre</strong>
+                        <p>Zona de interes, notas y consentimiento.</p>
+                      </div>
+                    </button>
+                  </div>
+                </aside>
+
+                <div class="wizard-main">
+                  <div class="form-wizard-viewport">
+                    <div class="form-wizard-track" data-step-track style="--wizard-step:0;">
+                      <section class="wizard-step" data-step-panel="0" data-next-label="Continuar a Perfil e ingresos" aria-labelledby="home-step-1">
+                    <div class="step-header">
+                      <p class="step-kicker">Paso 1</p>
+                      <h3 id="home-step-1">Informacion personal</h3>
+                      <p class="sc-hint">Validamos tus datos para enviarte la propuesta personalizada.</p>
+                    </div>
+                    <div class="form-grid">
+                      <label class="sc-field">
+                        <span class="sc-label">Nombre completo</span>
+                        <input type="text" name="nombre" id="nombre" class="sc-input" placeholder="Tu nombre completo" autocomplete="name" autocapitalize="words" data-step-required required />
+                      </label>
+                      <label class="sc-field">
+                        <span class="sc-label">RUT</span>
+                        <input type="text" name="rut" id="rut" class="sc-input" placeholder="12.345.678-9" data-mask="rut" autocomplete="off" data-step-required required />
+                        <p class="sc-error" id="r-error" aria-hidden="true">Ingresa un RUT valido.</p>
+                      </label>
+                      <label class="sc-field form-field-full">
+                        <span class="sc-label">Correo electronico</span>
+                        <input type="email" name="email" id="email" class="sc-input" placeholder="correo@ejemplo.com" autocomplete="email" data-step-required required />
+                        <p class="sc-error" id="e-error" aria-hidden="true">Ingresa un correo valido.</p>
+                      </label>
+                      <label class="sc-field form-field-full">
+                        <span class="sc-label">Telefono / WhatsApp</span>
+                        <input type="tel" name="whatsapp" id="whatsapp" class="sc-input" data-mask="phone" placeholder="+56 9 1234 5678" inputmode="tel" autocomplete="tel" data-step-required required />
+                        <p class="sc-hint">Prefijo +56 autocompletado · Validamos largo automaticamente.</p>
+                        <p class="sc-error" id="w-error" aria-hidden="true">Usa un numero chileno valido.</p>
+                      </label>
+  <div class="wizard-sticky-cta">
+    <div class="form-wizard-nav">
+      <button type="button" class="btn-ghost" data-step-prev aria-label="Volver al paso anterior">Volver</button>
+      <button type="button" class="btn-primary" data-step-next>Continuar</button>
+      <button type="submit" id="submitBtn" class="btn-primary" data-step-submit>
+        <span id="s-text">Recibir mi propuesta personalizada</span>
+        <span id="s-load" style="display:none;">Enviando…</span>
+      </button>
+    </div>
+  </div>
+                    </div>
+                  </section>
+
+                  <section class="wizard-step" data-step-panel="1" data-next-label="Ir a Comunas y cierre" aria-labelledby="home-step-2">
+                    <div class="step-header">
+                      <p class="step-kicker">Paso 2</p>
+                      <h3 id="home-step-2">Perfil del cliente e ingresos</h3>
+                      <p class="sc-hint">Selecciona el objetivo, tipo de ingreso y montos aproximados.</p>
+                    </div>
+
+                    <fieldset>
+                      <legend class="sc-label">Objetivo principal</legend>
+                      <p class="sc-hint">Elige una opcion para enfocar la asesoria.</p>
+                      <div class="option-grid">
+                        <label class="option-card" data-card>
+                          <input type="radio" name="objetivo" value="Vivir" data-card-input data-step-required required />
+                          <span class="option-icon" aria-hidden="true">🏠</span>
+                          <strong>Vivir</strong>
+                          <p>Buscas tu proxima vivienda para uso propio.</p>
+                        </label>
+                        <label class="option-card" data-card>
+                          <input type="radio" name="objetivo" value="Invertir" data-card-input data-step-required required />
+                          <span class="option-icon" aria-hidden="true">💼</span>
+                          <strong>Invertir</strong>
+                          <p>Quieres generar ingresos y construir patrimonio.</p>
+                        </label>
+                        <label class="option-card" data-card>
+                          <input type="radio" name="objetivo" value="No lo se" data-card-input data-step-required required />
+                          <span class="option-icon" aria-hidden="true">❔</span>
+                          <strong>No lo se todavia</strong>
+                          <p>Te ayudamos a descubrir que te conviene hoy.</p>
+                        </label>
+                      </div>
+                    </fieldset>
+
+                    <fieldset>
+                      <legend class="sc-label">Tipo de ingreso</legend>
+                      <p class="sc-hint">Seleccion unica. Mostramos chips extra segun tu eleccion.</p>
+                      <div class="option-grid">
+                        <label class="option-card" data-card data-ingreso-card="dependiente">
+                          <input type="radio" name="tipo_ingreso" value="Dependiente" data-card-input data-step-required required />
+                          <strong>Dependiente</strong>
+                          <p>Recibes sueldo fijo con contrato y liquidaciones.</p>
+                        </label>
+                        <label class="option-card" data-card data-ingreso-card="independiente">
+                          <input type="radio" name="tipo_ingreso" value="Independiente" data-card-input data-step-required required />
+                          <strong>Independiente</strong>
+                          <p>Ingresos variables como profesional, freelancer o empresario.</p>
+                        </label>
+                        <label class="option-card" data-card data-ingreso-card="mixto">
+                          <input type="radio" name="tipo_ingreso" value="Mixto" data-card-input data-step-required required />
+                          <strong>Mixto</strong>
+                          <p>Combinacion de sueldo fijo + ingresos adicionales.</p>
+                        </label>
+                      </div>
+                    </fieldset>
+
+                    <div class="option-secondary" data-ingreso-extra="dependiente" hidden aria-hidden="true">
+                      <span class="sc-label">Tipo de contrato (Dependiente)</span>
+                      <div class="chip-set" data-chip-group="tipo_contrato" role="radiogroup" aria-label="Tipo de contrato">
+                        <button type="button" class="chip" data-chip-value="Indefinido" data-chip-target="tipo_contrato" role="radio" aria-checked="false">
+                          <strong>Indefinido</strong>
+                          <span>Mayor estabilidad laboral. Mejor evaluacion crediticia.</span>
+                        </button>
+                        <button type="button" class="chip" data-chip-value="Plazo fijo" data-chip-target="tipo_contrato" role="radio" aria-checked="false">
+                          <strong>Plazo fijo</strong>
+                          <span>Contrato con termino definido. Revisamos antiguedad.</span>
+                        </button>
+                        <button type="button" class="chip" data-chip-value="Sin contrato / Informal" data-chip-target="tipo_contrato" role="radio" aria-checked="false">
+                          <strong>Sin contrato / Informal</strong>
+                          <span>Ingresos no formales. Es clave detallar montos.</span>
+                        </button>
+                      </div>
+                      <input type="hidden" name="tipo_contrato" data-chip-store="tipo_contrato" data-required-when="tipo_ingreso=Dependiente">
+                      <p class="sc-error" data-chip-error="tipo_contrato" aria-hidden="true">Selecciona el tipo de contrato.</p>
+                    </div>
+
+                    <div class="option-secondary" data-ingreso-extra="independiente" hidden aria-hidden="true">
+                      <span class="sc-label">Tipo de ingresos (Independiente)</span>
+                      <div class="chip-set" data-chip-group="tipo_ingreso_independiente" role="radiogroup" aria-label="Tipo de ingresos independientes">
+                        <button type="button" class="chip" data-chip-value="Boletas de honorarios" data-chip-target="tipo_ingreso_independiente" role="radio" aria-checked="false">
+                          <strong>Boletas de honorarios</strong>
+                          <span>Ingresos declarados como profesional independiente.</span>
+                        </button>
+                        <button type="button" class="chip" data-chip-value="Retiros de empresa" data-chip-target="tipo_ingreso_independiente" role="radio" aria-checked="false">
+                          <strong>Retiros de empresa</strong>
+                          <span>Ingresos derivados de utilidades o participaciones.</span>
+                        </button>
+                      </div>
+                      <input type="hidden" name="tipo_ingreso_independiente" data-chip-store="tipo_ingreso_independiente" data-required-when="tipo_ingreso=Independiente">
+                      <p class="sc-error" data-chip-error="tipo_ingreso_independiente" aria-hidden="true">Selecciona el tipo de ingreso.</p>
+                    </div>
+
+                    <div class="form-grid">
+                      <label class="sc-field">
+                        <span class="sc-label">Ingreso mensual liquido (CLP)</span>
+                        <input type="text" name="renta_liquida" class="sc-input" inputmode="numeric" data-money-input="renta_liquida" placeholder="$ 1.200.000" data-step-required required />
+                        <p class="sc-error" id="renta-error" aria-hidden="true">Ingresa tu renta liquida aproximada.</p>
+                      </label>
+                      <label class="sc-field">
+                        <span class="sc-label">Monto de ahorro disponible</span>
+                        <input type="text" name="monto_ahorro" class="sc-input" inputmode="numeric" data-money-input="monto_ahorro" placeholder="$ 2.000.000" data-step-required required />
+                        <span class="sc-hint">Solo ingresa el monto total ahorrado.</span>
+                        <p class="sc-error" id="ahorro-error" aria-hidden="true">Ingresa el monto ahorrado.</p>
+                      </label>
+  <div class="wizard-sticky-cta">
+    <div class="form-wizard-nav">
+      <button type="button" class="btn-ghost" data-step-prev aria-label="Volver al paso anterior">Volver</button>
+      <button type="button" class="btn-primary" data-step-next>Continuar</button>
+      <button type="submit" id="submitBtn" class="btn-primary" data-step-submit>
+        <span id="s-text">Recibir mi propuesta personalizada</span>
+        <span id="s-load" style="display:none;">Enviando…</span>
+      </button>
+    </div>
+  </div>
+                    </div>
+                  </section>
+
+                  <section class="wizard-step" data-step-panel="2" aria-labelledby="home-step-3">
+                    <div class="step-header">
+                      <p class="step-kicker">Paso 3</p>
+                      <h3 id="home-step-3">Zona y cierre</h3>
+                      <p class="sc-hint">Selecciona comunas, agrega notas y autoriza el contacto.</p>
+                    </div>
+
+                    <div class="sc-field">
+                      <span class="sc-label">Zona o comuna de interes</span>
+                      <div class="commune-enhanced" data-commune-enhanced>
+                        <p class="sc-hint">Elige rapidamente o escribe para buscar. Presiona Enter para confirmar.</p>
+                        <div class="commune-quick" data-commune-pills>
+                          <button type="button" class="pill-chip" data-commune-pill="La Florida" aria-pressed="false">La Florida</button>
+                          <button type="button" class="pill-chip" data-commune-pill="Santiago Centro" aria-pressed="false">Santiago Centro</button>
+                          <button type="button" class="pill-chip" data-commune-pill="Independencia" aria-pressed="false">Independencia</button>
+                          <button type="button" class="pill-chip" data-commune-pill="Estacion Central" aria-pressed="false">Estacion Central</button>
+                          <button type="button" class="pill-chip" data-commune-pill="Ñuñoa" aria-pressed="false">Ñuñoa</button>
+                          <button type="button" class="pill-chip" data-commune-pill="San Miguel" aria-pressed="false">San Miguel</button>
+                          <button type="button" class="pill-chip" data-commune-pill="Macul" aria-pressed="false">Macul</button>
+                        </div>
+                        <label class="sc-field">
+                          <span class="sc-label sc-optional">Buscador</span>
+                          <input type="text" class="sc-input" placeholder="Escribe una comuna (ej: Ñuñoa, La Florida…)" list="comunas-populares" data-commune-input autocomplete="off">
+                        </label>
+                        <datalist id="comunas-populares">
+                          <option value="Cerrillos"></option>
+                          <option value="Cerro Navia"></option>
+                          <option value="Conchali"></option>
+                          <option value="El Bosque"></option>
+                          <option value="Estacion Central"></option>
+                          <option value="Huechuraba"></option>
+                          <option value="Independencia"></option>
+                          <option value="La Cisterna"></option>
+                          <option value="La Florida"></option>
+                          <option value="La Granja"></option>
+                          <option value="La Pintana"></option>
+                          <option value="La Reina"></option>
+                          <option value="Las Condes"></option>
+                          <option value="Lo Barnechea"></option>
+                          <option value="Lo Espejo"></option>
+                          <option value="Lo Prado"></option>
+                          <option value="Macul"></option>
+                          <option value="Maipu"></option>
+                          <option value="Ñuñoa"></option>
+                          <option value="Pedro Aguirre Cerda"></option>
+                          <option value="Peñalolen"></option>
+                          <option value="Providencia"></option>
+                          <option value="Pudahuel"></option>
+                          <option value="Quilicura"></option>
+                          <option value="Quinta Normal"></option>
+                          <option value="Recoleta"></option>
+                          <option value="Renca"></option>
+                          <option value="San Joaquin"></option>
+                          <option value="San Miguel"></option>
+                          <option value="San Ramon"></option>
+                          <option value="Santiago Centro"></option>
+                          <option value="Vitacura"></option>
+                        </datalist>
+                        <div class="commune-selected" data-commune-selected aria-live="polite"></div>
+                      </div>
+                      <div class="sc-field" data-commune-fallback>
+                        <span class="sc-label sc-optional">Escribe tus comunas (fallback)</span>
+                        <textarea name="comunas_interes" rows="2" class="sc-input" placeholder="Ej: Ñuñoa, La Florida, Santiago Centro" data-commune-store data-step-required required></textarea>
+                      </div>
+                      <p class="sc-error" id="comunas-error" aria-hidden="true">Selecciona al menos una comuna.</p>
+                    </div>
+
+                    <label class="sc-field">
+                      <span class="sc-label">Comentarios adicionales (opcional)</span>
+                      <textarea name="comentarios" rows="3" class="sc-input" placeholder="¿Quieres contarnos algo mas sobre lo que buscas?" style="resize:vertical;"></textarea>
+                    </label>
+
+                    <div class="form-grid">
+                      <label class="sc-field">
+                        <span class="sc-label">¿Como prefieres que te contactemos?</span>
+                        <select name="canal_preferido" class="sc-input" data-step-required required>
+                          <option value="">Selecciona el canal</option>
+                          <option value="whatsapp">WhatsApp</option>
+                          <option value="correo">Correo</option>
+                          <option value="llamada">Llamada</option>
+                        </select>
+                      </label>
+                      <label class="sc-field">
+                        <span class="sc-label">Franja horaria</span>
+                        <select name="franja_preferida" class="sc-input" data-step-required required>
+                          <option value="">Selecciona la franja</option>
+                          <option value="manana">Mañana</option>
+                          <option value="tarde">Tarde</option>
+                          <option value="indiferente">Indiferente</option>
+                        </select>
+                      </label>
+                    </div>
+
+                    <label class="consent-field">
+                      <input type="checkbox" name="consentimiento_privacidad" data-step-required required>
+                      <span>
+                        <strong>Acepto el tratamiento de mis datos segun la Ley 19.628.</strong>
+                        <span class="sc-hint">Consulta nuestra <a href="https://www.selectcapital.cl/privacidad" target="_blank" rel="noopener">Politica de Privacidad</a>.</span>
+                      </span>
+                    </label>
+
+                    <label class="consent-field">
+                      <input type="checkbox" name="consentimiento_contacto" data-step-required required>
+                      <span>
+                        <strong>Autorizo a ser contactado por un asesor inmobiliario de Capital Inteligente.</strong>
+                        <span class="sc-hint">Tus datos se utilizan unicamente para brindarte una asesoria personalizada. No seran compartidos con terceros sin tu consentimiento.</span>
+                      </span>
+                    </label>
+
+  <div class="wizard-sticky-cta">
+    <div class="form-wizard-nav">
+      <button type="button" class="btn-ghost" data-step-prev aria-label="Volver al paso anterior">Volver</button>
+      <button type="button" class="btn-primary" data-step-next>Continuar</button>
+      <button type="submit" id="submitBtn" class="btn-primary" data-step-submit>
+        <span id="s-text">Recibir mi propuesta personalizada</span>
+        <span id="s-load" style="display:none;">Enviando…</span>
+      </button>
+    </div>
+  </div>
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAAB_bjq2YOWp-yEXx" data-theme="auto" data-callback="onTurnstileSuccess"></div>
+                    <p id="t-error" class="sc-error" aria-hidden="true">Confirma que no eres un bot</p>
+                  </section>
+                </div>
+                  <div class="wizard-sticky-cta">
+                    <div class="form-wizard-nav">
+                      <button type="button" class="btn-ghost" data-step-prev aria-label="Volver al paso anterior">Volver</button>
+                      <button type="button" class="btn-primary" data-step-next>Continuar</button>
+                      <button type="submit" id="submitBtn" class="btn-primary" data-step-submit>
+                        <span id="s-text">Recibir mi propuesta personalizada</span>
+                        <span id="s-load" style="display:none;">Enviando…</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-success" id="form-success">
+              ¡Listo! En breve te contactaremos con <strong>3 opciones ajustadas a tu perfil</strong> y los <strong>primeros pasos</strong> del proceso.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ breve + Legal -->
+    <section class="section" id="faq">
+      <div class="section-inner">
+        <h2 class="text-center">Preguntas frecuentes</h2>
+        <div class="faq-grid">
+          <div class="faq-card">
+            <h4>¿Desde cuánto puedo empezar?</h4>
+            <p>Te mostramos opciones según tu presupuesto y capacidad de crédito. No hay mínimo fijo.</p>
+          </div>
+          <div class="faq-card">
+            <h4>¿Me ayudan con el crédito?</h4>
+            <p>Sí, te acompañamos en la preevaluación y comparación de opciones bancarias.</p>
+          </div>
+          <div class="faq-card">
+            <h4>¿Garantizan rentabilidad?</h4>
+            <p>No garantizamos rentabilidad, pero te mostramos proyecciones basadas en datos reales de la zona.</p>
+          </div>
+          <div class="faq-card">
+            <h4>¿Y si cambian tasas o arriendos?</h4>
+            <p>Te mostramos escenarios de sensibilidad para que evalúes diferentes situaciones.</p>
+          </div>
+        </div>
+        <div class="legal-notice">
+          Las proyecciones no garantizan resultados. Revisa tu situación financiera antes de comprometerte.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sc-footer">
+    <div class="sc-footer__inner">
+      <section class="sc-footer-cta sc-glass">
+        <div>
+          <h2>¿Listo para curar tu próxima inversión?</h2>
+          <p>Completa el formulario y recibe 2–3 proyectos con pie estimado, dividendo y retorno proyectado en menos de 24 horas.</p>
+          <div class="sc-chip-stack">
+            <span class="sc-chip">+250 proyectos evaluados</span>
+            <span class="sc-chip">Sin costo para el inversionista</span>
+            <span class="sc-chip">Respuesta &lt; 10 min</span>
+          </div>
+        </div>
+        <div class="sc-footer-cta-actions">
+          <a class="sc-btn-primary" href="#form" data-track-event="cta_click" data-track-detail='{"cta_id":"footer_primary"}'>Recibir asesoría integral</a>
+          <a class="sc-btn-ghost" href="https://wa.me/56966013182?text=Quiero%20recibir%20mi%20asesoria" target="_blank" rel="noopener" data-track-event="cta_click" data-track-detail='{"cta_id":"footer_whatsapp"}'>WhatsApp inmediato</a>
+          <a class="sc-link" href="pdf/proposal-template.html" target="_blank" rel="noopener">Descargar brochure</a>
+        </div>
+      </section>
+
+      <div class="sc-footer-grid">
+        <div>
+          <h3>Propósito</h3>
+          <p>Curamos proyectos con demanda real, negociamos beneficios y te acompañamos hasta la puesta en arriendo.</p>
+          <div class="sc-chip">Liquid Glass · Selección curada</div>
+        </div>
+        <div>
+          <h3>Soluciones</h3>
+          <ul>
+            <li><a href="#servicios">Acompañamiento integral</a></li>
+            <li><a href="#equipo">Equipo experto</a></li>
+            <li><a href="simulador/index.html">Simulador hipotecario</a></li>
+            <li><a href="#form">Eventos y workshops</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Recursos</h3>
+          <ul>
+            <li><a href="#proyectos">Proyectos destacados</a><span class="sc-footer-badge">Nuevo</span></li>
+            <li><a href="dashboard/insights-dashboard.html" target="_blank" rel="noopener">Dashboard funnel</a></li>
+            <li><a href="#faq">Preguntas frecuentes</a></li>
+            <li><a href="pdf/proposal-template.html" target="_blank" rel="noopener">Propuesta PDF demo</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contacto</h3>
+          <div class="sc-footer-contact">
+            <span><a href="mailto:contacto@selectcapital.cl">contacto@selectcapital.cl</a></span>
+            <span><a href="tel:+56966013182">+56 9 6601 3182</a></span>
+            <span>Las Condes · Santiago de Chile</span>
+          </div>
+          <div class="sc-footer-social" aria-label="Redes sociales">
+            <a href="https://www.linkedin.com/company/selectcapital" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+            <a href="https://www.instagram.com/selectcapital" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+            <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sc-footer-legal">
+        <span>© <span id="year"></span> Select Capital. No constituye oferta de valores.</span>
+        <div class="sc-footer-links">
+          <a href="#faq">Política de privacidad</a>
+          <span>·</span>
+          <a href="#faq">Aviso legal</a>
+          <span>·</span>
+          <span>ES | EN</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="scripts/sc-header.js" defer></script>
+  <script src="analytics/sc-tracking.js" defer></script>
+  <script type="module" src="lenguaje visual/forms/sc-masks.js" defer></script>
+  <script type="module" src="lenguaje visual/theme/theme-toggle.js"></script>
+  <script>
+    (function(){
+      const yearEl = document.getElementById('year');
+      if(yearEl){ yearEl.textContent = new Date().getFullYear(); }
+
+      const form = document.querySelector('[data-home-wizard]');
+      const formSuccess = document.getElementById('form-success');
+      const formError = document.getElementById('form-error');
+      const params = new URLSearchParams(location.search);
+      const utmFields = ['utm_source','utm_medium','utm_campaign','gclid','fbclid','ttclid'];
+      utmFields.forEach((key) => {
+        const input = form?.querySelector(`[name="${key}"]`);
+        if(input) input.value = params.get(key) || '';
+      });
+
+      const tsToken = document.getElementById('ts-token');
+      const tsError = document.getElementById('t-error');
+      window.onTurnstileSuccess = function(token){
+        if(tsToken) tsToken.value = token;
+        if(tsError){ tsError.setAttribute('aria-hidden','true'); }
+      };
+
+      const reCL = /^(?:\+?56)?9\d{8}$/;
+      const STEP_ERROR_MSG = 'Completa los campos del paso actual para seguir.';
+
+      if(form){
+        const wInput = document.getElementById('whatsapp');
+        const eInput = document.getElementById('email');
+        const rutInput = document.getElementById('rut');
+        const wError = document.getElementById('w-error');
+        const eError = document.getElementById('e-error');
+        const rutError = document.getElementById('r-error');
+        const rentaError = document.getElementById('renta-error');
+        const ahorroError = document.getElementById('ahorro-error');
+        const communeError = document.getElementById('comunas-error');
+        const submitBtn = document.getElementById('submitBtn');
+        const sText = document.getElementById('s-text');
+        const sLoad = document.getElementById('s-load');
+        const wizard = form.querySelector('[data-form-wizard]');
+        const wizardViewport = wizard ? wizard.querySelector('.form-wizard-viewport') : null;
+        const stepPanels = wizard ? Array.from(wizard.querySelectorAll('[data-step-panel]')) : [];
+        const stepPills = wizard ? Array.from(wizard.querySelectorAll('[data-step-pill]')) : [];
+        const prevBtn = wizard ? wizard.querySelector('[data-step-prev]') : null;
+        const nextBtn = wizard ? wizard.querySelector('[data-step-next]') : null;
+        const progressBar = wizard ? wizard.querySelector('[data-progress-bar]') : null;
+        const progressValue = wizard ? wizard.querySelector('[data-progress-value]') : null;
+        const progressLabel = wizard ? wizard.querySelector('[data-progress-label]') : null;
+        const summaryLabel = wizard ? wizard.querySelector('[data-step-summary]') : null;
+        const moneyInputs = form.querySelectorAll('[data-money-input]');
+        const moneyStores = {};
+        moneyInputs.forEach((input) => {
+          const key = input.dataset.moneyInput;
+          moneyStores[key] = { input, normalized: '' };
+        });
+        const chipStores = form.querySelectorAll('[data-chip-store]');
+        const chipGroups = {};
+        const chipErrors = {};
+        chipStores.forEach((store) => {
+          const name = store.dataset.chipStore;
+          chipGroups[name] = form.querySelector(`[data-chip-group="${name}"]`);
+          chipErrors[name] = form.querySelector(`[data-chip-error="${name}"]`);
+        });
+        const cardInputs = form.querySelectorAll('[data-card-input]');
+        const ingresoExtras = form.querySelectorAll('[data-ingreso-extra]');
+        const communeStore = form.querySelector('[data-commune-store]');
+        const communeInput = form.querySelector('[data-commune-input]');
+        const communeSelected = form.querySelector('[data-commune-selected]');
+        const communePills = form.querySelectorAll('[data-commune-pill]');
+        const communeSelections = new Map();
+        let currentStep = 0;
+
+        function updateError(node, shouldShow, message){
+          if(!node) return;
+          if(message) node.textContent = message;
+          node.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
+        }
+
+        function setFieldValidity(field, isValid){
+          if(!field) return;
+          if(isValid){
+            field.removeAttribute('data-invalid');
+            field.removeAttribute('aria-invalid');
+          } else {
+            field.setAttribute('data-invalid','true');
+            field.setAttribute('aria-invalid','true');
+          }
+        }
+
+        function updateWizardViewportHeight(targetIndex = currentStep){
+          if(!wizardViewport) return;
+          if(!stepPanels.length) return;
+          const normalizedIndex = Math.max(0, Math.min(stepPanels.length - 1, typeof targetIndex === 'number' ? targetIndex : currentStep));
+          const panel = stepPanels[normalizedIndex];
+          if(!panel) return;
+          wizardViewport.style.height = `${panel.offsetHeight}px`;
+        }
+
+        function refreshWizardViewportHeight(targetIndex = currentStep){
+          requestAnimationFrame(() => updateWizardViewportHeight(targetIndex));
+        }
+
+        function chunkThousands(value){
+          return value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+
+        function formatMoneyInput(input){
+          const key = input.dataset.moneyInput;
+          const store = moneyStores[key];
+          if(!store) return;
+          const digits = (input.value.match(/\d+/g) || []).join('');
+          if(!digits){
+            input.value = '';
+            store.normalized = '';
+            return;
+          }
+          store.normalized = digits;
+          input.value = `$ ${chunkThousands(digits)}`;
+          setFieldValidity(input, true);
+          if(key === 'renta_liquida'){ updateError(rentaError, false); }
+          if(key === 'monto_ahorro'){ updateError(ahorroError, false); }
+        }
+
+        function normalizeCommune(raw){
+          if(!raw) return null;
+          const clean = raw.trim();
+          if(!clean) return null;
+          const collapsed = clean.replace(/\s+/g, ' ');
+          const words = collapsed.split(' ');
+          const label = words.map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+          const key = collapsed.toLocaleLowerCase('es-CL');
+          return { key, label };
+        }
+
+        function syncCommuneUI(){
+          if(communeStore){
+            const communesArray = Array.from(communeSelections.values());
+            communeStore.value = communesArray.join(', ');
+            // Validar el campo cuando se actualiza
+            if(communesArray.length > 0){
+              setFieldValidity(communeStore, true);
+              updateError(communeError, false);
+            } else if(communeStore.hasAttribute('data-step-required')){
+              setFieldValidity(communeStore, false);
+            }
+          }
+          if(communeSelected){
+            communeSelected.innerHTML = '';
+            if(!communeSelections.size){
+              const empty = document.createElement('p');
+              empty.className = 'sc-hint';
+              empty.textContent = 'Selecciona una o mas comunas.';
+              communeSelected.appendChild(empty);
+            } else {
+              communeSelections.forEach((label, key) => {
+                const tag = document.createElement('span');
+                tag.className = 'commune-tag';
+                const text = document.createElement('span');
+                text.textContent = label;
+                const removeBtn = document.createElement('button');
+                removeBtn.type = 'button';
+                removeBtn.dataset.removeCommune = key;
+                removeBtn.setAttribute('aria-label', `Quitar ${label}`);
+                removeBtn.textContent = '×';
+                tag.appendChild(text);
+                tag.appendChild(removeBtn);
+                communeSelected.appendChild(tag);
+              });
+            }
+          }
+          communePills.forEach((pill) => {
+            const normalized = normalizeCommune(pill.dataset.communePill);
+            const isActive = normalized && communeSelections.has(normalized.key);
+            pill.classList.toggle('is-selected', Boolean(isActive));
+            pill.setAttribute('aria-pressed', String(Boolean(isActive)));
+          });
+          // Actualizar validación y campo oculto
+          if(communeSelections.size > 0){
+            const communesArray = Array.from(communeSelections.values());
+            if(communeStore) {
+              communeStore.value = communesArray.join(', ');
+              setFieldValidity(communeStore, true);
+            }
+            updateError(communeError, false);
+          } else {
+            if(communeStore) {
+              communeStore.value = '';
+              setFieldValidity(communeStore, false);
+            }
+          }
+        }
+
+        function addCommune(raw){
+          const normalized = normalizeCommune(raw);
+          if(!normalized) return;
+          communeSelections.set(normalized.key, normalized.label);
+          syncCommuneUI();
+        }
+
+        function toggleCommune(raw){
+          const normalized = normalizeCommune(raw);
+          if(!normalized) return;
+          if(communeSelections.has(normalized.key)){
+            communeSelections.delete(normalized.key);
+          } else {
+            communeSelections.set(normalized.key, normalized.label);
+          }
+          syncCommuneUI();
+        }
+
+        function chipIsRequired(store){
+          const condition = store.dataset.requiredWhen;
+          if(!condition) return true;
+          const [fieldName, expectedValue] = condition.split('=');
+          const selected = form.querySelector(`input[name="${fieldName}"]:checked`);
+          if(!selected) return false;
+          return selected.value === expectedValue;
+        }
+
+        function validateChipStore(store){
+          const groupName = store.dataset.chipStore;
+          const required = chipIsRequired(store);
+          const group = chipGroups[groupName];
+          const errorNode = chipErrors[groupName];
+          if(!required){
+            updateError(errorNode, false);
+            if(group) group.classList.remove('has-error');
+            return true;
+          }
+          const hasValue = Boolean(store.value);
+          updateError(errorNode, !hasValue, 'Selecciona una opcion.');
+          if(group){
+            group.classList.toggle('has-error', !hasValue);
+          }
+          return hasValue;
+        }
+
+        function validateField(field){
+          if(!field) return true;
+          if(field === eInput){
+            const valid = Boolean(field.value.trim()) && field.checkValidity();
+            setFieldValidity(field, valid);
+            updateError(eError, !valid, 'Ingresa un correo valido.');
+            return valid;
+          }
+          if(field === wInput){
+            const normalized = (wInput.dataset.maskNormalized || '').replace(/\D/g,'');
+            const valid = reCL.test(normalized);
+            setFieldValidity(field, valid);
+            updateError(wError, !valid, 'Formato +56 9 1234 5678');
+            return valid;
+          }
+          if(field === rutInput){
+            const value = field.value.trim();
+            const valid = Boolean(value) && field.dataset.maskValid === 'true';
+            setFieldValidity(field, valid);
+            updateError(rutError, !valid, value ? 'Ingresa un RUT valido.' : 'El RUT es obligatorio.');
+            return valid;
+          }
+          if(field.dataset.moneyInput === 'renta_liquida'){
+            const store = moneyStores.renta_liquida;
+            const valid = Boolean(store && store.normalized);
+            setFieldValidity(field, valid);
+            updateError(rentaError, !valid, 'Ingresa tu renta liquida aproximada.');
+            return valid;
+          }
+          if(field.dataset.moneyInput === 'monto_ahorro'){
+            const store = moneyStores.monto_ahorro;
+            const valid = Boolean(store && store.normalized);
+            setFieldValidity(field, valid);
+            updateError(ahorroError, !valid, 'Ingresa el monto ahorrado.');
+            return valid;
+          }
+          if(field.hasAttribute('data-commune-store')){
+            const valid = communeSelections.size > 0 || Boolean(field.value && field.value.trim());
+            setFieldValidity(field, valid);
+            updateError(communeError, !valid, 'Selecciona al menos una comuna.');
+            return valid;
+          }
+          if(field.type === 'checkbox'){
+            const valid = field.checked;
+            setFieldValidity(field, valid);
+            return valid;
+          }
+          if(field.type === 'radio'){
+            const groupInputs = form.querySelectorAll(`input[name="${field.name}"]`);
+            const anyChecked = Array.from(groupInputs).some((radio) => radio.checked);
+            groupInputs.forEach((radio) => {
+              const card = radio.closest('[data-card]');
+              if(card){ card.classList.toggle('has-error', !anyChecked); }
+            });
+            return anyChecked;
+          }
+          const value = field.value.trim();
+          const valid = Boolean(value);
+          setFieldValidity(field, valid);
+          return valid;
+        }
+
+        function validateStep(stepIndex, options = {}){
+          if(!stepPanels[stepIndex]) return true;
+          let isValid = true;
+          let firstInvalid = null;
+          const panel = stepPanels[stepIndex];
+          const required = panel.querySelectorAll('[data-step-required]');
+          required.forEach((field) => {
+            const fieldValid = validateField(field);
+            if(!fieldValid){
+              isValid = false;
+              if(!firstInvalid){
+                if(field.type === 'hidden'){
+                  const parentField = field.closest('.sc-field');
+                  const proxy = parentField ? parentField.querySelector('input, textarea, button') : null;
+                  firstInvalid = proxy || communeInput || field;
+                } else {
+                  firstInvalid = field;
+                }
+              }
+            }
+          });
+          const chipStoresInPanel = panel.querySelectorAll('[data-chip-store]');
+          chipStoresInPanel.forEach((store) => {
+            const chipValid = validateChipStore(store);
+            if(!chipValid){
+              isValid = false;
+              if(!firstInvalid){
+                firstInvalid = chipGroups[store.dataset.chipStore] || store;
+              }
+            }
+          });
+          // Validación especial para comunas en paso 3
+          if(stepIndex === 2 && panel.querySelector('[data-commune-store]')){
+            const communeValid = communeSelections.size > 0 || (communeStore && communeStore.value && communeStore.value.trim());
+            if(!communeValid){
+              isValid = false;
+              if(!firstInvalid){
+                firstInvalid = communeInput || communeStore || panel.querySelector('[data-commune-enhanced]');
+              }
+              updateError(communeError, true, 'Selecciona al menos una comuna.');
+              if(communeStore) setFieldValidity(communeStore, false);
+            } else {
+              updateError(communeError, false);
+              if(communeStore) setFieldValidity(communeStore, true);
+            }
+          }
+          if(!isValid){
+            if(formError){
+              formError.textContent = STEP_ERROR_MSG;
+              formError.setAttribute('aria-hidden','false');
+            }
+            if(options.focus && firstInvalid && typeof firstInvalid.focus === 'function'){
+              firstInvalid.focus();
+            }
+          } else if(stepIndex === currentStep && formError){
+            formError.setAttribute('aria-hidden','true');
+          }
+          return isValid;
+        }
+
+        function validateAllSteps(){
+          let firstInvalid = -1;
+          stepPanels.forEach((_, idx) => {
+            if(firstInvalid === -1 && !validateStep(idx)){
+              firstInvalid = idx;
+            }
+          });
+          if(firstInvalid >= 0){
+            goToStep(firstInvalid);
+            return false;
+          }
+          return true;
+        }
+
+        function goToStep(index){
+          if(!stepPanels.length) return;
+          const targetStep = Math.max(0, Math.min(stepPanels.length - 1, index));
+          const totalSteps = stepPanels.length || 1;
+          const progressPercent = totalSteps > 1 ? targetStep / (totalSteps - 1) : 1;
+          currentStep = targetStep;
+          stepPanels.forEach((panel, idx) => {
+            panel.setAttribute('aria-hidden', String(idx !== targetStep));
+            panel.classList.toggle('is-active', idx === targetStep);
+          });
+          stepPills.forEach((pill, idx) => {
+            pill.classList.toggle('is-active', idx === targetStep);
+            pill.classList.toggle('is-complete', idx < targetStep);
+          });
+          if(prevBtn){
+            const isFirstStep = targetStep === 0;
+            prevBtn.hidden = isFirstStep;
+            prevBtn.disabled = isFirstStep;
+          }
+          if(nextBtn){
+            if(targetStep === stepPanels.length - 1){
+              nextBtn.hidden = true;
+            } else {
+              nextBtn.hidden = false;
+              const label = stepPanels[targetStep].dataset.nextLabel || 'Continuar';
+              nextBtn.textContent = label;
+            }
+          }
+          if(submitBtn){ submitBtn.hidden = targetStep !== stepPanels.length - 1; }
+          if(progressValue){
+            const bounded = Math.max(0, Math.min(1, progressPercent));
+            progressValue.style.setProperty('--wizard-progress', `${(bounded * 100).toFixed(2)}%`);
+          }
+          if(progressBar){
+            progressBar.setAttribute('aria-valuenow', String(targetStep + 1));
+            progressBar.setAttribute('aria-valuemax', String(totalSteps));
+            progressBar.setAttribute('aria-valuetext', `Paso ${targetStep + 1} de ${totalSteps}`);
+          }
+          if(progressLabel){
+            progressLabel.textContent = `Paso ${targetStep + 1} de ${totalSteps}`;
+          }
+          if(summaryLabel){
+            const heading = stepPanels[targetStep].querySelector('h3');
+            summaryLabel.textContent = heading ? heading.textContent : `Paso ${targetStep + 1}`;
+          }
+          const focusTarget = stepPanels[targetStep].querySelector('[data-step-required]:not([type="hidden"]), input:not([type="hidden"]), textarea');
+          if(focusTarget && typeof focusTarget.focus === 'function'){
+            requestAnimationFrame(() => focusTarget.focus());
+          }
+          refreshWizardViewportHeight(targetStep);
+        }
+
+        moneyInputs.forEach((input) => {
+          input.addEventListener('input', () => formatMoneyInput(input));
+          input.addEventListener('blur', () => formatMoneyInput(input));
+        });
+
+        if(eInput){
+          eInput.addEventListener('input', () => {
+            if(eInput.validity.valid){
+              updateError(eError, false);
+              setFieldValidity(eInput, true);
+            }
+          });
+        }
+        if(wInput){
+          wInput.addEventListener('input', () => {
+            updateError(wError, false);
+            setFieldValidity(wInput, true);
+          });
+          wInput.addEventListener('blur', () => validateField(wInput));
+        }
+        if(rutInput){
+          rutInput.addEventListener('blur', () => validateField(rutInput));
+        }
+
+        cardInputs.forEach((input) => {
+          const card = input.closest('[data-card]');
+          if(card && input.checked){ card.classList.add('is-selected'); }
+          input.addEventListener('change', () => {
+            const group = form.querySelectorAll(`input[name="${input.name}"]`);
+            group.forEach((radio) => {
+              const radioCard = radio.closest('[data-card]');
+              if(radioCard){
+                radioCard.classList.toggle('is-selected', radio.checked);
+                radioCard.classList.remove('has-error');
+              }
+            });
+            if(input.name === 'tipo_ingreso'){
+              handleIngresoExtras(input.value);
+            }
+          });
+        });
+
+        Object.entries(chipGroups).forEach(([name, group]) => {
+          if(!group) return;
+          const store = form.querySelector(`[data-chip-store="${name}"]`);
+          group.addEventListener('click', (event) => {
+            const chip = event.target.closest('.chip');
+            if(!chip) return;
+            event.preventDefault();
+            group.querySelectorAll('.chip').forEach((btn) => {
+              btn.classList.toggle('is-selected', btn === chip);
+            });
+            if(store){ store.value = chip.dataset.chipValue || ''; }
+            updateError(chipErrors[name], false);
+            group.classList.remove('has-error');
+          });
+        });
+
+        if(communeSelected){
+          communeSelected.addEventListener('click', (event) => {
+            const removeBtn = event.target.closest('[data-remove-commune]');
+            if(!removeBtn) return;
+            communeSelections.delete(removeBtn.dataset.removeCommune);
+            syncCommuneUI();
+          });
+        }
+        communePills.forEach((pill) => {
+          pill.addEventListener('click', (event) => {
+            event.preventDefault();
+            toggleCommune(pill.dataset.communePill);
+          });
+        });
+        if(communeInput){
+          communeInput.addEventListener('keydown', (event) => {
+            if(event.key === 'Enter'){
+              event.preventDefault();
+              addCommune(communeInput.value);
+              communeInput.value = '';
+            }
+          });
+          communeInput.addEventListener('blur', () => {
+            if(communeInput.value.trim()){
+              addCommune(communeInput.value);
+              communeInput.value = '';
+            }
+          });
+        }
+
+        function handleIngresoExtras(selectedValue){
+          const normalized = (selectedValue || '').toLowerCase();
+          ingresoExtras.forEach((block) => {
+            const match = block.dataset.ingresoExtra;
+            const isActive = normalized && match === normalized;
+            block.hidden = !isActive;
+            block.setAttribute('aria-hidden', String(!isActive));
+            block.classList.toggle('is-visible', isActive);
+            if(!isActive){
+              const store = block.querySelector('[data-chip-store]');
+              if(store){
+                store.value = '';
+                const chipName = store.dataset.chipStore;
+                const group = chipGroups[chipName];
+                if(group){
+                  group.querySelectorAll('.chip').forEach((chip) => chip.classList.remove('is-selected'));
+                  group.classList.remove('has-error');
+                }
+                updateError(chipErrors[chipName], false);
+              }
+            }
+          });
+          refreshWizardViewportHeight();
+        }
+
+        const initialIngreso = form.querySelector('input[name="tipo_ingreso"]:checked');
+        handleIngresoExtras(initialIngreso ? initialIngreso.value : '');
+        syncCommuneUI();
+        moneyInputs.forEach((input) => formatMoneyInput(input));
+        if(wizard){ wizard.setAttribute('data-wizard-ready','true'); }
+        if(stepPanels.length){ goToStep(0); }
+
+        if(nextBtn){
+          nextBtn.addEventListener('click', () => {
+            if(formSuccess){ formSuccess.classList.remove('show'); }
+            if(validateStep(currentStep, { focus: true })){
+              goToStep(currentStep + 1);
+            }
+          });
+        }
+        if(prevBtn){
+          prevBtn.addEventListener('click', () => {
+            if(currentStep > 0){ goToStep(currentStep - 1); }
+          });
+        }
+        stepPills.forEach((pill, index) => {
+          pill.addEventListener('click', () => {
+            if(index < currentStep){ goToStep(index); }
+          });
+        });
+
+        if(window.ResizeObserver && wizardViewport){
+          const stepResizeObserver = new ResizeObserver(() => refreshWizardViewportHeight());
+          stepPanels.forEach((panel) => stepResizeObserver.observe(panel));
+        }
+        window.addEventListener('resize', () => refreshWizardViewportHeight());
+
+        form.addEventListener('submit', async (ev) => {
+          ev.preventDefault();
+          if(form.querySelector('[name="honey"]').value) return;
+          if(formSuccess){ formSuccess.classList.remove('show'); }
+          if(!validateAllSteps()) return;
+          if(!tsToken || !tsToken.value){
+            updateError(tsError, true, 'Confirma que no eres un bot');
+            if(formError){
+              formError.textContent = 'Confirma el captcha antes de enviar.';
+              formError.setAttribute('aria-hidden','false');
+            }
+            return;
+          }
+          if(formError){ formError.setAttribute('aria-hidden','true'); }
+          submitBtn.disabled = true;
+          if(sText) sText.style.display = 'none';
+          if(sLoad) sLoad.style.display = 'inline';
+          const data = new FormData(form);
+          Object.entries(moneyStores).forEach(([key, store]) => {
+            if(store && store.normalized){
+              const fieldName = store.input.name || key;
+              data.set(fieldName, store.normalized);
+            }
+          });
+          try {
+            const res = await fetch(form.action, { method:'POST', body:data });
+            if(!res.ok){ throw new Error('submit_failed'); }
+            form.reset();
+            communeSelections.clear();
+            syncCommuneUI();
+            moneyInputs.forEach((input) => {
+              input.value = '';
+              const store = moneyStores[input.dataset.moneyInput];
+              if(store) store.normalized = '';
+            });
+            cardInputs.forEach((input) => {
+              const card = input.closest('[data-card]');
+              if(card) card.classList.remove('is-selected');
+            });
+            handleIngresoExtras('');
+            goToStep(0);
+            if(tsToken) tsToken.value = '';
+            if(tsError) tsError.setAttribute('aria-hidden','true');
+            if(formSuccess){
+              formSuccess.classList.add('show');
+              formSuccess.scrollIntoView({ behavior:'smooth', block:'center' });
+            }
+            if(window.SelectTracking){ window.SelectTracking.trackEvent('form_submit_success', { source:'home_landing' }); }
+            form.dispatchEvent(new CustomEvent('sc:form:success', { detail:{ source:'home_landing' }, bubbles:true }));
+          } catch (err){
+            console.error('form_submit_error', err);
+            if(formError){
+              formError.textContent = 'No pudimos registrar tu solicitud. Intenta nuevamente en unos segundos.';
+              formError.setAttribute('aria-hidden','false');
+            }
+          } finally {
+            submitBtn.disabled = false;
+            if(sText) sText.style.display = 'inline';
+            if(sLoad) sLoad.style.display = 'none';
+          }
+        });
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function(e){
+          const href = this.getAttribute('href');
+          if(href === '#') return;
+          const target = document.querySelector(href);
+          if(target){
+            e.preventDefault();
+            target.scrollIntoView({ behavior:'smooth', block:'start' });
+          }
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
