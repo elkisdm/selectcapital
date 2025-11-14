@@ -2,23 +2,26 @@
   --lp-max: 1200px;
   --lp-gutter: clamp(1.5rem, 4vw, 3rem);
 
-  /* Premium World Member Color Scheme - Rose Gold/Copper + Metallic Gold */
-  --sc-rose-gold: #CD7F32;
-  --sc-rose-gold-light: #D4A574;
-  --sc-rose-gold-dark: #B87333;
-  --sc-copper: #C19A6B;
-  --sc-copper-light: #D4A574;
-  --sc-gold-500: #DAA520;
-  --sc-gold-400: #F4C430;
-  --sc-gold-600: #B8860B;
+  /* Accent aliases fed by theme tokens */
+  --sc-rose-gold: var(--sc-rose-500);
+  --sc-rose-gold-light: var(--sc-rose-300);
+  --sc-rose-gold-dark: var(--sc-rose-600);
+  --sc-copper: var(--sc-rose-400);
+  --sc-copper-light: var(--sc-rose-300);
   --sc-gold-metallic: #C9A961;
-  --sc-gold-dark: #8B6914;
-  --sc-gold-glow: rgba(205,127,50,0.4);
-  --sc-gold-glow-strong: rgba(205,127,50,0.6);
-  --sc-gold-glow-soft: rgba(205,127,50,0.2);
-  --sc-gold-gradient: linear-gradient(135deg, #CD7F32 0%, #DAA520 40%, #F4C430 70%, #D4A574 100%);
-  --sc-gold-gradient-hover: linear-gradient(135deg, #D4A574 0%, #F4C430 30%, #FFD700 70%, #FFF8DC 100%);
-  --sc-rose-gradient: linear-gradient(135deg, #B87333 0%, #CD7F32 50%, #C19A6B 100%);
+  --sc-gold-dark: var(--sc-gold-700);
+  --sc-gold-glow: color-mix(in srgb, var(--sc-rose-gold) 35%, transparent);
+  --sc-gold-glow-strong: color-mix(in srgb, var(--sc-rose-gold) 55%, transparent);
+  --sc-gold-glow-soft: color-mix(in srgb, var(--sc-rose-gold) 20%, transparent);
+  --sc-gold-gradient: var(--sc-gradient-gold);
+  --sc-gold-gradient-hover: linear-gradient(135deg, var(--sc-rose-gold-light) 0%, var(--sc-gold-400) 30%, #FFD700 70%, #FFF8DC 100%);
+  --sc-rose-gradient: var(--sc-gradient-rose);
+
+  --sc-card-bg: var(--sc-panel-bg);
+  --sc-card-border: var(--sc-panel-border);
+  --sc-chip-surface: var(--sc-chip-bg);
+  --sc-chip-border: var(--sc-chip-border);
+  --sc-chip-text: color-mix(in srgb, var(--sc-text-primary) 80%, var(--sc-rose-gold-light) 20%);
 }
 * {
   box-sizing: border-box;
@@ -80,8 +83,10 @@ h3 {
 
 /* Buttons */
 .btn-primary {
-  --btn-border: linear-gradient(135deg, rgba(255,221,200,0.7), rgba(205,127,50,0.5));
-  --btn-fill: rgba(14,18,26,0.55);
+  --btn-border: linear-gradient(135deg,
+      color-mix(in srgb, var(--sc-rose-gold-light) 75%, transparent),
+      color-mix(in srgb, var(--sc-rose-gold) 60%, transparent));
+  --btn-fill: color-mix(in srgb, var(--sc-ink-950) 65%, transparent);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -92,7 +97,7 @@ h3 {
   font-size: 1rem;
   letter-spacing: 0.02em;
   text-transform: none;
-  color: #F7F2EC;
+  color: var(--sc-snow);
   position: relative;
   isolation: isolate;
   cursor: pointer;
@@ -128,9 +133,9 @@ h3 {
 }
 .btn-primary:hover::after,
 .btn-primary:focus-visible::after {
-  background: rgba(17,21,32,0.5);
-  box-shadow: inset 0 1px rgba(255,255,255,0.18),
-    0 10px 28px rgba(205,127,50,0.25);
+  background: color-mix(in srgb, var(--sc-ink-950) 55%, transparent);
+  box-shadow: inset 0 1px color-mix(in srgb, var(--sc-snow) 18%, transparent),
+    0 10px 28px var(--sc-gold-glow-soft);
 }
 .btn-primary:focus-visible {
   outline: 2px solid rgba(255,221,200,0.7);
@@ -143,6 +148,10 @@ h3 {
   opacity: 0.45;
   cursor: not-allowed;
   transform: none;
+}
+html[data-theme='light'] .btn-primary {
+  --btn-fill: color-mix(in srgb, var(--sc-snow) 92%, var(--sc-rose-gold) 8%);
+  color: var(--sc-ink-950);
 }
 @media (hover: none) {
   .btn-primary:hover {
@@ -173,7 +182,7 @@ h3 {
 }
 .hero::before {
   background-image:
-    linear-gradient(120deg, rgba(5,8,15,0.85), rgba(5,8,15,0.55)),
+    var(--sc-hero-overlay),
     url('images/hero-la-florida.jpg');
   background-size: cover;
   background-position: center;
@@ -191,14 +200,14 @@ h3 {
 .hero-card {
   max-width: 760px;
   margin: 0 auto;
-  background: rgba(7,10,16,0.45);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--sc-hero-card-bg);
+  border: 1px solid var(--sc-card-border);
   border-radius: var(--sc-radius-xxl, 32px);
   padding: clamp(2rem, 5vw, 3.25rem);
   backdrop-filter: blur(22px) saturate(1.4);
   -webkit-backdrop-filter: blur(22px) saturate(1.4);
-  box-shadow: 0 30px 60px rgba(5,8,15,0.45),
-    inset 0 1px rgba(255,255,255,0.12);
+  box-shadow: var(--sc-shadow-e2),
+    inset 0 1px color-mix(in srgb, var(--sc-snow) 18%, transparent);
   position: relative;
   overflow: hidden;
 }
@@ -207,8 +216,8 @@ h3 {
   position: absolute;
   inset: 1px;
   border-radius: inherit;
-  border: 1px solid rgba(255,255,255,0.08);
-  opacity: 0.8;
+  border: 1px solid var(--sc-card-border);
+  opacity: 0.85;
   pointer-events: none;
 }
 .hero-card::after {
@@ -216,7 +225,7 @@ h3 {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: radial-gradient(circle at 30% 0%, rgba(255,255,255,0.18), transparent 45%);
+  background: radial-gradient(circle at 30% 0%, color-mix(in srgb, var(--sc-snow) 25%, transparent), transparent 45%);
   pointer-events: none;
 }
 .hero-card > * {
@@ -237,6 +246,10 @@ h3 {
   font-size: 0.8rem;
   color: var(--sc-text-tertiary);
   letter-spacing: 0.1em;
+}
+.trust-separator {
+  color: var(--sc-rose-gold);
+  padding: 0 0.2rem;
 }
 
 /* Steps Section */
@@ -337,6 +350,27 @@ h3 {
   font-size: 1.2rem;
   font-weight: 500;
 }
+.zone-image--rose {
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--sc-rose-gold) 25%, transparent),
+      color-mix(in srgb, var(--sc-panel-bg) 85%, transparent));
+}
+.zone-image--gold {
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--sc-gold-400) 25%, transparent),
+      color-mix(in srgb, var(--sc-panel-bg) 85%, transparent));
+}
+.zone-tag {
+  opacity: 0.75;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+.zone-tag--rose {
+  color: color-mix(in srgb, var(--sc-rose-gold-light) 80%, var(--sc-text-primary) 20%);
+}
+.zone-tag--gold {
+  color: color-mix(in srgb, var(--sc-gold-400) 80%, var(--sc-text-primary) 20%);
+}
 .zone-content {
   padding: 1.5rem;
 }
@@ -419,14 +453,14 @@ h3 {
   }
 }
 .team-card {
-  background: rgba(8,11,18,0.78);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--sc-card-bg);
+  border: 1px solid var(--sc-card-border);
   border-radius: 20px;
   padding: 1rem;
   backdrop-filter: blur(18px) saturate(1.25);
   -webkit-backdrop-filter: blur(18px) saturate(1.25);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.45),
-    inset 0 1px rgba(255,255,255,0.12);
+  box-shadow: var(--sc-shadow-e1),
+    inset 0 1px color-mix(in srgb, var(--sc-snow) 14%, transparent);
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -440,8 +474,10 @@ h3 {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(145deg, rgba(53,225,166,0.16), rgba(7,10,16,0.92));
-  opacity: 0.9;
+  background: linear-gradient(145deg,
+      color-mix(in srgb, var(--sc-jade-400) 25%, transparent),
+      color-mix(in srgb, var(--sc-panel-bg) 85%, transparent));
+  opacity: 0.85;
   pointer-events: none;
   z-index: -1;
 }
@@ -450,7 +486,7 @@ h3 {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: radial-gradient(120% 80% at 8% 6%, rgba(255,255,255,0.16), transparent 60%);
+  background: var(--sc-glass-highlight);
   pointer-events: none;
 }
 .team-card:hover {
@@ -488,27 +524,27 @@ h3 {
   letter-spacing: 0.03em;
   text-transform: uppercase;
   font-weight: 500;
-  background: rgba(205,127,50,0.08);
-  border: 1px solid rgba(205,127,50,0.28);
-  color: rgba(212,165,116,0.95);
-  box-shadow: inset 0 1px rgba(255,255,255,0.08),
-    0 2px 10px rgba(0,0,0,0.25);
+  background: var(--sc-chip-surface);
+  border: 1px solid var(--sc-chip-border);
+  color: var(--sc-chip-text);
+  box-shadow: inset 0 1px color-mix(in srgb, var(--sc-snow) 18%, transparent),
+    0 2px 10px color-mix(in srgb, #000 25%, transparent);
   width: 100%;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 .team-chip--accent {
-  background: linear-gradient(130deg, rgba(205,127,50,0.95), rgba(212,165,116,0.75));
-  color: #0B0E12;
-  border-color: rgba(255,255,255,0.35);
-  box-shadow: inset 0 1px rgba(255,255,255,0.45),
-    0 8px 20px rgba(205,127,50,0.45);
+  background: var(--sc-rose-gradient);
+  color: var(--sc-ink-950);
+  border-color: color-mix(in srgb, var(--sc-snow) 35%, transparent);
+  box-shadow: inset 0 1px color-mix(in srgb, var(--sc-snow) 55%, transparent),
+    0 8px 20px var(--sc-gold-glow);
 }
 .team-chip--muted {
-  color: rgba(212,165,116,0.9);
-  border-color: rgba(212,165,116,0.28);
-  background: rgba(212,165,116,0.16);
+  color: color-mix(in srgb, var(--sc-text-primary) 65%, var(--sc-rose-gold-light) 35%);
+  border-color: var(--sc-chip-border);
+  background: color-mix(in srgb, var(--sc-chip-surface) 70%, transparent);
 }
 .team-chip--wide {
   grid-column: 1 / -1;
@@ -526,8 +562,10 @@ h3 {
   position: relative;
   aspect-ratio: 3 / 4;
   width: 100%;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: linear-gradient(135deg, rgba(205,127,50,0.2), rgba(11,14,18,0.85));
+  border: 1px solid var(--sc-card-border);
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--sc-rose-gold) 25%, transparent),
+      color-mix(in srgb, var(--sc-panel-bg) 85%, transparent));
 }
 .team-photo img {
   width: 100%;
@@ -545,8 +583,12 @@ h3 {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(5,8,15,0) 20%, rgba(5,8,15,0.6) 100%),
-    linear-gradient(135deg, rgba(53,225,166,0.25), rgba(203,160,122,0.25));
+  background: linear-gradient(180deg,
+      color-mix(in srgb, var(--sc-panel-bg) 15%, transparent) 0%,
+      color-mix(in srgb, var(--sc-panel-bg) 80%, transparent) 100%),
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--sc-jade-400) 25%, transparent),
+      color-mix(in srgb, var(--sc-rose-gold-light) 25%, transparent));
   mix-blend-mode: soft-light;
   pointer-events: none;
 }
@@ -555,7 +597,7 @@ h3 {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  border: 2px solid rgba(8,11,18,0.9);
+  border: 2px solid color-mix(in srgb, var(--sc-panel-bg) 90%, transparent);
   background: var(--sc-jade-500);
   box-shadow: 0 0 12px rgba(53,225,166,0.45);
   bottom: 16px;
@@ -580,7 +622,7 @@ h3 {
 .team-experience {
   margin: 0.15rem 0 0 0;
   font-size: 0.85rem;
-  color: rgba(255,255,255,0.65);
+  color: var(--sc-text-secondary);
   font-weight: 500;
 }
 .team-meta-list {
@@ -597,7 +639,7 @@ h3 {
   font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
+  color: var(--sc-text-tertiary);
 }
 .team-meta-value {
   margin: 0;
@@ -611,8 +653,8 @@ h3 {
   justify-content: center;
   gap: 0.5rem;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.16);
-  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--sc-ghost-control-border);
+  background: var(--sc-ghost-control-bg);
   color: var(--sc-text-primary);
   font-weight: 600;
   padding: 0.85rem 1.25rem;
@@ -628,8 +670,8 @@ h3 {
 }
 .team-primary-btn:hover,
 .team-primary-btn:focus-visible {
-  border-color: rgba(53,225,166,0.8);
-  background: rgba(53,225,166,0.16);
+  border-color: color-mix(in srgb, var(--sc-jade-400) 65%, transparent);
+  background: color-mix(in srgb, var(--sc-jade-400) 15%, var(--sc-ghost-control-bg));
   transform: translateY(-1px);
 }
 .team-actions {
@@ -641,12 +683,12 @@ h3 {
   width: 36px;
   height: 36px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.16);
+  border: 1px solid var(--sc-ghost-control-border);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #F7F2EC;
-  background: rgba(255,255,255,0.04);
+  color: var(--sc-text-primary);
+  background: var(--sc-ghost-control-bg);
   transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 .team-icon-btn svg {
@@ -662,10 +704,10 @@ h3 {
 }
 .team-icon-btn:hover,
 .team-icon-btn:focus-visible {
-  border-color: rgba(53,225,166,0.6);
-  background: rgba(53,225,166,0.18);
+  border-color: color-mix(in srgb, var(--sc-jade-400) 55%, transparent);
+  background: color-mix(in srgb, var(--sc-jade-400) 18%, var(--sc-ghost-control-bg));
   transform: translateY(-1px);
-  box-shadow: 0 0 0 6px rgba(53,225,166,0.14);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--sc-jade-400) 35%, transparent);
 }
 @media (max-width: 640px) {
   .team-card {
@@ -759,11 +801,28 @@ h3 {
 .form-container > * {
   position: relative;
 }
+.sc-field[data-disabled='true'] .sc-input {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.sc-field[data-disabled='true'] .sc-hint {
+  opacity: 0.7;
+}
 .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
   margin-bottom: 1.5rem;
+}
+.form-grid > .sc-field,
+.form-grid > label.sc-field {
+  height: 100%;
+  align-self: stretch;
+}
+.form-grid .sc-field .sc-input,
+.form-grid .sc-field select.sc-input,
+.form-grid .sc-field textarea.sc-input {
+  width: 100%;
 }
 .form-field-full {
   grid-column: 1 / -1;
@@ -1032,11 +1091,12 @@ h3 {
   border: 1px dashed rgba(255,255,255,0.15);
   padding: 1rem;
   background: rgba(255,255,255,0.02);
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 0.75rem;
 }
 .option-secondary.is-visible {
+  display: flex;
   border-style: solid;
   border-color: rgba(205,127,50,0.5);
 }
@@ -1069,6 +1129,22 @@ h3 {
 .chip.is-selected {
   border-color: var(--sc-rose-gold);
   background: rgba(205,127,50,0.15);
+}
+.chip.chip--compact {
+  min-width: auto;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.chip-set--inline {
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.chip-set--inline .chip {
+  flex: 1;
+  justify-content: center;
+  text-align: center;
 }
 .chip-set.has-error .chip {
   border-color: var(--sc-danger-500, #F87171);
@@ -1357,8 +1433,10 @@ select.sc-input option[disabled] {
 /* Media placeholders */
 .media-placeholder {
   border-radius: var(--sc-radius-xl);
-  border: 1px dashed rgba(255,221,200,0.35);
-  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(11,14,18,0.85));
+  border: 1px dashed color-mix(in srgb, var(--sc-rose-gold-light) 45%, transparent);
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--sc-surface-card-solid) 60%, transparent),
+      color-mix(in srgb, var(--sc-panel-bg) 85%, transparent));
   min-height: 220px;
   display: flex;
   align-items: center;
@@ -1375,7 +1453,9 @@ select.sc-input option[disabled] {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 55%);
+  background: radial-gradient(circle at top,
+      color-mix(in srgb, var(--sc-snow) 12%, transparent),
+      transparent 55%);
   mix-blend-mode: screen;
   pointer-events: none;
 }

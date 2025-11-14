@@ -6,6 +6,15 @@ function getDocEl() {
   return document.documentElement;
 }
 
+function syncMetaTheme(theme) {
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (!meta) return;
+  const el = getDocEl();
+  const computed = getComputedStyle(el).getPropertyValue('--sc-meta-theme-color');
+  const fallback = theme === 'dark' ? '#05080F' : '#F6F8FC';
+  meta.setAttribute('content', (computed && computed.trim()) || fallback);
+}
+
 function persistTheme(theme) {
   try {
     window.localStorage.setItem(STORAGE_KEY, theme);
@@ -28,6 +37,7 @@ export function applySelectTheme(theme) {
   el.setAttribute('data-theme', theme);
   el.style.setProperty('color-scheme', theme === 'dark' ? 'dark' : 'light');
   persistTheme(theme);
+  syncMetaTheme(theme);
 }
 
 export function getCurrentSelectTheme() {

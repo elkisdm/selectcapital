@@ -3,7 +3,7 @@
       <div class="section-inner">
         <h2 class="text-center">Recibir asesoría integral</h2>
         <div class="form-container">
-          <form action="/submit.php" method="POST" data-track-form data-home-wizard novalidate>
+          <form id="asesoria-form" action="/submit.php" method="POST" data-track-form data-home-wizard data-form-anchor novalidate>
             <input type="hidden" name="utm_source" />
             <input type="hidden" name="utm_medium" />
             <input type="hidden" name="utm_campaign" />
@@ -79,11 +79,11 @@
                       </label>
                     </div>
                     <div class="form-wizard-nav">
-                      <button type="button" class="btn-primary" data-step-next>Continuar a Perfil e ingresos</button>
+                      <button type="button" class="btn-primary" data-step-next>Siguiente</button>
                     </div>
                   </section>
 
-                  <section class="wizard-step" data-step-panel="1" data-next-label="Ir a Comunas y cierre" aria-labelledby="home-step-2">
+                  <section class="wizard-step" data-step-panel="1" data-next-label="Siguiente" aria-labelledby="home-step-2">
                     <div class="step-header">
                       <p class="step-kicker">Paso 2</p>
                       <h3 id="home-step-2">Perfil del cliente e ingresos</h3>
@@ -153,7 +153,7 @@
                           <span>Ingresos no formales. Es clave detallar montos.</span>
                         </button>
                       </div>
-                      <input type="hidden" name="tipo_contrato" data-chip-store="tipo_contrato" data-required-when="tipo_ingreso=Dependiente">
+                      <input type="hidden" name="tipo_contrato" data-chip-store="tipo_contrato" data-required-when="tipo_ingreso=Dependiente|Mixto">
                       <p class="sc-error" data-chip-error="tipo_contrato" aria-hidden="true">Selecciona el tipo de contrato.</p>
                     </div>
 
@@ -169,7 +169,7 @@
                           <span>Ingresos derivados de utilidades o participaciones.</span>
                         </button>
                       </div>
-                      <input type="hidden" name="tipo_ingreso_independiente" data-chip-store="tipo_ingreso_independiente" data-required-when="tipo_ingreso=Independiente">
+                      <input type="hidden" name="tipo_ingreso_independiente" data-chip-store="tipo_ingreso_independiente" data-required-when="tipo_ingreso=Independiente|Mixto">
                       <p class="sc-error" data-chip-error="tipo_ingreso_independiente" aria-hidden="true">Selecciona el tipo de ingreso.</p>
                     </div>
 
@@ -180,22 +180,38 @@
                         <p class="sc-error" id="renta-error" aria-hidden="true">Ingresa tu renta liquida aproximada.</p>
                       </label>
                       <label class="sc-field">
+                        <span class="sc-label">Capacidad de ahorro mensual (CLP)</span>
+                        <input type="text" name="capacidad_ahorro_mensual" class="sc-input" inputmode="numeric" data-money-input="capacidad_ahorro_mensual" placeholder="$ 400.000" data-step-required required />
+                        <p class="sc-error" id="capacidad-error" aria-hidden="true">Indica tu capacidad mensual de ahorro.</p>
+                      </label>
+                    </div>
+                    <div class="form-grid">
+                      <label class="sc-field">
+                        <span class="sc-label">¿Tienes ahorro disponible?</span>
+                        <div class="chip-set chip-set--inline" data-savings-toggle role="radiogroup" aria-label="¿Tienes ahorro disponible?">
+                          <button type="button" class="chip chip--compact" data-savings-value="si" role="radio" aria-checked="false" tabindex="0">Sí</button>
+                          <button type="button" class="chip chip--compact" data-savings-value="no" role="radio" aria-checked="false" tabindex="-1">No</button>
+                        </div>
+                        <input type="hidden" name="tiene_ahorro" data-savings-store data-step-required required />
+                        <p class="sc-error" id="ahorro-toggle-error" aria-hidden="true">Selecciona si cuentas con ahorro.</p>
+                      </label>
+                      <label class="sc-field" data-savings-field>
                         <span class="sc-label">Monto de ahorro disponible</span>
-                        <input type="text" name="monto_ahorro" class="sc-input" inputmode="numeric" data-money-input="monto_ahorro" placeholder="$ 2.000.000" data-step-required required />
+                        <input type="text" name="monto_ahorro" class="sc-input" inputmode="numeric" data-money-input="monto_ahorro" placeholder="$ 2.000.000" data-step-required data-savings-input disabled />
                         <span class="sc-hint">Solo ingresa el monto total ahorrado.</span>
                         <p class="sc-error" id="ahorro-error" aria-hidden="true">Ingresa el monto ahorrado.</p>
                       </label>
                     </div>
                     <div class="form-wizard-nav">
                       <button type="button" class="btn-ghost" data-step-prev aria-label="Volver al paso anterior">Volver</button>
-                      <button type="button" class="btn-primary" data-step-next>Ir a Comunas y cierre</button>
+                      <button type="button" class="btn-primary" data-step-next>Siguiente</button>
                     </div>
                   </section>
 
                   <section class="wizard-step" data-step-panel="2" aria-labelledby="home-step-3">
                     <div class="step-header">
                       <p class="step-kicker">Paso 3</p>
-                      <h3 id="home-step-3">Zona y cierre</h3>
+                      <h3 id="home-step-3">Ubicación y contacto</h3>
                       <p class="sc-hint">Selecciona comunas, agrega notas y autoriza el contacto.</p>
                     </div>
 
@@ -267,7 +283,7 @@
                     <div class="form-grid">
                       <label class="sc-field">
                         <span class="sc-label">¿Como prefieres que te contactemos?</span>
-                        <select name="canal_preferido" class="sc-input" data-step-required required>
+                        <select name="canal_preferido" class="sc-input" data-select-enhanced data-step-required required>
                           <option value="">Selecciona el canal</option>
                           <option value="whatsapp">WhatsApp</option>
                           <option value="correo">Correo</option>
@@ -276,7 +292,7 @@
                       </label>
                       <label class="sc-field">
                         <span class="sc-label">Franja horaria</span>
-                        <select name="franja_preferida" class="sc-input" data-step-required required>
+                        <select name="franja_preferida" class="sc-input" data-select-enhanced data-step-required required>
                           <option value="">Selecciona la franja</option>
                           <option value="manana">Mañana</option>
                           <option value="tarde">Tarde</option>
