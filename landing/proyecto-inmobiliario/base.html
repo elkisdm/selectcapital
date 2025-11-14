@@ -4,10 +4,12 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" data-meta="description" />
+    <meta name="description" content="Invierte en proyecto inmobiliario con Select Capital. Pie en cuotas, arriendo garantizado, asesoría sin costo. Solicita tu propuesta personalizada." data-meta="description" />
     <link rel="icon" type="image/png" href="/images/icono.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="/lenguaje visual/theme/select-capital-theme.css" as="style" />
+    <link rel="preload" href="./styles.css" as="style" />
     <link
       rel="stylesheet"
       href="/lenguaje visual/theme/select-capital-theme.css"
@@ -17,42 +19,23 @@
     <title data-meta="title">Proyecto Inmobiliario — Select Capital</title>
   </head>
   <body>
+    <a href="#lp-main" class="skip-link">Saltar al contenido principal</a>
     <main id="lp-main">
       <section class="hero" id="hero" data-section="hero">
         <div class="page-shell hero__layout">
           <article class="surface hero__card sc-noise">
-            <div class="hero__urgency-banner">
-              <span class="urgency-badge">⏰ Solo 3 unidades disponibles</span>
-              <span class="urgency-text">Respuesta en menos de 2 horas</span>
-            </div>
-
-            <span class="hero__eyebrow" data-slot="hero-stage"></span>
-            <div class="hero__headline">
-              <h1 class="hero__title" data-slot="hero-title">
-                Duplica tu dinero en 7 años con arriendo garantizado
+            <span class="hero__eyebrow js-content" data-slot="hero-stage">Etapa 1 · Entrega Q4 2026</span>
+            
+            <h1 class="hero__title js-content" data-slot="hero-title">
+              Invierte desde UF 2.190
               </h1>
-              <p class="hero__subtitle" data-slot="hero-subtitle">
-                Pie desde UF 219 en cuotas · Rentabilidad 7,2% · Entrega Q4 2026
-              </p>
-            </div>
+            <p class="hero__subtitle js-content" data-slot="hero-subtitle">
+              Arriendo garantizado y pie en cuotas
+            </p>
 
-            <div class="hero__trust-indicators">
-              <div class="trust-item">
-                <span class="trust-icon">✅</span>
-                <span>127 familias ya invirtieron</span>
-              </div>
-              <div class="trust-item">
-                <span class="trust-icon">🏦</span>
-                <span>Financiamiento aprobado por bancos tradicionales</span>
-              </div>
-              <div class="trust-item">
-                <span class="trust-icon">📞</span>
-                <span>Asesoría gratuita sin compromiso</span>
-              </div>
+            <div class="hero__badges" data-slot="hero-badges" class="js-content">
+              <!-- Badges will be populated by JavaScript -->
             </div>
-
-            <div class="hero__badges" data-slot="hero-badges"></div>
-            <ul class="hero__points" data-slot="hero-points"></ul>
 
             <div class="hero__cta" data-slot="hero-ctas">
               <button
@@ -62,40 +45,33 @@
                 data-analytics="cta_click"
                 data-cta-context="hero_primary"
               >
-                <span class="btn-text">Calcular mi inversión ideal</span>
-                <span class="btn-subtext">Gratis · Sin compromiso</span>
+                Ver propuesta gratis
               </button>
-              <a
-                class="btn btn-ghost"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-action="download-ficha"
-                data-analytics="cta_click"
-                data-cta-context="hero_secondary"
-              >
-                📄 Descargar ficha completa
-              </a>
             </div>
 
-            <div class="hero__guarantee">
-              <div class="guarantee-icon">🛡️</div>
-              <div class="guarantee-text">
-                <strong>100% devolución garantizada</strong> si no calificas al crédito hipotecario
+            <div class="hero__trust-indicators">
+              <div class="trust-item">
+                <span class="trust-icon">✅</span>
+                <span>Arriendo garantizado</span>
+              </div>
+              <div class="trust-item">
+                <span class="trust-icon">📞</span>
+                <span>Asesoría sin costo</span>
               </div>
             </div>
-
-            <div class="hero__stats" data-slot="hero-stats"></div>
           </article>
 
           <aside class="surface hero__media sc-noise" data-slot="hero-media">
             <img
               class="hero__image lazy-image"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Crect fill='%23151a20' width='800' height='500'/%3E%3Ctext fill='%2364758b' x='50%25' y='50%25' text-anchor='middle' dy='.3em' font-family='system-ui' font-size='16'%3ECargando imagen...%3C/text%3E%3C/svg%3E"
               data-src="/images/hero-la-florida.jpg"
-              alt="Vista del proyecto inmobiliario"
+              alt="Vista exterior del proyecto inmobiliario"
               loading="lazy"
             />
-            <div class="hero__overlay" data-slot="hero-overlay"></div>
+            <div class="hero__overlay" data-slot="hero-overlay" class="js-content" style="display: none;">
+              <!-- Overlay will be populated by JavaScript -->
+            </div>
             <div class="image-placeholder" aria-hidden="true">
               <span>Cargando imagen...</span>
             </div>
@@ -112,7 +88,13 @@
             </p>
           </header>
           <div class="surface">
-            <div class="highlights-grid" data-slot="highlights-grid"></div>
+            <div class="highlights-grid" data-slot="highlights-grid" class="js-content">
+              <!-- Highlights will be populated by JavaScript -->
+              <div class="highlight-card" style="opacity: 0.5;">
+                <span>Cargando datos del proyecto...</span>
+                <strong>---</strong>
+              </div>
+            </div>
             <p class="field-hint">
               *Valores referenciales sujetos a evaluación de la inmobiliaria y
               banco.
@@ -125,61 +107,28 @@
       <section class="section testimonials-above-fold" id="testimonios-principales" data-section="testimonials-main">
         <div class="page-shell">
           <header class="section__header">
-            <h2 class="section__title">Historias reales de inversionistas</h2>
-            <p class="section__lead">
-              Familias que ya están recibiendo arriendo mensual con Select Capital
-            </p>
+            <h2 class="section__title">Lo que dicen nuestros clientes</h2>
           </header>
-          <div class="testimonials-grid-above-fold" data-slot="testimonials-above-fold">
+          <div class="testimonials-grid-above-fold">
             <div class="testimonial-card featured">
-              <div class="testimonial-rating">
-                ⭐⭐⭐⭐⭐
-              </div>
+              <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
               <p class="testimonial-text">
-                "Reservé mi departamento en 48 horas. La asesoría fue clave para entender los números y asegurar el crédito. Ya estoy recibiendo $520.000 mensuales de arriendo."
+                "Ya estoy recibiendo $520.000 mensuales de arriendo."
               </p>
               <div class="testimonial-author">
-                <strong>Carolina R., 32 años</strong>
-                <span>Ñuñoa · Inversión desde UF 2.590</span>
+                <strong>Carolina R.</strong>
+                <span>Inversión desde UF 2.590</span>
               </div>
             </div>
             <div class="testimonial-card featured">
-              <div class="testimonial-rating">
-                ⭐⭐⭐⭐⭐
-              </div>
+              <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
               <p class="testimonial-text">
-                "Excelente proceso. Me guiaron desde la reserva hasta la entrega. El pie en cuotas me permitió invertir sin tanto capital inicial."
+                "El pie en cuotas me permitió invertir sin tanto capital."
               </p>
               <div class="testimonial-author">
-                <strong>Mario G., 41 años</strong>
-                <span>Puente Alto · Inversión desde UF 2.190</span>
+                <strong>Mario G.</strong>
+                <span>Inversión desde UF 2.190</span>
               </div>
-            </div>
-            <div class="testimonial-card featured">
-              <div class="testimonial-rating">
-                ⭐⭐⭐⭐⭐
-              </div>
-              <p class="testimonial-text">
-                "La transparencia es total. Me mostraron escenarios reales de rentabilidad y me ayudaron con el subsidio DS19. Muy recomendado."
-              </p>
-              <div class="testimonial-author">
-                <strong>Valentina M., 28 años</strong>
-                <span>La Florida · Inversión desde UF 2.390</span>
-              </div>
-            </div>
-          </div>
-          <div class="social-proof-stats">
-            <div class="stat-item">
-              <strong>127+</strong>
-              <span>Familias invirtieron</span>
-            </div>
-            <div class="stat-item">
-              <strong>$65M+</strong>
-              <span>En arriendos pagados</span>
-            </div>
-            <div class="stat-item">
-              <strong>4.9/5</strong>
-              <span>Calificación promedio</span>
             </div>
           </div>
         </div>
@@ -193,7 +142,9 @@
               Mira los espacios comunes, amenities y el piloto en detalle.
             </p>
           </header>
-          <div class="gallery-grid" data-slot="gallery-grid"></div>
+          <div class="gallery-grid" data-slot="gallery-grid" class="js-content">
+            <!-- Gallery items will be populated by JavaScript -->
+          </div>
         </div>
       </section>
 
@@ -206,138 +157,8 @@
               <a href="#" class="pie-modal-link" data-action="open-pie-modal">Ver cómo pago mi pie</a>
             </p>
           </header>
-          <div class="typology-grid" data-slot="typology-grid"></div>
-        </div>
-      </section>
-
-      <section class="section" id="simulador" data-section="simulator">
-        <div class="page-shell">
-          <header class="section__header">
-            <h2 class="section__title">Simulador express</h2>
-            <p class="section__lead">
-              Ingresa tu renta y te mostramos dividendo estimado, rango UF y
-              tipologías alcanzables.
-            </p>
-          </header>
-
-          <div class="surface simulator-interactive" data-component="interactive-simulator">
-            <div class="simulator-header">
-              <h3>Calcula tu inversión ideal</h3>
-              <p>Descubre qué propiedades puedes adquirir con tu renta actual</p>
-            </div>
-
-            <div class="simulator-content">
-              <div class="simulator-controls">
-                <div class="control-group">
-                  <label for="sim-income" class="control-label">
-                    <span class="label-text">Renta mensual</span>
-                    <span class="label-value" data-income-display>$1.200.000</span>
-                  </label>
-                  <input
-                    type="range"
-                    id="sim-income"
-                    name="income"
-                    min="500000"
-                    max="5000000"
-                    step="50000"
-                    value="1200000"
-                    class="sim-slider"
-                  />
-                  <div class="slider-marks">
-                    <span>$500K</span>
-                    <span>$3M</span>
-                    <span>$5M</span>
-                  </div>
-                </div>
-
-                <div class="control-group">
-                  <label for="sim-downpayment" class="control-label">
-                    <span class="label-text">Pie disponible (UF)</span>
-                    <span class="label-value" data-downpayment-display>200 UF</span>
-                  </label>
-                  <input
-                    type="range"
-                    id="sim-downpayment"
-                    name="downpayment"
-                    min="0"
-                    max="1000"
-                    step="50"
-                    value="200"
-                    class="sim-slider"
-                  />
-                  <div class="slider-marks">
-                    <span>0 UF</span>
-                    <span>500 UF</span>
-                    <span>1000 UF</span>
-                  </div>
-                </div>
-
-                <div class="control-group">
-                  <label for="sim-years" class="control-label">
-                    <span class="label-text">Plazo</span>
-                    <span class="label-value" data-years-display>30 años</span>
-                  </label>
-                  <select id="sim-years" name="years" class="sim-select">
-                    <option value="20">20 años</option>
-                    <option value="25">25 años</option>
-                    <option value="30" selected>30 años</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="simulator-results" data-simulator-results>
-                <div class="results-loading" data-results-loading>
-                  <div class="loading-spinner"></div>
-                  <p>Calculando tu capacidad de inversión...</p>
-                </div>
-
-                <div class="results-content" data-results-content style="display: none;">
-                  <div class="results-summary">
-                    <div class="summary-metric">
-                      <span class="metric-label">Dividendo mensual</span>
-                      <span class="metric-value" data-monthly-payment>$285.000</span>
-                    </div>
-                    <div class="summary-metric">
-                      <span class="metric-label">Rango de inversión</span>
-                      <span class="metric-value" data-investment-range>UF 2.190 - 3.200</span>
-                    </div>
-                    <div class="summary-metric">
-                      <span class="metric-label">Arriendo estimado</span>
-                      <span class="metric-value" data-rent-estimate>$420.000 - 680.000</span>
-                    </div>
-                  </div>
-
-                  <div class="affordable-properties" data-affordable-properties>
-                    <h4>Propiedades que puedes adquirir:</h4>
-                    <div class="properties-grid">
-                      <!-- Properties will be populated by JavaScript -->
-                    </div>
-                  </div>
-
-                  <div class="simulator-actions">
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-large"
-                      data-action="get-personalized-proposal"
-                      data-analytics="cta_click"
-                      data-cta-context="simulator"
-                    >
-                      <span class="btn-icon">📊</span>
-                      Recibir propuesta personalizada
-                    </button>
-                    <p class="action-disclaimer">
-                      Te enviamos análisis detallado en menos de 2 horas
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <form id="miniSimulatorForm" style="display: none;">
-              <input type="hidden" name="income" value="1200000">
-              <input type="hidden" name="downpayment" value="200">
-              <input type="hidden" name="years" value="30">
-            </form>
+          <div class="typology-grid" data-slot="typology-grid" class="js-content">
+            <!-- Typologies will be populated by JavaScript -->
           </div>
         </div>
       </section>
@@ -351,10 +172,16 @@
             </p>
           </header>
           <div class="surface location-grid">
-            <div class="location-map" data-slot="location-map"></div>
+            <div class="location-map" data-slot="location-map" class="js-content">
+              <!-- Map will be populated by JavaScript -->
+            </div>
             <div class="location-details">
-              <div class="chips" data-slot="location-chips"></div>
-              <p class="field-hint" data-slot="location-plusvalia"></p>
+              <div class="chips" data-slot="location-chips" class="js-content">
+                <!-- Location chips will be populated by JavaScript -->
+              </div>
+              <p class="field-hint" data-slot="location-plusvalia" class="js-content">
+                <!-- Plusvalía information will be populated by JavaScript -->
+              </p>
             </div>
           </div>
         </div>
@@ -369,7 +196,9 @@
               proyecto.
             </p>
           </header>
-          <div class="surface why-now" data-slot="why-now"></div>
+          <div class="surface why-now" data-slot="why-now" class="js-content">
+            <!-- Why now items will be populated by JavaScript -->
+          </div>
         </div>
       </section>
 
@@ -382,7 +211,9 @@
               adicional.
             </p>
           </header>
-          <div class="timeline" data-slot="accompaniment-steps"></div>
+          <div class="timeline" data-slot="accompaniment-steps" class="js-content">
+            <!-- Accompaniment steps will be populated by JavaScript -->
+          </div>
           <div class="badge" data-slot="accompaniment-badge">
             Asesoría sin costo · Sin comisión al comprador
           </div>
@@ -397,8 +228,12 @@
               Inversionistas que ya están recibiendo arriendo con Select Capital.
             </p>
           </header>
-          <div class="testimonials-grid" data-slot="testimonials-grid"></div>
-          <div class="partners" data-slot="partners"></div>
+          <div class="testimonials-grid" data-slot="testimonials-grid" class="js-content">
+            <!-- Additional testimonials will be populated by JavaScript -->
+          </div>
+          <div class="partners" data-slot="partners" class="js-content">
+            <!-- Partner logos will be populated by JavaScript -->
+          </div>
         </div>
       </section>
 
@@ -410,7 +245,9 @@
               Respondemos las dudas más comunes sobre pies, garantías y entrega.
             </p>
           </header>
-          <div class="faq-list" data-slot="faq-list"></div>
+          <div class="faq-list" data-slot="faq-list" class="js-content">
+            <!-- FAQ items will be populated by JavaScript -->
+          </div>
         </div>
       </section>
 
@@ -456,8 +293,9 @@
                     <span class="step-label">Confirmar</span>
                   </div>
                 </div>
-                <div class="progress-bar">
+                <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
                   <div class="progress-fill" data-progress-fill style="width: 33%"></div>
+                  <span class="progress-text" data-progress-text>33%</span>
                 </div>
               </div>
 
@@ -477,8 +315,12 @@
                     autocomplete="name"
                     placeholder="Ana Pérez"
                     required
+                    aria-required="true"
+                    aria-describedby="lead-name-hint"
+                    aria-invalid="false"
                   />
-                  <small class="sc-hint">Usa tu nombre completo.</small>
+                  <small class="sc-hint" id="lead-name-hint">Usa tu nombre completo.</small>
+                  <div class="field-error" role="alert" aria-live="polite" id="lead-name-error" style="display: none;"></div>
                 </div>
 
                 <div class="form-group">
@@ -493,8 +335,12 @@
                     data-mask="phone"
                     autocomplete="tel"
                     required
+                    aria-required="true"
+                    aria-describedby="lead-phone-hint"
+                    aria-invalid="false"
                   />
-                  <small class="sc-hint">Te contactaremos por WhatsApp para agendar tu asesoría.</small>
+                  <small class="sc-hint" id="lead-phone-hint">Te contactaremos por WhatsApp para agendar tu asesoría.</small>
+                  <div class="field-error" role="alert" aria-live="polite" id="lead-phone-error" style="display: none;"></div>
                 </div>
 
                 <div class="form-group">
@@ -507,7 +353,12 @@
                     autocomplete="email"
                     placeholder="hola@tuemail.cl"
                     required
+                    aria-required="true"
+                    aria-describedby="lead-email-hint"
+                    aria-invalid="false"
                   />
+                  <small class="sc-hint" id="lead-email-hint" style="display: none;">Ingresa un correo válido.</small>
+                  <div class="field-error" role="alert" aria-live="polite" id="lead-email-error" style="display: none;"></div>
                 </div>
               </div>
 
@@ -525,12 +376,15 @@
                     id="lead-goal"
                     name="objetivo"
                     required
+                    aria-required="true"
+                    aria-invalid="false"
                   >
                     <option value="" disabled selected>Selecciona tu objetivo</option>
                     <option value="invertir">Invertir para generar renta</option>
                     <option value="vivir">Comprar para vivir</option>
                     <option value="no_se">Aún no lo tengo claro</option>
                   </select>
+                  <div class="field-error" role="alert" aria-live="polite" id="lead-goal-error" style="display: none;"></div>
                 </div>
 
                 <div class="form-group">
@@ -543,10 +397,13 @@
                     placeholder="1.200.000"
                     aria-describedby="lead-income-hint"
                     required
+                    aria-required="true"
+                    aria-invalid="false"
                   />
                   <small class="sc-hint" id="lead-income-hint">
                     Promedio mensual después de descuentos e imposiciones.
                   </small>
+                  <div class="field-error" role="alert" aria-live="polite" id="lead-income-error" style="display: none;"></div>
                 </div>
 
                 <div class="form-group">
@@ -559,12 +416,16 @@
                       inputmode="decimal"
                       placeholder="200"
                       required
+                      aria-required="true"
+                      aria-describedby="lead-savings-hint"
+                      aria-invalid="false"
                     />
                     <span>UF</span>
                   </div>
-                  <small class="sc-hint">
+                  <small class="sc-hint" id="lead-savings-hint">
                     Si aún no tienes definido el monto, puedes usar 0.
                   </small>
+                  <div class="field-error" role="alert" aria-live="polite" id="lead-savings-error" style="display: none;"></div>
                 </div>
 
                 <div class="form-group">
@@ -574,12 +435,15 @@
                     id="lead-timeline"
                     name="ventana_decision"
                     required
+                    aria-required="true"
+                    aria-invalid="false"
                   >
                     <option value="" disabled selected>Selecciona el momento</option>
                     <option value="0-30">Los próximos 30 días</option>
                     <option value="60-90">Entre 60-90 días</option>
                     <option value="120-plus">Más de 120 días</option>
                   </select>
+                  <div class="field-error" role="alert" aria-live="polite" id="lead-timeline-error" style="display: none;"></div>
                 </div>
               </div>
 
@@ -597,6 +461,8 @@
                     id="lead-property-type"
                     name="tipo_interes"
                     required
+                    aria-required="true"
+                    aria-invalid="false"
                   >
                     <option value="" disabled selected>Selecciona el tipo</option>
                     <option value="studio">Studio (28-38 m²)</option>
@@ -604,6 +470,7 @@
                     <option value="2dorm">2 Dormitorios</option>
                     <option value="todas">Todas las opciones</option>
                   </select>
+                  <div class="field-error" role="alert" aria-live="polite" id="lead-property-type-error" style="display: none;"></div>
                 </div>
 
                 <div class="form-group">
@@ -613,12 +480,15 @@
                     id="lead-contact-pref"
                     name="canal_preferido"
                     required
+                    aria-required="true"
+                    aria-invalid="false"
                   >
                     <option value="" disabled selected>Selecciona tu preferencia</option>
                     <option value="whatsapp">WhatsApp (recomendado)</option>
                     <option value="email">Correo electrónico</option>
                     <option value="llamada">Llamada telefónica</option>
                   </select>
+                  <div class="field-error" role="alert" aria-live="polite" id="lead-contact-pref-error" style="display: none;"></div>
                 </div>
 
                 <div class="form-group consent">
@@ -627,10 +497,13 @@
                     id="lead-consent"
                     name="consentimiento"
                     required
+                    aria-required="true"
+                    aria-invalid="false"
                   />
                   <label for="lead-consent">
                     <strong>Acepto el tratamiento de mis datos</strong> según la Ley 19.628 y autorizo contacto por WhatsApp y correo para recibir información sobre este proyecto inmobiliario.
                   </label>
+                  <div class="field-error" role="alert" aria-live="polite" id="lead-consent-error" style="display: none;"></div>
                 </div>
 
                 <div class="urgency-notice">
@@ -701,21 +574,25 @@
           <div class="surface legal-surface">
             <h2 class="section__title">Confianza y respaldo Select Capital</h2>
             <div class="legal-grid">
-              <div class="agent-card" data-slot="agent-card">
+              <div class="agent-card js-content" data-slot="agent-card">
                 <div class="agent-card__header">
-                  <div class="agent-card__image-placeholder" data-slot="agent-image">
+                  <div class="agent-card__image-placeholder js-content" data-slot="agent-image">
                     <span>Foto agente</span>
                   </div>
                   <div class="agent-card__info">
-                    <h3 class="agent-card__name" data-slot="agent-name">Select Capital</h3>
-                    <p class="agent-card__role" data-slot="agent-role">Asesoría Inmobiliaria</p>
+                    <h3 class="agent-card__name js-content" data-slot="agent-name">Select Capital</h3>
+                    <p class="agent-card__role js-content" data-slot="agent-role">Asesoría Inmobiliaria</p>
                   </div>
                 </div>
-                <div class="agent-card__contact" data-slot="legal-contact"></div>
+                <div class="agent-card__contact js-content" data-slot="legal-contact">
+                  <!-- Contact information will be populated by JavaScript -->
+                </div>
               </div>
               <div>
                 <h3>Avisos legales</h3>
-                <ul class="legal-list" data-slot="legal-notes"></ul>
+                <ul class="legal-list js-content" data-slot="legal-notes">
+                  <!-- Legal notes will be populated by JavaScript -->
+                </ul>
               </div>
             </div>
           </div>
@@ -738,13 +615,13 @@
     <footer class="lp-footer">
       <div class="page-shell">
         <p>
-          &copy; <span data-slot="footer-year"></span> Select Capital. Todos los
+          &copy; <span data-slot="footer-year" class="js-content">2024</span> Select Capital. Todos los
           derechos reservados.
         </p>
       </div>
     </footer>
 
-    <dialog class="gallery-lightbox" data-component="gallery-lightbox">
+    <dialog class="gallery-lightbox" data-component="gallery-lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
       <div class="gallery-lightbox__content">
         <button
           type="button"
@@ -753,11 +630,13 @@
         >
           &times;
         </button>
-        <figure data-slot="lightbox-figure"></figure>
+        <figure data-slot="lightbox-figure" class="js-content">
+          <!-- Lightbox content will be populated by JavaScript -->
+        </figure>
       </div>
     </dialog>
 
-    <dialog class="pie-modal" data-component="pie-modal">
+    <dialog class="pie-modal" data-component="pie-modal" role="dialog" aria-modal="true" aria-labelledby="pie-modal-title">
       <div class="pie-modal__content">
         <button
           type="button"
@@ -766,7 +645,7 @@
         >
           &times;
         </button>
-        <h2>Cómo pago mi pie 10%</h2>
+        <h2 id="pie-modal-title">Cómo pago mi pie 10%</h2>
         <p>El pie se divide en dos partes para mayor flexibilidad financiera.</p>
         <table class="pie-table">
           <thead>

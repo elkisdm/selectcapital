@@ -214,8 +214,8 @@ const renderHero = () => {
 
       const fallbackImg = document.createElement('img');
       fallbackImg.src = heroImageFallback;
-      fallbackImg.alt = `Vista del proyecto ${project.name}`;
-      fallbackImg.className = 'hero__image';
+      fallbackImg.alt = `Vista exterior del proyecto ${project.name} en ${project.commune}`;
+      fallbackImg.className = 'hero__image lazy-image';
       fallbackImg.loading = 'lazy';
       video.appendChild(fallbackImg);
 
@@ -281,7 +281,7 @@ const renderGallery = () => {
     } else {
       const img = document.createElement('img');
       img.src = item.src;
-      img.alt = item.alt ?? 'Imagen del proyecto';
+      img.alt = item.alt ?? `Vista ${index + 1} de ${state.config.project.name} - ${item.caption || 'Galería del proyecto'}`;
       img.loading = 'lazy';
       figure.appendChild(img);
     }
@@ -840,10 +840,12 @@ const renderTestimonials = () => {
 
   if (partnersContainer) {
     partnersContainer.innerHTML = '';
-    state.config.partners?.forEach((logo) => {
+    state.config.partners?.forEach((logo, index) => {
       const img = document.createElement('img');
       img.src = logo;
-      img.alt = 'Partner Select Capital';
+      // Extract partner name from filename or use generic
+      const partnerName = logo.split('/').pop().split('.')[0].replace(/[-_]/g, ' ') || 'Partner';
+      img.alt = `Logo de ${partnerName} - Partner Select Capital`;
       img.loading = 'lazy';
       partnersContainer.appendChild(img);
     });
@@ -1116,11 +1118,73 @@ const parseQueryParams = () => {
   });
 };
 
+const createFocusTrap = (modalElement) => {
+  let previousActiveElement = null;
+  let trapElement = null;
+
+  const getFocusableElements = () => {
+    const selector = 'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    return Array.from(modalElement.querySelectorAll(selector)).filter(el => {
+      return el.offsetWidth > 0 && el.offsetHeight > 0;
+    });
+  };
+
+  const trapFocus = (e) => {
+    if (e.key !== 'Tab') return;
+
+    const focusableElements = getFocusableElements();
+    if (focusableElements.length === 0) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      }
+    } else {
+      if (document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
+  };
+
+  return {
+    activate: () => {
+      previousActiveElement = document.activeElement;
+      trapElement = modalElement;
+      const focusableElements = getFocusableElements();
+      if (focusableElements.length > 0) {
+        focusableElements[0].focus();
+      }
+      modalElement.addEventListener('keydown', trapFocus);
+    },
+    deactivate: () => {
+      if (trapElement) {
+        trapElement.removeEventListener('keydown', trapFocus);
+        trapElement = null;
+      }
+      if (previousActiveElement) {
+        previousActiveElement.focus();
+        previousActiveElement = null;
+      }
+    }
+  };
+};
+
 const initLightbox = () => {
   const dialog = document.querySelector('[data-component="gallery-lightbox"]');
   const figure = selectSlot('lightbox-figure');
   const closeBtn = dialog?.querySelector('.gallery-lightbox__close');
   if (!dialog || !figure || !closeBtn) return;
+
+  const focusTrap = createFocusTrap(dialog);
+
+  dialog.addEventListener('close', () => {
+    focusTrap.deactivate();
+  });
 
   closeBtn.addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', (event) => {
@@ -1151,21 +1215,25 @@ const openLightbox = (index) => {
     video.src = item.src;
     video.setAttribute('aria-label', item.alt ?? 'Video del proyecto');
     figure.appendChild(video);
-  } else {
-    const img = document.createElement('img');
-    img.src = item.src;
-    img.alt = item.alt ?? 'Imagen del proyecto';
-    img.loading = 'lazy';
-    figure.appendChild(img);
-  }
+    } else {
+      const img = document.createElement('img');
+      img.src = item.src;
+      img.alt = item.alt ?? `Imagen ${index + 1} del proyecto ${state.config.project.name}`;
+      img.loading = 'lazy';
+      figure.appendChild(img);
+    }
 
-  if (item.caption) {
-    const caption = document.createElement('figcaption');
-    caption.textContent = item.caption;
-    figure.appendChild(caption);
-  }
+    if (item.caption) {
+      const caption = document.createElement('figcaption');
+      caption.textContent = item.caption;
+      figure.appendChild(caption);
+    }
 
-  dialog.showModal();
+    dialog.showModal();
+    
+    // Activate focus trap
+    const focusTrap = createFocusTrap(dialog);
+    setTimeout(() => focusTrap.activate(), 100);
 };
 
 const initForm = () => {
@@ -1191,19 +1259,55 @@ const initWizardForm = () => {
       const stepNum = parseInt(step.dataset.step);
       step.classList.toggle('active', stepNum === wizard.currentStep);
       step.classList.toggle('completed', stepNum < wizard.currentStep);
+      
+      // Add checkmark to completed steps
+      if (stepNum < wizard.currentStep) {
+        const stepNumber = step.querySelector('.step-number');
+        if (stepNumber && !stepNumber.textContent.includes('✓')) {
+          stepNumber.innerHTML = '✓';
+        }
+      } else {
+        const stepNumber = step.querySelector('.step-number');
+        if (stepNumber && stepNumber.textContent.includes('✓')) {
+          stepNumber.textContent = stepNum;
+        }
+      }
     });
 
-    // Update step content
+    // Update step content with animation
     document.querySelectorAll('[data-step-content]').forEach(content => {
       const stepNum = parseInt(content.dataset.stepContent);
-      content.classList.toggle('active', stepNum === wizard.currentStep);
+      const wasActive = content.classList.contains('active');
+      const isActive = stepNum === wizard.currentStep;
+      
+      if (wasActive && !isActive) {
+        content.classList.remove('active');
+        content.style.opacity = '0';
+      } else if (!wasActive && isActive) {
+        content.classList.add('active');
+        content.style.opacity = '1';
+      }
     });
 
-    // Update progress bar
+    // Update progress bar with percentage
     const progressFill = document.querySelector('[data-progress-fill]');
+    const progressBar = progressFill?.closest('.progress-bar');
     if (progressFill) {
       const progress = (wizard.currentStep / wizard.totalSteps) * 100;
       progressFill.style.width = `${progress}%`;
+    }
+    if (progressBar) {
+      const progress = Math.round((wizard.currentStep / wizard.totalSteps) * 100);
+      progressBar.setAttribute('aria-valuenow', progress);
+      progressBar.setAttribute('aria-valuemin', '0');
+      progressBar.setAttribute('aria-valuemax', '100');
+    }
+    
+    // Update progress text if element exists
+    const progressText = document.querySelector('[data-progress-text]');
+    if (progressText) {
+      const progress = Math.round((wizard.currentStep / wizard.totalSteps) * 100);
+      progressText.textContent = `${progress}%`;
     }
 
     // Update navigation buttons
@@ -1233,8 +1337,14 @@ const initWizardForm = () => {
     let firstInvalidField = null;
 
     // Clear previous errors
-    currentContent.querySelectorAll('.field-error').forEach(error => error.remove());
-    currentContent.querySelectorAll('.error').forEach(field => field.classList.remove('error'));
+    currentContent.querySelectorAll('.field-error').forEach(error => {
+      error.style.display = 'none';
+      error.textContent = '';
+    });
+    currentContent.querySelectorAll('.error').forEach(field => {
+      field.classList.remove('error');
+      field.setAttribute('aria-invalid', 'false');
+    });
 
     requiredFields.forEach(field => {
       const fieldValid = validateField(field);
@@ -1242,14 +1352,36 @@ const initWizardForm = () => {
         isValid = false;
         if (!firstInvalidField) firstInvalidField = field;
 
-        // Add error class and message
+        // Add error class and update aria-invalid
         field.classList.add('error');
-
-        // Create and insert error message
-        const errorMsg = document.createElement('div');
-        errorMsg.className = 'field-error';
-        errorMsg.textContent = fieldValid.message;
-        field.parentNode.insertBefore(errorMsg, field.nextSibling);
+        field.setAttribute('aria-invalid', 'true');
+        
+        // Show error message
+        const errorId = `${field.id}-error`;
+        const errorMsg = currentContent.querySelector(`#${errorId}`);
+        if (errorMsg) {
+          errorMsg.textContent = fieldValid.message;
+          errorMsg.style.display = 'block';
+        } else {
+          // Fallback: create error message if not found
+          const errorDiv = document.createElement('div');
+          errorDiv.className = 'field-error';
+          errorDiv.id = errorId;
+          errorDiv.setAttribute('role', 'alert');
+          errorDiv.setAttribute('aria-live', 'polite');
+          errorDiv.textContent = fieldValid.message;
+          field.parentNode.insertBefore(errorDiv, field.nextSibling);
+        }
+      } else {
+        // Remove error state
+        field.classList.remove('error');
+        field.setAttribute('aria-invalid', 'false');
+        const errorId = `${field.id}-error`;
+        const errorMsg = currentContent.querySelector(`#${errorId}`);
+        if (errorMsg) {
+          errorMsg.style.display = 'none';
+          errorMsg.textContent = '';
+        }
       }
     });
 
@@ -1320,10 +1452,23 @@ const initWizardForm = () => {
     return { isValid: true };
   };
 
+  let stepStartTime = Date.now();
+  
   const goToStep = (step) => {
     if (step < 1 || step > wizard.totalSteps) return;
 
+    // Track time spent on previous step
+    if (wizard.currentStep > 0) {
+      const timeSpent = Date.now() - stepStartTime;
+      trackEvent('wizard_step_time', {
+        step: wizard.currentStep,
+        time_seconds: Math.round(timeSpent / 1000),
+        proyecto: state.config.project.slug,
+      });
+    }
+
     wizard.currentStep = step;
+    stepStartTime = Date.now();
     updateWizardUI();
 
     // Scroll to form
@@ -1338,13 +1483,40 @@ const initWizardForm = () => {
     });
   };
 
+  // Track wizard abandonment
+  let wizardAbandoned = false;
+  const trackWizardAbandonment = () => {
+    if (wizardAbandoned) return;
+    wizardAbandoned = true;
+    trackEvent('wizard_abandoned', {
+      step: wizard.currentStep,
+      proyecto: state.config.project.slug,
+    });
+  };
+
+  // Track if user leaves page without completing form
+  window.addEventListener('beforeunload', () => {
+    if (wizard.currentStep < wizard.totalSteps) {
+      trackWizardAbandonment();
+    }
+  });
+
   // Event listeners
   document.addEventListener('click', (e) => {
     if (e.target.matches('[data-wizard-next]')) {
       e.preventDefault();
+      const currentContent = document.querySelector(`[data-step-content="${wizard.currentStep}"]`);
       if (validateCurrentStep()) {
         goToStep(wizard.currentStep + 1);
       } else {
+        // Track validation errors
+        const invalidFields = currentContent.querySelectorAll('.error');
+        trackEvent('form_validation_error', {
+          step: wizard.currentStep,
+          invalid_fields_count: invalidFields.length,
+          proyecto: state.config.project.slug,
+        });
+
         // Show error message
         const errorMsg = document.createElement('div');
         errorMsg.className = 'form-error-message';
@@ -1375,9 +1547,26 @@ const initWizardForm = () => {
 
   // Real-time validation
   form.addEventListener('input', (e) => {
-    if (e.target.classList.contains('error')) {
-      if (e.target.value.trim()) {
-        e.target.classList.remove('error');
+    const field = e.target;
+    const fieldValid = validateField(field);
+    if (fieldValid.isValid) {
+      field.classList.remove('error');
+      field.setAttribute('aria-invalid', 'false');
+      const errorId = `${field.id}-error`;
+      const errorMsg = form.querySelector(`#${errorId}`);
+      if (errorMsg) {
+        errorMsg.style.display = 'none';
+        errorMsg.textContent = '';
+      }
+    } else if (field.value.trim()) {
+      // Only show error if field has value (to avoid showing errors while typing)
+      field.classList.add('error');
+      field.setAttribute('aria-invalid', 'true');
+      const errorId = `${field.id}-error`;
+      const errorMsg = form.querySelector(`#${errorId}`);
+      if (errorMsg) {
+        errorMsg.textContent = fieldValid.message;
+        errorMsg.style.display = 'block';
       }
     }
   });
@@ -1486,7 +1675,8 @@ const initWizardForm = () => {
 
         trackEvent('form_submit_error', {
           error: error.message,
-          proyecto: state.config.project.slug
+          proyecto: state.config.project.slug,
+          step: wizard.currentStep
         });
 
       } finally {
@@ -1503,10 +1693,18 @@ const initPieModal = () => {
 
   if (!modal || !closeBtn || !openLink) return;
 
+  const focusTrap = createFocusTrap(modal);
+
+  modal.addEventListener('close', () => {
+    focusTrap.deactivate();
+  });
+
   openLink.addEventListener('click', (e) => {
     e.preventDefault();
     modal.showModal();
     trackEvent('open_pie_modal');
+    // Activate focus trap
+    setTimeout(() => focusTrap.activate(), 100);
   });
 
   closeBtn.addEventListener('click', () => modal.close());
@@ -1616,15 +1814,25 @@ const createImagePlaceholder = (img) => {
 };
 
 const loadImage = (img) => {
-  const src = img.dataset.src;
+  const src = img.dataset.src || img.src;
   if (!src) return;
+
+  // Check if image is already loaded or has a valid src
+  if (img.complete && img.naturalHeight !== 0) {
+    img.style.opacity = '1';
+    img.style.position = 'relative';
+    img.classList.add('image-loaded');
+    return;
+  }
 
   // Create a new image to preload
   const preloadImg = new Image();
 
   preloadImg.onload = () => {
     // Image loaded successfully
-    img.src = src;
+    if (img.dataset.src) {
+      img.src = img.dataset.src;
+    }
     img.style.opacity = '1';
     img.style.position = 'relative';
 
