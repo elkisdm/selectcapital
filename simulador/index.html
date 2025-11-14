@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulador de Capacidad de Compra Hipotecaria</title>
+  <link rel="stylesheet" href="../lenguaje visual/theme/select-capital-theme.min.css?v=66e592e976">
+  <link rel="stylesheet" href="../lenguaje visual/theme/sc-header-footer.min.css?v=507b6d0414">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="sc-appbar" data-state="default" data-menu="closed" data-micro="open">
+    <div class="sc-microbar">
+      <div class="sc-microbar__message">
+        <span>Simulador Select Capital · datos reales + acompañamiento 1:1</span>
+      </div>
+      <div class="sc-microbar__actions">
+        <a href="tel:+56966013182" data-track-event="micro_contact" data-track-detail='{"type":"phone"}'>+56 9 6601 3182</a>
+        <a href="mailto:contacto@selectcapital.cl" data-track-event="micro_contact" data-track-detail='{"type":"mail"}'>contacto@selectcapital.cl</a>
+        <a href="https://wa.me/56966013182?text=Quiero%20simular%20mi%20capacidad" target="_blank" rel="noopener" data-track-event="micro_contact" data-track-detail='{"type":"whatsapp"}'>WhatsApp</a>
+        <button type="button" data-theme-toggle data-track-event="micro_contact" data-track-detail='{"type":"theme"}'>ES | EN</button>
+      </div>
+    </div>
+    <div class="sc-appbar-main">
+      <a class="sc-brand" href="../index.html">
+        <img src="../images/logo_blanco.png" alt="Select Capital" loading="lazy" />
+        <span>SELECT CAPITAL</span>
+      </a>
+      <button class="sc-micro-pill" type="button" data-micro-toggle>
+        <span>Ver mensaje de confianza</span>
+      </button>
+      <nav class="sc-nav" aria-label="Navegación principal">
+        <a href="../home.html#proyectos" data-track-event="nav_click" data-track-detail='{"item":"proyectos"}'>Proyectos</a>
+        <a href="index.html" aria-current="page" data-track-event="nav_click" data-track-detail='{"item":"simulador"}'>Simulador</a>
+        <a href="../home.html#servicios" data-track-event="nav_click" data-track-detail='{"item":"servicios"}'>Servicios</a>
+        <a href="../home.html#equipo" data-track-event="nav_click" data-track-detail='{"item":"equipo"}'>Equipo</a>
+        <a href="../home.html#form" data-track-event="nav_click" data-track-detail='{"item":"recursos"}'>Recursos</a>
+      </nav>
+      <div class="sc-status-pill">
+        <span>Resultados referenciales</span>
+        <span class="sc-chip">UF + CLP</span>
+      </div>
+      <div class="sc-cta-cluster">
+        <a class="sc-btn-ghost" href="https://wa.me/56966013182?text=Quiero%20simular%20mi%20capacidad" target="_blank" rel="noopener" data-track-event="cta_click" data-track-detail='{"cta_id":"header_whatsapp"}'>WhatsApp</a>
+        <a class="sc-btn-primary" href="../home.html#form" data-track-event="cta_click" data-track-detail='{"cta_id":"header_primary"}'>Agenda asesoría</a>
+      </div>
+      <button class="sc-menu-toggle" type="button" aria-label="Abrir menú principal" aria-expanded="false" data-menu-toggle>
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
+    <div class="sc-mobile-panel" role="dialog" aria-modal="true" aria-label="Menú principal">
+      <nav>
+        <a href="../home.html#proyectos" data-track-event="nav_click" data-track-detail='{"item":"proyectos_mobile"}'>Proyectos</a>
+        <a href="index.html" aria-current="page" data-track-event="nav_click" data-track-detail='{"item":"simulador_mobile"}'>Simulador</a>
+        <a href="../home.html#servicios" data-track-event="nav_click" data-track-detail='{"item":"servicios_mobile"}'>Servicios</a>
+        <a href="../home.html#equipo" data-track-event="nav_click" data-track-detail='{"item":"equipo_mobile"}'>Equipo</a>
+        <a href="../home.html#form" data-track-event="nav_click" data-track-detail='{"item":"recursos_mobile"}'>Recursos</a>
+      </nav>
+      <div class="sc-chip">Comparte tus resultados con un asesor</div>
+      <div class="sc-mobile-cta">
+        <a class="sc-btn-primary" href="../home.html#form" data-track-event="cta_click" data-track-detail='{"cta_id":"mobile_menu_primary"}'>Hablar con un experto</a>
+        <a class="sc-btn-ghost" href="https://wa.me/56966013182?text=Quiero%20simular%20mi%20capacidad" target="_blank" rel="noopener" data-track-event="cta_click" data-track-detail='{"cta_id":"mobile_menu_whatsapp"}'>Enviar por WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="app">
+    <header class="app__header">
+      <h1>Simulador de Capacidad de Compra Hipotecaria</h1>
+      <p>Ingresa tu información para estimar tu dividendo máximo, monto de crédito y valor de propiedad alcanzable.</p>
+    </header>
+
+    <div class="app__grid">
+      <section class="card" aria-labelledby="formTitle">
+        <h2 id="formTitle">Datos del solicitante</h2>
+        <form id="simForm" novalidate>
+          <div class="field">
+            <label for="income">Renta líquida mensual (CLP)</label>
+            <input type="text" id="income" inputmode="numeric" autocomplete="off" data-format="currency" required>
+            <p class="error" data-error-for="income"></p>
+          </div>
+
+          <div class="field">
+            <div class="field__label">
+              <label for="loadPct">% Carga máxima</label>
+              <output id="loadPctValue" for="loadPct loadPctInput">25%</output>
+            </div>
+            <input type="range" id="loadPct" min="20" max="35" step="1" value="25">
+            <input type="number" id="loadPctInput" min="20" max="35" step="1" value="25" aria-label="Porcentaje carga máxima (entrada numérica)">
+            <p class="hint">Utiliza el deslizador o ingresa un número entre 20% y 35%.</p>
+            <p class="error" data-error-for="loadPct"></p>
+          </div>
+
+          <div class="field">
+            <label for="rate">Tasa de interés anual (%)</label>
+            <input type="number" id="rate" min="1" max="8" step="0.1" value="3.5" required>
+            <p class="error" data-error-for="rate"></p>
+          </div>
+
+          <div class="field">
+            <label for="years">Plazo en años</label>
+            <select id="years">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30" selected>30</option>
+            </select>
+            <p class="error" data-error-for="years"></p>
+          </div>
+
+          <div class="field">
+            <label for="ltvPct">% Financiamiento bancario</label>
+            <input type="number" id="ltvPct" min="70" max="90" step="1" value="80" required>
+            <p class="error" data-error-for="ltvPct"></p>
+          </div>
+
+          <div class="field field--toggle">
+            <label class="toggle">
+              <input type="checkbox" id="advancedToggle">
+              <span class="toggle__slider" aria-hidden="true"></span>
+              <span class="toggle__label">Mostrar opciones avanzadas</span>
+            </label>
+          </div>
+
+          <div id="advancedSection" hidden>
+            <div class="field">
+              <label class="toggle">
+                <input type="checkbox" id="ufToggle">
+                <span class="toggle__slider" aria-hidden="true"></span>
+                <span class="toggle__label">Mostrar valores en UF</span>
+              </label>
+            </div>
+
+            <div class="field">
+              <label for="ufValue">Valor UF (CLP)</label>
+              <input type="text" id="ufValue" inputmode="numeric" data-format="currency" value="38000">
+              <p class="error" data-error-for="ufValue"></p>
+            </div>
+
+            <div class="field">
+              <label for="overrideDividend">Override dividendo mensual (CLP)</label>
+              <input type="text" id="overrideDividend" inputmode="numeric" data-format="currency" placeholder="Opcional">
+              <p class="hint">Si ingresas un valor aquí, reemplazará el cálculo automático.</p>
+              <p class="error" data-error-for="overrideDividend"></p>
+            </div>
+
+            <div class="field">
+              <label for="coIncome">Renta co-deudor (CLP)</label>
+              <input type="text" id="coIncome" inputmode="numeric" data-format="currency" placeholder="Opcional">
+              <p class="error" data-error-for="coIncome"></p>
+            </div>
+          </div>
+
+          <p class="form-note">Los cálculos son referenciales y dependen de políticas internas de cada banco.</p>
+        </form>
+      </section>
+
+      <section class="card results" aria-labelledby="resultsTitle">
+        <h2 id="resultsTitle">Resultados estimados</h2>
+        <dl class="results__list">
+          <div>
+            <dt>Dividendo máximo recomendado</dt>
+            <dd id="outDividend">—</dd>
+          </div>
+          <div>
+            <dt>Monto máximo del crédito</dt>
+            <dd id="outLoan">—</dd>
+          </div>
+          <div>
+            <dt>Valor máximo propiedad (CLP)</dt>
+            <dd id="outPropertyClp">—</dd>
+          </div>
+          <div id="propertyUfRow" hidden>
+            <dt>Valor máximo propiedad (UF)</dt>
+            <dd id="outPropertyUf">—</dd>
+          </div>
+          <div>
+            <dt>Pie estimado</dt>
+            <dd id="outDownpayment">—</dd>
+          </div>
+        </dl>
+        <p id="resultTip" class="tip" hidden>Tip: considera aumentar tu pie o plazo para mejorar el monto disponible.</p>
+        <p class="disclaimer">Esta información es orientativa y no constituye oferta. Revisa condiciones finales con tu ejecutivo.</p>
+        <div id="resultsLive" class="sr-only" aria-live="polite"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="sc-footer">
+    <div class="sc-footer__inner">
+      <section class="sc-footer-cta sc-glass">
+        <div>
+          <h2>¿Listo para convertir esta simulación en un plan real?</h2>
+          <p>Comparte tus resultados con nuestro equipo y recibe condiciones negociadas, propuesta PDF y acompañamiento bancario.</p>
+          <div class="sc-chip-stack">
+            <span class="sc-chip">+250 proyectos evaluados</span>
+            <span class="sc-chip">Sin costo para el inversionista</span>
+            <span class="sc-chip">UF + CLP</span>
+          </div>
+        </div>
+        <div class="sc-footer-cta-actions">
+          <a class="sc-btn-primary" href="../home.html#form" data-track-event="cta_click" data-track-detail='{"cta_id":"footer_primary"}'>Agenda tu asesoría</a>
+          <a class="sc-btn-ghost" href="https://wa.me/56966013182?text=Quiero%20simular%20mi%20capacidad" target="_blank" rel="noopener" data-track-event="cta_click" data-track-detail='{"cta_id":"footer_whatsapp"}'>Enviar por WhatsApp</a>
+          <a class="sc-link" href="../pdf/proposal-template.html" target="_blank" rel="noopener">Ver propuesta demo</a>
+        </div>
+      </section>
+
+      <div class="sc-footer-grid">
+        <div>
+          <h3>Propósito</h3>
+          <p>Convertimos tus números en decisiones accionables: simulador, data de mercado y partners bancarios.</p>
+          <div class="sc-chip">Liquid Glass · Selección curada</div>
+        </div>
+        <div>
+          <h3>Soluciones</h3>
+          <ul>
+            <li><a href="../home.html#servicios">Asesoría integral</a></li>
+            <li><a href="../home.html#proyectos">Proyectos curados</a></li>
+            <li><a href="index.html">Simulador hipotecario</a></li>
+            <li><a href="../index.html#form">Eventos privados</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Recursos</h3>
+          <ul>
+            <li><a href="../dashboard/insights-dashboard.html" target="_blank" rel="noopener">Dashboard funnel</a></li>
+            <li><a href="../pdf/proposal-template.html" target="_blank" rel="noopener">Propuesta PDF demo</a></li>
+            <li><a href="../home.html#faq">Preguntas frecuentes</a></li>
+            <li><a href="../home.html#form">Formulario general</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contacto</h3>
+          <div class="sc-footer-contact">
+            <span><a href="mailto:contacto@selectcapital.cl">contacto@selectcapital.cl</a></span>
+            <span><a href="tel:+56966013182">+56 9 6601 3182</a></span>
+            <span>Las Condes · Santiago de Chile</span>
+          </div>
+          <div class="sc-footer-social" aria-label="Redes sociales">
+            <a href="https://www.linkedin.com/company/selectcapital" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+            <a href="https://www.instagram.com/selectcapital" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+            <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sc-footer-legal">
+        <span>© <span id="year-sim"></span> Select Capital. Simulación referencial, no constituye oferta.</span>
+        <div class="sc-footer-links">
+          <a href="../home.html#faq">Política de privacidad</a>
+          <span>·</span>
+          <a href="../home.html#faq">Aviso legal</a>
+          <span>·</span>
+          <span>ES | EN</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../scripts/sc-header.js" defer></script>
+  <script type="module" src="calculator.js"></script>
+  <script>
+    document.getElementById('year-sim')?.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
