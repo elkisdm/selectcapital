@@ -89,8 +89,6 @@ function initHomeWizard() {
   const communePills = form.querySelectorAll('[data-commune-pill]');
   const communeSelections = new Map();
   let currentStep = 0;
-  const autoAdvanceMedia = window.matchMedia ? window.matchMedia('(max-width: 720px)') : null;
-  const autoAdvanceSelector = '[data-step-required]:not([type="hidden"])';
 
   function updateError(node, shouldShow, message) {
     if (!node) return;
@@ -213,116 +211,6 @@ function initHomeWizard() {
       communeStore.value = '';
       setFieldValidity(communeStore, false);
     }
-  }
-
-  function shouldAutoAdvance() {
-    return Boolean(autoAdvanceMedia && autoAdvanceMedia.matches);
-  }
-
-  function getFocusableProxy(field) {
-    if (!field) return null;
-    if (field.dataset.selectEnhanced === 'true') {
-      const wrapper = field.closest('.sc-select');
-      if (wrapper) {
-        return wrapper.querySelector('.sc-select__trigger') || wrapper;
-      }
-    }
-    if (field.type === 'radio') {
-      return field.closest('[data-card]');
-    }
-    if (field.type === 'checkbox') {
-      return field.closest('.consent-field');
-    }
-    return field;
-  }
-
-  function focusElementSafely(target) {
-    if (!target || typeof target.focus !== 'function') return;
-    const hadTabIndex = target.hasAttribute('tabindex');
-    const needsTempTabIndex = !hadTabIndex && target.tabIndex < 0;
-    if (needsTempTabIndex) {
-      target.setAttribute('tabindex', '-1');
-    }
-    target.focus({ preventScroll: true });
-    if (needsTempTabIndex) {
-      target.removeAttribute('tabindex');
-    }
-  }
-
-  function isFieldVisible(field) {
-    if (!field) return false;
-    if (field.dataset.selectEnhanced === 'true') {
-      const wrapper = field.closest('.sc-select');
-      if (wrapper) {
-        const wrapperStyle = window.getComputedStyle(wrapper);
-        if (wrapper.offsetParent !== null || wrapperStyle.position === 'fixed') {
-          return true;
-        }
-      }
-    }
-    const proxy = getFocusableProxy(field) || field;
-    if (!proxy) return false;
-    const style = window.getComputedStyle(proxy);
-    if (proxy.closest('[hidden]')) return false;
-    if (proxy.closest('[aria-hidden="true"]')) return false;
-    return proxy.offsetParent !== null || style.position === 'fixed';
-  }
-
-  function getVisibleStepFields(panel) {
-    if (!panel) return [];
-    return Array.from(panel.querySelectorAll(autoAdvanceSelector)).filter(
-      (field) => !field.disabled && isFieldVisible(field),
-    );
-  }
-
-  function centerElement(node) {
-    if (!node) return;
-    const rect = node.getBoundingClientRect();
-    const viewport = window.innerHeight || document.documentElement.clientHeight || 0;
-    const elementHeight = rect.height || node.offsetHeight || 0;
-    const offset = rect.top + window.scrollY - Math.max(0, (viewport - Math.min(elementHeight, viewport * 0.7)) / 2);
-    window.scrollTo({
-      top: Math.max(0, offset - 16),
-      behavior: prefersReducedMotion && prefersReducedMotion.matches ? 'auto' : 'smooth',
-    });
-  }
-
-  function focusNextWithinStep(field) {
-    if (!field) return;
-    const panel = field.closest('[data-step-panel]');
-    if (!panel || !panel.classList.contains('is-active')) return;
-    const visibleFields = getVisibleStepFields(panel);
-    const index = visibleFields.indexOf(field);
-    const nextField = index >= 0 ? visibleFields[index + 1] : null;
-    if (nextField) {
-      const proxy = getFocusableProxy(nextField) || nextField;
-      centerElement(proxy);
-      window.requestAnimationFrame(() => focusElementSafely(proxy));
-      return;
-    }
-    const fallback =
-      panel.querySelector('[data-step-next]') || (panel === stepPanels[stepPanels.length - 1] ? submitBtn : null);
-    if (fallback) {
-      centerElement(fallback);
-      window.requestAnimationFrame(() => focusElementSafely(fallback));
-    }
-  }
-
-  function handleAutoAdvance(field) {
-    if (!shouldAutoAdvance() || !field) return;
-    const panel = field.closest('[data-step-panel]');
-    if (!panel || !panel.classList.contains('is-active')) return;
-    if (!validateField(field)) return;
-    focusNextWithinStep(field);
-  }
-
-  function getAutoAdvanceEvent(field) {
-    if (!field) return 'change';
-    const textTypes = ['text', 'email', 'tel', 'search', 'url', 'number', 'password'];
-    if (textTypes.includes(field.type) || field.tagName === 'TEXTAREA') {
-      return 'blur';
-    }
-    return 'change';
   }
 
   function scrollToFormAnchor() {
@@ -907,15 +795,9 @@ function initHomeWizard() {
       const heading = stepPanels[targetStep].querySelector('h3');
       summaryLabel.textContent = heading ? heading.textContent : `Paso ${targetStep + 1}`;
     }
-    const focusTarget = stepPanels[targetStep].querySelector(
-      '[data-step-required]:not([type="hidden"]), input:not([type="hidden"]), textarea',
-    );
+    const focusTarget = stepPanels[targetStep].querySelector('[data-step-required]:not([type="hidden"]), input:not([type="hidden"]), textarea');
     if (focusTarget && typeof focusTarget.focus === 'function') {
       window.requestAnimationFrame(() => focusTarget.focus());
-    }
-    if (shouldAutoAdvance() && focusTarget) {
-      const proxy = getFocusableProxy(focusTarget) || focusTarget;
-      centerElement(proxy);
     }
     refreshWizardViewportHeight(targetStep);
     if (scroll) {
@@ -926,12 +808,6 @@ function initHomeWizard() {
   moneyInputs.forEach((input) => {
     input.addEventListener('input', () => formatMoneyInput(input));
     input.addEventListener('blur', () => formatMoneyInput(input));
-  });
-
-  const autoAdvanceTargets = Array.from(form.querySelectorAll(autoAdvanceSelector));
-  autoAdvanceTargets.forEach((field) => {
-    const eventName = getAutoAdvanceEvent(field);
-    field.addEventListener(eventName, () => handleAutoAdvance(field));
   });
 
   if (eInput) {

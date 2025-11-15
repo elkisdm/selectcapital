@@ -1242,6 +1242,75 @@ html[data-theme='light'] .btn-primary {
   padding: 1rem;
   background: rgba(255,255,255,0.03);
 }
+@media (max-width: 700px) {
+  .form-container {
+    padding: 1.5rem 1.25rem;
+  }
+  .wizard-shell {
+    gap: 0.75rem;
+  }
+  .wizard-steps {
+    position: sticky;
+    top: clamp(0.5rem, 4vw, 1.25rem);
+    z-index: 3;
+    padding: 0.9rem 1rem 1.25rem;
+    border-color: rgba(255,255,255,0.08);
+    background: rgba(5,8,15,0.92);
+    box-shadow: 0 25px 45px rgba(3,6,12,0.65);
+    backdrop-filter: blur(22px) saturate(1.4);
+    -webkit-backdrop-filter: blur(22px) saturate(1.4);
+  }
+  .wizard-steps #form-error {
+    position: static;
+    margin: 0.25rem 0 0;
+  }
+  .wizard-progress-label,
+  .wizard-summary {
+    letter-spacing: 0.2em;
+  }
+  .form-steps-progress {
+    flex-direction: row;
+    align-items: stretch;
+    overflow-x: auto;
+    gap: 0.5rem;
+    padding: 0.35rem;
+    border-radius: 999px;
+    scrollbar-width: none;
+  }
+  .form-steps-progress::-webkit-scrollbar {
+    display: none;
+  }
+  .form-step-pill {
+    flex: 1 0 auto;
+    min-width: 150px;
+    padding: 0.55rem 0.7rem;
+    border-radius: 16px;
+    gap: 0.5rem;
+  }
+  .form-step-pill span {
+    width: 26px;
+    height: 26px;
+    font-size: 0.85rem;
+  }
+  .form-step-pill p {
+    display: none;
+  }
+  .form-step-pill strong {
+    font-size: 0.85rem;
+  }
+  .form-wizard-viewport {
+    border-radius: 28px;
+  }
+  .form-wizard-nav {
+    flex-direction: column;
+  }
+  .form-wizard-nav .btn-primary,
+  .form-wizard-nav .btn-ghost {
+    min-width: 0;
+    width: 100%;
+    flex: 1 1 auto;
+  }
+}
 .form-section-eyebrow {
   font-size: 0.8rem;
   letter-spacing: 0.2em;

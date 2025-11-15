@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <title>Propuesta Select Capital</title>
+  <link rel="stylesheet" href="../lenguaje visual/theme/select-capital-theme.min.css?v=66e592e976" />
+  <link rel="stylesheet" href="../lenguaje visual/forms/sc-forms.css" />
+  <style>
+    body {
+      font-family: var(--sc-font-sans, 'Inter', sans-serif);
+      background: var(--sc-surface-page, #05080F);
+      color: var(--sc-text-primary, #F8FAFC);
+      margin: 0;
+      padding: 48px 64px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .badge {
+      border-radius: 999px;
+      border: 1px solid var(--sc-border-glass, rgba(255,255,255,0.14));
+      padding: 6px 14px;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+    }
+    .card {
+      border-radius: var(--sc-radius-xl, 28px);
+      border: 1px solid var(--sc-border-glass, rgba(255,255,255,0.14));
+      padding: 24px;
+      margin-bottom: 24px;
+      background: var(--sc-glass-bg, rgba(255,255,255,0.06));
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .kpi span {
+      display: block;
+    }
+    .kpi-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      color: var(--sc-text-secondary, rgba(248,250,252,0.72));
+    }
+    .kpi-value {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    th {
+      text-align: left;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.7rem;
+      color: var(--sc-text-secondary);
+      padding-bottom: 8px;
+    }
+    td {
+      padding: 10px 0;
+      border-top: 1px solid var(--sc-border-soft, rgba(255,255,255,0.08));
+    }
+    footer {
+      margin-top: 36px;
+      font-size: 0.75rem;
+      color: var(--sc-text-tertiary, rgba(248,250,252,0.48));
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <p class="badge">PROPUESTA SELECT CAPITAL</p>
+      <h1>Proyecto Mirador La Florida</h1>
+      <p>Cliente: {{clientName}} · RUT {{clientRut}}</p>
+    </div>
+    <img src="{{logoUrl}}" alt="Select Capital" width="140" />
+  </header>
+
+  <section class="card">
+    <h2>Resumen financiero</h2>
+    <div class="kpi-grid">
+      <div class="kpi">
+        <span class="kpi-title">Pie estimado</span>
+        <span class="kpi-value">{{downPaymentUF}} UF</span>
+        <span>{{downPaymentCLP}} CLP</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-title">Dividendo mensual</span>
+        <span class="kpi-value">{{dividendCLP}}</span>
+        <span>{{dividendUF}} UF</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-title">Renta proyectada</span>
+        <span class="kpi-value">{{rentCLP}}</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-title">Flujo estimado</span>
+        <span class="kpi-value">{{netFlow}}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Detalle del financiamiento</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Concepto</th>
+          <th>Monto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Precio unidad</td>
+          <td>{{priceUF}} UF ({{priceCLP}} CLP)</td>
+        </tr>
+        <tr>
+          <td>Pie</td>
+          <td>{{downPaymentUF}} UF · {{downPaymentCLP}} CLP</td>
+        </tr>
+        <tr>
+          <td>Crédito</td>
+          <td>{{loanUF}} UF · {{loanCLP}} CLP</td>
+        </tr>
+        <tr>
+          <td>Tasa / plazo</td>
+          <td>{{rate}} · {{term}} años</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Notas del asesor</h2>
+    <p>{{notes}}</p>
+  </section>
+
+  <footer>
+    Generado el {{issuedAt}} · Select Capital · contacto@selectcapital.cl · +56 9 6601 3182
+  </footer>
+</body>
+</html>

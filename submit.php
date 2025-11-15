@@ -7,14 +7,160 @@ $cfg = require __DIR__ . '/config.php';
 date_default_timezone_set($cfg['timezone'] ?? 'America/Santiago');
 
 // Simple logger (auto-creates logs directory)
-function app_log(string $message): void {
+function app_log(string $message, string $level = 'INFO'): void {
   global $cfg;
   if (empty($cfg['log']['enabled'])) return;
   $path = $cfg['log']['path'] ?? (__DIR__ . '/logs/app.log');
   $dir  = dirname($path);
-  if (!is_dir($dir)) { @mkdir($dir, 0775, true); }
-  $line = '[' . date('c') . '] ' . $message . "\n";
-  @file_put_contents($path, $line, FILE_APPEND);
+  if (!is_dir($dir) && !mkdir($dir, 0775, true) && !is_dir($dir)) {
+    error_log('[submit.php] Cannot create log directory: ' . $dir);
+    return;
+  }
+  $line = sprintf('[%s] [%s] %s%s', date('c'), strtoupper($level), $message, PHP_EOL);
+  if (file_put_contents($path, $line, FILE_APPEND | LOCK_EX) === false) {
+    error_log('[submit.php] Cannot write log file: ' . $path . ' message=' . $message);
+  }
+}
+
+function anonymize_ip(?string $ip, int $maskOctets = 1): string {
+  if (!$ip) return '';
+  if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+    $parts = explode('.', $ip);
+    $mask = max(0, min(4, $maskOctets));
+    for ($i = 1; $i <= $mask; $i++) {
+      $idx = count($parts) - $i;
+      if ($idx >= 0) {
+        $parts[$idx] = '0';
+      }
+    }
+    return implode('.', $parts);
+  }
+
+  if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+    $segments = explode(':', $ip);
+    $segments = array_values(array_filter($segments, static fn($seg) => $seg !== ''));
+    $visible = max(0, min(count($segments), 4));
+    $anonymized = implode(':', array_slice($segments, 0, $visible));
+    return $anonymized . '::';
+  }
+
+  return '';
+}
+
+function mask_rut(string $rut): string {
+  $clean = preg_replace('/[^0-9kK]/', '', $rut);
+  $len = strlen($clean);
+  if ($len <= 4) {
+    return str_repeat('*', $len);
+  }
+  return str_repeat('*', $len - 4) . substr($clean, -4);
+}
+
+function mask_email(string $email): string {
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    return '***';
+  }
+  [$user, $domain] = explode('@', $email, 2);
+  $userLen = strlen($user);
+  if ($userLen <= 2) {
+    return str_repeat('*', $userLen) . '@' . $domain;
+  }
+  $start = substr($user, 0, 1);
+  $end = substr($user, -1);
+  return $start . str_repeat('*', $userLen - 2) . $end . '@' . $domain;
+}
+
+function summarize_payload_for_log(array $payload): array {
+  return [
+    'timestamp' => $payload['timestamp'] ?? date('c'),
+    'nombre'    => $payload['nombre'] ?? '',
+    'rut_masked'=> isset($payload['rut']) ? mask_rut((string)$payload['rut']) : '',
+    'email_masked' => isset($payload['email']) ? mask_email((string)$payload['email']) : '',
+    'hash'      => hash('sha256', json_encode([
+      $payload['rut'] ?? '',
+      $payload['email'] ?? '',
+      $payload['whatsapp'] ?? '',
+    ])),
+  ];
+}
+
+function should_log_user_agent(): bool {
+  global $cfg;
+  return !empty($cfg['privacy']['log_user_agent']);
+}
+
+function sanitize_header_value(string $value): string {
+  $value = preg_replace("/[\r\n]+/", ' ', $value);
+  $value = trim($value);
+  return substr($value, 0, 120);
+}
+
+function enforce_rate_limit(string $identifier): void {
+  global $cfg;
+  $rlCfg = $cfg['security']['rate_limit'] ?? [];
+  if (empty($rlCfg['enabled'])) return;
+
+  $maxPerMinute  = (int)($rlCfg['max_per_minute'] ?? 0);
+  $windowSeconds = max(1, (int)($rlCfg['window_seconds'] ?? 60));
+  $storePath     = $rlCfg['store'] ?? (dirname(__DIR__) . '/storage/runtime/rate-limit.json');
+
+  if ($maxPerMinute <= 0) return;
+
+  $dir = dirname($storePath);
+  if (!is_dir($dir) && !mkdir($dir, 0775, true) && !is_dir($dir)) {
+    app_log('RATE_LIMIT_CANNOT_CREATE_DIR dir=' . $dir, 'ERROR');
+    fail(500, 'No se pudo aplicar control de tasa.');
+  }
+
+  $now = time();
+  $key = hash('sha256', $identifier);
+  $data = [];
+
+  $fp = fopen($storePath, 'c+');
+  if ($fp === false) {
+    app_log('RATE_LIMIT_CANNOT_OPEN_STORE path=' . $storePath, 'ERROR');
+    fail(500, 'No se pudo aplicar control de tasa.');
+  }
+
+  try {
+    if (!flock($fp, LOCK_EX)) {
+      throw new RuntimeException('No lock');
+    }
+
+    $contents = stream_get_contents($fp);
+    if ($contents !== false && $contents !== '') {
+      $decoded = json_decode($contents, true);
+      if (is_array($decoded)) {
+        $data = $decoded;
+      }
+    }
+
+    $entry = $data[$key] ?? ['count' => 0, 'reset' => $now + $windowSeconds];
+    if ($entry['reset'] <= $now) {
+      $entry = ['count' => 0, 'reset' => $now + $windowSeconds];
+    }
+
+    $entry['count']++;
+    if ($entry['count'] > $maxPerMinute) {
+      $retryAfter = max(1, $entry['reset'] - $now);
+      $data[$key] = $entry;
+      ftruncate($fp, 0);
+      rewind($fp);
+      fwrite($fp, json_encode($data));
+      fflush($fp);
+      fail(429, 'Demasiadas solicitudes. Intenta nuevamente en unos segundos.', ['retry_after' => $retryAfter]);
+    }
+
+    $data[$key] = $entry;
+
+    ftruncate($fp, 0);
+    rewind($fp);
+    fwrite($fp, json_encode($data));
+    fflush($fp);
+  } finally {
+    flock($fp, LOCK_UN);
+    fclose($fp);
+  }
 }
 
 // CORS (if enabled)
@@ -44,6 +190,11 @@ function fail(int $code, string $msg, array $extra = []){
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') fail(405, 'Método no permitido.');
 $env  = $cfg['app_env'] ?? 'production';
 $host = $_SERVER['HTTP_HOST'] ?? '';
+$maxBytes = (int)($cfg['security']['max_request_bytes'] ?? 65536);
+$contentLength = (int)($_SERVER['CONTENT_LENGTH'] ?? 0);
+if ($maxBytes > 0 && $contentLength > $maxBytes) {
+  fail(413, 'El tamaño del formulario excede el límite permitido.');
+}
 if ($env === 'production') {
   // Normaliza y valida host considerando proxies/CDN
   $rawHosts = [];
@@ -80,12 +231,19 @@ if ($env === 'production') {
   // In development, log and allow any host to ease local testing
   app_log("DEV MODE: request from host={$host}");
 }
+enforce_rate_limit($_SERVER['REMOTE_ADDR'] ?? 'unknown');
 if (!empty($cfg['security']['honeypot_field']) && !empty($_POST[$cfg['security']['honeypot_field']])) {
   fail(400, 'Bot detectado.');
 }
 
 $allowed = $cfg['security']['allowed_fields'] ?? [];
 $data = [];
+$receivedFields = array_keys($_POST);
+$unknown = array_values(array_diff($receivedFields, $allowed));
+if (!empty($unknown)) {
+  app_log('UNKNOWN_FIELDS_DETECTED fields=' . json_encode($unknown));
+  fail(400, 'Campos no permitidos en la solicitud.');
+}
 foreach ($allowed as $f) { $data[$f] = trim((string)($_POST[$f] ?? '')); }
 
 $required = $cfg['security']['required_fields'] ?? ['nombre','rut','email','whatsapp','objetivo','tipo_ingreso','renta_liquida','capacidad_ahorro_mensual','tiene_ahorro','comunas_interes','canal_preferido','franja_preferida','consentimiento_privacidad','consentimiento_contacto'];
@@ -126,17 +284,25 @@ if ($env === 'production') {
   $tsRes = curl_exec($ch);
   $tsErr = curl_error($ch);
   curl_close($ch);
-  if ($tsErr) fail(502, 'No se pudo verificar Turnstile.', ['detail'=>$tsErr]);
+  if ($tsErr) {
+    app_log('TURNSTILE_CURL_ERROR detail=' . $tsErr, 'ERROR');
+    fail(502, 'No se pudo verificar Turnstile.', ['detail'=>$tsErr]);
+  }
 
   $j = json_decode((string)$tsRes, true);
   if (!($j['success'] ?? false)) {
     $codes = implode(',', $j['error-codes'] ?? []);
     $hostname = $j['hostname'] ?? '';
+    app_log('TURNSTILE_REJECTED codes=' . $codes . ' hostname=' . $hostname, 'WARNING');
     fail(400, 'Turnstile rechazado. Verifica hostnames en Cloudflare.', ['codes'=>$codes, 'hostname'=>$hostname]);
   }
 } else {
   app_log('DEV MODE: Turnstile verification skipped');
 }
+
+$maskOctets = (int)($cfg['privacy']['mask_ip_octets'] ?? 1);
+$clientIp   = anonymize_ip($_SERVER['REMOTE_ADDR'] ?? '', $maskOctets);
+$clientUa   = should_log_user_agent() ? (string)($_SERVER['HTTP_USER_AGENT'] ?? '') : '';
 
 $payload = [
   'timestamp' => date('c'),
@@ -164,8 +330,8 @@ $payload = [
   'gclid'     => $data['gclid'] ?? '',
   'fbclid'    => $data['fbclid'] ?? '',
   'ttclid'    => $data['ttclid'] ?? '',
-  'ip'        => $_SERVER['REMOTE_ADDR'] ?? '',
-  'ua'        => $_SERVER['HTTP_USER_AGENT'] ?? '',
+  'ip'        => $clientIp,
+  'ua'        => $clientUa,
 ];
 
 // Persist to Google Sheets via Apps Script (skip network in development)
@@ -184,25 +350,53 @@ if ($env === 'production') {
   $code = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
   curl_close($ch);
 
-  if ($err) fail(502, 'No se pudo escribir en Google Sheets (Apps Script).', ['detail'=>$err]);
-  if ($code < 200 || $code >= 300) fail(502, 'Apps Script respondió con error.', ['status'=>$code, 'body'=>$resp]);
+  if ($err) {
+    app_log('APPS_SCRIPT_CURL_ERROR detail=' . $err, 'ERROR');
+    fail(502, 'No se pudo escribir en Google Sheets (Apps Script).', ['detail'=>$err]);
+  }
+  if ($code < 200 || $code >= 300) {
+    app_log('APPS_SCRIPT_HTTP_ERROR status=' . $code . ' body=' . substr((string)$resp, 0, 512), 'ERROR');
+    fail(502, 'Apps Script respondió con error.', ['status'=>$code, 'body'=>$resp]);
+  }
 } else {
   app_log('DEV MODE: Skipping Apps Script call; logging payload');
-  app_log('Payload: ' . json_encode($payload, JSON_UNESCAPED_UNICODE));
+  $summary = summarize_payload_for_log($payload);
+  app_log('PayloadSummary: ' . json_encode($summary, JSON_UNESCAPED_UNICODE));
 }
 
+$mailSent = null;
 if (!empty($cfg['email']['enabled'])) {
   $to = $cfg['email']['notify_to'];
-  $subj = ($cfg['email']['subject_prefix'] ?? '[Nueva solicitud]') . ' ' . $data['nombre'];
+  $cleanNombre = sanitize_header_value($data['nombre']);
+  $subj = ($cfg['email']['subject_prefix'] ?? '[Nueva solicitud]') . ' ' . $cleanNombre;
   $body = "Nombre: {$data['nombre']}\nRUT: {$data['rut']}\nEmail: {$data['email']}\nWhatsApp: {$data['whatsapp']}\n"
         . "Objetivo: {$data['objetivo']}\nTipo Ingreso: {$data['tipo_ingreso']}\n"
         . "Renta Líquida: {$data['renta_liquida']}\nCapacidad Ahorro Mensual: {$data['capacidad_ahorro_mensual']}\nTiene Ahorro: {$data['tiene_ahorro']}\nMonto Ahorro: {$data['monto_ahorro']}\n"
         . "Comunas: {$data['comunas_interes']}\nComentarios: {$data['comentarios']}\n"
         . "Canal Preferido: {$data['canal_preferido']}\nFranja: {$data['franja_preferida']}\n"
         . "UTM: {$data['utm_source']} / {$data['utm_medium']} / {$data['utm_campaign']}\n"
-        . "IP: {$payload['ip']}\nUA: {$payload['ua']}\nFecha: {$payload['timestamp']}\n";
+        . "IP (truncada): {$payload['ip']}\n";
+
+  if ($clientUa !== '') {
+    $body .= "UA: {$payload['ua']}\n";
+  } else {
+    $body .= "UA: (no almacenado por políticas de privacidad)\n";
+  }
+
+  $body .= "Fecha: {$payload['timestamp']}\n";
   $headers = 'From: ' . ($cfg['email']['from_name'] ?? 'Select Capital') . ' <' . ($cfg['email']['from_address'] ?? 'no-reply@selectcapital.cl') . '>';
-  @mail($to, $subj, $body, $headers);
+  $mailSent = mail($to, $subj, $body, $headers);
+  if (!$mailSent) {
+    app_log('MAIL_SEND_FAILED to=' . $to, 'ERROR');
+  }
 }
 
-echo json_encode(['ok'=>true,'message'=>'Registro almacenado.']);
+$response = ['ok'=>true,'message'=>'Registro almacenado.'];
+if ($mailSent !== null) {
+  $response['mail_sent'] = (bool)$mailSent;
+}
+if (should_log_user_agent()) {
+  $response['ua_logged'] = true;
+}
+
+echo json_encode($response);
