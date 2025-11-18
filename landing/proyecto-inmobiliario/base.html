@@ -571,15 +571,23 @@
                 </div>
 
               <div class="field">
-                <label for="objetivo">
+                <label>
                   <span>Objetivo</span>
                 </label>
-                <select id="objetivo" name="objetivo" required>
-                  <option value="">Selecciona una opción</option>
-                  <option value="invertir">Invertir para renta</option>
-                  <option value="vivir">Comprar para vivir</option>
-                  <option value="no-se">Aún no lo tengo claro</option>
-                  </select>
+                <div class="option-cards" role="radiogroup" aria-label="Objetivo">
+                  <div class="option-card" data-value="invertir">
+                    <input type="radio" id="objetivo-invertir" name="objetivo" value="invertir" required />
+                    <label for="objetivo-invertir">Invertir para renta</label>
+                  </div>
+                  <div class="option-card" data-value="vivir">
+                    <input type="radio" id="objetivo-vivir" name="objetivo" value="vivir" required />
+                    <label for="objetivo-vivir">Comprar para vivir</label>
+                  </div>
+                  <div class="option-card" data-value="no-se">
+                    <input type="radio" id="objetivo-no-se" name="objetivo" value="no-se" required />
+                    <label for="objetivo-no-se">Aún no lo tengo claro</label>
+                  </div>
+                </div>
                 </div>
 
               <div class="field">
@@ -597,28 +605,47 @@
                 </div>
 
               <div class="field">
-                <label for="tipo">
+                <label>
                   <span>Tipo de propiedad de interés</span>
                 </label>
-                <select id="tipo" name="tipo" required>
-                  <option value="">Selecciona una opción</option>
-                  <option value="studio">Studio</option>
-                  <option value="1d">1 Dormitorio</option>
-                  <option value="2d">2 Dormitorios</option>
-                    <option value="todas">Todas las opciones</option>
-                  </select>
+                <div class="option-cards" role="radiogroup" aria-label="Tipo de propiedad">
+                  <div class="option-card" data-value="studio">
+                    <input type="radio" id="tipo-studio" name="tipo" value="studio" required />
+                    <label for="tipo-studio">Studio</label>
+                  </div>
+                  <div class="option-card" data-value="1d">
+                    <input type="radio" id="tipo-1d" name="tipo" value="1d" required />
+                    <label for="tipo-1d">1 Dormitorio</label>
+                  </div>
+                  <div class="option-card" data-value="2d">
+                    <input type="radio" id="tipo-2d" name="tipo" value="2d" required />
+                    <label for="tipo-2d">2 Dormitorios</label>
+                  </div>
+                  <div class="option-card" data-value="todas">
+                    <input type="radio" id="tipo-todas" name="tipo" value="todas" required />
+                    <label for="tipo-todas">Todas las opciones</label>
+                  </div>
+                </div>
                 </div>
 
               <div class="field">
-                <label for="contacto-preferencia">
+                <label>
                   <span>¿Cómo prefieres que te contactemos?</span>
                 </label>
-                <select id="contacto-preferencia" name="contacto-preferencia" required>
-                  <option value="">Selecciona una opción</option>
-                    <option value="whatsapp">WhatsApp (recomendado)</option>
-                    <option value="email">Correo electrónico</option>
-                    <option value="llamada">Llamada telefónica</option>
-                  </select>
+                <div class="contact-options" role="radiogroup" aria-label="Preferencia de contacto">
+                  <div class="option-card" data-value="whatsapp">
+                    <input type="radio" id="contacto-whatsapp" name="contacto-preferencia" value="whatsapp" required />
+                    <label for="contacto-whatsapp">💬 WhatsApp</label>
+                  </div>
+                  <div class="option-card" data-value="email">
+                    <input type="radio" id="contacto-email" name="contacto-preferencia" value="email" required />
+                    <label for="contacto-email">✉️ Correo</label>
+                  </div>
+                  <div class="option-card" data-value="llamada">
+                    <input type="radio" id="contacto-llamada" name="contacto-preferencia" value="llamada" required />
+                    <label for="contacto-llamada">📞 Llamada</label>
+                  </div>
+                </div>
               </div>
                 </div>
 
@@ -688,33 +715,140 @@
     
     <!-- Google Maps JavaScript API - Key loaded from config -->
     <script>
+      // Define initMap globally BEFORE loading the script
+      window.initMap = function() {
+        const location = { lat: -33.437, lng: -70.648 };
+        const mapElement = document.getElementById('map');
+        
+        if (!mapElement) {
+          console.warn('Map element not found');
+          return;
+        }
+
+        // Check if Google Maps API is loaded
+        if (typeof google === 'undefined' || !google.maps) {
+          console.error('Google Maps API not loaded');
+          mapElement.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;"><a href="https://www.google.com/maps/search/?api=1&query=Marín+Lira+Santiago+Centro" target="_blank" style="color: #1A237E; text-decoration: underline;">Ver ubicación en Google Maps</a></div>';
+          return;
+        }
+
+        try {
+          const map = new google.maps.Map(mapElement, {
+            zoom: 16,
+            center: location,
+            mapTypeId: 'roadmap',
+            styles: [
+              {
+                featureType: 'poi',
+                elementType: 'labels',
+                stylers: [{ visibility: 'off' }]
+              }
+            ],
+            disableDefaultUI: false,
+            zoomControl: true,
+            mapTypeControl: false,
+            scaleControl: true,
+            streetViewControl: false,
+            rotateControl: false,
+            fullscreenControl: true
+          });
+
+          const marker = new google.maps.Marker({
+            position: location,
+            map: map,
+            title: 'VIVA MARÍN - Esquina Marín con Lira, Santiago Centro',
+            animation: google.maps.Animation.DROP
+          });
+
+          const infoWindow = new google.maps.InfoWindow({
+            content: '<div style="padding: 8px;"><strong>VIVA MARÍN</strong><br>Esquina Marín con Lira<br>Santiago Centro</div>'
+          });
+
+          marker.addListener('click', () => {
+            infoWindow.open(map, marker);
+          });
+        } catch (error) {
+          console.error('Error initializing Google Maps:', error);
+          mapElement.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;"><a href="https://www.google.com/maps/search/?api=1&query=Marín+Lira+Santiago+Centro" target="_blank" style="color: #1A237E; text-decoration: underline;">Ver ubicación en Google Maps</a></div>';
+        }
+      };
+
+      // Fallback if Google Maps fails to load
+      window.gm_authFailure = function() {
+        console.error('Google Maps authentication failed. Please check your API key.');
+        const mapElement = document.getElementById('map');
+        if (mapElement) {
+          mapElement.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;">Error al cargar el mapa. <a href="https://www.google.com/maps/search/?api=1&query=Marín+Lira+Santiago+Centro" target="_blank" style="color: #1A237E; text-decoration: underline;">Ver en Google Maps</a></div>';
+        }
+      };
+
       // Load Google Maps API key from server config
       (function() {
-        const script = document.createElement('script');
-        fetch('/api/maps-key.php')
-          .then(res => res.json())
-          .then(data => {
-            if (data.key) {
-              script.src = `https://maps.googleapis.com/maps/api/js?key=${data.key}&callback=initMap`;
-              script.async = true;
-              script.defer = true;
-              document.head.appendChild(script);
-            } else {
-              console.warn('Google Maps API key not configured');
-              // Fallback: show link to Google Maps
-              const mapElement = document.getElementById('map');
-              if (mapElement) {
-                mapElement.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;"><a href="https://www.google.com/maps/search/?api=1&query=Marín+Lira+Santiago+Centro" target="_blank" style="color: #1A237E; text-decoration: underline;">Ver ubicación en Google Maps</a></div>';
+        // Try multiple possible paths for the API endpoint
+        const apiPaths = [
+          '/api/maps-key.php',
+          '../../api/maps-key.php',
+          '../api/maps-key.php'
+        ];
+        
+        let currentPathIndex = 0;
+        
+        function tryLoadMapKey(path) {
+          fetch(path)
+            .then(res => {
+              if (!res.ok) {
+                throw new Error(`HTTP ${res.status}`);
               }
-            }
-          })
-          .catch(err => {
-            console.error('Error loading Google Maps API key:', err);
-            const mapElement = document.getElementById('map');
-            if (mapElement) {
-              mapElement.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;"><a href="https://www.google.com/maps/search/?api=1&query=Marín+Lira+Santiago+Centro" target="_blank" style="color: #1A237E; text-decoration: underline;">Ver ubicación en Google Maps</a></div>';
-            }
+              return res.json();
+            })
+            .then(data => {
+              if (data && data.key) {
+                loadGoogleMaps(data.key);
+              } else {
+                console.warn('Google Maps API key not configured');
+                showMapFallback();
+              }
+            })
+            .catch(err => {
+              console.warn(`Failed to load from ${path}:`, err);
+              // Try next path if available
+              currentPathIndex++;
+              if (currentPathIndex < apiPaths.length) {
+                tryLoadMapKey(apiPaths[currentPathIndex]);
+              } else {
+                console.error('Error loading Google Maps API key from all paths');
+                showMapFallback();
+              }
+            });
+        }
+        
+        function loadGoogleMaps(apiKey) {
+          const script = document.createElement('script');
+          script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+          script.async = true;
+          script.defer = true;
+          script.onerror = () => {
+            console.error('Failed to load Google Maps script');
+            showMapFallback();
+          };
+          document.head.appendChild(script);
+        }
+        
+        function showMapFallback() {
+          const mapElement = document.getElementById('map');
+          if (mapElement) {
+            mapElement.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;"><a href="https://www.google.com/maps/search/?api=1&query=Marín+Lira+Santiago+Centro" target="_blank" style="color: #1A237E; text-decoration: underline;">Ver ubicación en Google Maps</a></div>';
+          }
+        }
+        
+        // Wait for DOM to be ready before trying to load
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => {
+            tryLoadMapKey(apiPaths[0]);
           });
+        } else {
+          tryLoadMapKey(apiPaths[0]);
+        }
       })();
     </script>
     
@@ -1194,7 +1328,9 @@
               formData.append('rut', form.querySelector('#rut')?.value || '');
               formData.append('email', form.querySelector('#correo')?.value || '');
               formData.append('whatsapp', form.querySelector('#telefono')?.value || '');
-              formData.append('objetivo', form.querySelector('#objetivo')?.value || '');
+              // Get objetivo from radio button
+              const objetivoRadio = form.querySelector('input[name="objetivo"]:checked');
+              formData.append('objetivo', objetivoRadio?.value || '');
               formData.append('tipo_ingreso', 'dependiente'); // Default value (form doesn't have this field)
               
               // Send renta as clean number (without formatting)
@@ -1215,7 +1351,13 @@
               formData.append('capacidad_ahorro_mensual', '0');
               
               formData.append('comunas_interes', 'Santiago Centro'); // Project location
-              formData.append('canal_preferido', form.querySelector('#contacto-preferencia')?.value || 'whatsapp');
+              // Get canal_preferido from radio button
+              const contactoRadio = form.querySelector('input[name="contacto-preferencia"]:checked');
+              formData.append('canal_preferido', contactoRadio?.value || 'whatsapp');
+              
+              // Get tipo from radio button
+              const tipoRadio = form.querySelector('input[name="tipo"]:checked');
+              formData.append('tipo_ingreso_independiente', tipoRadio?.value || '');
               formData.append('franja_preferida', 'flexible'); // Default value (form doesn't have this field)
               formData.append('consentimiento_privacidad', form.querySelector('#terminos')?.checked ? 'si' : 'no');
               formData.append('consentimiento_contacto', form.querySelector('#terminos')?.checked ? 'si' : 'no');
@@ -1432,78 +1574,43 @@
         });
       });
 
-      // Initialize theme icons
-      syncThemeIcons();
+        // Initialize theme icons
+        syncThemeIcons();
 
-      // ============================================
-      // GOOGLE MAPS INITIALIZATION
-      // ============================================
-      // Make initMap globally available for Google Maps callback
-      window.initMap = function() {
-        const location = { lat: -33.437, lng: -70.648 };
-        const mapElement = document.getElementById('map');
-        
-        if (!mapElement) {
-          console.warn('Map element not found');
-          return;
-        }
-
-        // Check if Google Maps API is loaded
-        if (typeof google === 'undefined' || !google.maps) {
-          console.error('Google Maps API not loaded');
-          mapElement.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;"><a href="https://www.google.com/maps/search/?api=1&query=Marín+Lira+Santiago+Centro" target="_blank" style="color: #1A237E; text-decoration: underline;">Ver ubicación en Google Maps</a></div>';
-          return;
-        }
-
-        try {
-          const map = new google.maps.Map(mapElement, {
-            zoom: 16,
-            center: location,
-            mapTypeId: 'roadmap',
-            styles: [
-              {
-                featureType: 'poi',
-                elementType: 'labels',
-                stylers: [{ visibility: 'off' }]
-              }
-            ],
-            disableDefaultUI: false,
-            zoomControl: true,
-            mapTypeControl: false,
-            scaleControl: true,
-            streetViewControl: false,
-            rotateControl: false,
-            fullscreenControl: true
+        // Option Cards Interaction Handler
+        document.querySelectorAll('.option-card').forEach(card => {
+          const radio = card.querySelector('input[type="radio"]');
+          const label = card.querySelector('label');
+          
+          // Make entire card clickable
+          card.addEventListener('click', (e) => {
+            if (e.target !== radio && e.target !== label) {
+              radio.checked = true;
+              radio.dispatchEvent(new Event('change', { bubbles: true }));
+            }
           });
-
-          const marker = new google.maps.Marker({
-            position: location,
-            map: map,
-            title: 'VIVA MARÍN - Esquina Marín con Lira, Santiago Centro',
-            animation: google.maps.Animation.DROP
+          
+          // Update card appearance when radio is checked/unchecked
+          radio.addEventListener('change', () => {
+            // Remove selected class from all cards in the same group
+            const group = card.closest('.option-cards, .contact-options');
+            if (group) {
+              group.querySelectorAll('.option-card').forEach(c => {
+                c.classList.remove('selected');
+              });
+            }
+            
+            // Add selected class to checked card
+            if (radio.checked) {
+              card.classList.add('selected');
+            }
           });
-
-          const infoWindow = new google.maps.InfoWindow({
-            content: '<div style="padding: 8px;"><strong>VIVA MARÍN</strong><br>Esquina Marín con Lira<br>Santiago Centro</div>'
-          });
-
-          marker.addListener('click', () => {
-            infoWindow.open(map, marker);
-          });
-        } catch (error) {
-          console.error('Error initializing Google Maps:', error);
-          mapElement.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;"><a href="https://www.google.com/maps/search/?api=1&query=Marín+Lira+Santiago+Centro" target="_blank" style="color: #1A237E; text-decoration: underline;">Ver ubicación en Google Maps</a></div>';
-        }
-      };
-
-      // Fallback if Google Maps fails to load
-      window.gm_authFailure = function() {
-        console.error('Google Maps authentication failed. Please check your API key.');
-        const mapElement = document.getElementById('map');
-        if (mapElement) {
-          mapElement.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;">Error al cargar el mapa. <a href="https://www.google.com/maps/search/?api=1&query=Marín+Lira+Santiago+Centro" target="_blank" style="color: #1A237E; text-decoration: underline;">Ver en Google Maps</a></div>';
-        }
-      };
+          
+          // Initialize selected state
+          if (radio.checked) {
+            card.classList.add('selected');
+          }
+        });
     </script>
   </body>
 </html>

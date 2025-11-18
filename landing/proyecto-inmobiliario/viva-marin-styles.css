@@ -212,32 +212,41 @@
       @media (max-width: 640px) {
         .sticky-nav {
           top: 12px;
-          max-width: 85%;
+          max-width: 90%;
         }
 
         .sticky-nav-content {
-          padding: 8px 16px;
-          gap: 16px;
-          min-width: 260px;
+          padding: 8px 12px;
+          gap: 12px;
+          min-width: auto;
+          width: 100%;
+          flex-wrap: nowrap;
         }
 
         .sticky-nav-logo {
           height: 18px;
+          flex-shrink: 0;
         }
 
         .sticky-nav-links {
-          gap: 12px;
+          gap: 8px;
+          flex: 1;
+          justify-content: flex-start;
+          min-width: 0;
         }
 
         .sticky-nav-links a {
-          font-size: 12px;
-          padding: 3px 6px;
+          font-size: 11px;
+          padding: 4px 6px;
+          white-space: nowrap;
         }
 
         .sticky-nav-theme-toggle {
           width: 28px;
           height: 28px;
           font-size: 14px;
+          flex-shrink: 0;
+          margin-left: auto;
         }
       }
 
@@ -2184,6 +2193,84 @@
 
       body[data-theme="dark"] .field input::placeholder {
         color: rgba(248, 250, 252, 0.5);
+      }
+
+      /* Option Cards for Simple Selection */
+      .option-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 10px;
+        margin-top: 6px;
+      }
+
+      .option-card {
+        position: relative;
+        border-radius: 12px;
+        border: 2px solid var(--sc-border-glass, rgba(15, 23, 42, 0.2));
+        background: var(--sc-glass-bg, rgba(255, 255, 255, 0.9));
+        padding: 14px 16px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--sc-text-primary);
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      body[data-theme="dark"] .option-card {
+        background: rgba(15, 23, 42, 0.96);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: rgba(248, 250, 252, 0.95);
+      }
+
+      .option-card:hover {
+        border-color: var(--sc-rose-gold, rgba(205, 127, 50, 0.4));
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .option-card input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .option-card input[type="radio"]:checked + label,
+      .option-card.selected {
+        border-color: var(--sc-rose-gold, #CD7F32);
+        background: color-mix(in srgb, var(--sc-rose-gold, #CD7F32) 15%, var(--sc-glass-bg, rgba(255, 255, 255, 0.9)));
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--sc-rose-gold, #CD7F32) 10%, transparent),
+                    0 4px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      body[data-theme="dark"] .option-card.selected {
+        background: color-mix(in srgb, var(--sc-rose-gold, #CD7F32) 20%, rgba(15, 23, 42, 0.96));
+      }
+
+      .option-card label {
+        cursor: pointer;
+        width: 100%;
+        margin: 0;
+        font-weight: 500;
+        font-size: 13px;
+      }
+
+      /* Contact Preference Cards */
+      .contact-options {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-top: 6px;
+      }
+
+      @media (max-width: 480px) {
+        .contact-options {
+          grid-template-columns: 1fr;
+        }
       }
 
       .field-checkbox {
