@@ -6,6 +6,25 @@
  *   $cfg = require __DIR__ . '/config.php';
  */
 
+// Cargar variables de entorno desde .env si existe
+if (file_exists(__DIR__ . '/.env')) {
+  $envLines = file(__DIR__ . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+  foreach ($envLines as $line) {
+    // Ignorar comentarios
+    if (strpos(trim($line), '#') === 0) continue;
+    // Parsear KEY=VALUE
+    if (strpos($line, '=') !== false) {
+      [$key, $value] = explode('=', $line, 2);
+      $key = trim($key);
+      $value = trim($value);
+      if (!empty($key) && !getenv($key)) {
+        putenv("$key=$value");
+        $_ENV[$key] = $value;
+      }
+    }
+  }
+}
+
 return [
   // Entorno y zona horaria
   'app_env'   => 'production',                          // 'development' | 'production'
@@ -91,7 +110,8 @@ return [
   ],
 
   // Google Maps API (para uso en frontend)
+  // Carga desde variable de entorno (.env) o fallback a valor por defecto
   'google_maps' => [
-    'api_key' => getenv('GOOGLE_MAPS_API_KEY') ?: 'AIzaSyDBm8oQegD5q-hAMmhhQESRai5WbAv6QFw', // TEMPORAL: Mover a .env
+    'api_key' => getenv('GOOGLE_MAPS_API_KEY') ?: '',
   ],
 ];
