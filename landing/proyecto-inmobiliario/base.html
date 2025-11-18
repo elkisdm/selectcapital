@@ -1,688 +1,1284 @@
-<!DOCTYPE html>
-<html lang="es" data-theme="dark" data-theme-transition>
+<!doctype html>
+<html lang="es" data-theme="light" data-theme-transition>
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Invierte en proyecto inmobiliario con Select Capital. Pie en cuotas, arriendo garantizado, asesoría sin costo. Solicita tu propuesta personalizada." data-meta="description" />
-    <link rel="icon" type="image/png" href="/images/icono.png" />
+    <title>VIVA MARÍN | Inversión en Santiago Centro — Select Capital</title>
+    <meta name="description" content="Invierte en VIVA MARÍN en Santiago Centro desde UF 2.350. Pie 10% en 48 cuotas, 15% descuento lanzamiento. Asesoría sin costo." />
+    <meta name="theme-color" content="#F6F8FC" />
+    <link rel="icon" href="/images/icono.png" />
+    
+    <!-- DNS Prefetch para recursos externos -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://challenges.cloudflare.com" />
+    
+    <!-- Preconnect para recursos críticos -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" href="/lenguaje visual/theme/select-capital-theme.min.css?v=66e592e976" as="style" />
-    <link rel="preload" href="./styles.css" as="style" />
-    <link
-      rel="stylesheet"
-      href="/lenguaje visual/theme/select-capital-theme.min.css?v=66e592e976"
-    />
+    
+    <!-- Preload de fuente crítica -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin />
+    
+    <!-- Fuentes con font-display swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- CSS crítico -->
+    <link rel="stylesheet" href="/lenguaje visual/theme/select-capital-theme.min.css?v=66e592e976" />
     <link rel="stylesheet" href="/lenguaje visual/forms/sc-forms.css" />
-    <link rel="stylesheet" href="./styles.css" />
-    <title data-meta="title">Proyecto Inmobiliario — Select Capital</title>
+    <link rel="stylesheet" href="/landing/proyecto-inmobiliario/viva-marin-styles.css" />
   </head>
   <body>
-    <a href="#lp-main" class="skip-link">Saltar al contenido principal</a>
-    <main id="lp-main">
-      <section class="hero" id="hero" data-section="hero">
-        <div class="page-shell hero__layout">
-          <article class="surface hero__card sc-noise">
-            <span class="hero__eyebrow js-content" data-slot="hero-stage">Etapa 1 · Entrega Q4 2026</span>
-            
-            <h1 class="hero__title js-content" data-slot="hero-title">
-              Invierte desde UF 2.190
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema">
+      <span data-theme-icon>🌙</span>
+    </button>
+
+    <div class="page">
+      <!-- HEADER / HERO -->
+      <header class="header">
+        <div class="header-logo">
+          <img src="/images/logo_negro.png" alt="Select Capital" class="logo-light" />
+          <img src="/images/logo_blanco.png" alt="Select Capital" class="logo-dark" style="display: none;" />
+        </div>
+        <div class="badge-row">
+          <span class="badge badge--accent">Lanzamiento · Entrega mediados 2028</span>
+          <span class="badge">Proyecto en etapa verde</span>
+          <span class="badge">Pie 10% en 48 cuotas</span>
+          <span class="badge">15% de descuento lanzamiento</span>
+        </div>
+
+        <div class="header-main">
+          <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; gap: 0;">
+            <div>
+              <h1 class="headline">
+                Invierte en <span>VIVA MARÍN</span> en Santiago Centro<br />
+                desde UF 2.350
               </h1>
-            <p class="hero__subtitle js-content" data-slot="hero-subtitle">
-              Arriendo garantizado y pie en cuotas
-            </p>
+              <p class="subheadline">
+                Edificio de solo 162 departamentos en esquina Marín con Lira, pensado para quienes quieren vivir o invertir en el corazón de Santiago Centro sin perder tranquilidad.
+              </p>
 
-            <div class="hero__badges" data-slot="hero-badges" class="js-content">
-              <!-- Badges will be populated by JavaScript -->
-            </div>
-
-            <div class="hero__cta" data-slot="hero-ctas">
-              <button
-                class="btn btn-primary btn-large"
-                type="button"
-                data-action="scroll-form"
-                data-analytics="cta_click"
-                data-cta-context="hero_primary"
-              >
-                Ver propuesta gratis
-              </button>
-            </div>
-
-            <div class="hero__trust-indicators">
-              <div class="trust-item">
-                <span class="trust-icon">✅</span>
-                <span>Arriendo garantizado</span>
+              <div class="header-grid">
+                <div class="pill">
+                  <span>Promoción lanzamiento</span>
+                  <strong>15% de descuento</strong>
+                </div>
+                <div class="pill">
+                  <span>Pie 10%</span>
+                  <strong>En hasta 48 cuotas</strong>
+                </div>
+                <div class="pill">
+                  <span>Tipologías</span>
+                  <strong>Estudio · 1D · 2D</strong>
+                </div>
+                <div class="pill">
+                  <span>Entrega estimada</span>
+                  <strong>Mediados 2028</strong>
+                </div>
               </div>
-              <div class="trust-item">
-                <span class="trust-icon">📞</span>
-                <span>Asesoría sin costo</span>
+            </div>
+
+            <div class="hero-cta-section">
+              <button type="button" class="hero-cta-primary" data-action="scroll-form">
+                <span class="btn-primary-icon">📄</span>
+                <span>Quiero mi propuesta</span>
+              </button>
+              <a href="#datos-clave" class="hero-cta-secondary">
+                <span class="hero-cta-icon">📊</span>
+                <span>Ver datos clave del proyecto</span>
+              </a>
+            </div>
+            </div>
+
+          <div class="hero-media">
+            <div class="hero-tagline">VIVA MARÍN — Santiago Centro</div>
+            <div class="hero-title">Esquina Marín con Lira · 162 departamentos</div>
+            <div class="hero-image-placeholder">
+              <img src="/images/viva marin/fachada.png" alt="Fachada principal VIVA MARÍN" loading="eager" fetchpriority="high" width="600" height="800" decoding="async" />
+              </div>
+              </div>
+            </div>
+          </header>
+
+      <!-- DATOS CLAVE / DESCRIPCIÓN -->
+      <section class="section" id="datos-clave">
+        <div class="section-header">
+          <h2 class="section-title">Datos clave del proyecto</h2>
+          <p class="section-kicker">Resumen rápido: precio de entrada, etapas y contexto</p>
+            </div>
+
+        <div class="card" style="margin-bottom: 16px;">
+          <div class="card-grid">
+            <div>
+              <div class="metric-label">Desde</div>
+              <div class="metric-value">UF 2.350</div>
+              <div class="metric-hint">Valores referenciales</div>
+            </div>
+            <div>
+              <div class="metric-label">Tipologías</div>
+              <div class="metric-value">Estudio · 1D · 2D</div>
+              <div class="metric-hint">162 departamentos</div>
+        </div>
+            <div>
+              <div class="metric-label">Pie</div>
+              <div class="metric-value">10% en 48 cuotas</div>
+              <div class="metric-hint">Promoción lanzamiento</div>
+              </div>
+            <div>
+              <div class="metric-label">Entrega</div>
+              <div class="metric-value">Mediados 2028</div>
+              <div class="metric-hint">Etapa verde</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="description-showcase">
+          <div class="description-card">
+            <div class="description-icon">📍</div>
+            <div class="description-content">
+              <h3 class="description-title">Ubicación estratégica</h3>
+              <p class="description-text">
+                En la esquina de <strong>Marín con Lira</strong>, en pleno corazón de Santiago Centro, se levanta <strong>VIVA Marín</strong>: un edificio de solo 162 departamentos — 1 y 2 dormitorios — pensado para quienes buscan conectar con la ciudad sin sacrificar tranquilidad.
+              </p>
+              </div>
+            </div>
+
+          <div class="description-features">
+            <div class="feature-item">
+              <span class="feature-icon">🚇</span>
+              <span class="feature-text">A pasos de metro</span>
+              </div>
+            <div class="feature-item">
+              <span class="feature-icon">🏥</span>
+              <span class="feature-text">Hospitales cercanos</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">🎓</span>
+              <span class="feature-text">Universidades</span>
+          </div>
+            <div class="feature-item">
+              <span class="feature-icon">🛒</span>
+              <span class="feature-text">Comercio urbano</span>
+        </div>
+          </div>
+
+          <div class="description-highlight">
+            <div class="highlight-badge">🚀 Futura Línea 9</div>
+            <p class="highlight-text">
+              La futura <strong>Línea 9 del Metro de Santiago</strong> se trazará por la Avenida Santa Rosa, lo que incrementa la expectativa de <strong>valorización del sector</strong> en el mediano plazo.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCIA / AMENITIES -->
+      <section class="section" id="experiencia">
+        <div class="section-header">
+          <h2 class="section-title">Experiencia del proyecto</h2>
+          <p class="section-kicker">Espacios comunes, amenities y zonas pensadas para el día a día</p>
+              </div>
+
+        <div class="amenities-grid">
+          <article class="amenity-card">
+            <div class="amenity-media">
+              <img src="/images/viva marin/fachada.png" alt="Fachada principal VIVA MARÍN" loading="lazy" width="400" height="533" decoding="async" />
+            </div>
+            <div class="amenity-title">Fachada principal</div>
+            <div class="amenity-caption">Arquitectura moderna que se integra al tejido urbano de Santiago Centro.</div>
+          </article>
+
+          <article class="amenity-card">
+            <div class="amenity-media">
+              <img src="/images/viva marin/halldepto.png" alt="Living VIVA MARÍN" loading="lazy" width="400" height="533" decoding="async" />
+              </div>
+            <div class="amenity-title">Living</div>
+            <div class="amenity-caption">Espacios amplios y luminosos para disfrutar en familia.</div>
+          </article>
+
+          <article class="amenity-card">
+            <div class="amenity-media">
+              <img src="/images/viva marin/cocina.png" alt="Cocina VIVA MARÍN" loading="lazy" width="400" height="533" decoding="async" />
+            </div>
+            <div class="amenity-title">Cocina</div>
+            <div class="amenity-caption">Diseño moderno y funcional con equipamiento de primera calidad.</div>
+          </article>
+
+          <article class="amenity-card">
+            <div class="amenity-media">
+              <img src="/images/viva marin/dormitorio.png" alt="Habitación VIVA MARÍN" loading="lazy" width="400" height="533" decoding="async" />
+          </div>
+            <div class="amenity-title">Habitación</div>
+            <div class="amenity-caption">Dormitorios amplios y confortables para tu descanso.</div>
+          </article>
+        </div>
+      </section>
+
+      <!-- TIPOLOGÍAS Y PLANOS -->
+      <section class="section" id="tipologias">
+        <div class="section-header">
+          <h2 class="section-title">Tipologías disponibles</h2>
+          <p class="section-kicker">Conoce los departamentos y sus superficies</p>
+          </div>
+
+        <div class="typologies-grid">
+          <!-- Studio -->
+          <article class="typology-card">
+            <div class="typology-image-wrapper" data-lightbox="true" data-image="/images/viva marin/render_studio.png" data-title="Studio - DEPTO 310 AL 910">
+              <img src="/images/viva marin/render_studio.png" alt="Plano Studio VIVA MARÍN" loading="lazy" decoding="async" />
+        </div>
+            <div class="typology-content">
+              <div class="typology-header">
+                <h3 class="typology-title">Studio</h3>
+                <span class="typology-badge">DEPTO 310 AL 910</span>
+              </div>
+              <div class="typology-specs">
+                <div class="spec-item">
+                  <span class="spec-label">Superficie Interior</span>
+                  <span class="spec-value">20.62 m²</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Sup. Terraza (100%)</span>
+                  <span class="spec-value">0.00 m²</span>
+                </div>
+                <div class="spec-item spec-total">
+                  <span class="spec-label">SUP. TOTAL</span>
+                  <span class="spec-value">20.62 m²</span>
+                </div>
               </div>
             </div>
           </article>
 
-          <aside class="surface hero__media sc-noise" data-slot="hero-media">
-            <img
-              class="hero__image lazy-image"
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Crect fill='%23151a20' width='800' height='500'/%3E%3Ctext fill='%2364758b' x='50%25' y='50%25' text-anchor='middle' dy='.3em' font-family='system-ui' font-size='16'%3ECargando imagen...%3C/text%3E%3C/svg%3E"
-              data-src="/images/hero-la-florida.jpg"
-              alt="Vista exterior del proyecto inmobiliario"
-              loading="lazy"
-            />
-            <div class="hero__overlay" data-slot="hero-overlay" class="js-content" style="display: none;">
-              <!-- Overlay will be populated by JavaScript -->
-            </div>
-            <div class="image-placeholder" aria-hidden="true">
-              <span>Cargando imagen...</span>
-            </div>
-          </aside>
+          <!-- 1 Dormitorio -->
+          <article class="typology-card">
+            <div class="typology-image-wrapper" data-lightbox="true" data-image="/images/viva marin/render_1d1b.png" data-title="1 Dormitorio - DEPTO 308 AL 908">
+              <img src="/images/viva marin/render_1d1b.png" alt="Plano 1 Dormitorio VIVA MARÍN" loading="lazy" decoding="async" />
+          </div>
+            <div class="typology-content">
+              <div class="typology-header">
+                <h3 class="typology-title">1 Dormitorio</h3>
+                <span class="typology-badge">DEPTO 308 AL 908</span>
         </div>
-      </section>
-
-      <section class="section" id="highlights" data-section="highlights">
-        <div class="page-shell">
-          <header class="section__header">
-            <h2 class="section__title">Datos clave del proyecto</h2>
-            <p class="section__lead">
-              Resumen rápido: precio de entrada, etapas y condiciones de pie.
-            </p>
-          </header>
-          <div class="surface">
-            <div class="highlights-grid" data-slot="highlights-grid" class="js-content">
-              <!-- Highlights will be populated by JavaScript -->
-              <div class="highlight-card" style="opacity: 0.5;">
-                <span>Cargando datos del proyecto...</span>
-                <strong>---</strong>
+              <div class="typology-specs">
+                <div class="spec-item">
+                  <span class="spec-label">Superficie Interior</span>
+                  <span class="spec-value">29.25 m²</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Sup. Terraza (100%)</span>
+                  <span class="spec-value">2.00 m²</span>
+                </div>
+                <div class="spec-item spec-total">
+                  <span class="spec-label">SUP. TOTAL</span>
+                  <span class="spec-value">31.25 m²</span>
+                </div>
               </div>
             </div>
-            <p class="field-hint">
-              *Valores referenciales sujetos a evaluación de la inmobiliaria y
-              banco.
-            </p>
-          </div>
-        </div>
-      </section>
+          </article>
 
-      <!-- Testimonials moved above the fold -->
-      <section class="section testimonials-above-fold" id="testimonios-principales" data-section="testimonials-main">
-        <div class="page-shell">
-          <header class="section__header">
-            <h2 class="section__title">Lo que dicen nuestros clientes</h2>
-          </header>
-          <div class="testimonials-grid-above-fold">
-            <div class="testimonial-card featured">
-              <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-              <p class="testimonial-text">
-                "Ya estoy recibiendo $520.000 mensuales de arriendo."
-              </p>
-              <div class="testimonial-author">
-                <strong>Carolina R.</strong>
-                <span>Inversión desde UF 2.590</span>
+          <!-- 2 Dormitorios -->
+          <article class="typology-card">
+            <div class="typology-image-wrapper" data-lightbox="true" data-image="/images/viva marin/render_2d2b.png" data-title="2 Dormitorios - DEPTO 202 AL 902">
+              <img src="/images/viva marin/render_2d2b.png" alt="Plano 2 Dormitorios VIVA MARÍN" loading="lazy" decoding="async" />
+            </div>
+            <div class="typology-content">
+              <div class="typology-header">
+                <h3 class="typology-title">2 Dormitorios</h3>
+                <span class="typology-badge">DEPTO 202 AL 902</span>
+              </div>
+              <div class="typology-specs">
+                <div class="spec-item">
+                  <span class="spec-label">Superficie Interior</span>
+                  <span class="spec-value">49.40 m²</span>
+            </div>
+                <div class="spec-item">
+                  <span class="spec-label">Sup. Terraza (100%)</span>
+                  <span class="spec-value">2.03 m²</span>
+          </div>
+                <div class="spec-item spec-total">
+                  <span class="spec-label">SUP. TOTAL</span>
+                  <span class="spec-value">51.43 m²</span>
+                </div>
               </div>
             </div>
-            <div class="testimonial-card featured">
-              <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-              <p class="testimonial-text">
-                "El pie en cuotas me permitió invertir sin tanto capital."
+          </article>
+        </div>
+      </section>
+
+      <!-- UBICACIÓN Y CONECTIVIDAD -->
+      <section class="section" id="ubicacion">
+        <div class="section-header">
+          <h2 class="section-title">Ubicación y conectividad</h2>
+          <p class="section-kicker">Todo lo que necesitas, a minutos caminando</p>
+          </div>
+
+        <div class="location-grid">
+          <div>
+            <ul class="list">
+              <li>
+                <div class="list-icon">🎓</div>
+                <div class="list-content">
+                  <span>Educación</span>
+                  <strong>Universidad Católica · 5 min</strong>
+        </div>
+              </li>
+              <li>
+                <div class="list-icon">🛒</div>
+                <div class="list-content">
+                  <span>Comercio</span>
+                  <strong>Strip Center Portugal · 6 min</strong>
+            </div>
+              </li>
+              <li>
+                <div class="list-icon">🚇</div>
+                <div class="list-content">
+                  <span>Metro</span>
+                  <strong>Santa Lucía · 10 min</strong>
+          </div>
+              </li>
+              <li>
+                <div class="list-icon">🏥</div>
+                <div class="list-content">
+                  <span>Salud</span>
+                  <strong>Hospital del Salvador · 6 min</strong>
+        </div>
+              </li>
+            </ul>
+
+            <p class="text-block" style="margin-top: 16px;">
+              Estás en el <strong>centro histórico de Santiago</strong>, una zona con alta plusvalía por su conectividad, servicios y vida urbana. Ideal para renta de largo plazo y para profesionales que buscan cercanía con todo.
               </p>
-              <div class="testimonial-author">
-                <strong>Mario G.</strong>
-                <span>Inversión desde UF 2.190</span>
-              </div>
+          </div>
+
+          <div class="map-card">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.5!2d-70.648!3d-33.437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c5a8b8b8b8b9%3A0x8b8b8b8b8b8b8b8b!2sCalle%20Mar%C3%ADn%20%26%20Calle%20Lira%2C%20Santiago%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1700000000000!5m2!1ses!2scl" 
+              width="100%" 
+              height="100%" 
+              style="border:0; border-radius: var(--lp-radius-lg);" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicación VIVA MARÍN - Esquina Marín con Lira, Santiago Centro">
+            </iframe>
+            <div class="map-overlay">
+              <a href="https://www.google.com/maps/search/?api=1&query=Marín+Lira+Santiago+Centro" target="_blank" rel="noopener" class="map-link">
+                <span>📍 Esquina Marín con Lira, Santiago Centro</span>
+                <span style="font-size: 10px; opacity: 0.8;">Abrir en Google Maps</span>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section" id="galeria" data-section="gallery">
-        <div class="page-shell">
-          <header class="section__header">
-            <h2 class="section__title">Experiencia del proyecto</h2>
-            <p class="section__lead">
-              Mira los espacios comunes, amenities y el piloto en detalle.
-            </p>
-          </header>
-          <div class="gallery-grid" data-slot="gallery-grid" class="js-content">
-            <!-- Gallery items will be populated by JavaScript -->
+      <!-- POR QUÉ INVERTIR AHORA -->
+      <section class="section" id="por-que-invertir">
+        <div class="section-header">
+          <h2 class="section-title">¿Por qué invertir ahora?</h2>
+          <p class="section-kicker">Contexto de mercado y oportunidad concreta en VIVA MARÍN</p>
           </div>
-        </div>
-      </section>
 
-      <section class="section" id="tipologias" data-section="typologies">
-        <div class="page-shell">
-          <header class="section__header">
-            <h2 class="section__title">Tipologías y precios</h2>
-            <p class="section__lead">
-              Todas las tipologías aplican a la Promoción 10% + Descuento 5% y al esquema de pie 10%.
-              <a href="#" class="pie-modal-link" data-action="open-pie-modal">Ver cómo pago mi pie</a>
+        <div class="why-invest-grid">
+          <div class="why-invest-card">
+            <div class="why-invest-icon">📉</div>
+            <h3 class="why-invest-title">Tasas en baja</h3>
+            <p class="why-invest-text">
+              Las <strong>tasas de interés hipotecarias han comenzado a bajar</strong>, lo que mejora la accesibilidad al crédito y reduce el costo total del financiamiento.
             </p>
-          </header>
-          <div class="typology-grid" data-slot="typology-grid" class="js-content">
-            <!-- Typologies will be populated by JavaScript -->
           </div>
-        </div>
-      </section>
 
-      <section class="section" id="ubicacion" data-section="location">
-        <div class="page-shell">
-          <header class="section__header">
-            <h2 class="section__title">Ubicación y conectividad</h2>
-            <p class="section__lead">
-              Conoce la micro-localización, transporte y servicios cercanos.
+          <div class="why-invest-card">
+            <div class="why-invest-icon">📈</div>
+            <h3 class="why-invest-title">Alta demanda</h3>
+            <p class="why-invest-text">
+              Estás en una zona con <strong>alta demanda de arriendo y oferta moderada</strong>, lo que proyecta buena estabilidad de ocupación y valorización futura.
             </p>
-          </header>
-          <div class="surface location-grid">
-            <div class="location-map" data-slot="location-map" class="js-content">
-              <!-- Map will be populated by JavaScript -->
-            </div>
-            <div class="location-details">
-              <div class="chips" data-slot="location-chips" class="js-content">
-                <!-- Location chips will be populated by JavaScript -->
-              </div>
-              <p class="field-hint" data-slot="location-plusvalia" class="js-content">
-                <!-- Plusvalía information will be populated by JavaScript -->
-              </p>
-            </div>
           </div>
-        </div>
-      </section>
 
-      <section class="section" id="porque-ahora" data-section="why-now">
-        <div class="page-shell">
-          <header class="section__header">
-            <h2 class="section__title">¿Por qué invertir ahora?</h2>
-            <p class="section__lead">
-              Factores de mercado, subsidios y oportunidades concretas del
-              proyecto.
+          <div class="why-invest-card">
+            <div class="why-invest-icon">🌱</div>
+            <h3 class="why-invest-title">Etapa verde</h3>
+            <p class="why-invest-text">
+              VIVA MARÍN se encuentra en <strong>etapa verde</strong>: puedes pagar el pie en cuotas y capturar plusvalía desde la construcción.
             </p>
-          </header>
-          <div class="surface why-now" data-slot="why-now" class="js-content">
-            <!-- Why now items will be populated by JavaScript -->
           </div>
-        </div>
-      </section>
-
-      <section class="section" id="acompanamiento" data-section="accompaniment">
-        <div class="page-shell">
-          <header class="section__header">
-            <h2 class="section__title">Acompañamiento Select Capital</h2>
-            <p class="section__lead">
-              Te guiamos desde el diagnóstico hasta el primer arriendo sin costo
-              adicional.
-            </p>
-          </header>
-          <div class="timeline" data-slot="accompaniment-steps" class="js-content">
-            <!-- Accompaniment steps will be populated by JavaScript -->
-          </div>
-          <div class="badge" data-slot="accompaniment-badge">
-            Asesoría sin costo · Sin comisión al comprador
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="testimonios" data-section="testimonials">
-        <div class="page-shell">
-          <header class="section__header">
-            <h2 class="section__title">Historias reales</h2>
-            <p class="section__lead">
-              Inversionistas que ya están recibiendo arriendo con Select Capital.
-            </p>
-          </header>
-          <div class="testimonials-grid" data-slot="testimonials-grid" class="js-content">
-            <!-- Additional testimonials will be populated by JavaScript -->
-          </div>
-          <div class="partners" data-slot="partners" class="js-content">
-            <!-- Partner logos will be populated by JavaScript -->
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="faq" data-section="faq">
-        <div class="page-shell">
-          <header class="section__header">
-            <h2 class="section__title">Preguntas frecuentes</h2>
-            <p class="section__lead">
-              Respondemos las dudas más comunes sobre pies, garantías y entrega.
-            </p>
-          </header>
-          <div class="faq-list" data-slot="faq-list" class="js-content">
-            <!-- FAQ items will be populated by JavaScript -->
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="formulario" data-section="form">
-        <div class="page-shell">
-          <div class="form-shell">
-            <div class="form-intro surface">
-              <h2 class="section__title">
-                Déjanos tus datos y te enviamos números claros
-              </h2>
-              <p class="section__lead">
-                Recibe dividendo estimado, pie, arriendo y ROI para tu tipología
-                ideal en menos de 24 horas.
-              </p>
-              <ul class="micro-faq">
-                <li>Tipologías sugeridas según tu renta y ahorro.</li>
-                <li>WhatsApp con asesor especializado.</li>
-                <li>Agenda reuniones online o presenciales.</li>
-              </ul>
             </div>
 
-            <form
-              class="lp-form wizard-form"
-              id="leadForm"
-              method="post"
-              novalidate
-              data-component="lead-form"
-              data-analytics="generate_lead"
-            >
-              <!-- Progress Indicator -->
-              <div class="wizard-progress" data-wizard-progress>
-                <div class="wizard-steps">
-                  <div class="wizard-step-item active" data-step="1">
-                    <span class="step-number">1</span>
-                    <span class="step-label">Contacto</span>
+        <div class="why-invest-highlights">
+          <div class="highlight-pill">
+            <span class="highlight-pill-icon">📉</span>
+            <span>Baja gradual de tasas hipotecarias</span>
                   </div>
-                  <div class="wizard-step-item" data-step="2">
-                    <span class="step-number">2</span>
-                    <span class="step-label">Perfil</span>
+          <div class="highlight-pill">
+            <span class="highlight-pill-icon">📈</span>
+            <span>Alta demanda de arriendo en Santiago Centro</span>
                   </div>
-                  <div class="wizard-step-item" data-step="3">
-                    <span class="step-number">3</span>
-                    <span class="step-label">Confirmar</span>
+          <div class="highlight-pill">
+            <span class="highlight-pill-icon">🌱</span>
+            <span>Etapa verde: pie en cuotas</span>
                   </div>
-                </div>
-                <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
-                  <div class="progress-fill" data-progress-fill style="width: 33%"></div>
-                  <span class="progress-text" data-progress-text>33%</span>
-                </div>
+          <div class="highlight-pill">
+            <span class="highlight-pill-icon">🚇</span>
+            <span>Proyección positiva por futura Línea 9</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROCESO DE INVERSIÓN -->
+      <section class="section" id="proceso">
+        <div class="section-header">
+          <h2 class="section-title">Proceso de inversión</h2>
+          <p class="section-kicker">Acompañamiento desde el diagnóstico hasta la firma de promesa</p>
               </div>
 
-              <!-- Step 1: Contact Info -->
-              <div class="wizard-step active" data-step-content="1">
-                <div class="step-header">
-                  <h3>Cuéntanos sobre ti</h3>
-                  <p>Validamos tus datos para enviarte una propuesta personalizada.</p>
-                </div>
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-index">1</div>
+            <div class="step-title">Análisis financiero</div>
+            <p class="step-text">
+              Revisamos tu documentación y diseñamos una propuesta adaptada tanto a tu perfil de inversionista como a tu situación financiera actual.
+            </p>
+          </article>
 
-                <div class="form-group">
-                  <label class="sc-label" for="lead-name">Nombre completo</label>
-                  <input
-                    class="form-control sc-input"
-                    id="lead-name"
-                    name="nombre"
-                    autocomplete="name"
-                    placeholder="Ana Pérez"
-                    required
-                    aria-required="true"
-                    aria-describedby="lead-name-hint"
-                    aria-invalid="false"
-                  />
-                  <small class="sc-hint" id="lead-name-hint">Usa tu nombre completo.</small>
-                  <div class="field-error" role="alert" aria-live="polite" id="lead-name-error" style="display: none;"></div>
-                </div>
+          <article class="step-card">
+            <div class="step-index">2</div>
+            <div class="step-title">Preaprobación bancaria</div>
+            <p class="step-text">
+              Coordinamos con nuestros ejecutivos para obtener una o más preaprobaciones de crédito, dejando tu financiamiento encaminado antes de reservar.
+            </p>
+          </article>
 
-                <div class="form-group">
-                  <label class="sc-label" for="lead-phone">Teléfono WhatsApp</label>
-                  <input
-                    class="form-control sc-input"
-                    id="lead-phone"
-                    name="telefono"
-                    type="tel"
-                    placeholder="+56 9 1234 5678"
-                    inputmode="tel"
-                    data-mask="phone"
-                    autocomplete="tel"
-                    required
-                    aria-required="true"
-                    aria-describedby="lead-phone-hint"
-                    aria-invalid="false"
-                  />
-                  <small class="sc-hint" id="lead-phone-hint">Te contactaremos por WhatsApp para agendar tu asesoría.</small>
-                  <div class="field-error" role="alert" aria-live="polite" id="lead-phone-error" style="display: none;"></div>
-                </div>
+          <article class="step-card">
+            <div class="step-index">3</div>
+            <div class="step-title">Reserva de la unidad</div>
+            <p class="step-text">
+              Realizas la reserva para asegurar la unidad seleccionada mientras ultimamos detalles de la promesa de compraventa.
+            </p>
+          </article>
 
-                <div class="form-group">
-                  <label class="sc-label" for="lead-email">Correo electrónico</label>
-                  <input
-                    class="form-control sc-input"
-                    id="lead-email"
-                    name="email"
-                    type="email"
-                    autocomplete="email"
-                    placeholder="hola@tuemail.cl"
-                    required
-                    aria-required="true"
-                    aria-describedby="lead-email-hint"
-                    aria-invalid="false"
-                  />
-                  <small class="sc-hint" id="lead-email-hint" style="display: none;">Ingresa un correo válido.</small>
-                  <div class="field-error" role="alert" aria-live="polite" id="lead-email-error" style="display: none;"></div>
+          <article class="step-card">
+            <div class="step-index">4</div>
+            <div class="step-title">Firma de promesa</div>
+            <p class="step-text">
+              Firmas la promesa de compraventa, que fija precio, plazos y condiciones, entregándote seguridad jurídica antes de la escritura final.
+            </p>
+          </article>
+            </div>
+      </section>
+
+      <!-- PREGUNTAS FRECUENTES -->
+      <section class="section" id="faq">
+        <div class="section-header">
+          <h2 class="section-title">Preguntas frecuentes</h2>
+          <p class="section-kicker">Resolvemos las dudas más comunes antes de invertir</p>
+                  </div>
+
+        <div class="faq-grid">
+          <div class="faq-item">
+            <div class="faq-q">
+              <span class="faq-icon">💰</span>
+              <span>¿Cómo se divide el pie 10%?</span>
+                  </div>
+            <div class="faq-a">El pie se divide en cuotas, permitiéndote entrar al proyecto con menor esfuerzo inicial. Detalle exacto según condiciones vigentes al momento de la reserva.</div>
+                  </div>
+
+          <div class="faq-item">
+            <div class="faq-q">
+              <span class="faq-icon">📋</span>
+              <span>¿Qué necesito para promesar?</span>
                 </div>
+            <div class="faq-a">Contar con una preaprobación bancaria vigente y cumplir con la documentación solicitada por la inmobiliaria y el banco.</div>
               </div>
 
-              <!-- Step 2: Financial Profile -->
-              <div class="wizard-step" data-step-content="2">
-                <div class="step-header">
-                  <h3>Tu perfil de inversión</h3>
-                  <p>Nos ayuda a mostrarte opciones que se ajusten a tu realidad.</p>
+          <div class="faq-item">
+            <div class="faq-q">
+              <span class="faq-icon">📅</span>
+              <span>¿Cuándo se entrega el proyecto?</span>
+                </div>
+            <div class="faq-a">La entrega estimada es a mediados de 2028, sujeta al avance de la obra y permisos correspondientes.</div>
                 </div>
 
-                <div class="form-group">
-                  <label class="sc-label" for="lead-goal">¿Cuál es tu objetivo?</label>
-                  <select
-                    class="form-control"
-                    id="lead-goal"
-                    name="objetivo"
-                    required
-                    aria-required="true"
-                    aria-invalid="false"
-                  >
-                    <option value="" disabled selected>Selecciona tu objetivo</option>
-                    <option value="invertir">Invertir para generar renta</option>
-                    <option value="vivir">Comprar para vivir</option>
-                    <option value="no_se">Aún no lo tengo claro</option>
+          <div class="faq-item">
+            <div class="faq-q">
+              <span class="faq-icon">🚗</span>
+              <span>¿Hay estacionamientos y bodegas?</span>
+                </div>
+            <div class="faq-a">Sí, hay opciones de estacionamientos y bodegas sujetos a disponibilidad y valores vigentes al momento de la reserva.</div>
+                </div>
+
+          <div class="faq-item">
+            <div class="faq-q">
+              <span class="faq-icon">🎁</span>
+              <span>¿Qué incluye la promoción?</span>
+            </div>
+            <div class="faq-a">Promoción de lanzamiento con un 15% de descuento sobre el valor de lista, válida para unidades y plazos definidos por el desarrollador.</div>
+                </div>
+
+          <div class="faq-item">
+            <div class="faq-q">
+              <span class="faq-icon">💳</span>
+              <span>¿Hay gastos adicionales?</span>
+                </div>
+            <div class="faq-a">Sí, los habituales gastos operacionales, notariales y seguros al momento de la escrituración del crédito hipotecario.</div>
+              </div>
+        </div>
+      </section>
+
+      <!-- FORMULARIO / LEAD FORM -->
+      <section class="section" id="contacto">
+        <div class="section-header">
+          <h2 class="section-title">Recibe tu propuesta</h2>
+          <p class="section-kicker">Déjanos tus datos y te enviamos números claros para tu caso</p>
+                </div>
+
+        <div class="form-card">
+          <p class="text-block" style="margin-bottom: 16px;">
+            Te enviaremos una propuesta con valor estimado de la unidad, pie, monto de dividendo y renta proyectada según tu perfil. Sin costo y sin compromiso.
+          </p>
+
+          <form class="form" action="/submit.php" method="post">
+            <div class="form-grid">
+              <div class="field">
+                <label for="nombre">
+                  <span class="field-icon">👤</span>
+                  <span>Nombre completo</span>
+                </label>
+                <input id="nombre" name="nombre" type="text" placeholder="Ej: Ana Pérez" required />
+                </div>
+
+              <div class="field">
+                <label for="rut">
+                  <span class="field-icon">🆔</span>
+                  <span>RUT</span>
+                </label>
+                <input id="rut" name="rut" type="text" placeholder="Ej: 12.345.678-9" required />
+                </div>
+
+              <div class="field">
+                <label for="telefono">
+                  <span class="field-icon">📱</span>
+                  <span>Teléfono WhatsApp</span>
+                </label>
+                <input id="telefono" name="telefono" type="tel" placeholder="+56 9 ..." required />
+                  </div>
+
+              <div class="field">
+                <label for="correo">
+                  <span class="field-icon">✉️</span>
+                  <span>Correo electrónico</span>
+                </label>
+                <input id="correo" name="correo" type="email" placeholder="tu@correo.cl" required />
+                </div>
+
+              <div class="field">
+                <label for="objetivo">
+                  <span class="field-icon">🎯</span>
+                  <span>Objetivo</span>
+                </label>
+                <select id="objetivo" name="objetivo" required>
+                  <option value="">Selecciona una opción</option>
+                  <option value="invertir">Invertir para renta</option>
+                  <option value="vivir">Comprar para vivir</option>
+                  <option value="no-se">Aún no lo tengo claro</option>
                   </select>
-                  <div class="field-error" role="alert" aria-live="polite" id="lead-goal-error" style="display: none;"></div>
                 </div>
 
-                <div class="form-group">
-                  <label class="sc-label" for="lead-income">Renta líquida mensual (CLP)</label>
-                  <input
-                    class="form-control sc-input"
-                    id="lead-income"
-                    name="renta_liquida_clp"
-                    inputmode="numeric"
-                    placeholder="1.200.000"
-                    aria-describedby="lead-income-hint"
-                    required
-                    aria-required="true"
-                    aria-invalid="false"
-                  />
-                  <small class="sc-hint" id="lead-income-hint">
-                    Promedio mensual después de descuentos e imposiciones.
-                  </small>
-                  <div class="field-error" role="alert" aria-live="polite" id="lead-income-error" style="display: none;"></div>
-                </div>
-
-                <div class="form-group">
-                  <label class="sc-label" for="lead-savings">Ahorro disponible para pie (UF)</label>
-                  <div class="sc-input-affix">
-                    <input
-                      id="lead-savings"
-                      name="ahorro_uf"
-                      data-mask="uf"
-                      inputmode="decimal"
-                      placeholder="200"
-                      required
-                      aria-required="true"
-                      aria-describedby="lead-savings-hint"
-                      aria-invalid="false"
-                    />
-                    <span>UF</span>
-                  </div>
-                  <small class="sc-hint" id="lead-savings-hint">
-                    Si aún no tienes definido el monto, puedes usar 0.
-                  </small>
-                  <div class="field-error" role="alert" aria-live="polite" id="lead-savings-error" style="display: none;"></div>
-                </div>
-
-                <div class="form-group">
-                  <label class="sc-label" for="lead-timeline">¿Cuándo te gustaría invertir?</label>
-                  <select
-                    class="form-control"
-                    id="lead-timeline"
-                    name="ventana_decision"
-                    required
-                    aria-required="true"
-                    aria-invalid="false"
-                  >
-                    <option value="" disabled selected>Selecciona el momento</option>
-                    <option value="0-30">Los próximos 30 días</option>
-                    <option value="60-90">Entre 60-90 días</option>
-                    <option value="120-plus">Más de 120 días</option>
-                  </select>
-                  <div class="field-error" role="alert" aria-live="polite" id="lead-timeline-error" style="display: none;"></div>
-                </div>
+              <div class="field">
+                <label for="renta">
+                  <span class="field-icon">💰</span>
+                  <span>Renta líquida mensual (CLP)</span>
+                </label>
+                <input id="renta" name="renta" type="text" placeholder="Promedio mensual" required />
               </div>
 
-              <!-- Step 3: Preferences & Consent -->
-              <div class="wizard-step" data-step-content="3">
-                <div class="step-header">
-                  <h3>Último paso</h3>
-                  <p>Confirma tus preferencias y autoriza el contacto.</p>
+              <div class="field">
+                <label for="ahorro">
+                  <span class="field-icon">💵</span>
+                  <span>Ahorros disponibles para pie</span>
+                </label>
+                <input id="ahorro" name="ahorro" type="text" placeholder="Monto aprox. o 'No tengo'" required />
                 </div>
 
-                <div class="form-group">
-                  <label class="sc-label" for="lead-property-type">¿Qué tipo de propiedad te interesa?</label>
-                  <select
-                    class="form-control"
-                    id="lead-property-type"
-                    name="tipo_interes"
-                    required
-                    aria-required="true"
-                    aria-invalid="false"
-                  >
-                    <option value="" disabled selected>Selecciona el tipo</option>
-                    <option value="studio">Studio (28-38 m²)</option>
-                    <option value="1dorm">1 Dormitorio</option>
-                    <option value="2dorm">2 Dormitorios</option>
+              <div class="field">
+                <label for="tipo">
+                  <span class="field-icon">🏠</span>
+                  <span>Tipo de propiedad de interés</span>
+                </label>
+                <select id="tipo" name="tipo" required>
+                  <option value="">Selecciona una opción</option>
+                  <option value="studio">Studio</option>
+                  <option value="1d">1 Dormitorio</option>
+                  <option value="2d">2 Dormitorios</option>
                     <option value="todas">Todas las opciones</option>
                   </select>
-                  <div class="field-error" role="alert" aria-live="polite" id="lead-property-type-error" style="display: none;"></div>
                 </div>
 
-                <div class="form-group">
-                  <label class="sc-label" for="lead-contact-pref">¿Cómo prefieres que te contactemos?</label>
-                  <select
-                    class="form-control"
-                    id="lead-contact-pref"
-                    name="canal_preferido"
-                    required
-                    aria-required="true"
-                    aria-invalid="false"
-                  >
-                    <option value="" disabled selected>Selecciona tu preferencia</option>
+              <div class="field">
+                <label for="contacto-preferencia">
+                  <span class="field-icon">💬</span>
+                  <span>¿Cómo prefieres que te contactemos?</span>
+                </label>
+                <select id="contacto-preferencia" name="contacto-preferencia" required>
+                  <option value="">Selecciona una opción</option>
                     <option value="whatsapp">WhatsApp (recomendado)</option>
                     <option value="email">Correo electrónico</option>
                     <option value="llamada">Llamada telefónica</option>
                   </select>
-                  <div class="field-error" role="alert" aria-live="polite" id="lead-contact-pref-error" style="display: none;"></div>
+              </div>
                 </div>
 
-                <div class="form-group consent">
-                  <input
-                    type="checkbox"
-                    id="lead-consent"
-                    name="consentimiento"
-                    required
-                    aria-required="true"
-                    aria-invalid="false"
-                  />
-                  <label for="lead-consent">
-                    <strong>Acepto el tratamiento de mis datos</strong> según la Ley 19.628 y autorizo contacto por WhatsApp y correo para recibir información sobre este proyecto inmobiliario.
+            <div class="field-checkbox">
+              <input id="terminos" name="terminos" type="checkbox" required />
+              <label for="terminos">
+                Acepto el tratamiento de mis datos y autorizo el contacto por WhatsApp y correo para recibir información sobre este proyecto inmobiliario.
                   </label>
-                  <div class="field-error" role="alert" aria-live="polite" id="lead-consent-error" style="display: none;"></div>
                 </div>
 
-                <div class="urgency-notice">
-                  <div class="urgency-icon">⏰</div>
-                  <div class="urgency-text">
-                    <strong>¡Oferta limitada!</strong> Solo quedan 3 unidades en tu rango de precio. Te contactaremos en menos de 2 horas.
-                  </div>
-                </div>
+            <input type="hidden" name="cf-turnstile-response" id="ts-token" />
+            
+            <div class="form-footer">
+              <p>⏰ Oferta sujeta a disponibilidad de unidades y vigencia de la promoción de lanzamiento.</p>
+              
+              <div class="turnstile-container" style="margin: 16px 0; display: flex; justify-content: center;">
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAB_bjq2YOWp-yEXx" data-theme="auto" data-callback="onTurnstileSuccess"></div>
               </div>
 
-              <!-- Navigation -->
-              <div class="wizard-navigation">
-                <button
-                  type="button"
-                  class="btn btn-ghost"
-                  data-wizard-prev
-                  style="display: none;"
-                >
-                  ← Volver
-                </button>
-                <div class="nav-spacer"></div>
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  data-wizard-next
-                >
-                  Continuar →
-                </button>
-                <button
-                  type="submit"
-                  class="btn btn-primary"
-                  data-wizard-submit
-                  style="display: none;"
-                  data-state="idle"
-                  data-label-default="Recibir mi propuesta personalizada"
-                  data-label-loading="Enviando..."
-                >
-                  Recibir mi propuesta personalizada
+              <button type="submit" class="btn-primary" id="form-submit-btn" disabled>
+                <span class="btn-primary-icon">📄</span>
+                <span>Recibir mi propuesta personalizada</span>
                 </button>
               </div>
-
-              <input type="hidden" name="proyecto" data-slot="hidden-project" />
-              <input type="hidden" name="comuna" data-slot="hidden-commune" />
-              <input type="hidden" name="etapa" data-slot="hidden-stage" />
-              <input type="hidden" name="tipologia_interes" />
-              <input type="hidden" name="simulador_dividendo" />
-              <input type="hidden" name="simulador_rango_uf" />
-              <input type="hidden" name="simulador_tipologias" />
-              <input type="hidden" name="utm_source" />
-              <input type="hidden" name="utm_medium" />
-              <input type="hidden" name="utm_campaign" />
-              <input type="hidden" name="utm_id" />
-              <input type="hidden" name="gclid" />
-              <input type="hidden" name="fbclid" />
-              <input type="hidden" name="ttclid" />
-              <input
-                type="hidden"
-                name="cf-turnstile-response"
-                data-slot="turnstile-token"
-              />
             </form>
-          </div>
         </div>
       </section>
 
-      <section class="section" id="legal" data-section="legal">
-        <div class="page-shell">
-          <div class="surface legal-surface">
-            <h2 class="section__title">Confianza y respaldo Select Capital</h2>
-            <div class="legal-grid">
-              <div class="agent-card js-content" data-slot="agent-card">
-                <div class="agent-card__header">
-                  <div class="agent-card__image-placeholder js-content" data-slot="agent-image">
-                    <span>Foto agente</span>
-                  </div>
-                  <div class="agent-card__info">
-                    <h3 class="agent-card__name js-content" data-slot="agent-name">Select Capital</h3>
-                    <p class="agent-card__role js-content" data-slot="agent-role">Asesoría Inmobiliaria</p>
-                  </div>
-                </div>
-                <div class="agent-card__contact js-content" data-slot="legal-contact">
-                  <!-- Contact information will be populated by JavaScript -->
-                </div>
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div>
+          <img src="/images/logo_negro.png" alt="Select Capital" class="footer-logo footer-logo-light" style="height: 32px; margin-bottom: 12px;" />
+          <img src="/images/logo_blanco.png" alt="Select Capital" class="footer-logo footer-logo-dark" style="height: 32px; margin-bottom: 12px; display: none;" />
+          <p style="margin: 0 0 8px 0; font-size: 12px;">
+            <strong>Select Capital</strong> · Asesoría Inmobiliaria<br />
+            Av. Apoquindo 6410, Of. 1203, Las Condes
+          </p>
               </div>
               <div>
-                <h3>Avisos legales</h3>
-                <ul class="legal-list js-content" data-slot="legal-notes">
-                  <!-- Legal notes will be populated by JavaScript -->
-                </ul>
+          <div class="footer-contact">
+            <a href="https://wa.me/56966013182?text=Hola,%20quiero%20información%20sobre%20VIVA%20MARÍN" target="_blank" rel="noopener" class="contact-link">
+              <span>💬</span>
+              <span>WhatsApp</span>
+            </a>
+            <a href="mailto:contacto@selectcapital.cl" class="contact-link">
+              <span>✉️</span>
+              <span>contacto@selectcapital.cl</span>
+            </a>
               </div>
+          <p style="margin: 12px 0 0 0; font-size: 11px; color: var(--sc-text-tertiary, rgba(15, 23, 42, 0.5));">
+            Promociones y precios en UF, sujetos a disponibilidad y modificaciones del plan de obra.
+          </p>
             </div>
+      </footer>
           </div>
-        </div>
-      </section>
-    </main>
 
-    <div class="cta-floating" data-component="floating-cta">
-      <button
-        class="btn btn-primary"
-        type="button"
-        data-action="scroll-form"
-        data-analytics="cta_click"
-        data-cta-context="floating"
-      >
-        Quiero mi propuesta
-      </button>
-    </div>
+    <!-- Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    
+    <script type="module" src="/lenguaje visual/theme/theme-toggle.min.js"></script>
+    <script>
+      // Turnstile callback
+      window.onTurnstileSuccess = function(token) {
+        const tokenInput = document.getElementById('ts-token');
+        const submitBtn = document.getElementById('form-submit-btn');
+        if (tokenInput) {
+          tokenInput.value = token;
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+        }
+      };
 
-    <footer class="lp-footer">
-      <div class="page-shell">
-        <p>
-          &copy; <span data-slot="footer-year" class="js-content">2024</span> Select Capital. Todos los
-          derechos reservados.
-        </p>
-      </div>
-    </footer>
+      // Update theme icon based on current theme
+      document.addEventListener('DOMContentLoaded', () => {
+        const themeIcon = document.querySelector('[data-theme-icon]');
+        const logoLight = document.querySelector('.header-logo .logo-light');
+        const logoDark = document.querySelector('.header-logo .logo-dark');
+        const footerLogoLight = document.querySelector('.footer-logo-light');
+        const footerLogoDark = document.querySelector('.footer-logo-dark');
+        
+        const updateTheme = () => {
+          const currentTheme = document.documentElement.getAttribute('data-theme');
+          if (themeIcon) {
+            themeIcon.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+          }
+          // Update header logo visibility
+          if (logoLight && logoDark) {
+            if (currentTheme === 'dark') {
+              logoLight.style.display = 'none';
+              logoDark.style.display = 'block';
+            } else {
+              logoLight.style.display = 'block';
+              logoDark.style.display = 'none';
+            }
+          }
+          // Update footer logo visibility
+          if (footerLogoLight && footerLogoDark) {
+            if (currentTheme === 'dark') {
+              footerLogoLight.style.display = 'none';
+              footerLogoDark.style.display = 'block';
+            } else {
+              footerLogoLight.style.display = 'block';
+              footerLogoDark.style.display = 'none';
+            }
+          }
+        };
+        
+        // Initial update
+        updateTheme();
+        
+        // Watch for theme changes
+        const observer = new MutationObserver(() => {
+          updateTheme();
+        });
+        
+        observer.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['data-theme']
+        });
 
-    <dialog class="gallery-lightbox" data-component="gallery-lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
-      <div class="gallery-lightbox__content">
-        <button
-          type="button"
-          class="gallery-lightbox__close"
-          aria-label="Cerrar galería"
-        >
-          &times;
+        // Smooth scroll to form
+        const scrollFormBtn = document.querySelector('[data-action="scroll-form"]');
+        if (scrollFormBtn) {
+          scrollFormBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const formSection = document.getElementById('contacto');
+            if (formSection) {
+              formSection.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+              });
+            }
+          });
+        }
+
+        // ============================================
+        // FORM FIELD NORMALIZATION FUNCTIONS
+        // ============================================
+        
+        // Normalize RUT: Format to 12.345.678-9 and validate
+        function normalizeRUT(value) {
+          if (!value) return '';
+          
+          // Remove all non-alphanumeric except dots and dash
+          let clean = value.replace(/[^0-9kK\.-]/g, '');
+          
+          // Extract number and digit
+          const parts = clean.split('-');
+          let number = parts[0]?.replace(/\./g, '') || '';
+          let digit = parts[1] || '';
+          
+          // If no dash, try to extract last character as digit
+          if (!digit && number.length > 0) {
+            const lastChar = number.slice(-1);
+            if (lastChar.toLowerCase() === 'k' || lastChar === '0') {
+              digit = lastChar;
+              number = number.slice(0, -1);
+            } else if (number.length > 1) {
+              digit = number.slice(-1);
+              number = number.slice(0, -1);
+            }
+          }
+          
+          // Format number with dots
+          if (number) {
+            number = number.replace(/\D/g, '');
+            const formatted = number.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            return digit ? `${formatted}-${digit.toUpperCase()}` : formatted;
+          }
+          
+          return clean;
+        }
+        
+        // Validate RUT digit
+        function validateRUT(rut) {
+          if (!rut) return false;
+          
+          const clean = rut.replace(/\./g, '').replace(/-/g, '');
+          if (clean.length < 8 || clean.length > 10) return false;
+          
+          const number = clean.slice(0, -1);
+          const digit = clean.slice(-1).toUpperCase();
+          
+          let sum = 0;
+          let multiplier = 2;
+          
+          for (let i = number.length - 1; i >= 0; i--) {
+            sum += parseInt(number[i]) * multiplier;
+            multiplier = multiplier === 7 ? 2 : multiplier + 1;
+          }
+          
+          const remainder = sum % 11;
+          const calculatedDigit = remainder < 2 ? remainder.toString() : (11 - remainder).toString();
+          const expectedDigit = calculatedDigit === '11' ? '0' : calculatedDigit === '10' ? 'K' : calculatedDigit;
+          
+          return digit === expectedDigit;
+        }
+        
+        // Normalize phone/WhatsApp: Format to +56 9 xxxx xxxx
+        function normalizePhone(value) {
+          if (!value) return '';
+          
+          // Remove all non-digits
+          let clean = value.replace(/\D/g, '');
+          
+          // If starts with 56, keep it; otherwise assume it's a Chilean number
+          if (clean.startsWith('56')) {
+            clean = clean.substring(2);
+          }
+          
+          // Remove leading 0 if present
+          if (clean.startsWith('0')) {
+            clean = clean.substring(1);
+          }
+          
+          // Ensure it starts with 9 (Chilean mobile)
+          if (!clean.startsWith('9') && clean.length >= 8) {
+            clean = '9' + clean;
+          }
+          
+          // Format: +56 9 xxxx xxxx
+          if (clean.length >= 8) {
+            const area = clean.substring(0, 1); // 9
+            const part1 = clean.substring(1, 5); // xxxx
+            const part2 = clean.substring(5, 9); // xxxx
+            return `+56 ${area} ${part1} ${part2}`.trim();
+          }
+          
+          return value; // Return as-is if can't format
+        }
+        
+        // Normalize email: trim and lowercase
+        function normalizeEmail(value) {
+          if (!value) return '';
+          return value.trim().toLowerCase();
+        }
+        
+        // Normalize name: Proper capitalization
+        function normalizeName(value) {
+          if (!value) return '';
+          
+          return value
+            .trim()
+            .split(/\s+/)
+            .map(word => {
+              if (word.length === 0) return '';
+              // Handle special prefixes (de, del, la, etc.)
+              const lowerWords = ['de', 'del', 'la', 'las', 'los', 'el', 'y', 'e'];
+              if (lowerWords.includes(word.toLowerCase())) {
+                return word.toLowerCase();
+              }
+              // Capitalize first letter, lowercase rest
+              return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            })
+            .join(' ');
+        }
+        
+        // Normalize number: Remove formatting, keep only digits
+        function normalizeNumber(value) {
+          if (!value) return '';
+          // Remove all non-digits except decimal point
+          return value.replace(/[^\d]/g, '');
+        }
+        
+        // Format number with thousands separator
+        function formatNumber(value) {
+          if (!value) return '';
+          const clean = normalizeNumber(value);
+          if (!clean) return '';
+          return clean.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+        
+        // ============================================
+        // APPLY NORMALIZATION TO FORM FIELDS
+        // ============================================
+        
+        if (form) {
+          // RUT normalization
+          const rutInput = form.querySelector('#rut');
+          if (rutInput) {
+            rutInput.addEventListener('input', (e) => {
+              const normalized = normalizeRUT(e.target.value);
+              if (normalized !== e.target.value) {
+                const cursorPos = e.target.selectionStart;
+                e.target.value = normalized;
+                // Try to maintain cursor position
+                const newPos = Math.min(cursorPos, normalized.length);
+                e.target.setSelectionRange(newPos, newPos);
+              }
+            });
+            
+            rutInput.addEventListener('blur', (e) => {
+              const normalized = normalizeRUT(e.target.value);
+              if (normalized && !validateRUT(normalized)) {
+                e.target.style.borderColor = 'rgba(248, 113, 113, 0.5)';
+              } else {
+                e.target.style.borderColor = '';
+              }
+              e.target.value = normalized;
+            });
+          }
+          
+          // Phone normalization
+          const phoneInput = form.querySelector('#telefono');
+          if (phoneInput) {
+            phoneInput.addEventListener('input', (e) => {
+              const normalized = normalizePhone(e.target.value);
+              if (normalized !== e.target.value) {
+                const cursorPos = e.target.selectionStart;
+                e.target.value = normalized;
+                const newPos = Math.min(cursorPos, normalized.length);
+                e.target.setSelectionRange(newPos, newPos);
+              }
+            });
+            
+            phoneInput.addEventListener('blur', (e) => {
+              const normalized = normalizePhone(e.target.value);
+              e.target.value = normalized;
+            });
+          }
+          
+          // Email normalization
+          const emailInput = form.querySelector('#correo');
+          if (emailInput) {
+            emailInput.addEventListener('blur', (e) => {
+              e.target.value = normalizeEmail(e.target.value);
+            });
+          }
+          
+          // Name normalization
+          const nameInput = form.querySelector('#nombre');
+          if (nameInput) {
+            nameInput.addEventListener('blur', (e) => {
+              e.target.value = normalizeName(e.target.value);
+            });
+          }
+          
+          // Number formatting for renta
+          const rentaInput = form.querySelector('#renta');
+          if (rentaInput) {
+            rentaInput.addEventListener('input', (e) => {
+              const clean = normalizeNumber(e.target.value);
+              if (clean) {
+                const formatted = formatNumber(clean);
+                if (formatted !== e.target.value) {
+                  const cursorPos = e.target.selectionStart;
+                  e.target.value = formatted;
+                  const newPos = Math.min(cursorPos, formatted.length);
+                  e.target.setSelectionRange(newPos, newPos);
+                }
+              }
+            });
+          }
+          
+          // Ahorro field (allow text like "No tengo")
+          const ahorroInput = form.querySelector('#ahorro');
+          if (ahorroInput) {
+            ahorroInput.addEventListener('input', (e) => {
+              const value = e.target.value;
+              // If it's not "no tengo" or similar, format as number
+              if (!/no\s+tengo/i.test(value) && /\d/.test(value)) {
+                const clean = normalizeNumber(value);
+                if (clean) {
+                  const formatted = formatNumber(clean);
+                  if (formatted !== value) {
+                    const cursorPos = e.target.selectionStart;
+                    e.target.value = formatted;
+                    const newPos = Math.min(cursorPos, formatted.length);
+                    e.target.setSelectionRange(newPos, newPos);
+                  }
+                }
+              }
+            });
+          }
+        }
+        
+        // Form validation and submission
+        const submitBtn = document.getElementById('form-submit-btn');
+        
+        if (form && submitBtn) {
+          form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const tokenInput = document.getElementById('ts-token');
+            if (!tokenInput || !tokenInput.value) {
+              showFormMessage('Por favor, completa la verificación de seguridad antes de enviar.', 'error');
+              return false;
+            }
+
+            // Normalize all fields before validation
+            const rutInput = form.querySelector('#rut');
+            const telefonoInput = form.querySelector('#telefono');
+            const correoInput = form.querySelector('#correo');
+            const nombreInput = form.querySelector('#nombre');
+            const rentaInput = form.querySelector('#renta');
+            const ahorroInput = form.querySelector('#ahorro');
+            
+            // Normalize RUT
+            if (rutInput) {
+              const normalizedRUT = normalizeRUT(rutInput.value);
+              rutInput.value = normalizedRUT;
+              
+              if (normalizedRUT && !validateRUT(normalizedRUT)) {
+                showFormMessage('Por favor, ingresa un RUT válido. El dígito verificador no es correcto.', 'error');
+                rutInput.focus();
+                return false;
+              }
+              
+              if (normalizedRUT) {
+                const cleanRut = normalizedRUT.replace(/\./g, '').replace(/-/g, '');
+                if (cleanRut.length < 8 || cleanRut.length > 10) {
+                  showFormMessage('Por favor, ingresa un RUT válido en formato: 12.345.678-9', 'error');
+                  rutInput.focus();
+                  return false;
+                }
+              }
+            }
+            
+            // Normalize phone
+            if (telefonoInput) {
+              const normalizedPhone = normalizePhone(telefonoInput.value);
+              telefonoInput.value = normalizedPhone;
+              
+              const whatsappPattern = /^\+56\s9\s\d{4}\s\d{4}$/;
+              if (normalizedPhone && !whatsappPattern.test(normalizedPhone)) {
+                showFormMessage('Por favor, ingresa un número de WhatsApp válido en formato: +56 9 xxxx xxxx', 'error');
+                telefonoInput.focus();
+                return false;
+              }
+            }
+            
+            // Normalize email
+            if (correoInput) {
+              correoInput.value = normalizeEmail(correoInput.value);
+            }
+            
+            // Normalize name
+            if (nombreInput) {
+              nombreInput.value = normalizeName(nombreInput.value);
+            }
+            
+            // Normalize numbers (remove formatting for backend)
+            if (rentaInput) {
+              rentaInput.dataset.originalValue = rentaInput.value; // Store formatted for display
+            }
+            
+            if (ahorroInput) {
+              const ahorroValue = ahorroInput.value;
+              if (!/no\s+tengo/i.test(ahorroValue) && /\d/.test(ahorroValue)) {
+                ahorroInput.dataset.originalValue = ahorroValue; // Store formatted
+              }
+            }
+
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="btn-primary-icon">⏳</span><span>Enviando...</span>';
+            submitBtn.style.opacity = '0.7';
+            submitBtn.style.cursor = 'not-allowed';
+
+            // Remove any existing messages
+            removeFormMessages();
+
+            try {
+              // Create FormData and map fields to backend expected format
+              const formData = new FormData();
+              
+              // Map form fields to backend expected fields (using normalized values)
+              formData.append('nombre', form.querySelector('#nombre')?.value || '');
+              formData.append('rut', form.querySelector('#rut')?.value || '');
+              formData.append('email', form.querySelector('#correo')?.value || '');
+              formData.append('whatsapp', form.querySelector('#telefono')?.value || '');
+              formData.append('objetivo', form.querySelector('#objetivo')?.value || '');
+              formData.append('tipo_ingreso', 'dependiente'); // Default value
+              
+              // Send renta as clean number (without formatting)
+              const rentaValue = form.querySelector('#renta')?.value || '';
+              formData.append('renta_liquida', normalizeNumber(rentaValue) || '');
+              
+              // Handle ahorro field
+              const ahorroValue = form.querySelector('#ahorro')?.value || '';
+              const tieneAhorro = /no\s+tengo/i.test(ahorroValue) ? 'no' : 'si';
+              formData.append('tiene_ahorro', tieneAhorro);
+              // Send ahorro as clean number if it's a number, otherwise as text
+              if (tieneAhorro === 'si' && /\d/.test(ahorroValue)) {
+                formData.append('monto_ahorro', normalizeNumber(ahorroValue) || '0');
+              } else {
+                formData.append('monto_ahorro', '0');
+              }
+              formData.append('capacidad_ahorro_mensual', 'No especificado'); // Not in form, default value that passes empty() check
+              
+              formData.append('comunas_interes', 'Santiago Centro'); // Project location
+              formData.append('canal_preferido', form.querySelector('#contacto-preferencia')?.value || 'whatsapp');
+              formData.append('franja_preferida', 'flexible'); // Default value
+              formData.append('consentimiento_privacidad', form.querySelector('#terminos')?.checked ? 'si' : 'no');
+              formData.append('consentimiento_contacto', form.querySelector('#terminos')?.checked ? 'si' : 'no');
+              
+              // Add tipo as comentarios for reference
+              const tipoValue = form.querySelector('#tipo')?.value || '';
+              if (tipoValue) {
+                formData.append('comentarios', `Tipo de propiedad de interés: ${tipoValue}`);
+              }
+              
+              // Add Turnstile token
+              formData.append('cf-turnstile-response', tokenInput.value);
+              
+              // Honeypot field (empty)
+              formData.append('honey', '');
+              
+              // Submit form
+              const response = await fetch('/submit.php', {
+                method: 'POST',
+                body: formData
+              });
+
+              const result = await response.json();
+
+              if (result.success) {
+                // Success
+                showFormMessage('¡Gracias! Hemos recibido tu solicitud. Te contactaremos pronto.', 'success');
+                form.reset();
+                tokenInput.value = '';
+                submitBtn.disabled = true;
+                
+                // Reset Turnstile
+                if (window.turnstile) {
+                  window.turnstile.reset();
+                }
+                
+                // Scroll to success message
+                setTimeout(() => {
+                  const successMsg = document.querySelector('.form-message.success');
+                  if (successMsg) {
+                    successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }
+                }, 100);
+              } else {
+                throw new Error(result.message || 'Error al enviar el formulario');
+              }
+            } catch (error) {
+              // Log error in development only
+              if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.includes('dev.')) {
+                console.error('Form submission error:', error);
+              }
+              showFormMessage(
+                error.message || 'Hubo un problema al enviar tu solicitud. Por favor intenta nuevamente.',
+                'error'
+              );
+              
+              // Re-enable button
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = originalText;
+              submitBtn.style.opacity = '1';
+              submitBtn.style.cursor = 'pointer';
+            }
+          });
+        }
+
+        // Helper functions for form messages
+        function showFormMessage(message, type) {
+          removeFormMessages();
+          
+          const messageEl = document.createElement('div');
+          messageEl.className = `form-message ${type}`;
+          messageEl.innerHTML = `
+            <strong>${type === 'success' ? '✓' : '⚠'}</strong>
+            <span>${message}</span>
+          `;
+          messageEl.style.cssText = `
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 18px;
+            border-radius: 12px;
+            margin: 16px 0;
+            font-size: 14px;
+            line-height: 1.5;
+            ${type === 'success' 
+              ? 'background: rgba(34, 197, 94, 0.1); border: 1.5px solid rgba(34, 197, 94, 0.3); color: #16a34a;' 
+              : 'background: rgba(248, 113, 113, 0.1); border: 1.5px solid rgba(248, 113, 113, 0.3); color: #dc2626;'
+            }
+          `;
+          
+          const formFooter = document.querySelector('.form-footer');
+          if (formFooter) {
+            formFooter.insertBefore(messageEl, formFooter.firstChild);
+          }
+        }
+
+        function removeFormMessages() {
+          document.querySelectorAll('.form-message').forEach(el => el.remove());
+        }
+
+        // ============================================
+        // LIGHTBOX / MODAL FOR TYPOLOGY IMAGES
+        // ============================================
+        const lightboxModal = document.createElement('div');
+        lightboxModal.className = 'lightbox-modal';
+        lightboxModal.innerHTML = `
+          <div class="lightbox-backdrop"></div>
+          <div class="lightbox-content">
+            <button class="lightbox-close" aria-label="Cerrar" type="button">
+              <span>×</span>
         </button>
-        <figure data-slot="lightbox-figure" class="js-content">
-          <!-- Lightbox content will be populated by JavaScript -->
-        </figure>
+            <div class="lightbox-image-wrapper">
+              <img class="lightbox-image" src="" alt="" />
       </div>
-    </dialog>
+            <div class="lightbox-title"></div>
+          </div>
+        `;
+        document.body.appendChild(lightboxModal);
 
-    <dialog class="pie-modal" data-component="pie-modal" role="dialog" aria-modal="true" aria-labelledby="pie-modal-title">
-      <div class="pie-modal__content">
-        <button
-          type="button"
-          class="pie-modal__close"
-          aria-label="Cerrar modal"
-        >
-          &times;
-        </button>
-        <h2 id="pie-modal-title">Cómo pago mi pie 10%</h2>
-        <p>El pie se divide en dos partes para mayor flexibilidad financiera.</p>
-        <table class="pie-table">
-          <thead>
-            <tr>
-              <th>Tipología</th>
-              <th>Pie Total (10%)</th>
-              <th>7,5% en 36 cuotas</th>
-              <th>2,5% en 12 cuotas</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Estudio</td>
-              <td>UF 240</td>
-              <td>UF 188<br><small>(≈ UF 5,21 c/u)</small></td>
-              <td>UF 63<br><small>(≈ UF 5,21 c/u)</small></td>
-            </tr>
-            <tr>
-              <td>1D</td>
-              <td>UF 335</td>
-              <td>UF 263<br><small>(≈ UF 7,29 c/u)</small></td>
-              <td>UF 88<br><small>(≈ UF 7,29 c/u)</small></td>
-            </tr>
-            <tr>
-              <td>2D</td>
-              <td>UF 470</td>
-              <td>UF 375<br><small>(≈ UF 10,42 c/u)</small></td>
-              <td>UF 125<br><small>(≈ UF 10,42 c/u)</small></td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="field-hint">*Valores referenciales. La conversión $ depende del valor UF vigente.</p>
-      </div>
-    </dialog>
+        const lightboxBackdrop = lightboxModal.querySelector('.lightbox-backdrop');
+        const lightboxClose = lightboxModal.querySelector('.lightbox-close');
+        const lightboxImage = lightboxModal.querySelector('.lightbox-image');
+        const lightboxTitle = lightboxModal.querySelector('.lightbox-title');
 
-    <script type="module" src="/lenguaje visual/forms/sc-masks.js"></script>
-    <script type="module" src="./base-viva-marin.js"></script>
+        function openLightbox(imageSrc, title) {
+          lightboxImage.src = imageSrc;
+          lightboxImage.alt = title;
+          lightboxTitle.textContent = title;
+          lightboxModal.classList.add('is-open');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+          lightboxModal.classList.remove('is-open');
+          document.body.style.overflow = '';
+        }
+
+        // Event listeners for lightbox
+        document.querySelectorAll('[data-lightbox="true"]').forEach(wrapper => {
+          wrapper.style.cursor = 'pointer';
+          wrapper.addEventListener('click', (e) => {
+            e.preventDefault();
+            const imageSrc = wrapper.getAttribute('data-image');
+            const title = wrapper.getAttribute('data-title') || '';
+            openLightbox(imageSrc, title);
+          });
+        });
+
+        // Close on backdrop click
+        lightboxBackdrop.addEventListener('click', closeLightbox);
+
+        // Close on close button click
+        lightboxClose.addEventListener('click', closeLightbox);
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && lightboxModal.classList.contains('is-open')) {
+            closeLightbox();
+          }
+        });
+      });
+    </script>
   </body>
 </html>
 

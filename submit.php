@@ -95,6 +95,19 @@ function sanitize_header_value(string $value): string {
   return substr($value, 0, 120);
 }
 
+function sanitize_input(string $value, int $maxLength = 500): string {
+  // Remover caracteres de control excepto espacios
+  $value = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/', '', $value);
+  // Normalizar espacios en blanco
+  $value = preg_replace('/\s+/', ' ', $value);
+  $value = trim($value);
+  // Limitar longitud
+  if (strlen($value) > $maxLength) {
+    $value = substr($value, 0, $maxLength);
+  }
+  return $value;
+}
+
 function enforce_rate_limit(string $identifier): void {
   global $cfg;
   $rlCfg = $cfg['security']['rate_limit'] ?? [];
@@ -188,13 +201,22 @@ function fail(int $code, string $msg, array $extra = []){
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') fail(405, 'Método no permitido.');
-$env  = $cfg['app_env'] ?? 'production';
-$host = $_SERVER['HTTP_HOST'] ?? '';
-$maxBytes = (int)($cfg['security']['max_request_bytes'] ?? 65536);
+
+// Validar Content-Type
+$contentType = $_SERVER['CONTENT_TYPE'] ?? '';
+if (strpos($contentType, 'multipart/form-data') === false && strpos($contentType, 'application/x-www-form-urlencoded') === false) {
+  fail(415, 'Content-Type no permitido.');
+}
+
+// Validar tamaño máximo del request
+$maxBytes = (int)($cfg['security']['max_request_bytes'] ?? 10 * 1024 * 1024); // Default 10MB
 $contentLength = (int)($_SERVER['CONTENT_LENGTH'] ?? 0);
 if ($maxBytes > 0 && $contentLength > $maxBytes) {
   fail(413, 'El tamaño del formulario excede el límite permitido.');
 }
+
+$env  = $cfg['app_env'] ?? 'production';
+$host = $_SERVER['HTTP_HOST'] ?? '';
 if ($env === 'production') {
   // Normaliza y valida host considerando proxies/CDN
   $rawHosts = [];
@@ -244,7 +266,19 @@ if (!empty($unknown)) {
   app_log('UNKNOWN_FIELDS_DETECTED fields=' . json_encode($unknown));
   fail(400, 'Campos no permitidos en la solicitud.');
 }
-foreach ($allowed as $f) { $data[$f] = trim((string)($_POST[$f] ?? '')); }
+foreach ($allowed as $f) { 
+  $rawValue = $_POST[$f] ?? '';
+  // Sanitizar según el tipo de campo
+  if (in_array($f, ['nombre', 'comentarios'], true)) {
+    $data[$f] = sanitize_input((string)$rawValue, 200);
+  } elseif (in_array($f, ['email'], true)) {
+    $data[$f] = sanitize_input((string)$rawValue, 100);
+  } elseif (in_array($f, ['whatsapp', 'rut'], true)) {
+    $data[$f] = sanitize_input((string)$rawValue, 20);
+  } else {
+    $data[$f] = sanitize_input((string)$rawValue, 100);
+  }
+}
 
 $required = $cfg['security']['required_fields'] ?? ['nombre','rut','email','whatsapp','objetivo','tipo_ingreso','renta_liquida','capacidad_ahorro_mensual','tiene_ahorro','comunas_interes','canal_preferido','franja_preferida','consentimiento_privacidad','consentimiento_contacto'];
 foreach ($required as $f) if (empty($data[$f])) fail(400, "Falta el campo requerido: $f");
