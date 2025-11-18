@@ -41,37 +41,34 @@ return [
 
   // Cloudflare Turnstile (anti-bot)
   'turnstile' => [
-    'site_key'   => '0x4AAAAAAB_bjq2YOWp-yEXx',        // pública (para el front)
-    'secret_key' => '0x4AAAAAAB_bjollQuBnkgXK0WKzmmgdE6o', // privada (solo backend)
+    'site_key'   => getenv('TURNSTILE_SITE_KEY') ?: '0x4AAAAAAB_bjq2YOWp-yEXx',
+    'secret_key' => getenv('TURNSTILE_SECRET_KEY') ?: '',
     'verify_url' => 'https://challenges.cloudflare.com/turnstile/v0/siteverify',
-    'field_name' => 'cf-turnstile-response',            // nombre por defecto del token
+    'field_name' => 'cf-turnstile-response',
   ],
 
   // Google Sheets (Apps Script Web App)
   'sheets' => [
-    // URL de la App Web (Deployment) que escribe en la hoja
-    'web_app_url' => 'https://script.google.com/macros/s/AKfycbyJ6faB2lKIDRUGJ0A_cymYTlqS8zZxMFmz2gYEdijSKEBYyMKwUdXSkE26qYbq1bBWDw/exec',
-    // Solo informativo / logging:
-    'sheet_id'    => '1OJpSM5URoAA9pRB_JcD4JNMpK4h-tRbwkWYo5Gh0qbI',
-    // Reintentos si la app web está lenta
+    'web_app_url' => getenv('SHEETS_WEB_APP_URL') ?: '',
+    'sheet_id'    => getenv('SHEETS_SHEET_ID') ?: '',
     'retries'     => 1,
     'timeout_sec' => 8,
   ],
 
-  // Notificaciones por correo (si implementas mail() o SMTP en submit.php)
+  // Notificaciones por correo
   'email' => [
-    'enabled'        => true,                           // pon en false si no enviarás correo
-    'notify_to'      => 'edaza@capitalinteligente.cl',
-    'from_address'   => 'no-reply@selectcapital.cl',    // idealmente un remitente del dominio
-    'from_name'      => 'Select Capital',
-    'subject_prefix' => '[Select Capital] Nuevo registro evento',
+    'enabled'        => true,
+    'notify_to'      => getenv('EMAIL_NOTIFY_TO') ?: '',
+    'from_address'   => getenv('EMAIL_FROM_ADDRESS') ?: 'no-reply@selectcapital.cl',
+    'from_name'      => getenv('EMAIL_FROM_NAME') ?: 'Select Capital',
+    'subject_prefix' => getenv('EMAIL_SUBJECT_PREFIX') ?: '[Select Capital] Nuevo registro evento',
   ],
 
-  // (Opcional) Fallback a Web3Forms (desactivado en Opción B)
+  // Web3Forms (Opcional - desactivado por defecto)
   'web3forms' => [
-    'enabled'   => false,
-    'endpoint'  => 'https://api.web3forms.com/submit',
-    'access_key'=> 'ce1f62be-1002-4ae1-9fe9-71795884b79b',
+    'enabled'   => filter_var(getenv('WEB3FORMS_ENABLED') ?: 'false', FILTER_VALIDATE_BOOLEAN),
+    'endpoint'  => getenv('WEB3FORMS_ENDPOINT') ?: 'https://api.web3forms.com/submit',
+    'access_key'=> getenv('WEB3FORMS_ACCESS_KEY') ?: '',
   ],
 
   // Seguridad
