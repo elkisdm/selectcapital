@@ -1,6 +1,18 @@
 # Priorizar index.html sobre otros archivos index
 DirectoryIndex index.html index.php default.php
 
+# ============================================
+# REWRITE RULES - URLs AMIGABLES
+# ============================================
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    
+    # Landing VIVA MARÍN - URL corta
+    RewriteRule ^viva-marin/?$ /landing/proyecto-inmobiliario/base.html [L]
+    RewriteRule ^viva-marin/.*$ /landing/proyecto-inmobiliario/base.html [L]
+</IfModule>
+
 # Prevenir acceso directo a default.php (opcional)
 <Files "default.php">
     Order allow,deny
