@@ -2535,4 +2535,52 @@
         .footer-contact {
           justify-content: center;
         }
+
+        /* Center cards with icons */
+        .description-card {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        .description-icon {
+          margin: 0 auto;
+        }
+
+        .description-content {
+          text-align: center;
+        }
+
+        .description-features {
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .feature-item {
+          justify-content: center;
+        }
+
+        .highlight-pill {
+          justify-content: center;
+        }
+
+        .step-card {
+          text-align: center;
+        }
+
+        .step-index {
+          margin: 0 auto 12px;
+        }
+
+        .faq-item {
+          text-align: center;
+        }
+
+        .faq-q {
+          justify-content: center;
+        }
+
+        .faq-icon {
+          margin: 0;
+        }
       }
