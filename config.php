@@ -89,4 +89,9 @@ return [
     'enabled' => true,
     'path'    => __DIR__ . '/logs/app.log', // asegúrate que /logs tenga permisos de escritura
   ],
+
+  // Google Maps API (para uso en frontend)
+  'google_maps' => [
+    'api_key' => getenv('GOOGLE_MAPS_API_KEY') ?: 'AIzaSyDBm8oQegD5q-hAMmhhQESRai5WbAv6QFw', // TEMPORAL: Mover a .env
+  ],
 ];

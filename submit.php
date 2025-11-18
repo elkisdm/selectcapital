@@ -281,7 +281,15 @@ foreach ($allowed as $f) {
 }
 
 $required = $cfg['security']['required_fields'] ?? ['nombre','rut','email','whatsapp','objetivo','tipo_ingreso','renta_liquida','capacidad_ahorro_mensual','tiene_ahorro','comunas_interes','canal_preferido','franja_preferida','consentimiento_privacidad','consentimiento_contacto'];
-foreach ($required as $f) if (empty($data[$f])) fail(400, "Falta el campo requerido: $f");
+foreach ($required as $f) {
+  // capacidad_ahorro_mensual can be '0' which is valid
+  if ($f === 'capacidad_ahorro_mensual' && isset($data[$f]) && $data[$f] === '0') {
+    continue;
+  }
+  if (empty($data[$f])) {
+    fail(400, "Falta el campo requerido: $f");
+  }
+}
 
 if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) fail(400, 'Email inválido.');
 if (!preg_match('/^(?:\+?56\s?)?9\s?\d{4}\s?\d{4}$/', $data['whatsapp'])) fail(400, 'WhatsApp inválido. Usa +56 9 xxxx xxxx');
@@ -294,7 +302,7 @@ if (!$tieneAhorro) {
   $data['monto_ahorro'] = '0';
 }
 
-// capacidad_ahorro_mensual is optional, default to '0' if empty
+// capacidad_ahorro_mensual is required but can be '0' if not specified
 if (empty($data['capacidad_ahorro_mensual'])) {
   $data['capacidad_ahorro_mensual'] = '0';
 }
