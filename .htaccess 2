@@ -1,0 +1,32 @@
+# Priorizar index.html sobre otros archivos index
+DirectoryIndex index.html index.php default.php
+
+# Prevenir acceso directo a default.php (opcional)
+<Files "default.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Habilitar compresión (opcional pero recomendado)
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Cache para imágenes (opcional pero recomendado)
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/avif "access plus 1 year"
+</IfModule>
+
+
+
+
+
+
+
+
