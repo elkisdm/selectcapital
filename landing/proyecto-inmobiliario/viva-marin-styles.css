@@ -125,6 +125,18 @@
         gap: 8px;
         font-size: 13px;
         margin-bottom: 4px;
+        justify-content: center;
+      }
+
+      @media (max-width: 640px) {
+        .badge-row {
+          justify-content: center;
+          gap: 6px;
+        }
+        .badge-row .badge {
+          font-size: 11px;
+          padding: 5px 10px;
+        }
       }
 
       .badge {
@@ -205,14 +217,30 @@
 
       .header-grid {
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 12px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
         margin: 20px 0 0;
       }
 
-      @media (min-width: 480px) {
+      @media (max-width: 480px) {
         .header-grid {
-          grid-template-columns: repeat(2, 1fr);
+          gap: 8px;
+        }
+        .header-grid .pill {
+          padding: 10px 12px;
+          min-height: 56px;
+          font-size: 11px;
+        }
+        .header-grid .pill span {
+          font-size: 8px;
+        }
+        .header-grid .pill strong {
+          font-size: 12px;
+        }
+      }
+
+      @media (min-width: 640px) {
+        .header-grid {
           gap: 12px;
         }
       }
@@ -448,6 +476,14 @@
         min-height: 320px;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
         flex: 1;
+      }
+
+      @media (max-width: 767px) {
+        .hero-image-placeholder {
+          aspect-ratio: 4 / 5;
+          min-height: 280px;
+          max-height: 400px;
+        }
       }
 
       .hero-image-placeholder img {
@@ -793,14 +829,44 @@
         font-weight: 700;
       }
 
-      /* Amenities Grid */
+      /* Amenities Grid - Horizontal Scroll en móvil */
       .amenities-grid {
         display: grid;
         grid-template-columns: 1fr;
         gap: 16px;
       }
 
-      @media (min-width: 480px) {
+      @media (max-width: 767px) {
+        .amenities-grid {
+          display: flex;
+          flex-direction: row;
+          overflow-x: auto;
+          overflow-y: hidden;
+          gap: 12px;
+          padding-bottom: 8px;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: thin;
+          scrollbar-color: var(--sc-rose-gold, #CD7F32) transparent;
+        }
+        .amenities-grid::-webkit-scrollbar {
+          height: 4px;
+        }
+        .amenities-grid::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .amenities-grid::-webkit-scrollbar-thumb {
+          background: var(--sc-rose-gold, #CD7F32);
+          border-radius: 2px;
+        }
+        .amenities-grid .amenity-card {
+          flex: 0 0 85%;
+          max-width: 85%;
+          scroll-snap-align: start;
+        }
+      }
+
+      @media (min-width: 480px) and (min-width: 768px) {
         .amenities-grid {
           grid-template-columns: repeat(2, 1fr);
         }
@@ -808,6 +874,7 @@
 
       @media (min-width: 768px) {
         .amenities-grid {
+          display: grid;
           grid-template-columns: repeat(4, 1fr);
           gap: 12px;
         }
@@ -893,15 +960,46 @@
         margin: 0;
       }
 
-      /* Typologies Section */
+      /* Typologies Section - Horizontal Scroll en móvil */
       .typologies-grid {
         display: grid;
         grid-template-columns: 1fr;
         gap: 24px;
       }
 
+      @media (max-width: 767px) {
+        .typologies-grid {
+          display: flex;
+          flex-direction: row;
+          overflow-x: auto;
+          overflow-y: hidden;
+          gap: 16px;
+          padding-bottom: 8px;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: thin;
+          scrollbar-color: var(--sc-rose-gold, #CD7F32) transparent;
+        }
+        .typologies-grid::-webkit-scrollbar {
+          height: 4px;
+        }
+        .typologies-grid::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .typologies-grid::-webkit-scrollbar-thumb {
+          background: var(--sc-rose-gold, #CD7F32);
+          border-radius: 2px;
+        }
+        .typologies-grid .typology-card {
+          flex: 0 0 90%;
+          max-width: 90%;
+          scroll-snap-align: start;
+        }
+      }
+
       @media (min-width: 768px) {
         .typologies-grid {
+          display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 20px;
         }
@@ -1717,6 +1815,17 @@
         overflow: hidden;
       }
 
+      @media (max-width: 640px) {
+        .form-card {
+          padding: 24px 20px 20px;
+          border-radius: 20px;
+        }
+        .form-card .text-block {
+          font-size: 13px;
+          margin-bottom: 12px;
+        }
+      }
+
       .form-card::before {
         content: '';
         position: absolute;
@@ -1736,21 +1845,34 @@
       .form-grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 12px;
+      }
+
+      @media (max-width: 640px) {
+        .form-grid {
+          gap: 10px;
+        }
       }
 
       @media (min-width: 640px) {
         .form-grid {
           grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
         }
       }
 
       .field {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 6px;
         font-size: 12px;
         position: relative;
+      }
+
+      @media (max-width: 640px) {
+        .field {
+          gap: 5px;
+        }
       }
 
       .field label {
@@ -1760,6 +1882,12 @@
         display: flex;
         align-items: center;
         gap: 6px;
+      }
+
+      @media (max-width: 640px) {
+        .field label {
+          font-size: 12px;
+        }
       }
 
       body[data-theme="dark"] .field label {
@@ -1783,6 +1911,14 @@
         transition: all 0.3s ease;
         font-family: inherit;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+      }
+
+      @media (max-width: 640px) {
+        .field input,
+        .field select {
+          padding: 12px 14px;
+          font-size: 16px; /* Evita zoom en iOS */
+        }
       }
 
       body[data-theme="dark"] .field input,
@@ -1850,10 +1986,25 @@
       .form-footer {
         display: flex;
         flex-direction: column;
-        gap: 12px;
-        margin-top: 20px;
+        gap: 10px;
+        margin-top: 16px;
         font-size: 11px;
         color: var(--sc-text-secondary, rgba(15, 23, 42, 0.6));
+      }
+
+      @media (max-width: 640px) {
+        .form-footer {
+          gap: 8px;
+          margin-top: 12px;
+          font-size: 10px;
+        }
+        .form-footer p {
+          margin: 0;
+          line-height: 1.4;
+        }
+        .turnstile-container {
+          margin: 12px 0 !important;
+        }
       }
 
       @media (min-width: 640px) {
@@ -1861,6 +2012,8 @@
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
+          gap: 12px;
+          margin-top: 20px;
         }
       }
 

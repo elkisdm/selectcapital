@@ -679,6 +679,14 @@
       </footer>
           </div>
 
+    <!-- Sticky CTA Button (Mobile) -->
+    <div class="sticky-cta" id="sticky-cta">
+      <button type="button" class="sticky-cta-button" data-action="scroll-form">
+        <span class="btn-primary-icon">📄</span>
+        <span>Quiero mi propuesta</span>
+      </button>
+    </div>
+
     <!-- Cloudflare Turnstile -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     
@@ -746,15 +754,76 @@
 
         // Smooth scroll to form
         const scrollFormBtn = document.querySelector('[data-action="scroll-form"]');
+        const stickyCtaBtn = document.querySelector('.sticky-cta-button[data-action="scroll-form"]');
+        
+        const scrollToForm = (e) => {
+          if (e) e.preventDefault();
+          const formSection = document.getElementById('contacto');
+          if (formSection) {
+            formSection.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'start' 
+            });
+          }
+        };
+        
         if (scrollFormBtn) {
-          scrollFormBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const formSection = document.getElementById('contacto');
-            if (formSection) {
-              formSection.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start' 
+          scrollFormBtn.addEventListener('click', scrollToForm);
+        }
+        if (stickyCtaBtn) {
+          stickyCtaBtn.addEventListener('click', scrollToForm);
+        }
+
+        // Sticky CTA visibility control
+        const stickyCta = document.getElementById('sticky-cta');
+        const formSection = document.getElementById('contacto');
+        
+        if (stickyCta && formSection) {
+          const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+          };
+          
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                // Form is visible, hide sticky CTA
+                stickyCta.classList.remove('is-visible');
+              } else {
+                // Form is not visible, show sticky CTA (only if scrolled past hero)
+                const heroBottom = document.querySelector('.header')?.getBoundingClientRect().bottom || 0;
+                if (window.scrollY > heroBottom + 100) {
+                  stickyCta.classList.add('is-visible');
+                } else {
+                  stickyCta.classList.remove('is-visible');
+                }
+              }
+            });
+          }, observerOptions);
+          
+          observer.observe(formSection);
+          
+          // Also check on scroll
+          let ticking = false;
+          window.addEventListener('scroll', () => {
+            if (!ticking) {
+              window.requestAnimationFrame(() => {
+                const heroBottom = document.querySelector('.header')?.getBoundingClientRect().bottom || 0;
+                const formRect = formSection.getBoundingClientRect();
+                const isFormVisible = formRect.top < window.innerHeight && formRect.bottom > 0;
+                
+                if (isFormVisible) {
+                  stickyCta.classList.remove('is-visible');
+                } else if (window.scrollY > heroBottom + 100) {
+                  stickyCta.classList.add('is-visible');
+                } else {
+                  stickyCta.classList.remove('is-visible');
+                }
+                
+                ticking = false;
               });
+              ticking = true;
             }
           });
         }
@@ -1141,11 +1210,25 @@
 
               const result = await response.json();
 
-              if (result.ok || result.success) {
-                // Success - redirect to gracias page
-                const nombre = form.querySelector('#nombre')?.value || '';
-                const redirectUrl = `/landing/proyecto-inmobiliario/gracias.html${nombre ? '?nombre=' + encodeURIComponent(nombre) : ''}`;
-                window.location.href = redirectUrl;
+              if (result.success) {
+                // Success
+                showFormMessage('¡Gracias! Hemos recibido tu solicitud. Te contactaremos pronto.', 'success');
+                form.reset();
+                tokenInput.value = '';
+                submitBtn.disabled = true;
+                
+                // Reset Turnstile
+                if (window.turnstile) {
+                  window.turnstile.reset();
+                }
+                
+                // Scroll to success message
+                setTimeout(() => {
+                  const successMsg = document.querySelector('.form-message.success');
+                  if (successMsg) {
+                    successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }
+                }, 100);
               } else {
                 throw new Error(result.message || 'Error al enviar el formulario');
               }
