@@ -26,12 +26,28 @@
     <!-- CSS crítico -->
     <link rel="stylesheet" href="/lenguaje visual/theme/select-capital-theme.min.css?v=66e592e976" />
     <link rel="stylesheet" href="/lenguaje visual/forms/sc-forms.css?v=20250118" />
-    <link rel="stylesheet" href="/landing/proyecto-inmobiliario/viva-marin-styles.css?v=20250118-3" />
+    <link rel="stylesheet" href="/landing/proyecto-inmobiliario/viva-marin-styles.css?v=20250118-4" />
   </head>
   <body>
     <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema">
       <span data-theme-icon>🌙</span>
     </button>
+
+    <nav class="sticky-nav" id="sticky-nav">
+      <div class="sticky-nav-content">
+        <img src="/images/logo_negro.png" alt="Select Capital" class="sticky-nav-logo sticky-nav-logo-light" />
+        <img src="/images/logo_blanco.png" alt="Select Capital" class="sticky-nav-logo sticky-nav-logo-dark" style="display: none;" />
+        <div class="sticky-nav-links">
+          <a href="#tipologias">Tipologías</a>
+          <a href="#ubicacion">Ubicación</a>
+          <a href="#por-que-invertir">Invertir</a>
+          <a href="#contacto">Cotizar</a>
+        </div>
+        <button class="sticky-nav-theme-toggle" type="button" data-theme-toggle-nav aria-label="Cambiar tema">
+          <span data-theme-icon-nav>🌙</span>
+        </button>
+      </div>
+    </nav>
 
     <div class="page">
       <!-- HEADER / HERO -->
@@ -39,12 +55,6 @@
         <div class="header-logo">
           <img src="/images/logo_negro.png" alt="Select Capital" class="logo-light" />
           <img src="/images/logo_blanco.png" alt="Select Capital" class="logo-dark" style="display: none;" />
-        </div>
-        <div class="badge-row">
-          <span class="badge badge--accent">Lanzamiento · Entrega mediados 2028</span>
-          <span class="badge">Proyecto en etapa verde</span>
-          <span class="badge">Pie 10% en 48 cuotas</span>
-          <span class="badge">15% de descuento lanzamiento</span>
         </div>
 
         <div class="header-main">
@@ -65,7 +75,7 @@
                 <div class="hero-image-placeholder">
                   <img src="/images/viva marin/fachada.png" alt="Fachada principal VIVA MARÍN" loading="eager" fetchpriority="high" width="600" height="800" decoding="async" />
                 </div>
-              </div>
+            </div>
 
               <div class="header-grid">
                 <div class="pill">
@@ -92,12 +102,8 @@
                 <span class="btn-primary-icon">📄</span>
                 <span>Quiero mi propuesta</span>
               </button>
-              <a href="#datos-clave" class="hero-cta-secondary">
-                <span class="hero-cta-icon">📊</span>
-                <span>Ver datos clave del proyecto</span>
-              </a>
             </div>
-          </div>
+            </div>
 
           <!-- Hero Image - Desktop: lado derecho -->
           <div class="hero-media">
@@ -105,9 +111,9 @@
             <div class="hero-title">Esquina Marín con Lira · 162 departamentos</div>
             <div class="hero-image-placeholder">
               <img src="/images/viva marin/fachada.png" alt="Fachada principal VIVA MARÍN" loading="eager" fetchpriority="high" width="600" height="800" decoding="async" />
+              </div>
+              </div>
             </div>
-          </div>
-        </div>
       </header>
 
       <!-- DATOS CLAVE / DESCRIPCIÓN -->
@@ -549,7 +555,6 @@
             <div class="form-grid">
               <div class="field">
                 <label for="nombre">
-                  <span class="field-icon">👤</span>
                   <span>Nombre completo</span>
                 </label>
                 <input id="nombre" name="nombre" type="text" placeholder="Ej: Ana Pérez" required />
@@ -557,7 +562,6 @@
 
               <div class="field">
                 <label for="rut">
-                  <span class="field-icon">🆔</span>
                   <span>RUT</span>
                 </label>
                 <input id="rut" name="rut" type="text" placeholder="Ej: 12.345.678-9" required />
@@ -565,7 +569,6 @@
 
               <div class="field">
                 <label for="telefono">
-                  <span class="field-icon">📱</span>
                   <span>Teléfono WhatsApp</span>
                 </label>
                 <input id="telefono" name="telefono" type="tel" placeholder="+56 9 ..." required />
@@ -573,7 +576,6 @@
 
               <div class="field">
                 <label for="correo">
-                  <span class="field-icon">✉️</span>
                   <span>Correo electrónico</span>
                 </label>
                 <input id="correo" name="correo" type="email" placeholder="tu@correo.cl" required />
@@ -581,7 +583,6 @@
 
               <div class="field">
                 <label for="objetivo">
-                  <span class="field-icon">🎯</span>
                   <span>Objetivo</span>
                 </label>
                 <select id="objetivo" name="objetivo" required>
@@ -594,7 +595,6 @@
 
               <div class="field">
                 <label for="renta">
-                  <span class="field-icon">💰</span>
                   <span>Renta líquida mensual (CLP)</span>
                 </label>
                 <input id="renta" name="renta" type="text" placeholder="Promedio mensual" required />
@@ -602,7 +602,6 @@
 
               <div class="field">
                 <label for="ahorro">
-                  <span class="field-icon">💵</span>
                   <span>Ahorros disponibles para pie</span>
                 </label>
                 <input id="ahorro" name="ahorro" type="text" placeholder="Monto aprox. o 'No tengo'" required />
@@ -610,7 +609,6 @@
 
               <div class="field">
                 <label for="tipo">
-                  <span class="field-icon">🏠</span>
                   <span>Tipo de propiedad de interés</span>
                 </label>
                 <select id="tipo" name="tipo" required>
@@ -624,7 +622,6 @@
 
               <div class="field">
                 <label for="contacto-preferencia">
-                  <span class="field-icon">💬</span>
                   <span>¿Cómo prefieres que te contactemos?</span>
                 </label>
                 <select id="contacto-preferencia" name="contacto-preferencia" required>
@@ -1357,6 +1354,76 @@
           }
         });
       });
+
+      // Sticky Navigation
+      const stickyNav = document.getElementById('sticky-nav');
+      const mainThemeToggle = document.querySelector('[data-theme-toggle]');
+      const navThemeToggle = document.querySelector('[data-theme-toggle-nav]');
+      const mainThemeIcon = document.querySelector('[data-theme-icon]');
+      const navThemeIcon = document.querySelector('[data-theme-icon-nav]');
+
+      // Show/hide sticky nav on scroll
+      let lastScroll = 0;
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 200) {
+          stickyNav.classList.add('is-visible');
+        } else {
+          stickyNav.classList.remove('is-visible');
+        }
+        
+        lastScroll = currentScroll;
+      });
+
+      // Sync theme toggles
+      if (navThemeToggle) {
+        navThemeToggle.addEventListener('click', () => {
+          mainThemeToggle.click();
+        });
+      }
+
+      // Sync theme icons when theme changes
+      const syncThemeIcons = () => {
+        const currentTheme = document.body.getAttribute('data-theme');
+        const icon = currentTheme === 'dark' ? '☀️' : '🌙';
+        mainThemeIcon.textContent = icon;
+        navThemeIcon.textContent = icon;
+      };
+
+      // Observer for theme changes
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.attributeName === 'data-theme') {
+            syncThemeIcons();
+          }
+        });
+      });
+
+      observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+      });
+
+      // Smooth scroll for sticky nav links
+      document.querySelectorAll('.sticky-nav-links a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 80;
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Initialize theme icons
+      syncThemeIcons();
     </script>
   </body>
 </html>
