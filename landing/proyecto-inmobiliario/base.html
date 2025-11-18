@@ -37,6 +37,11 @@
       <div class="sticky-nav-content">
         <img src="/images/logo_negro.png" alt="Select Capital" class="sticky-nav-logo sticky-nav-logo-light" />
         <img src="/images/logo_blanco.png" alt="Select Capital" class="sticky-nav-logo sticky-nav-logo-dark" style="display: none;" />
+        <div class="sticky-nav-links">
+          <a href="#tipologias">Tipologías</a>
+          <a href="#ubicacion">Ubicación</a>
+          <a href="#contacto">Cotizar</a>
+        </div>
         <button class="sticky-nav-theme-toggle" type="button" data-theme-toggle-nav aria-label="Cambiar tema">
           <span data-theme-icon-nav>🌙</span>
         </button>
@@ -1399,6 +1404,23 @@
         attributeFilter: ['data-theme']
       });
 
+
+      // Smooth scroll for sticky nav links
+      document.querySelectorAll('.sticky-nav-links a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 100;
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
 
       // Initialize theme icons
       syncThemeIcons();
