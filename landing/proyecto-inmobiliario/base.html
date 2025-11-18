@@ -25,13 +25,27 @@
     
     <!-- CSS crítico -->
     <link rel="stylesheet" href="/lenguaje visual/theme/select-capital-theme.min.css?v=66e592e976" />
-    <link rel="stylesheet" href="/lenguaje visual/forms/sc-forms.css" />
-    <link rel="stylesheet" href="/landing/proyecto-inmobiliario/viva-marin-styles.css" />
+    <link rel="stylesheet" href="/lenguaje visual/forms/sc-forms.css?v=20250118" />
+    <link rel="stylesheet" href="/landing/proyecto-inmobiliario/viva-marin-styles.css?v=20250118-4" />
   </head>
   <body>
     <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema">
       <span data-theme-icon>🌙</span>
     </button>
+
+    <nav class="sticky-nav" id="sticky-nav">
+      <div class="sticky-nav-content">
+        <img src="/images/logo_blanco.png" alt="Select Capital" class="sticky-nav-logo" />
+        <div class="sticky-nav-links">
+          <a href="#tipologias">Tipologías</a>
+          <a href="#ubicacion">Ubicación</a>
+          <a href="#contacto">Cotizar</a>
+        </div>
+        <button class="sticky-nav-theme-toggle" type="button" data-theme-toggle-nav aria-label="Cambiar tema">
+          <span data-theme-icon-nav>🌙</span>
+        </button>
+      </div>
+    </nav>
 
     <div class="page">
       <!-- HEADER / HERO -->
@@ -40,16 +54,10 @@
           <img src="/images/logo_negro.png" alt="Select Capital" class="logo-light" />
           <img src="/images/logo_blanco.png" alt="Select Capital" class="logo-dark" style="display: none;" />
         </div>
-        <div class="badge-row">
-          <span class="badge badge--accent">Lanzamiento · Entrega mediados 2028</span>
-          <span class="badge">Proyecto en etapa verde</span>
-          <span class="badge">Pie 10% en 48 cuotas</span>
-          <span class="badge">15% de descuento lanzamiento</span>
-        </div>
 
         <div class="header-main">
-          <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; gap: 0;">
-            <div>
+          <div class="hero-content-wrapper">
+            <div class="hero-text-content">
               <h1 class="headline">
                 Invierte en <span>VIVA MARÍN</span> en Santiago Centro<br />
                 desde UF 2.350
@@ -57,6 +65,15 @@
               <p class="subheadline">
                 Edificio de solo 162 departamentos en esquina Marín con Lira, pensado para quienes quieren vivir o invertir en el corazón de Santiago Centro sin perder tranquilidad.
               </p>
+
+              <!-- Hero Image - Móvil: después del título y subtítulo -->
+              <div class="hero-media-mobile">
+                <div class="hero-tagline">VIVA MARÍN — Santiago Centro</div>
+                <div class="hero-title">Esquina Marín con Lira · 162 departamentos</div>
+                <div class="hero-image-placeholder">
+                  <img src="/images/viva marin/fachada.png" alt="Fachada principal VIVA MARÍN" loading="eager" fetchpriority="high" width="600" height="800" decoding="async" />
+                </div>
+            </div>
 
               <div class="header-grid">
                 <div class="pill">
@@ -83,13 +100,10 @@
                 <span class="btn-primary-icon">📄</span>
                 <span>Quiero mi propuesta</span>
               </button>
-              <a href="#datos-clave" class="hero-cta-secondary">
-                <span class="hero-cta-icon">📊</span>
-                <span>Ver datos clave del proyecto</span>
-              </a>
             </div>
             </div>
 
+          <!-- Hero Image - Desktop: lado derecho -->
           <div class="hero-media">
             <div class="hero-tagline">VIVA MARÍN — Santiago Centro</div>
             <div class="hero-title">Esquina Marín con Lira · 162 departamentos</div>
@@ -98,7 +112,7 @@
               </div>
               </div>
             </div>
-          </header>
+      </header>
 
       <!-- DATOS CLAVE / DESCRIPCIÓN -->
       <section class="section" id="datos-clave">
@@ -530,7 +544,6 @@
             <div class="form-grid">
               <div class="field">
                 <label for="nombre">
-                  <span class="field-icon">👤</span>
                   <span>Nombre completo</span>
                 </label>
                 <input id="nombre" name="nombre" type="text" placeholder="Ej: Ana Pérez" required />
@@ -538,7 +551,6 @@
 
               <div class="field">
                 <label for="rut">
-                  <span class="field-icon">🆔</span>
                   <span>RUT</span>
                 </label>
                 <input id="rut" name="rut" type="text" placeholder="Ej: 12.345.678-9" required />
@@ -546,7 +558,6 @@
 
               <div class="field">
                 <label for="telefono">
-                  <span class="field-icon">📱</span>
                   <span>Teléfono WhatsApp</span>
                 </label>
                 <input id="telefono" name="telefono" type="tel" placeholder="+56 9 ..." required />
@@ -554,7 +565,6 @@
 
               <div class="field">
                 <label for="correo">
-                  <span class="field-icon">✉️</span>
                   <span>Correo electrónico</span>
                 </label>
                 <input id="correo" name="correo" type="email" placeholder="tu@correo.cl" required />
@@ -562,7 +572,6 @@
 
               <div class="field">
                 <label for="objetivo">
-                  <span class="field-icon">🎯</span>
                   <span>Objetivo</span>
                 </label>
                 <select id="objetivo" name="objetivo" required>
@@ -575,7 +584,6 @@
 
               <div class="field">
                 <label for="renta">
-                  <span class="field-icon">💰</span>
                   <span>Renta líquida mensual (CLP)</span>
                 </label>
                 <input id="renta" name="renta" type="text" placeholder="Promedio mensual" required />
@@ -583,7 +591,6 @@
 
               <div class="field">
                 <label for="ahorro">
-                  <span class="field-icon">💵</span>
                   <span>Ahorros disponibles para pie</span>
                 </label>
                 <input id="ahorro" name="ahorro" type="text" placeholder="Monto aprox. o 'No tengo'" required />
@@ -591,7 +598,6 @@
 
               <div class="field">
                 <label for="tipo">
-                  <span class="field-icon">🏠</span>
                   <span>Tipo de propiedad de interés</span>
                 </label>
                 <select id="tipo" name="tipo" required>
@@ -605,7 +611,6 @@
 
               <div class="field">
                 <label for="contacto-preferencia">
-                  <span class="field-icon">💬</span>
                   <span>¿Cómo prefieres que te contactemos?</span>
                 </label>
                 <select id="contacto-preferencia" name="contacto-preferencia" required>
@@ -669,6 +674,14 @@
             </div>
       </footer>
           </div>
+
+    <!-- Sticky CTA Button (Mobile) -->
+    <div class="sticky-cta" id="sticky-cta">
+      <button type="button" class="sticky-cta-button" data-action="scroll-form">
+        <span class="btn-primary-icon">📄</span>
+        <span>Quiero mi propuesta</span>
+      </button>
+    </div>
 
     <!-- Cloudflare Turnstile -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -740,15 +753,76 @@
 
         // Smooth scroll to form
         const scrollFormBtn = document.querySelector('[data-action="scroll-form"]');
+        const stickyCtaBtn = document.querySelector('.sticky-cta-button[data-action="scroll-form"]');
+        
+        const scrollToForm = (e) => {
+          if (e) e.preventDefault();
+          const formSection = document.getElementById('contacto');
+          if (formSection) {
+            formSection.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'start' 
+            });
+          }
+        };
+        
         if (scrollFormBtn) {
-          scrollFormBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const formSection = document.getElementById('contacto');
-            if (formSection) {
-              formSection.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start' 
+          scrollFormBtn.addEventListener('click', scrollToForm);
+        }
+        if (stickyCtaBtn) {
+          stickyCtaBtn.addEventListener('click', scrollToForm);
+        }
+
+        // Sticky CTA visibility control
+        const stickyCta = document.getElementById('sticky-cta');
+        const formSection = document.getElementById('contacto');
+        
+        if (stickyCta && formSection) {
+          const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+          };
+          
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                // Form is visible, hide sticky CTA
+                stickyCta.classList.remove('is-visible');
+              } else {
+                // Form is not visible, show sticky CTA (only if scrolled past hero)
+                const heroBottom = document.querySelector('.header')?.getBoundingClientRect().bottom || 0;
+                if (window.scrollY > heroBottom + 100) {
+                  stickyCta.classList.add('is-visible');
+                } else {
+                  stickyCta.classList.remove('is-visible');
+                }
+              }
+            });
+          }, observerOptions);
+          
+          observer.observe(formSection);
+          
+          // Also check on scroll
+          let ticking = false;
+          window.addEventListener('scroll', () => {
+            if (!ticking) {
+              window.requestAnimationFrame(() => {
+                const heroBottom = document.querySelector('.header')?.getBoundingClientRect().bottom || 0;
+                const formRect = formSection.getBoundingClientRect();
+                const isFormVisible = formRect.top < window.innerHeight && formRect.bottom > 0;
+                
+                if (isFormVisible) {
+                  stickyCta.classList.remove('is-visible');
+                } else if (window.scrollY > heroBottom + 100) {
+                  stickyCta.classList.add('is-visible');
+                } else {
+                  stickyCta.classList.remove('is-visible');
+                }
+                
+                ticking = false;
               });
+              ticking = true;
             }
           });
         }
@@ -823,12 +897,8 @@
           // Remove all non-digits
           let clean = value.replace(/\D/g, '');
           
-          // Handle different input formats
-          if (clean.startsWith('569')) {
-            // Already has +56 9, remove the 56
-            clean = clean.substring(2);
-          } else if (clean.startsWith('56') && clean.length > 10) {
-            // Has 56 but not 9, remove 56
+          // If starts with 56, keep it; otherwise assume it's a Chilean number
+          if (clean.startsWith('56')) {
             clean = clean.substring(2);
           }
           
@@ -837,36 +907,20 @@
             clean = clean.substring(1);
           }
           
-          // Ensure it starts with 9 (Chilean mobile) and has at least 8 digits
-          if (clean.length >= 8 && !clean.startsWith('9')) {
-            // If it's 8 digits and doesn't start with 9, prepend 9
-            if (clean.length === 8) {
-              clean = '9' + clean;
-            }
+          // Ensure it starts with 9 (Chilean mobile)
+          if (!clean.startsWith('9') && clean.length >= 8) {
+            clean = '9' + clean;
           }
           
-          // Format: +56 9 xxxx xxxx (requires 9 digits: 9 + 8 more)
-          if (clean.length >= 9 && clean.startsWith('9')) {
+          // Format: +56 9 xxxx xxxx
+          if (clean.length >= 8) {
             const area = clean.substring(0, 1); // 9
             const part1 = clean.substring(1, 5); // xxxx
             const part2 = clean.substring(5, 9); // xxxx
-            const extra = clean.length > 9 ? ' ' + clean.substring(9) : '';
-            return `+56 ${area} ${part1} ${part2}${extra}`.trim();
+            return `+56 ${area} ${part1} ${part2}`.trim();
           }
           
-          // If we have 8 digits, assume it's missing the 9
-          if (clean.length === 8) {
-            const part1 = clean.substring(0, 4);
-            const part2 = clean.substring(4, 8);
-            return `+56 9 ${part1} ${part2}`;
-          }
-          
-          // Return formatted if we can't complete, but show what we have
-          if (clean.length > 0) {
-            return value; // Keep user input if we can't format properly
-          }
-          
-          return '';
+          return value; // Return as-is if can't format
         }
         
         // Normalize email: trim and lowercase
@@ -913,8 +967,6 @@
         // ============================================
         // APPLY NORMALIZATION TO FORM FIELDS
         // ============================================
-        
-        const form = document.querySelector('.form');
         
         if (form) {
           // RUT normalization
@@ -1129,7 +1181,7 @@
               } else {
                 formData.append('monto_ahorro', '0');
               }
-              formData.append('capacidad_ahorro_mensual', '0'); // Not in form, default value that passes empty() check
+              formData.append('capacidad_ahorro_mensual', 'No especificado'); // Not in form, default value that passes empty() check
               
               formData.append('comunas_interes', 'Santiago Centro'); // Project location
               formData.append('canal_preferido', form.querySelector('#contacto-preferencia')?.value || 'whatsapp');
@@ -1157,7 +1209,7 @@
 
               const result = await response.json();
 
-              if (result.ok || result.success) {
+              if (result.success) {
                 // Success
                 showFormMessage('¡Gracias! Hemos recibido tu solicitud. Te contactaremos pronto.', 'success');
                 form.reset();
@@ -1177,8 +1229,7 @@
                   }
                 }, 100);
               } else {
-                const errorMsg = result.message || result.error || 'Error al enviar el formulario';
-                throw new Error(errorMsg);
+                throw new Error(result.message || 'Error al enviar el formulario');
               }
             } catch (error) {
               // Log error in development only
@@ -1294,64 +1345,135 @@
             closeLightbox();
           }
         });
+      });
 
-        // ============================================
-        // GOOGLE MAPS INITIALIZATION
-        // ============================================
-        function initMap() {
-          const location = { lat: -33.437, lng: -70.648 };
-          const mapElement = document.getElementById('map');
-          
-          if (!mapElement) {
-            console.warn('Map element not found');
-            return;
+      // Sticky Navigation
+      const stickyNav = document.getElementById('sticky-nav');
+      const mainThemeToggle = document.querySelector('[data-theme-toggle]');
+      const navThemeToggle = document.querySelector('[data-theme-toggle-nav]');
+      const mainThemeIcon = document.querySelector('[data-theme-icon]');
+      const navThemeIcon = document.querySelector('[data-theme-icon-nav]');
+
+      // Show/hide sticky nav on scroll
+      let lastScroll = 0;
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 200) {
+          stickyNav.classList.add('is-visible');
+        } else {
+          stickyNav.classList.remove('is-visible');
+        }
+        
+        lastScroll = currentScroll;
+      });
+
+      // Sync theme toggles
+      if (navThemeToggle) {
+        navThemeToggle.addEventListener('click', () => {
+          mainThemeToggle.click();
+        });
+      }
+
+      // Sync theme icons when theme changes
+      const syncThemeIcons = () => {
+        const currentTheme = document.body.getAttribute('data-theme');
+        const icon = currentTheme === 'dark' ? '☀️' : '🌙';
+        mainThemeIcon.textContent = icon;
+        navThemeIcon.textContent = icon;
+      };
+
+      // Observer for theme changes
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.attributeName === 'data-theme') {
+            syncThemeIcons();
           }
+        });
+      });
 
-          const map = new google.maps.Map(mapElement, {
-            zoom: 16,
-            center: location,
-            mapTypeId: 'roadmap',
-            styles: [
-              {
-                featureType: 'poi',
-                elementType: 'labels',
-                stylers: [{ visibility: 'off' }]
-              }
-            ],
-            disableDefaultUI: false,
-            zoomControl: true,
-            mapTypeControl: false,
-            scaleControl: true,
-            streetViewControl: false,
-            rotateControl: false,
-            fullscreenControl: true
-          });
+      observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+      });
 
-          const marker = new google.maps.Marker({
-            position: location,
-            map: map,
-            title: 'VIVA MARÍN - Esquina Marín con Lira, Santiago Centro',
-            animation: google.maps.Animation.DROP
-          });
 
-          const infoWindow = new google.maps.InfoWindow({
-            content: '<div style="padding: 8px;"><strong>VIVA MARÍN</strong><br>Esquina Marín con Lira<br>Santiago Centro</div>'
-          });
+      // Smooth scroll for sticky nav links
+      document.querySelectorAll('.sticky-nav-links a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 100;
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
 
-          marker.addListener('click', () => {
-            infoWindow.open(map, marker);
-          });
+      // Initialize theme icons
+      syncThemeIcons();
+
+      // ============================================
+      // GOOGLE MAPS INITIALIZATION
+      // ============================================
+      function initMap() {
+        const location = { lat: -33.437, lng: -70.648 };
+        const mapElement = document.getElementById('map');
+        
+        if (!mapElement) {
+          console.warn('Map element not found');
+          return;
         }
 
-        // Fallback if Google Maps fails to load
-        window.gm_authFailure = function() {
-          console.error('Google Maps authentication failed. Please check your API key.');
-          const mapElement = document.getElementById('map');
-          if (mapElement) {
-            mapElement.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;">Error al cargar el mapa. <a href="https://www.google.com/maps/search/?api=1&query=Marín+Lira+Santiago+Centro" target="_blank">Ver en Google Maps</a></div>';
-          }
-        };
-      });
+        const map = new google.maps.Map(mapElement, {
+          zoom: 16,
+          center: location,
+          mapTypeId: 'roadmap',
+          styles: [
+            {
+              featureType: 'poi',
+              elementType: 'labels',
+              stylers: [{ visibility: 'off' }]
+            }
+          ],
+          disableDefaultUI: false,
+          zoomControl: true,
+          mapTypeControl: false,
+          scaleControl: true,
+          streetViewControl: false,
+          rotateControl: false,
+          fullscreenControl: true
+        });
+
+        const marker = new google.maps.Marker({
+          position: location,
+          map: map,
+          title: 'VIVA MARÍN - Esquina Marín con Lira, Santiago Centro',
+          animation: google.maps.Animation.DROP
+        });
+
+        const infoWindow = new google.maps.InfoWindow({
+          content: '<div style="padding: 8px;"><strong>VIVA MARÍN</strong><br>Esquina Marín con Lira<br>Santiago Centro</div>'
+        });
+
+        marker.addListener('click', () => {
+          infoWindow.open(map, marker);
+        });
+      }
+
+      // Fallback if Google Maps fails to load
+      window.gm_authFailure = function() {
+        console.error('Google Maps authentication failed. Please check your API key.');
+        const mapElement = document.getElementById('map');
+        if (mapElement) {
+          mapElement.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;">Error al cargar el mapa. <a href="https://www.google.com/maps/search/?api=1&query=Marín+Lira+Santiago+Centro" target="_blank">Ver en Google Maps</a></div>';
+        }
+      };
     </script>
   </body>
 </html>
