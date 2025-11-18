@@ -197,9 +197,14 @@
         margin: 20px 0;
       }
 
-      @media (min-width: 768px) {
+      /* Hero Image Desktop - Oculto por defecto en móvil */
+      .hero-media {
+        display: none !important;
+      }
+
+      @media (min-width: 1024px) {
         .hero-media-mobile {
-          display: none;
+          display: none !important;
         }
         .header-main {
           grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
@@ -210,16 +215,8 @@
           height: 100%;
           justify-content: space-between;
         }
-      }
-
-      /* Hero Image Desktop - Solo visible en desktop */
-      .hero-media {
-        display: none;
-      }
-
-      @media (min-width: 768px) {
         .hero-media {
-          display: flex;
+          display: flex !important;
           flex-direction: column;
           gap: 14px;
         }
@@ -869,52 +866,49 @@
 
       /* Amenities Grid - Horizontal Scroll en móvil */
       .amenities-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 16px;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: 12px;
+        padding-bottom: 8px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: var(--sc-rose-gold, #CD7F32) transparent;
       }
 
-      @media (max-width: 767px) {
-        .amenities-grid {
-          display: flex;
-          flex-direction: row;
-          overflow-x: auto;
-          overflow-y: hidden;
-          gap: 12px;
-          padding-bottom: 8px;
-          scroll-snap-type: x mandatory;
-          -webkit-overflow-scrolling: touch;
-          scrollbar-width: thin;
-          scrollbar-color: var(--sc-rose-gold, #CD7F32) transparent;
-        }
-        .amenities-grid::-webkit-scrollbar {
-          height: 4px;
-        }
-        .amenities-grid::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .amenities-grid::-webkit-scrollbar-thumb {
-          background: var(--sc-rose-gold, #CD7F32);
-          border-radius: 2px;
-        }
-        .amenities-grid .amenity-card {
-          flex: 0 0 85%;
-          max-width: 85%;
-          scroll-snap-align: start;
-        }
+      .amenities-grid::-webkit-scrollbar {
+        height: 4px;
       }
 
-      @media (min-width: 480px) and (min-width: 768px) {
-        .amenities-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
+      .amenities-grid::-webkit-scrollbar-track {
+        background: transparent;
       }
 
-      @media (min-width: 768px) {
+      .amenities-grid::-webkit-scrollbar-thumb {
+        background: var(--sc-rose-gold, #CD7F32);
+        border-radius: 2px;
+      }
+
+      .amenities-grid .amenity-card {
+        flex: 0 0 85%;
+        max-width: 85%;
+        scroll-snap-align: start;
+      }
+
+      @media (min-width: 1024px) {
         .amenities-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           gap: 12px;
+          overflow-x: visible;
+          overflow-y: visible;
+          padding-bottom: 0;
+        }
+        .amenities-grid .amenity-card {
+          flex: none;
+          max-width: none;
         }
       }
 
@@ -1000,46 +994,49 @@
 
       /* Typologies Section - Horizontal Scroll en móvil */
       .typologies-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 24px;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: 16px;
+        padding-bottom: 8px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: var(--sc-rose-gold, #CD7F32) transparent;
       }
 
-      @media (max-width: 767px) {
-        .typologies-grid {
-          display: flex;
-          flex-direction: row;
-          overflow-x: auto;
-          overflow-y: hidden;
-          gap: 16px;
-          padding-bottom: 8px;
-          scroll-snap-type: x mandatory;
-          -webkit-overflow-scrolling: touch;
-          scrollbar-width: thin;
-          scrollbar-color: var(--sc-rose-gold, #CD7F32) transparent;
-        }
-        .typologies-grid::-webkit-scrollbar {
-          height: 4px;
-        }
-        .typologies-grid::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .typologies-grid::-webkit-scrollbar-thumb {
-          background: var(--sc-rose-gold, #CD7F32);
-          border-radius: 2px;
-        }
-        .typologies-grid .typology-card {
-          flex: 0 0 90%;
-          max-width: 90%;
-          scroll-snap-align: start;
-        }
+      .typologies-grid::-webkit-scrollbar {
+        height: 4px;
       }
 
-      @media (min-width: 768px) {
+      .typologies-grid::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .typologies-grid::-webkit-scrollbar-thumb {
+        background: var(--sc-rose-gold, #CD7F32);
+        border-radius: 2px;
+      }
+
+      .typologies-grid .typology-card {
+        flex: 0 0 90%;
+        max-width: 90%;
+        scroll-snap-align: start;
+      }
+
+      @media (min-width: 1024px) {
         .typologies-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 20px;
+          overflow-x: visible;
+          overflow-y: visible;
+          padding-bottom: 0;
+        }
+        .typologies-grid .typology-card {
+          flex: none;
+          max-width: none;
         }
       }
 
@@ -2291,7 +2288,7 @@
         transform: scale(0.98);
       }
 
-      @media (min-width: 768px) {
+      @media (min-width: 1024px) {
         .sticky-cta {
           display: none;
         }
