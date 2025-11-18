@@ -25,13 +25,27 @@
     
     <!-- CSS crítico -->
     <link rel="stylesheet" href="/lenguaje visual/theme/select-capital-theme.min.css?v=66e592e976" />
-    <link rel="stylesheet" href="/lenguaje visual/forms/sc-forms.css" />
-    <link rel="stylesheet" href="/landing/proyecto-inmobiliario/viva-marin-styles.css" />
+    <link rel="stylesheet" href="/lenguaje visual/forms/sc-forms.css?v=20250118" />
+    <link rel="stylesheet" href="/landing/proyecto-inmobiliario/viva-marin-styles.css?v=20250118-4" />
   </head>
   <body>
     <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema">
       <span data-theme-icon>🌙</span>
     </button>
+
+    <nav class="sticky-nav" id="sticky-nav">
+      <div class="sticky-nav-content">
+        <img src="/images/logo_blanco.png" alt="Select Capital" class="sticky-nav-logo" />
+        <div class="sticky-nav-links">
+          <a href="#tipologias">Tipologías</a>
+          <a href="#ubicacion">Ubicación</a>
+          <a href="#contacto">Cotizar</a>
+        </div>
+        <button class="sticky-nav-theme-toggle" type="button" data-theme-toggle-nav aria-label="Cambiar tema">
+          <span data-theme-icon-nav>🌙</span>
+        </button>
+      </div>
+    </nav>
 
     <div class="page">
       <!-- HEADER / HERO -->
@@ -40,16 +54,10 @@
           <img src="/images/logo_negro.png" alt="Select Capital" class="logo-light" />
           <img src="/images/logo_blanco.png" alt="Select Capital" class="logo-dark" style="display: none;" />
         </div>
-        <div class="badge-row">
-          <span class="badge badge--accent">Lanzamiento · Entrega mediados 2028</span>
-          <span class="badge">Proyecto en etapa verde</span>
-          <span class="badge">Pie 10% en 48 cuotas</span>
-          <span class="badge">15% de descuento lanzamiento</span>
-        </div>
 
         <div class="header-main">
-          <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; gap: 0;">
-            <div>
+          <div class="hero-content-wrapper">
+            <div class="hero-text-content">
               <h1 class="headline">
                 Invierte en <span>VIVA MARÍN</span> en Santiago Centro<br />
                 desde UF 2.350
@@ -57,6 +65,15 @@
               <p class="subheadline">
                 Edificio de solo 162 departamentos en esquina Marín con Lira, pensado para quienes quieren vivir o invertir en el corazón de Santiago Centro sin perder tranquilidad.
               </p>
+
+              <!-- Hero Image - Móvil: después del título y subtítulo -->
+              <div class="hero-media-mobile">
+                <div class="hero-tagline">VIVA MARÍN — Santiago Centro</div>
+                <div class="hero-title">Esquina Marín con Lira · 162 departamentos</div>
+                <div class="hero-image-placeholder">
+                  <img src="/images/viva marin/fachada.png" alt="Fachada principal VIVA MARÍN" loading="eager" fetchpriority="high" width="600" height="800" decoding="async" />
+                </div>
+            </div>
 
               <div class="header-grid">
                 <div class="pill">
@@ -83,13 +100,10 @@
                 <span class="btn-primary-icon">📄</span>
                 <span>Quiero mi propuesta</span>
               </button>
-              <a href="#datos-clave" class="hero-cta-secondary">
-                <span class="hero-cta-icon">📊</span>
-                <span>Ver datos clave del proyecto</span>
-              </a>
             </div>
             </div>
 
+          <!-- Hero Image - Desktop: lado derecho -->
           <div class="hero-media">
             <div class="hero-tagline">VIVA MARÍN — Santiago Centro</div>
             <div class="hero-title">Esquina Marín con Lira · 162 departamentos</div>
@@ -98,7 +112,7 @@
               </div>
               </div>
             </div>
-          </header>
+      </header>
 
       <!-- DATOS CLAVE / DESCRIPCIÓN -->
       <section class="section" id="datos-clave">
@@ -539,7 +553,6 @@
             <div class="form-grid">
               <div class="field">
                 <label for="nombre">
-                  <span class="field-icon">👤</span>
                   <span>Nombre completo</span>
                 </label>
                 <input id="nombre" name="nombre" type="text" placeholder="Ej: Ana Pérez" required />
@@ -547,7 +560,6 @@
 
               <div class="field">
                 <label for="rut">
-                  <span class="field-icon">🆔</span>
                   <span>RUT</span>
                 </label>
                 <input id="rut" name="rut" type="text" placeholder="Ej: 12.345.678-9" required />
@@ -555,7 +567,6 @@
 
               <div class="field">
                 <label for="telefono">
-                  <span class="field-icon">📱</span>
                   <span>Teléfono WhatsApp</span>
                 </label>
                 <input id="telefono" name="telefono" type="tel" placeholder="+56 9 ..." required />
@@ -563,7 +574,6 @@
 
               <div class="field">
                 <label for="correo">
-                  <span class="field-icon">✉️</span>
                   <span>Correo electrónico</span>
                 </label>
                 <input id="correo" name="correo" type="email" placeholder="tu@correo.cl" required />
@@ -571,7 +581,6 @@
 
               <div class="field">
                 <label for="objetivo">
-                  <span class="field-icon">🎯</span>
                   <span>Objetivo</span>
                 </label>
                 <select id="objetivo" name="objetivo" required>
@@ -584,7 +593,6 @@
 
               <div class="field">
                 <label for="renta">
-                  <span class="field-icon">💰</span>
                   <span>Renta líquida mensual (CLP)</span>
                 </label>
                 <input id="renta" name="renta" type="text" placeholder="Promedio mensual" required />
@@ -592,7 +600,6 @@
 
               <div class="field">
                 <label for="ahorro">
-                  <span class="field-icon">💵</span>
                   <span>Ahorros disponibles para pie</span>
                 </label>
                 <input id="ahorro" name="ahorro" type="text" placeholder="Monto aprox. o 'No tengo'" required />
@@ -600,7 +607,6 @@
 
               <div class="field">
                 <label for="tipo">
-                  <span class="field-icon">🏠</span>
                   <span>Tipo de propiedad de interés</span>
                 </label>
                 <select id="tipo" name="tipo" required>
@@ -614,7 +620,6 @@
 
               <div class="field">
                 <label for="contacto-preferencia">
-                  <span class="field-icon">💬</span>
                   <span>¿Cómo prefieres que te contactemos?</span>
                 </label>
                 <select id="contacto-preferencia" name="contacto-preferencia" required>
@@ -678,6 +683,14 @@
             </div>
       </footer>
           </div>
+
+    <!-- Sticky CTA Button (Mobile) -->
+    <div class="sticky-cta" id="sticky-cta">
+      <button type="button" class="sticky-cta-button" data-action="scroll-form">
+        <span class="btn-primary-icon">📄</span>
+        <span>Quiero mi propuesta</span>
+      </button>
+    </div>
 
     <!-- Cloudflare Turnstile -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -746,15 +759,76 @@
 
         // Smooth scroll to form
         const scrollFormBtn = document.querySelector('[data-action="scroll-form"]');
+        const stickyCtaBtn = document.querySelector('.sticky-cta-button[data-action="scroll-form"]');
+        
+        const scrollToForm = (e) => {
+          if (e) e.preventDefault();
+          const formSection = document.getElementById('contacto');
+          if (formSection) {
+            formSection.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'start' 
+            });
+          }
+        };
+        
         if (scrollFormBtn) {
-          scrollFormBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const formSection = document.getElementById('contacto');
-            if (formSection) {
-              formSection.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start' 
+          scrollFormBtn.addEventListener('click', scrollToForm);
+        }
+        if (stickyCtaBtn) {
+          stickyCtaBtn.addEventListener('click', scrollToForm);
+        }
+
+        // Sticky CTA visibility control
+        const stickyCta = document.getElementById('sticky-cta');
+        const formSection = document.getElementById('contacto');
+        
+        if (stickyCta && formSection) {
+          const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+          };
+          
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                // Form is visible, hide sticky CTA
+                stickyCta.classList.remove('is-visible');
+              } else {
+                // Form is not visible, show sticky CTA (only if scrolled past hero)
+                const heroBottom = document.querySelector('.header')?.getBoundingClientRect().bottom || 0;
+                if (window.scrollY > heroBottom + 100) {
+                  stickyCta.classList.add('is-visible');
+                } else {
+                  stickyCta.classList.remove('is-visible');
+                }
+              }
+            });
+          }, observerOptions);
+          
+          observer.observe(formSection);
+          
+          // Also check on scroll
+          let ticking = false;
+          window.addEventListener('scroll', () => {
+            if (!ticking) {
+              window.requestAnimationFrame(() => {
+                const heroBottom = document.querySelector('.header')?.getBoundingClientRect().bottom || 0;
+                const formRect = formSection.getBoundingClientRect();
+                const isFormVisible = formRect.top < window.innerHeight && formRect.bottom > 0;
+                
+                if (isFormVisible) {
+                  stickyCta.classList.remove('is-visible');
+                } else if (window.scrollY > heroBottom + 100) {
+                  stickyCta.classList.add('is-visible');
+                } else {
+                  stickyCta.classList.remove('is-visible');
+                }
+                
+                ticking = false;
               });
+              ticking = true;
             }
           });
         }
@@ -1278,6 +1352,77 @@
           }
         });
       });
+
+      // Sticky Navigation
+      const stickyNav = document.getElementById('sticky-nav');
+      const mainThemeToggle = document.querySelector('[data-theme-toggle]');
+      const navThemeToggle = document.querySelector('[data-theme-toggle-nav]');
+      const mainThemeIcon = document.querySelector('[data-theme-icon]');
+      const navThemeIcon = document.querySelector('[data-theme-icon-nav]');
+
+      // Show/hide sticky nav on scroll
+      let lastScroll = 0;
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 200) {
+          stickyNav.classList.add('is-visible');
+        } else {
+          stickyNav.classList.remove('is-visible');
+        }
+        
+        lastScroll = currentScroll;
+      });
+
+      // Sync theme toggles
+      if (navThemeToggle) {
+        navThemeToggle.addEventListener('click', () => {
+          mainThemeToggle.click();
+        });
+      }
+
+      // Sync theme icons when theme changes
+      const syncThemeIcons = () => {
+        const currentTheme = document.body.getAttribute('data-theme');
+        const icon = currentTheme === 'dark' ? '☀️' : '🌙';
+        mainThemeIcon.textContent = icon;
+        navThemeIcon.textContent = icon;
+      };
+
+      // Observer for theme changes
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.attributeName === 'data-theme') {
+            syncThemeIcons();
+          }
+        });
+      });
+
+      observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+      });
+
+
+      // Smooth scroll for sticky nav links
+      document.querySelectorAll('.sticky-nav-links a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 100;
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Initialize theme icons
+      syncThemeIcons();
     </script>
   </body>
 </html>

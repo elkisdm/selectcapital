@@ -3,7 +3,17 @@
 declare(strict_types=1);
 header('Content-Type: application/json; charset=utf-8');
 
-$cfg = require __DIR__ . '/config.php';
+// Load config with error handling
+try {
+  $cfg = require __DIR__ . '/config.php';
+} catch (Throwable $e) {
+  // Log error but don't expose details
+  error_log('[submit.php] Config error: ' . $e->getMessage());
+  http_response_code(500);
+  echo json_encode(['ok' => false, 'message' => 'Error de configuración del servidor. Por favor contacta al administrador.']);
+  exit;
+}
+
 date_default_timezone_set($cfg['timezone'] ?? 'America/Santiago');
 
 // Simple logger (auto-creates logs directory)

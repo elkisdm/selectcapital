@@ -1,0 +1,8 @@
+node_modules/
+
+# Archivos de entorno y credenciales
+.env
+.env.local
+.env.production
+.env.*.local
+*.env

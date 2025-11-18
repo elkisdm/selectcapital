@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>¡Gracias! — VIVA MARÍN | Select Capital</title>
+  
+  <!-- Preconnect a dominios externos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/lenguaje visual/theme/select-capital-theme.min.css?v=66e592e976" />
+  <link rel="stylesheet" href="/lenguaje visual/forms/sc-forms.css?v=20250118" />
+  
+  <style>
+    :root {
+      --sc-primary: #0A2540;
+      --sc-accent: #FF6B35;
+      --sc-glass-bg: rgba(255, 255, 255, 0.8);
+      --sc-border-glass: rgba(15, 23, 42, 0.15);
+      --sc-text-primary: #0f172a;
+      --sc-text-secondary: #475569;
+      --sc-shadow-e1: 0 8px 24px rgba(0, 0, 0, 0.08);
+      --lp-max-width: 1120px;
+      --lp-gutter: 24px;
+      --lp-radius-xl: 24px;
+    }
+    
+    body[data-theme="dark"] {
+      --sc-glass-bg: rgba(15, 23, 42, 0.9);
+      --sc-border-glass: rgba(255, 255, 255, 0.15);
+      --sc-text-primary: #f1f5f9;
+      --sc-text-secondary: #cbd5e1;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+      padding: 0;
+      margin: 0;
+      max-width: 100vw;
+    }
+    
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--lp-gutter);
+    }
+    
+    .page {
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    
+    .success-card {
+      background: var(--sc-glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: var(--lp-radius-xl);
+      border: 2px solid var(--sc-border-glass);
+      box-shadow: var(--sc-shadow-e1);
+      padding: 48px 32px;
+      text-align: center;
+    }
+    
+    .success-icon {
+      font-size: 64px;
+      margin-bottom: 24px;
+      animation: bounce 1s ease-in-out;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .success-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--sc-text-primary);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    
+    .success-name {
+      color: var(--sc-accent);
+    }
+    
+    .success-message {
+      font-size: 18px;
+      color: var(--sc-text-secondary);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    
+    .contact-options {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    
+    .contact-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      border: 2px solid var(--sc-border-glass);
+    }
+    
+    .contact-btn.whatsapp {
+      background: #25D366;
+      color: white;
+      border-color: #25D366;
+    }
+    
+    .contact-btn.whatsapp:hover {
+      background: #20BA5A;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(37, 211, 102, 0.3);
+    }
+    
+    .contact-btn.email {
+      background: var(--sc-glass-bg);
+      color: var(--sc-text-primary);
+    }
+    
+    .contact-btn.email:hover {
+      background: var(--sc-primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(10, 37, 64, 0.2);
+    }
+    
+    .back-link {
+      color: var(--sc-text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+    
+    .back-link:hover {
+      color: var(--sc-accent);
+    }
+    
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--sc-glass-bg);
+      backdrop-filter: blur(20px);
+      border: 2px solid var(--sc-border-glass);
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .theme-toggle:hover {
+      transform: scale(1.1) rotate(15deg);
+    }
+    
+    @media (max-width: 640px) {
+      .success-card {
+        padding: 32px 24px;
+      }
+      
+      .success-title {
+        font-size: 24px;
+      }
+      
+      .success-message {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema">
+    <span data-theme-icon>🌙</span>
+  </button>
+  
+  <div class="page">
+    <div class="success-card">
+      <div class="success-icon">🎉</div>
+      <h1 class="success-title">
+        ¡Gracias<span class="success-name" id="user-name"></span>!
+      </h1>
+      <p class="success-message">
+        Hemos recibido tu información y uno de nuestros ejecutivos se pondrá en contacto contigo en las próximas horas para enviarte tu propuesta personalizada de inversión en <strong>VIVA MARÍN</strong>.
+      </p>
+      
+      <div class="contact-options">
+        <a href="https://wa.me/56920071086?text=Hola!%20Quiero%20más%20información%20sobre%20VIVA%20MARÍN" 
+           class="contact-btn whatsapp" 
+           target="_blank" 
+           rel="noopener">
+          <span>📱</span>
+          <span>Conversemos por WhatsApp</span>
+        </a>
+        <a href="mailto:contacto@selectcapital.cl?subject=Consulta%20sobre%20VIVA%20MARÍN" 
+           class="contact-btn email">
+          <span>✉️</span>
+          <span>Escríbenos un correo</span>
+        </a>
+      </div>
+      
+      <a href="/landing/proyecto-inmobiliario/base.html" class="back-link">
+        ← Volver al proyecto VIVA MARÍN
+      </a>
+    </div>
+  </div>
+  
+  <script>
+    // Obtener nombre desde URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const userName = urlParams.get('name') || urlParams.get('nombre');
+    if (userName) {
+      const nameElement = document.getElementById('user-name');
+      const cleanName = userName.split(' ')[0]; // Solo primer nombre
+      nameElement.textContent = ', ' + cleanName;
+    }
+    
+    // Theme toggle
+    const themeToggle = document.querySelector('[data-theme-toggle]');
+    const themeIcon = document.querySelector('[data-theme-icon]');
+    const body = document.body;
+    
+    // Cargar tema guardado
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    body.setAttribute('data-theme', savedTheme);
+    themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    
+    // Toggle tema
+    themeToggle?.addEventListener('click', () => {
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    });
+  </script>
+</body>
+</html>
+
