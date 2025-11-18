@@ -2518,6 +2518,25 @@
           text-align: center;
         }
 
+        .why-invest-card {
+          align-items: center;
+          text-align: center;
+        }
+
+        .why-invest-icon {
+          margin: 0 auto;
+        }
+
+        .card-grid {
+          text-align: center;
+        }
+
+        .metric-label,
+        .metric-value,
+        .metric-hint {
+          text-align: center;
+        }
+
         .process-steps {
           text-align: center;
         }
