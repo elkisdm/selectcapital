@@ -1,18 +1,6 @@
 # Priorizar index.html sobre otros archivos index
 DirectoryIndex index.html index.php default.php
 
-# ============================================
-# REWRITE RULES - URLs AMIGABLES
-# ============================================
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /
-    
-    # Landing VIVA MARÍN - URL corta
-    RewriteRule ^viva-marin/?$ /landing/proyecto-inmobiliario/base.html [L]
-    RewriteRule ^viva-marin/.*$ /landing/proyecto-inmobiliario/base.html [L]
-</IfModule>
-
 # Prevenir acceso directo a default.php (opcional)
 <Files "default.php">
     Order allow,deny
@@ -92,11 +80,11 @@ DirectoryIndex index.html index.php default.php
     ExpiresByType image/svg+xml "access plus 1 year"
     ExpiresByType image/x-icon "access plus 1 year"
     
-    # CSS y JavaScript
-    ExpiresByType text/css "access plus 1 month"
-    ExpiresByType text/javascript "access plus 1 month"
-    ExpiresByType application/javascript "access plus 1 month"
-    ExpiresByType application/x-javascript "access plus 1 month"
+    # CSS y JavaScript (cache corto para facilitar actualizaciones)
+    ExpiresByType text/css "access plus 1 day"
+    ExpiresByType text/javascript "access plus 1 day"
+    ExpiresByType application/javascript "access plus 1 day"
+    ExpiresByType application/x-javascript "access plus 1 day"
     
     # Fuentes
     ExpiresByType font/truetype "access plus 1 year"
@@ -126,9 +114,9 @@ DirectoryIndex index.html index.php default.php
         Header set Cache-Control "max-age=31536000, public, immutable"
     </FilesMatch>
     
-    # Cache para CSS y JS
+    # Cache para CSS y JS (1 día = 86400 segundos)
     <FilesMatch "\.(css|js)$">
-        Header set Cache-Control "max-age=2592000, public"
+        Header set Cache-Control "max-age=86400, public"
     </FilesMatch>
     
     # Cache para fuentes
