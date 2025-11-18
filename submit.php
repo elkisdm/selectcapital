@@ -3,17 +3,7 @@
 declare(strict_types=1);
 header('Content-Type: application/json; charset=utf-8');
 
-// Load config with error handling
-try {
-  $cfg = require __DIR__ . '/config.php';
-} catch (Throwable $e) {
-  // Log error but don't expose details
-  error_log('[submit.php] Config error: ' . $e->getMessage());
-  http_response_code(500);
-  echo json_encode(['ok' => false, 'message' => 'Error de configuración del servidor. Por favor contacta al administrador.']);
-  exit;
-}
-
+$cfg = require __DIR__ . '/config.php';
 date_default_timezone_set($cfg['timezone'] ?? 'America/Santiago');
 
 // Simple logger (auto-creates logs directory)
@@ -304,8 +294,9 @@ if (!$tieneAhorro) {
   $data['monto_ahorro'] = '0';
 }
 
+// capacidad_ahorro_mensual is optional, default to '0' if empty
 if (empty($data['capacidad_ahorro_mensual'])) {
-  fail(400, 'Ingresa tu capacidad de ahorro mensual.');
+  $data['capacidad_ahorro_mensual'] = '0';
 }
 
 // Turnstile verification (skip in development)
