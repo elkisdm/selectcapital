@@ -1141,25 +1141,11 @@
 
               const result = await response.json();
 
-              if (result.success) {
-                // Success
-                showFormMessage('¡Gracias! Hemos recibido tu solicitud. Te contactaremos pronto.', 'success');
-                form.reset();
-                tokenInput.value = '';
-                submitBtn.disabled = true;
-                
-                // Reset Turnstile
-                if (window.turnstile) {
-                  window.turnstile.reset();
-                }
-                
-                // Scroll to success message
-                setTimeout(() => {
-                  const successMsg = document.querySelector('.form-message.success');
-                  if (successMsg) {
-                    successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                  }
-                }, 100);
+              if (result.ok || result.success) {
+                // Success - redirect to gracias page
+                const nombre = form.querySelector('#nombre')?.value || '';
+                const redirectUrl = `/landing/proyecto-inmobiliario/gracias.html${nombre ? '?nombre=' + encodeURIComponent(nombre) : ''}`;
+                window.location.href = redirectUrl;
               } else {
                 throw new Error(result.message || 'Error al enviar el formulario');
               }
