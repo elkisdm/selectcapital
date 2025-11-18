@@ -8,6 +8,21 @@ DirectoryIndex index.html index.php default.php
 </Files>
 
 # ============================================
+# REDIRECTS Y SHORTLINKS
+# ============================================
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Shortlink para VIVA MARÍN
+    RewriteRule ^viva-marin/?$ /landing/proyecto-inmobiliario/base.html [L,R=301]
+    RewriteRule ^viva/?$ /landing/proyecto-inmobiliario/base.html [L,R=301]
+    RewriteRule ^vivamarin/?$ /landing/proyecto-inmobiliario/base.html [L,R=301]
+    
+    # Página de gracias
+    RewriteRule ^gracias/?$ /landing/proyecto-inmobiliario/gracias.html [L,R=301]
+</IfModule>
+
+# ============================================
 # HEADERS DE SEGURIDAD
 # ============================================
 <IfModule mod_headers.c>

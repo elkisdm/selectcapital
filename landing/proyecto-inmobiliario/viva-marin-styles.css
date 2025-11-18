@@ -124,18 +124,21 @@
         flex-wrap: wrap;
         gap: 8px;
         font-size: 13px;
-        margin-bottom: 4px;
+        margin-bottom: 8px;
         justify-content: center;
+        width: 100%;
       }
 
       @media (max-width: 640px) {
         .badge-row {
           justify-content: center;
-          gap: 6px;
+          gap: 8px;
+          margin-bottom: 12px;
         }
         .badge-row .badge {
-          font-size: 11px;
-          padding: 5px 10px;
+          font-size: 12px;
+          padding: 8px 14px;
+          flex: 0 0 auto;
         }
       }
 
@@ -194,7 +197,9 @@
       /* Hero Image Mobile - Aparece después del título y subtítulo */
       .hero-media-mobile {
         display: block;
-        margin: 20px 0;
+        margin: 20px auto;
+        max-width: 600px;
+        width: 100%;
       }
 
       /* Hero Image Desktop - Oculto por defecto en móvil y tablet */
@@ -504,28 +509,35 @@
           color-mix(in srgb, var(--sc-surface-page, #F6F8FC) 85%, transparent));
         aspect-ratio: 3 / 4;
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         justify-content: center;
-        font-size: 12px;
-        color: var(--sc-text-tertiary);
+        padding: 12px;
         overflow: hidden;
         min-height: 320px;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
         flex: 1;
+        margin: 0 auto;
+        max-width: 100%;
       }
 
       @media (max-width: 767px) {
         .hero-image-placeholder {
           aspect-ratio: 4 / 5;
-          min-height: 280px;
-          max-height: 400px;
+          min-height: 300px;
+          max-height: 450px;
+          width: 100%;
+          margin: 16px auto;
         }
       }
 
       .hero-image-placeholder img {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center;
         border-radius: var(--lp-radius-lg);
       }
 
@@ -548,6 +560,8 @@
         border-radius: 999px;
         border: 1px solid var(--sc-border-glass, rgba(15, 23, 42, 0.2));
         text-align: center;
+        position: relative;
+        z-index: 2;
       }
 
       body[data-theme="dark"] .hero-image-placeholder span {
@@ -1515,16 +1529,24 @@
 
       @media (max-width: 1199px) {
         .map-card {
-          height: 280px;
-          min-height: 280px;
+          height: 320px !important;
+          min-height: 320px !important;
           aspect-ratio: 16 / 9;
+        }
+        .map-card iframe {
+          height: 320px !important;
+          min-height: 320px !important;
         }
       }
 
       @media (max-width: 768px) {
         .map-card {
-          height: 250px;
-          min-height: 250px;
+          height: 280px !important;
+          min-height: 280px !important;
+        }
+        .map-card iframe {
+          height: 280px !important;
+          min-height: 280px !important;
         }
       }
 
