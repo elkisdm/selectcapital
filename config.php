@@ -16,6 +16,35 @@
  *   - PRIVACY_MASK_IP_OCTETS (1-4, opcional)
  */
 
+// Load .env file if it exists
+if (file_exists(__DIR__ . '/.env')) {
+  $envLines = file(__DIR__ . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+  foreach ($envLines as $line) {
+    $line = trim($line);
+    // Skip comments and empty lines
+    if (empty($line) || strpos($line, '#') === 0) {
+      continue;
+    }
+    // Parse KEY=VALUE format
+    if (strpos($line, '=') !== false) {
+      list($key, $value) = explode('=', $line, 2);
+      $key = trim($key);
+      $value = trim($value);
+      // Remove quotes if present
+      if ((substr($value, 0, 1) === '"' && substr($value, -1) === '"') ||
+          (substr($value, 0, 1) === "'" && substr($value, -1) === "'")) {
+        $value = substr($value, 1, -1);
+      }
+      // Set environment variable if not already set
+      if (!getenv($key)) {
+        putenv("$key=$value");
+        $_ENV[$key] = $value;
+        $_SERVER[$key] = $value;
+      }
+    }
+  }
+}
+
 $optionalEnv = static function (string $key, $default = null) {
   $value = getenv($key);
   if ($value === false || $value === '') {
