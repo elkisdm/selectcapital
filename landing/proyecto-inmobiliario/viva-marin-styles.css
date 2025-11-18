@@ -197,12 +197,13 @@
         margin: 20px 0;
       }
 
-      /* Hero Image Desktop - Oculto por defecto en móvil */
+      /* Hero Image Desktop - Oculto por defecto en móvil y tablet */
       .hero-media {
         display: none !important;
       }
 
-      @media (min-width: 1024px) {
+      /* Desktop: 1200px y superior */
+      @media (min-width: 1200px) {
         .hero-media-mobile {
           display: none !important;
         }
@@ -897,7 +898,8 @@
         scroll-snap-align: start;
       }
 
-      @media (min-width: 1024px) {
+      /* Desktop: 1200px y superior */
+      @media (min-width: 1200px) {
         .amenities-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
@@ -1025,7 +1027,8 @@
         scroll-snap-align: start;
       }
 
-      @media (min-width: 1024px) {
+      /* Desktop: 1200px y superior */
+      @media (min-width: 1200px) {
         .typologies-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -1487,11 +1490,14 @@
         -webkit-backdrop-filter: blur(12px);
         padding: 0;
         aspect-ratio: 4 / 3;
-        min-height: 280px;
+        height: 300px;
+        min-height: 300px;
         position: relative;
         overflow: hidden;
         box-shadow: var(--sc-shadow-e1, 0 8px 24px rgba(0, 0, 0, 0.1));
         width: 100%;
+        display: block !important;
+        margin-top: 24px;
       }
 
       .map-card iframe {
@@ -1499,16 +1505,26 @@
         height: 100%;
         border: 0;
         border-radius: var(--lp-radius-lg);
-        display: block;
-        min-height: 280px;
+        display: block !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
       }
 
-      @media (max-width: 640px) {
+      @media (max-width: 1199px) {
         .map-card {
-          min-height: 240px;
+          height: 280px;
+          min-height: 280px;
+          aspect-ratio: 16 / 9;
         }
-        .map-card iframe {
-          min-height: 240px;
+      }
+
+      @media (max-width: 768px) {
+        .map-card {
+          height: 250px;
+          min-height: 250px;
         }
       }
 
@@ -2288,7 +2304,8 @@
         transform: scale(0.98);
       }
 
-      @media (min-width: 1024px) {
+      /* Desktop: 1200px y superior */
+      @media (min-width: 1200px) {
         .sticky-cta {
           display: none;
         }
