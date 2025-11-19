@@ -85,7 +85,7 @@ return [
       'utm_source', 'utm_medium', 'utm_campaign', 'gclid', 'fbclid', 'ttclid',
       'cf-turnstile-response'
     ],
-    'required_fields' => ['nombre','rut','whatsapp','email','objetivo','tipo_ingreso','renta_liquida','tiene_ahorro','comunas_interes','canal_preferido','franja_preferida','consentimiento_privacidad','consentimiento_contacto'],
+    'required_fields' => ['nombre','rut','whatsapp','email','objetivo','tipo_ingreso','renta_liquida','capacidad_ahorro_mensual','tiene_ahorro','comunas_interes','canal_preferido','franja_preferida','consentimiento_privacidad','consentimiento_contacto'],
   ],
 
   // Redirecciones post-submit
