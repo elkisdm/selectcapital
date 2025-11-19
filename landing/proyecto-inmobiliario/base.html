@@ -534,34 +534,19 @@
         </div>
       </section>
 
-      <!-- FORMULARIO / CALL TO ACTION -->
+      <!-- FORMULARIO / MULTISTEP WIZARD -->
       <section class="section" id="contacto">
         <div class="section-header">
           <h2 class="section-title">¿Te interesa este proyecto?</h2>
           <p class="section-kicker">Recibe una propuesta personalizada sin compromiso</p>
-                </div>
-
-        <div style="text-align: center; padding: 2rem 0;">
-          <p style="font-size: 1.125rem; color: var(--re-text-secondary); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-            Completa un breve formulario y nuestro equipo te enviará una propuesta ajustada a tu perfil financiero y necesidades.
-          </p>
-          <button onclick="openWizard(event)" class="btn btn-primary" style="font-size: 1.125rem; padding: 1rem 2.5rem;">
-            <span>📝</span>
-            <span>Quiero mi propuesta personalizada</span>
-          </button>
         </div>
-      </section>
-
-      <!-- FORMULARIO / MULTISTEP WIZARD (OVERLAY) -->
+        
         <div class="wizard-container">
           <form class="form wizard-form" action="/submit.php" method="post" id="wizard-form">
             <input type="hidden" name="cf-turnstile-response" id="ts-token" />
             
             <!-- Stepper Indicator -->
             <div class="wizard-stepper">
-              <button type="button" class="wizard-close-btn" onclick="closeWizard()" aria-label="Cerrar formulario">
-                ✕
-              </button>
               <div class="wizard-stepper-inner">
                 <div class="step-indicator active" data-step="1">
                   <span class="step-number">1</span>
@@ -718,16 +703,6 @@
                 </div>
                 </div>
 
-            <!-- Success Message (hidden by default) -->
-            <div id="success-message" class="success-screen" style="display: none;">
-              <div class="success-content">
-                <div class="success-icon">✓</div>
-                <h2 class="success-title">¡Gracias por completar!</h2>
-                <p class="success-text">Te enviaremos la propuesta personalizada a tu correo electrónico en las próximas horas.</p>
-                <p class="success-subtext">Nuestro equipo se pondrá en contacto contigo pronto.</p>
-              </div>
-            </div>
-
             <!-- Bottom CTA Zone -->
             <div class="wizard-cta">
               <div class="wizard-cta-inner">
@@ -740,7 +715,18 @@
               </div>
               </div>
             </form>
+
+            <!-- Success Message (hidden by default) -->
+            <div id="success-message" class="success-screen" style="display: none;">
+              <div class="success-content">
+                <div class="success-icon">✓</div>
+                <h2 class="success-title">¡Gracias por completar!</h2>
+                <p class="success-text">Te enviaremos la propuesta personalizada a tu correo electrónico en las próximas horas.</p>
+                <p class="success-subtext">Nuestro equipo se pondrá en contacto contigo pronto.</p>
+              </div>
+            </div>
         </div>
+      </section>
 
       <!-- FOOTER -->
       <footer class="footer">
@@ -933,59 +919,12 @@
         return isValid;
       }
 
-      // Open wizard function (global scope)
+      // Open wizard function (global scope) - now just scrolls to form
       function openWizard(e) {
         if (e) e.preventDefault();
-        const wizardContainer = document.querySelector('.wizard-container');
-        if (wizardContainer) {
-          // Show wizard container
-          wizardContainer.style.display = 'flex';
-          wizardContainer.classList.add('active');
-          document.body.style.overflow = 'hidden';
-          
-          // Reset to first step
-          currentStep = 0;
-          
-          // Hide all steps first
-          document.querySelectorAll('.step').forEach(step => {
-            step.classList.remove('active');
-            step.style.position = 'absolute';
-            step.style.opacity = '0';
-            step.style.pointerEvents = 'none';
-          });
-          
-          // Show first step
-          const firstStep = document.getElementById('step-1');
-          if (firstStep) {
-            firstStep.style.position = 'relative';
-            firstStep.style.pointerEvents = 'auto';
-            setTimeout(() => {
-              firstStep.classList.add('active');
-              firstStep.style.opacity = '1';
-            }, 50);
-          }
-          
-          // Update buttons and indicators
-          goToStep(0);
-          
-          // Scroll to top
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      }
-
-      // Close wizard function (global scope)
-      function closeWizard() {
-        const wizardContainer = document.querySelector('.wizard-container');
-        const successMessage = document.getElementById('success-message');
-        
-        if (wizardContainer) {
-          wizardContainer.style.display = 'none';
-          wizardContainer.classList.remove('active');
-          document.body.style.overflow = '';
-        }
-        
-        if (successMessage) {
-          successMessage.style.display = 'none';
+        const contactSection = document.getElementById('contacto');
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       }
 
@@ -1702,17 +1641,17 @@
               const result = await response.json();
 
               if (result.ok) {
-                // Success - show success message screen
-                const wizardContainer = document.querySelector('.wizard-container');
+                // Success - show success message
+                const form = document.querySelector('.wizard-form');
                 const successMessage = document.getElementById('success-message');
                 
-                if (wizardContainer && successMessage) {
-                  wizardContainer.style.display = 'none';
+                if (form && successMessage) {
+                  form.style.display = 'none';
                   successMessage.style.display = 'flex';
-                  document.body.style.overflow = 'hidden';
                 }
                 
-                form.reset();
+                // Reset form for next use
+                document.querySelector('#wizard-form')?.reset();
                 window.turnstile?.reset();
               } else {
                 throw new Error(result.message || 'Error al enviar el formulario');

@@ -2911,22 +2911,18 @@
       }
       
       .wizard-container {
-        position: fixed;
-        inset: 0;
-        display: none;
-        align-items: center;
-        justify-content: center;
+        position: relative;
+        width: 100%;
+        max-width: 28rem;
+        margin: 0 auto;
+        display: block;
         background: var(--re-bg);
-        z-index: 9999;
-        overflow: hidden;
-      }
-
-      .wizard-container.active {
-        display: flex !important;
+        padding: 2rem 1rem;
+        border-radius: 1.5rem;
       }
 
       body[data-theme="dark"] .wizard-container {
-        background: rgba(17, 24, 39, 1);
+        background: rgba(17, 24, 39, 0.95);
       }
 
       /* Step Transitions */
@@ -2934,19 +2930,18 @@
         opacity: 0;
         pointer-events: none;
         position: absolute;
-        inset: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         transition: opacity 0.3s ease-out;
+        width: 100%;
         display: flex;
         flex-direction: column;
-        width: 100%;
-        height: 100%;
-        padding-top: 7rem;
-        padding-bottom: 8rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
+        align-items: center;
+        justify-content: center;
         z-index: 1;
+        padding: 1rem 0;
       }
 
       .step.active {
@@ -2958,12 +2953,13 @@
 
       .wizard-form {
         width: 100%;
-        height: 100%;
         max-width: 28rem;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
         position: relative;
+        min-height: auto;
+        justify-content: center;
       }
 
       .wizard-step-content {
@@ -3075,20 +3071,10 @@
 
       /* Wizard CTA Zone */
       .wizard-cta {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: var(--re-card);
-        padding: 1rem;
+        position: relative;
+        padding: 2rem 0 0 0;
+        margin-top: 2rem;
         border-top: 1px solid var(--re-line);
-        z-index: 10000;
-        box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
-      }
-
-      body[data-theme="dark"] .wizard-cta {
-        background: rgba(17, 24, 39, 0.98);
-        border-top-color: rgba(255, 255, 255, 0.1);
       }
 
       .wizard-cta-inner {
@@ -3161,58 +3147,11 @@
         border-color: var(--re-accent);
       }
 
-      /* Wizard Close Button */
-      .wizard-close-btn {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 50%;
-        border: none;
-        background: var(--re-card);
-        color: var(--re-text-secondary);
-        font-size: 1.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        z-index: 10001;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-
-      .wizard-close-btn:hover {
-        background: var(--re-line);
-        color: var(--re-text-primary);
-        transform: scale(1.1);
-      }
-
-      body[data-theme="dark"] .wizard-close-btn {
-        background: rgba(31, 41, 55, 0.9);
-        color: rgba(255, 255, 255, 0.7);
-      }
-
-      body[data-theme="dark"] .wizard-close-btn:hover {
-        background: rgba(31, 41, 55, 1);
-        color: rgba(255, 255, 255, 1);
-      }
-
       /* Wizard Stepper */
       .wizard-stepper {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background: var(--re-bg);
-        padding: 1.5rem 1rem;
-        border-bottom: 1px solid var(--re-line);
-        z-index: 10000;
-      }
-
-      body[data-theme="dark"] .wizard-stepper {
-        background: rgba(17, 24, 39, 0.98);
-        border-bottom-color: rgba(255, 255, 255, 0.1);
+        position: relative;
+        padding: 1.5rem 0 0 0;
+        margin-bottom: 1.5rem;
       }
 
       .wizard-stepper-inner {
@@ -3263,19 +3202,14 @@
 
       /* Success Screen */
       .success-screen {
-        position: fixed;
-        inset: 0;
-        background: var(--re-bg);
-        z-index: 10000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem;
+        display: none;
+        width: 100%;
+        max-width: 28rem;
+        margin: 0 auto;
         animation: fadeIn 0.4s ease-out;
       }
 
       .success-content {
-        max-width: 28rem;
         text-align: center;
         padding: 3rem 2rem;
         background: rgba(255, 255, 255, 0.6);
@@ -3284,10 +3218,6 @@
         border-radius: 1.5rem;
         border: 1px solid rgba(255, 255, 255, 0.4);
         box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      }
-
-      body[data-theme="dark"] .success-screen {
-        background: rgba(17, 24, 39, 0.98);
       }
 
       body[data-theme="dark"] .success-content {
