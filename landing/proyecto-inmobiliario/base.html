@@ -50,11 +50,6 @@
     <div class="page">
       <!-- HEADER / HERO -->
       <header class="header">
-        <div class="header-logo">
-          <img src="/images/logo_negro.png" alt="Select Capital" class="logo-light" />
-          <img src="/images/logo_blanco.png" alt="Select Capital" class="logo-dark" style="display: none;" />
-        </div>
-
         <div class="header-main">
           <div class="hero-content-wrapper">
             <div class="hero-text-content">
@@ -759,8 +754,6 @@
       // Update theme icon based on current theme
       document.addEventListener('DOMContentLoaded', () => {
         const themeIcon = document.querySelector('[data-theme-icon]');
-        const logoLight = document.querySelector('.header-logo .logo-light');
-        const logoDark = document.querySelector('.header-logo .logo-dark');
         const footerLogoLight = document.querySelector('.footer-logo-light');
         const footerLogoDark = document.querySelector('.footer-logo-dark');
         
@@ -768,16 +761,6 @@
           const currentTheme = document.documentElement.getAttribute('data-theme');
           if (themeIcon) {
             themeIcon.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
-          }
-          // Update header logo visibility
-          if (logoLight && logoDark) {
-            if (currentTheme === 'dark') {
-              logoLight.style.display = 'none';
-              logoDark.style.display = 'block';
-            } else {
-              logoLight.style.display = 'block';
-              logoDark.style.display = 'none';
-            }
           }
           // Update footer logo visibility
           if (footerLogoLight && footerLogoDark) {
@@ -1416,20 +1399,6 @@
       const navThemeToggle = document.querySelector('[data-theme-toggle-nav]');
       const mainThemeIcon = document.querySelector('[data-theme-icon]');
       const navThemeIcon = document.querySelector('[data-theme-icon-nav]');
-
-      // Show/hide sticky nav on scroll
-      let lastScroll = 0;
-      window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > 200) {
-          stickyNav.classList.add('is-visible');
-        } else {
-          stickyNav.classList.remove('is-visible');
-        }
-        
-        lastScroll = currentScroll;
-      });
 
       // Sync theme toggles
       if (navThemeToggle) {
