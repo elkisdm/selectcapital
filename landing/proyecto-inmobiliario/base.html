@@ -534,14 +534,34 @@
         </div>
       </section>
 
-      <!-- FORMULARIO / MULTISTEP WIZARD -->
+      <!-- FORMULARIO / CALL TO ACTION -->
       <section class="section" id="contacto">
+        <div class="section-header">
+          <h2 class="section-title">¿Te interesa este proyecto?</h2>
+          <p class="section-kicker">Recibe una propuesta personalizada sin compromiso</p>
+                </div>
+
+        <div style="text-align: center; padding: 2rem 0;">
+          <p style="font-size: 1.125rem; color: var(--re-text-secondary); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Completa un breve formulario y nuestro equipo te enviará una propuesta ajustada a tu perfil financiero y necesidades.
+          </p>
+          <button onclick="openWizard(event)" class="btn btn-primary" style="font-size: 1.125rem; padding: 1rem 2.5rem;">
+            <span>📝</span>
+            <span>Quiero mi propuesta personalizada</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- FORMULARIO / MULTISTEP WIZARD (OVERLAY) -->
         <div class="wizard-container">
           <form class="form wizard-form" action="/submit.php" method="post" id="wizard-form">
             <input type="hidden" name="cf-turnstile-response" id="ts-token" />
             
             <!-- Stepper Indicator -->
             <div class="wizard-stepper">
+              <button type="button" class="wizard-close-btn" onclick="closeWizard()" aria-label="Cerrar formulario">
+                ✕
+              </button>
               <div class="wizard-stepper-inner">
                 <div class="step-indicator active" data-step="1">
                   <span class="step-number">1</span>
@@ -552,7 +572,7 @@
                 </div>
               </div>
             </div>
-            
+
             <!-- Step 1: Información Personal -->
             <div id="step-1" class="step">
               <div class="wizard-step-content">
@@ -623,13 +643,13 @@
                       <label class="option-button" data-value="renta-2">
                         <input type="radio" id="renta-2" name="renta-rango" value="1400001-1800000" required />
                         <span>Entre $1.400.001 - $1.800.000</span>
-                      </label>
+                </label>
                       <label class="option-button" data-value="renta-3">
                         <input type="radio" id="renta-3" name="renta-rango" value="1800001+" required />
                         <span>Más de $1.800.001</span>
                       </label>
                     </div>
-              </div>
+                </div>
 
                   <div class="question-group">
                     <h3 class="question-title">¿Cuál es tu capacidad de ahorro mensual aproximadamente?</h3>
@@ -641,16 +661,16 @@
                       <label class="option-button" data-value="ahorro-1">
                         <input type="radio" id="ahorro-1" name="ahorro-mensual" value="100000-200000" required />
                         <span>Entre $100.000 - $200.000</span>
-                      </label>
+                  </label>
                       <label class="option-button" data-value="ahorro-2">
                         <input type="radio" id="ahorro-2" name="ahorro-mensual" value="200001-400000" required />
                         <span>Entre $200.001 - $400.000</span>
-                      </label>
+                  </label>
                       <label class="option-button" data-value="ahorro-3">
                         <input type="radio" id="ahorro-3" name="ahorro-mensual" value="400001+" required />
                         <span>Más de $400.001</span>
-                      </label>
-                    </div>
+                  </label>
+                </div>
                 </div>
 
                   <div class="question-group">
@@ -659,7 +679,7 @@
                       <label class="option-button" data-value="studio">
                     <input type="radio" id="tipo-studio" name="tipo" value="studio" required />
                         <span>Studio</span>
-                  </label>
+                </label>
                       <label class="option-button" data-value="1d">
                     <input type="radio" id="tipo-1d" name="tipo" value="1d" required />
                         <span>1 Dormitorio</span>
@@ -672,26 +692,26 @@
                     <input type="radio" id="tipo-todas" name="tipo" value="todas" required />
                         <span>Todas las opciones</span>
                   </label>
-                    </div>
-                  </div>
+              </div>
+                </div>
 
                   <!-- Términos y condiciones -->
-                  <div class="field-checkbox">
-                    <input id="terminos" name="terminos" type="checkbox" required />
-                    <label for="terminos">
-                      Acepto el tratamiento de mis datos y autorizo el contacto por WhatsApp y correo para recibir información sobre este proyecto inmobiliario.
-                    </label>
-                  </div>
+            <div class="field-checkbox">
+              <input id="terminos" name="terminos" type="checkbox" required />
+              <label for="terminos">
+                Acepto el tratamiento de mis datos y autorizo el contacto por WhatsApp y correo para recibir información sobre este proyecto inmobiliario.
+                  </label>
+                </div>
 
                   <!-- Submit button -->
                   <button type="submit" id="form-submit-btn" class="wizard-btn wizard-btn-primary" style="margin-top: 1rem; width: 100%;">
                     <span class="btn-primary-icon">📄</span>
                     <span>Recibir mi propuesta personalizada</span>
                   </button>
-
-                  <div class="turnstile-container" style="margin: 16px 0; display: flex; justify-content: center;">
-                    <div class="cf-turnstile" data-sitekey="0x4AAAAAAB_bjq2YOWp-yEXx" data-theme="auto" data-callback="onTurnstileSuccess"></div>
-                  </div>
+              
+              <div class="turnstile-container" style="margin: 16px 0; display: flex; justify-content: center;">
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAB_bjq2YOWp-yEXx" data-theme="auto" data-callback="onTurnstileSuccess"></div>
+              </div>
 
                   <p class="text-xs text-gray-500 text-center mt-4">⏰ Oferta sujeta a disponibilidad de unidades y vigencia de la promoción de lanzamiento.</p>
                 </div>
@@ -721,7 +741,6 @@
               </div>
             </form>
         </div>
-      </section>
 
       <!-- FOOTER -->
       <footer class="footer">
@@ -954,6 +973,22 @@
         }
       }
 
+      // Close wizard function (global scope)
+      function closeWizard() {
+        const wizardContainer = document.querySelector('.wizard-container');
+        const successMessage = document.getElementById('success-message');
+        
+        if (wizardContainer) {
+          wizardContainer.style.display = 'none';
+          wizardContainer.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+        
+        if (successMessage) {
+          successMessage.style.display = 'none';
+        }
+      }
+
       // Scroll to form function
       function scrollToForm(e) {
         if (e) e.preventDefault();
@@ -1115,7 +1150,7 @@
         // FORM FIELD NORMALIZATION FUNCTIONS
         // ============================================
         
-        // Normalize RUT: Format to 12.345.678-9 and validate  
+        // Normalize RUT: Format to 12.345.678-9 and validate
         function normalizeRUT(value, cursorPosition) {
           if (!value) return { formatted: '', newCursorPos: 0 };
           
@@ -1143,7 +1178,7 @@
           }
           
           // Clean number (only digits)
-          number = number.replace(/\D/g, '');
+            number = number.replace(/\D/g, '');
           
           // Format with dots: X.XXX.XXX
           let formatted = '';
@@ -1387,7 +1422,7 @@
           const phoneInput = form.querySelector('#telefono');
           if (phoneInput) {
             phoneInput.addEventListener('input', (e) => {
-              const cursorPos = e.target.selectionStart;
+                const cursorPos = e.target.selectionStart;
               const result = normalizePhone(e.target.value, cursorPos);
               
               if (result.formatted !== e.target.value) {
@@ -1423,13 +1458,13 @@
           const rentaInput = form.querySelector('#renta');
           if (rentaInput) {
             rentaInput.addEventListener('input', (e) => {
-              const cursorPos = e.target.selectionStart;
+                  const cursorPos = e.target.selectionStart;
               const result = formatNumber(e.target.value, cursorPos);
               
               if (result.formatted !== e.target.value) {
                 e.target.value = result.formatted;
                 const newPos = Math.max(0, Math.min(result.newCursorPos, result.formatted.length));
-                e.target.setSelectionRange(newPos, newPos);
+                  e.target.setSelectionRange(newPos, newPos);
               }
             });
           }
@@ -1441,13 +1476,13 @@
               const value = e.target.value;
               // If it's not "no tengo" or similar, format as number
               if (!/no\s+tengo/i.test(value) && /\d/.test(value)) {
-                const cursorPos = e.target.selectionStart;
+                    const cursorPos = e.target.selectionStart;
                 const result = formatNumber(value, cursorPos);
                 
                 if (result.formatted !== value) {
                   e.target.value = result.formatted;
                   const newPos = Math.max(0, Math.min(result.newCursorPos, result.formatted.length));
-                  e.target.setSelectionRange(newPos, newPos);
+                    e.target.setSelectionRange(newPos, newPos);
                 }
               }
             });
