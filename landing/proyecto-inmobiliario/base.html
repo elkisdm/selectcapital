@@ -364,7 +364,16 @@
           </div>
 
           <div class="map-card">
-            <div id="map" style="width: 100%; height: 400px; border-radius: var(--lp-radius-lg);"></div>
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.5!2d-70.648!3d-33.437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c5a8b8b8b8b9%3A0x8b8b8b8b8b8b8b8b!2sCalle%20Mar%C3%ADn%20%26%20Calle%20Lira%2C%20Santiago%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1700000000000!5m2!1ses!2scl" 
+              width="100%" 
+              height="400" 
+              style="border:0; border-radius: var(--lp-radius-lg);" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicación VIVA MARÍN - Esquina Marín con Lira, Santiago Centro">
+            </iframe>
             <div class="map-overlay">
               <a href="https://www.google.com/maps/search/?api=1&query=Marín+Lira+Santiago+Centro" target="_blank" rel="noopener" class="map-link">
                 <span>📍 Esquina Marín con Lira, Santiago Centro</span>
@@ -574,19 +583,25 @@
                 <label>
                   <span>Objetivo</span>
                 </label>
-                <div class="option-cards" role="radiogroup" aria-label="Objetivo">
-                  <div class="option-card" data-value="invertir">
+                <div class="option-grid" role="radiogroup" aria-label="Objetivo">
+                  <label class="option-card" data-value="invertir">
                     <input type="radio" id="objetivo-invertir" name="objetivo" value="invertir" required />
-                    <label for="objetivo-invertir">Invertir para renta</label>
-                  </div>
-                  <div class="option-card" data-value="vivir">
+                    <span class="option-icon" aria-hidden="true">💼</span>
+                    <strong>Invertir para renta</strong>
+                    <p>Buscas generar ingresos y construir patrimonio.</p>
+                  </label>
+                  <label class="option-card" data-value="vivir">
                     <input type="radio" id="objetivo-vivir" name="objetivo" value="vivir" required />
-                    <label for="objetivo-vivir">Comprar para vivir</label>
-                  </div>
-                  <div class="option-card" data-value="no-se">
+                    <span class="option-icon" aria-hidden="true">🏠</span>
+                    <strong>Comprar para vivir</strong>
+                    <p>Buscas tu próxima vivienda para uso propio.</p>
+                  </label>
+                  <label class="option-card" data-value="no-se">
                     <input type="radio" id="objetivo-no-se" name="objetivo" value="no-se" required />
-                    <label for="objetivo-no-se">Aún no lo tengo claro</label>
-                  </div>
+                    <span class="option-icon" aria-hidden="true">❔</span>
+                    <strong>Aún no lo tengo claro</strong>
+                    <p>Te ayudamos a descubrir qué te conviene hoy.</p>
+                  </label>
                 </div>
                 </div>
 
@@ -608,23 +623,31 @@
                 <label>
                   <span>Tipo de propiedad de interés</span>
                 </label>
-                <div class="option-cards" role="radiogroup" aria-label="Tipo de propiedad">
-                  <div class="option-card" data-value="studio">
+                <div class="option-grid" role="radiogroup" aria-label="Tipo de propiedad">
+                  <label class="option-card" data-value="studio">
                     <input type="radio" id="tipo-studio" name="tipo" value="studio" required />
-                    <label for="tipo-studio">Studio</label>
-                  </div>
-                  <div class="option-card" data-value="1d">
+                    <span class="option-icon" aria-hidden="true">🏢</span>
+                    <strong>Studio</strong>
+                    <p>Espacio compacto ideal para profesionales.</p>
+                  </label>
+                  <label class="option-card" data-value="1d">
                     <input type="radio" id="tipo-1d" name="tipo" value="1d" required />
-                    <label for="tipo-1d">1 Dormitorio</label>
-                  </div>
-                  <div class="option-card" data-value="2d">
+                    <span class="option-icon" aria-hidden="true">🏡</span>
+                    <strong>1 Dormitorio</strong>
+                    <p>Ideal para solteros o parejas jóvenes.</p>
+                  </label>
+                  <label class="option-card" data-value="2d">
                     <input type="radio" id="tipo-2d" name="tipo" value="2d" required />
-                    <label for="tipo-2d">2 Dormitorios</label>
-                  </div>
-                  <div class="option-card" data-value="todas">
+                    <span class="option-icon" aria-hidden="true">🏘️</span>
+                    <strong>2 Dormitorios</strong>
+                    <p>Mayor espacio para familia pequeña.</p>
+                  </label>
+                  <label class="option-card" data-value="todas">
                     <input type="radio" id="tipo-todas" name="tipo" value="todas" required />
-                    <label for="tipo-todas">Todas las opciones</label>
-                  </div>
+                    <span class="option-icon" aria-hidden="true">🔍</span>
+                    <strong>Todas las opciones</strong>
+                    <p>Quiero ver todas las tipologías disponibles.</p>
+                  </label>
                 </div>
                 </div>
 
@@ -633,18 +656,24 @@
                   <span>¿Cómo prefieres que te contactemos?</span>
                 </label>
                 <div class="contact-options" role="radiogroup" aria-label="Preferencia de contacto">
-                  <div class="option-card" data-value="whatsapp">
+                  <label class="option-card" data-value="whatsapp">
                     <input type="radio" id="contacto-whatsapp" name="contacto-preferencia" value="whatsapp" required />
-                    <label for="contacto-whatsapp">💬 WhatsApp</label>
-                  </div>
-                  <div class="option-card" data-value="email">
+                    <span class="option-icon" aria-hidden="true">💬</span>
+                    <strong>WhatsApp</strong>
+                    <p>Respuesta rápida y directa.</p>
+                  </label>
+                  <label class="option-card" data-value="email">
                     <input type="radio" id="contacto-email" name="contacto-preferencia" value="email" required />
-                    <label for="contacto-email">✉️ Correo</label>
-                  </div>
-                  <div class="option-card" data-value="llamada">
+                    <span class="option-icon" aria-hidden="true">✉️</span>
+                    <strong>Correo</strong>
+                    <p>Recibe información detallada por email.</p>
+                  </label>
+                  <label class="option-card" data-value="llamada">
                     <input type="radio" id="contacto-llamada" name="contacto-preferencia" value="llamada" required />
-                    <label for="contacto-llamada">📞 Llamada</label>
-                  </div>
+                    <span class="option-icon" aria-hidden="true">📞</span>
+                    <strong>Llamada</strong>
+                    <p>Prefieres hablar directamente.</p>
+                  </label>
                 </div>
               </div>
                 </div>
@@ -712,145 +741,6 @@
 
     <!-- Cloudflare Turnstile -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-    
-    <!-- Google Maps JavaScript API - Key loaded from config -->
-    <script>
-      // Define initMap globally BEFORE loading the script
-      window.initMap = function() {
-        const location = { lat: -33.437, lng: -70.648 };
-        const mapElement = document.getElementById('map');
-        
-        if (!mapElement) {
-          console.warn('Map element not found');
-          return;
-        }
-
-        // Check if Google Maps API is loaded
-        if (typeof google === 'undefined' || !google.maps) {
-          console.error('Google Maps API not loaded');
-          mapElement.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;"><a href="https://www.google.com/maps/search/?api=1&query=Marín+Lira+Santiago+Centro" target="_blank" style="color: #1A237E; text-decoration: underline;">Ver ubicación en Google Maps</a></div>';
-          return;
-        }
-
-        try {
-          const map = new google.maps.Map(mapElement, {
-            zoom: 16,
-            center: location,
-            mapTypeId: 'roadmap',
-            styles: [
-              {
-                featureType: 'poi',
-                elementType: 'labels',
-                stylers: [{ visibility: 'off' }]
-              }
-            ],
-            disableDefaultUI: false,
-            zoomControl: true,
-            mapTypeControl: false,
-            scaleControl: true,
-            streetViewControl: false,
-            rotateControl: false,
-            fullscreenControl: true
-          });
-
-          const marker = new google.maps.Marker({
-            position: location,
-            map: map,
-            title: 'VIVA MARÍN - Esquina Marín con Lira, Santiago Centro',
-            animation: google.maps.Animation.DROP
-          });
-
-          const infoWindow = new google.maps.InfoWindow({
-            content: '<div style="padding: 8px;"><strong>VIVA MARÍN</strong><br>Esquina Marín con Lira<br>Santiago Centro</div>'
-          });
-
-          marker.addListener('click', () => {
-            infoWindow.open(map, marker);
-          });
-        } catch (error) {
-          console.error('Error initializing Google Maps:', error);
-          mapElement.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;"><a href="https://www.google.com/maps/search/?api=1&query=Marín+Lira+Santiago+Centro" target="_blank" style="color: #1A237E; text-decoration: underline;">Ver ubicación en Google Maps</a></div>';
-        }
-      };
-
-      // Fallback if Google Maps fails to load
-      window.gm_authFailure = function() {
-        console.error('Google Maps authentication failed. Please check your API key.');
-        const mapElement = document.getElementById('map');
-        if (mapElement) {
-          mapElement.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;">Error al cargar el mapa. <a href="https://www.google.com/maps/search/?api=1&query=Marín+Lira+Santiago+Centro" target="_blank" style="color: #1A237E; text-decoration: underline;">Ver en Google Maps</a></div>';
-        }
-      };
-
-      // Load Google Maps API key from server config
-      (function() {
-        // Try multiple possible paths for the API endpoint
-        const apiPaths = [
-          '/api/maps-key.php',
-          '../../api/maps-key.php',
-          '../api/maps-key.php'
-        ];
-        
-        let currentPathIndex = 0;
-        
-        function tryLoadMapKey(path) {
-          fetch(path)
-            .then(res => {
-              if (!res.ok) {
-                throw new Error(`HTTP ${res.status}`);
-              }
-              return res.json();
-            })
-            .then(data => {
-              if (data && data.key) {
-                loadGoogleMaps(data.key);
-              } else {
-                console.warn('Google Maps API key not configured');
-                showMapFallback();
-              }
-            })
-            .catch(err => {
-              console.warn(`Failed to load from ${path}:`, err);
-              // Try next path if available
-              currentPathIndex++;
-              if (currentPathIndex < apiPaths.length) {
-                tryLoadMapKey(apiPaths[currentPathIndex]);
-              } else {
-                console.error('Error loading Google Maps API key from all paths');
-                showMapFallback();
-              }
-            });
-        }
-        
-        function loadGoogleMaps(apiKey) {
-          const script = document.createElement('script');
-          script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
-          script.async = true;
-          script.defer = true;
-          script.onerror = () => {
-            console.error('Failed to load Google Maps script');
-            showMapFallback();
-          };
-          document.head.appendChild(script);
-        }
-        
-        function showMapFallback() {
-          const mapElement = document.getElementById('map');
-          if (mapElement) {
-            mapElement.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;"><a href="https://www.google.com/maps/search/?api=1&query=Marín+Lira+Santiago+Centro" target="_blank" style="color: #1A237E; text-decoration: underline;">Ver ubicación en Google Maps</a></div>';
-          }
-        }
-        
-        // Wait for DOM to be ready before trying to load
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', () => {
-            tryLoadMapKey(apiPaths[0]);
-          });
-        } else {
-          tryLoadMapKey(apiPaths[0]);
-        }
-      })();
-    </script>
     
     <script type="module" src="/lenguaje visual/theme/theme-toggle.min.js"></script>
     <script>
@@ -1385,7 +1275,7 @@
               if (result.ok) {
                 // Success - redirect to gracias page
                 const nombre = form.querySelector('#nombre')?.value || '';
-                const redirectUrl = `/gracias.html${nombre ? '?nombre=' + encodeURIComponent(nombre) : ''}`;
+                const redirectUrl = `/landing/proyecto-inmobiliario/gracias.html${nombre ? '?nombre=' + encodeURIComponent(nombre) : ''}`;
                 window.location.href = redirectUrl;
               } else {
                 throw new Error(result.message || 'Error al enviar el formulario');
@@ -1580,20 +1470,11 @@
         // Option Cards Interaction Handler
         document.querySelectorAll('.option-card').forEach(card => {
           const radio = card.querySelector('input[type="radio"]');
-          const label = card.querySelector('label');
-          
-          // Make entire card clickable
-          card.addEventListener('click', (e) => {
-            if (e.target !== radio && e.target !== label) {
-              radio.checked = true;
-              radio.dispatchEvent(new Event('change', { bubbles: true }));
-            }
-          });
           
           // Update card appearance when radio is checked/unchecked
           radio.addEventListener('change', () => {
             // Remove selected class from all cards in the same group
-            const group = card.closest('.option-cards, .contact-options');
+            const group = card.closest('.option-grid, .option-cards, .contact-options');
             if (group) {
               group.querySelectorAll('.option-card').forEach(c => {
                 c.classList.remove('selected');
