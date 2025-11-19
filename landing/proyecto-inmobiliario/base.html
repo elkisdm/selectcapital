@@ -41,9 +41,6 @@
           <a href="#ubicacion">Ubicación</a>
           <a href="#contacto">Cotizar</a>
         </div>
-        <button class="sticky-nav-theme-toggle" type="button" data-theme-toggle-nav aria-label="Cambiar tema">
-          <span data-theme-icon-nav>🌙</span>
-        </button>
       </div>
     </nav>
 
@@ -537,169 +534,215 @@
         </div>
       </section>
 
-      <!-- FORMULARIO / LEAD FORM -->
+      <!-- FORMULARIO / MULTISTEP WIZARD -->
       <section class="section" id="contacto">
-        <div class="section-header">
-          <h2 class="section-title">Recibe tu propuesta</h2>
-          <p class="section-kicker">Déjanos tus datos y te enviamos números claros para tu caso</p>
-                </div>
-
-        <div class="form-card">
-          <p class="text-block" style="margin-bottom: 16px;">
-            Te enviaremos una propuesta con valor estimado de la unidad, pie, monto de dividendo y renta proyectada según tu perfil. Sin costo y sin compromiso.
-          </p>
-
-          <form class="form" action="/submit.php" method="post">
-            <div class="form-grid">
-              <div class="field">
-                <label for="nombre">
-                  <span>Nombre completo</span>
-                </label>
-                <input id="nombre" name="nombre" type="text" placeholder="Ej: Ana Pérez" required />
-                </div>
-
-              <div class="field">
-                <label for="rut">
-                  <span>RUT</span>
-                </label>
-                <input id="rut" name="rut" type="text" placeholder="Ej: 12.345.678-9" required />
-                </div>
-
-              <div class="field">
-                <label for="telefono">
-                  <span>Teléfono WhatsApp</span>
-                </label>
-                <input id="telefono" name="telefono" type="tel" placeholder="+56 9 ..." required />
-                  </div>
-
-              <div class="field">
-                <label for="correo">
-                  <span>Correo electrónico</span>
-                </label>
-                <input id="correo" name="correo" type="email" placeholder="tu@correo.cl" required />
-                </div>
-
-              <div class="field">
-                <label>
-                  <span>Objetivo</span>
-                </label>
-                <div class="option-grid" role="radiogroup" aria-label="Objetivo">
-                  <label class="option-card" data-value="invertir">
-                    <input type="radio" id="objetivo-invertir" name="objetivo" value="invertir" required />
-                    <span class="option-icon" aria-hidden="true">💼</span>
-                    <strong>Invertir para renta</strong>
-                    <p>Buscas generar ingresos y construir patrimonio.</p>
-                  </label>
-                  <label class="option-card" data-value="vivir">
-                    <input type="radio" id="objetivo-vivir" name="objetivo" value="vivir" required />
-                    <span class="option-icon" aria-hidden="true">🏠</span>
-                    <strong>Comprar para vivir</strong>
-                    <p>Buscas tu próxima vivienda para uso propio.</p>
-                  </label>
-                  <label class="option-card" data-value="no-se">
-                    <input type="radio" id="objetivo-no-se" name="objetivo" value="no-se" required />
-                    <span class="option-icon" aria-hidden="true">❔</span>
-                    <strong>Aún no lo tengo claro</strong>
-                    <p>Te ayudamos a descubrir qué te conviene hoy.</p>
-                  </label>
-                </div>
-                </div>
-
-              <div class="field">
-                <label for="renta">
-                  <span>Renta líquida mensual (CLP)</span>
-                </label>
-                <input id="renta" name="renta" type="text" placeholder="Promedio mensual" required />
-              </div>
-
-              <div class="field">
-                <label for="ahorro">
-                  <span>Ahorros disponibles para pie</span>
-                </label>
-                <input id="ahorro" name="ahorro" type="text" placeholder="Monto aprox. o 'No tengo'" required />
-                </div>
-
-              <div class="field">
-                <label>
-                  <span>Tipo de propiedad de interés</span>
-                </label>
-                <div class="option-grid" role="radiogroup" aria-label="Tipo de propiedad">
-                  <label class="option-card" data-value="studio">
-                    <input type="radio" id="tipo-studio" name="tipo" value="studio" required />
-                    <span class="option-icon" aria-hidden="true">🏢</span>
-                    <strong>Studio</strong>
-                    <p>Espacio compacto ideal para profesionales.</p>
-                  </label>
-                  <label class="option-card" data-value="1d">
-                    <input type="radio" id="tipo-1d" name="tipo" value="1d" required />
-                    <span class="option-icon" aria-hidden="true">🏡</span>
-                    <strong>1 Dormitorio</strong>
-                    <p>Ideal para solteros o parejas jóvenes.</p>
-                  </label>
-                  <label class="option-card" data-value="2d">
-                    <input type="radio" id="tipo-2d" name="tipo" value="2d" required />
-                    <span class="option-icon" aria-hidden="true">🏘️</span>
-                    <strong>2 Dormitorios</strong>
-                    <p>Mayor espacio para familia pequeña.</p>
-                  </label>
-                  <label class="option-card" data-value="todas">
-                    <input type="radio" id="tipo-todas" name="tipo" value="todas" required />
-                    <span class="option-icon" aria-hidden="true">🔍</span>
-                    <strong>Todas las opciones</strong>
-                    <p>Quiero ver todas las tipologías disponibles.</p>
-                  </label>
-                </div>
-                </div>
-
-              <div class="field">
-                <label>
-                  <span>¿Cómo prefieres que te contactemos?</span>
-                </label>
-                <div class="contact-options" role="radiogroup" aria-label="Preferencia de contacto">
-                  <label class="option-card" data-value="whatsapp">
-                    <input type="radio" id="contacto-whatsapp" name="contacto-preferencia" value="whatsapp" required />
-                    <span class="option-icon" aria-hidden="true">💬</span>
-                    <strong>WhatsApp</strong>
-                    <p>Respuesta rápida y directa.</p>
-                  </label>
-                  <label class="option-card" data-value="email">
-                    <input type="radio" id="contacto-email" name="contacto-preferencia" value="email" required />
-                    <span class="option-icon" aria-hidden="true">✉️</span>
-                    <strong>Correo</strong>
-                    <p>Recibe información detallada por email.</p>
-                  </label>
-                  <label class="option-card" data-value="llamada">
-                    <input type="radio" id="contacto-llamada" name="contacto-preferencia" value="llamada" required />
-                    <span class="option-icon" aria-hidden="true">📞</span>
-                    <strong>Llamada</strong>
-                    <p>Prefieres hablar directamente.</p>
-                  </label>
-                </div>
-              </div>
-                </div>
-
-            <div class="field-checkbox">
-              <input id="terminos" name="terminos" type="checkbox" required />
-              <label for="terminos">
-                Acepto el tratamiento de mis datos y autorizo el contacto por WhatsApp y correo para recibir información sobre este proyecto inmobiliario.
-                  </label>
-                </div>
-
+        <div class="wizard-container">
+          <form class="form wizard-form" action="/submit.php" method="post" id="wizard-form">
             <input type="hidden" name="cf-turnstile-response" id="ts-token" />
             
-            <div class="form-footer">
-              <p>⏰ Oferta sujeta a disponibilidad de unidades y vigencia de la promoción de lanzamiento.</p>
-              
-              <div class="turnstile-container" style="margin: 16px 0; display: flex; justify-content: center;">
-                <div class="cf-turnstile" data-sitekey="0x4AAAAAAB_bjq2YOWp-yEXx" data-theme="auto" data-callback="onTurnstileSuccess"></div>
+            <!-- Stepper Indicator -->
+            <div class="wizard-stepper">
+              <div class="wizard-stepper-inner">
+                <div class="step-indicator active" data-step="1">
+                  <span class="step-number">1</span>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-indicator" data-step="2">
+                  <span class="step-number">2</span>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-indicator" data-step="3">
+                  <span class="step-number">3</span>
+                </div>
               </div>
+            </div>
+            
+            <!-- Step 1: Información Personal -->
+            <div id="step-1" class="step">
+              <div class="wizard-step-content">
+                <div class="wizard-step-header">
+                  <h2 class="wizard-step-title">Información personal</h2>
+                  <p class="wizard-step-subtitle">Comencemos con tus datos básicos</p>
+                </div>
+                
+                <div class="form-card">
+                  <div class="field field-floating">
+                    <input id="nombre" name="nombre" type="text" placeholder=" " required />
+                    <label for="nombre">Nombre completo</label>
+                  </div>
 
-              <button type="submit" class="btn-primary" id="form-submit-btn" disabled>
-                <span class="btn-primary-icon">📄</span>
-                <span>Recibir mi propuesta personalizada</span>
+                  <div class="field field-floating">
+                    <input id="rut" name="rut" type="text" placeholder=" " required />
+                    <label for="rut">RUT</label>
+                  </div>
+
+                  <div class="field field-floating">
+                    <input id="telefono" name="telefono" type="tel" placeholder=" " required />
+                    <label for="telefono">Teléfono WhatsApp</label>
+                  </div>
+
+                  <div class="field field-floating">
+                    <input id="correo" name="correo" type="email" placeholder=" " required />
+                    <label for="correo">Correo electrónico</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Perfil Financiero -->
+            <div id="step-2" class="step">
+              <div class="wizard-step-content">
+                <div class="wizard-step-header">
+                  <h2 class="wizard-step-title">Tu perfil financiero</h2>
+                  <p class="wizard-step-subtitle">Ayúdanos a conocerte mejor</p>
+                </div>
+                
+                <div class="form-card">
+                  <div class="question-group">
+                    <h3 class="question-title">¿Cuál es tu objetivo con esta inversión?</h3>
+                    <div class="option-buttons" role="radiogroup" aria-label="Objetivo">
+                      <label class="option-button" data-value="invertir">
+                        <input type="radio" id="objetivo-invertir" name="objetivo" value="invertir" required />
+                        <span>Invertir para renta</span>
+                      </label>
+                      <label class="option-button" data-value="vivir">
+                        <input type="radio" id="objetivo-vivir" name="objetivo" value="vivir" required />
+                        <span>Comprar para vivir</span>
+                      </label>
+                      <label class="option-button" data-value="no-se">
+                        <input type="radio" id="objetivo-no-se" name="objetivo" value="no-se" required />
+                        <span>Aún no lo tengo claro</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="question-group">
+                    <h3 class="question-title">¿Cuál es tu renta líquida mensual?</h3>
+                    <p class="question-hint">Las entidades financieras solicitan una renta mínima desde $1.400.000 para crédito hipotecario.</p>
+                    <div class="option-buttons" role="radiogroup" aria-label="Renta líquida">
+                      <label class="option-button" data-value="renta-1">
+                        <input type="radio" id="renta-1" name="renta-rango" value="1000001-1400000" required />
+                        <span>Entre $1.000.001 - $1.400.000</span>
+                      </label>
+                      <label class="option-button" data-value="renta-2">
+                        <input type="radio" id="renta-2" name="renta-rango" value="1400001-1800000" required />
+                        <span>Entre $1.400.001 - $1.800.000</span>
+                      </label>
+                      <label class="option-button" data-value="renta-3">
+                        <input type="radio" id="renta-3" name="renta-rango" value="1800001+" required />
+                        <span>Más de $1.800.001</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="question-group">
+                    <h3 class="question-title">¿Cuál es tu capacidad de ahorro mensual aproximadamente?</h3>
+                    <div class="option-buttons" role="radiogroup" aria-label="Capacidad de ahorro">
+                      <label class="option-button" data-value="ahorro-0">
+                        <input type="radio" id="ahorro-0" name="ahorro-mensual" value="0" required />
+                        <span>No tengo capacidad de ahorro mensual</span>
+                      </label>
+                      <label class="option-button" data-value="ahorro-1">
+                        <input type="radio" id="ahorro-1" name="ahorro-mensual" value="100000-200000" required />
+                        <span>Entre $100.000 - $200.000</span>
+                      </label>
+                      <label class="option-button" data-value="ahorro-2">
+                        <input type="radio" id="ahorro-2" name="ahorro-mensual" value="200001-400000" required />
+                        <span>Entre $200.001 - $400.000</span>
+                      </label>
+                      <label class="option-button" data-value="ahorro-3">
+                        <input type="radio" id="ahorro-3" name="ahorro-mensual" value="400001+" required />
+                        <span>Más de $400.001</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="question-group">
+                    <h3 class="question-title">¿Qué tipo de propiedad te interesa?</h3>
+                    <div class="option-buttons" role="radiogroup" aria-label="Tipo de propiedad">
+                      <label class="option-button" data-value="studio">
+                        <input type="radio" id="tipo-studio" name="tipo" value="studio" required />
+                        <span>Studio</span>
+                      </label>
+                      <label class="option-button" data-value="1d">
+                        <input type="radio" id="tipo-1d" name="tipo" value="1d" required />
+                        <span>1 Dormitorio</span>
+                      </label>
+                      <label class="option-button" data-value="2d">
+                        <input type="radio" id="tipo-2d" name="tipo" value="2d" required />
+                        <span>2 Dormitorios</span>
+                      </label>
+                      <label class="option-button" data-value="todas">
+                        <input type="radio" id="tipo-todas" name="tipo" value="todas" required />
+                        <span>Todas las opciones</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Contacto y Términos -->
+            <div id="step-3" class="step">
+              <div class="wizard-step-content">
+                <div class="wizard-step-header">
+                  <h2 class="wizard-step-title">Último paso</h2>
+                  <p class="wizard-step-subtitle">Cómo prefieres que te contactemos</p>
+                </div>
+                
+                <div class="form-card">
+                  <div class="question-group">
+                    <h3 class="question-title">¿Cómo prefieres que te contactemos?</h3>
+                    <div class="option-buttons" role="radiogroup" aria-label="Preferencia de contacto">
+                      <label class="option-button" data-value="whatsapp">
+                        <input type="radio" id="contacto-whatsapp" name="contacto-preferencia" value="whatsapp" required />
+                        <span>WhatsApp</span>
+                      </label>
+                      <label class="option-button" data-value="email">
+                        <input type="radio" id="contacto-email" name="contacto-preferencia" value="email" required />
+                        <span>Correo</span>
+                      </label>
+                      <label class="option-button" data-value="llamada">
+                        <input type="radio" id="contacto-llamada" name="contacto-preferencia" value="llamada" required />
+                        <span>Llamada</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="field-checkbox">
+                    <input id="terminos" name="terminos" type="checkbox" required />
+                    <label for="terminos">
+                      Acepto el tratamiento de mis datos y autorizo el contacto por WhatsApp y correo para recibir información sobre este proyecto inmobiliario.
+                    </label>
+                  </div>
+
+                  <!-- Submit button inside step-3, right after checkbox -->
+                  <button type="submit" id="form-submit-btn" class="wizard-btn wizard-btn-primary" style="margin-top: 1rem; width: 100%;">
+                    <span class="btn-primary-icon">📄</span>
+                    <span>Recibir mi propuesta personalizada</span>
+                  </button>
+
+                  <div class="turnstile-container" style="margin: 16px 0; display: flex; justify-content: center;">
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAAB_bjq2YOWp-yEXx" data-theme="auto" data-callback="onTurnstileSuccess"></div>
+                  </div>
+
+                  <p class="text-xs text-gray-500 text-center mt-4">⏰ Oferta sujeta a disponibilidad de unidades y vigencia de la promoción de lanzamiento.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom CTA Zone -->
+            <div class="wizard-cta">
+              <div class="wizard-cta-inner">
+                <button type="button" id="wizard-next-btn" class="wizard-btn wizard-btn-primary">
+                  Siguiente
+                </button>
+                <button type="button" id="wizard-back-btn" class="wizard-btn wizard-btn-secondary hidden">
+                  Atrás
                 </button>
               </div>
-            </form>
+            </div>
+          </form>
         </div>
       </section>
 
@@ -712,8 +755,8 @@
             <strong>Select Capital</strong> · Asesoría Inmobiliaria<br />
             Av. Apoquindo 6410, Of. 1203, Las Condes
           </p>
-              </div>
-              <div>
+        </div>
+        <div>
           <div class="footer-contact">
             <a href="https://wa.me/56966013182?text=Hola,%20quiero%20información%20sobre%20VIVA%20MARÍN" target="_blank" rel="noopener" class="contact-link">
               <span>💬</span>
@@ -723,13 +766,13 @@
               <span>✉️</span>
               <span>contacto@selectcapital.cl</span>
             </a>
-              </div>
+          </div>
           <p style="margin: 12px 0 0 0; font-size: 11px; color: var(--sc-text-tertiary, rgba(15, 23, 42, 0.5));">
             Promociones y precios en UF, sujetos a disponibilidad y modificaciones del plan de obra.
           </p>
-            </div>
+        </div>
       </footer>
-          </div>
+    </div>
 
     <!-- Sticky CTA Button (Mobile) -->
     <div class="sticky-cta" id="sticky-cta">
@@ -757,6 +800,238 @@
       };
 
       // Update theme icon based on current theme
+      // ============================================
+      // WIZARD MULTISTEP LOGIC
+      // ============================================
+      let currentStep = 0;
+      const totalSteps = 3;
+
+      function goToStep(stepIndex) {
+        if (stepIndex < 0 || stepIndex >= totalSteps) return;
+
+        // Hide all steps
+        document.querySelectorAll('.step').forEach((step, index) => {
+          step.classList.remove('active');
+          step.style.position = 'absolute';
+          step.style.opacity = '0';
+          step.style.pointerEvents = 'none';
+          step.style.zIndex = '1';
+        });
+
+        // Show current step
+        const currentStepEl = document.getElementById(`step-${stepIndex + 1}`);
+        if (currentStepEl) {
+          currentStepEl.style.position = 'relative';
+          currentStepEl.style.pointerEvents = 'auto';
+          currentStepEl.style.zIndex = '2';
+          currentStepEl.style.display = 'flex';
+          setTimeout(() => {
+            currentStepEl.classList.add('active');
+            currentStepEl.style.opacity = '1';
+            
+            // Scroll to top of wizard container to ensure proper centering
+            const wizardContainer = document.querySelector('.wizard-container');
+            if (wizardContainer) {
+              wizardContainer.scrollTop = 0;
+            }
+          }, 50);
+        }
+
+        // Update stepper indicators
+        document.querySelectorAll('.step-indicator').forEach((indicator, index) => {
+          if (index <= stepIndex) {
+            indicator.classList.add('active');
+          } else {
+            indicator.classList.remove('active');
+          }
+        });
+
+        // Update step connectors
+        document.querySelectorAll('.step-connector').forEach((connector, index) => {
+          if (index < stepIndex) {
+            connector.classList.add('active');
+          } else {
+            connector.classList.remove('active');
+          }
+        });
+
+        // Update buttons
+        const nextBtn = document.getElementById('wizard-next-btn');
+        const backBtn = document.getElementById('wizard-back-btn');
+        const submitBtn = document.getElementById('form-submit-btn');
+
+        if (stepIndex === 0) {
+          backBtn?.classList.add('hidden');
+        } else {
+          backBtn?.classList.remove('hidden');
+        }
+
+        if (stepIndex === totalSteps - 1) {
+          // Last step: hide next button, show back button
+          nextBtn?.classList.add('hidden');
+          // Show submit button (it's inside step-3)
+          if (submitBtn) {
+            submitBtn.style.display = 'flex';
+          }
+        } else {
+          nextBtn?.classList.remove('hidden');
+          // Hide submit button in steps 1 and 2
+          if (submitBtn) {
+            submitBtn.style.display = 'none';
+          }
+        }
+
+        currentStep = stepIndex;
+      }
+
+      function validateStep(stepIndex) {
+        const stepEl = document.getElementById(`step-${stepIndex + 1}`);
+        if (!stepEl) return false;
+
+        const requiredFields = stepEl.querySelectorAll('input[required], select[required]');
+        let isValid = true;
+
+        requiredFields.forEach(field => {
+          // Skip hidden fields (like turnstile token)
+          if (field.type === 'hidden') return;
+
+          // For radio buttons, check if at least one in the group is checked
+          if (field.type === 'radio') {
+            const groupName = field.name;
+            const groupChecked = stepEl.querySelector(`input[name="${groupName}"]:checked`);
+            if (!groupChecked) {
+              isValid = false;
+              // Highlight the option group
+              const optionGroup = field.closest('.option-grid, .contact-options, .option-buttons');
+              if (optionGroup) {
+                optionGroup.style.border = '1px solid rgba(239, 68, 68, 0.5)';
+                optionGroup.style.borderRadius = '0.5rem';
+                optionGroup.style.padding = '0.5rem';
+                setTimeout(() => {
+                  optionGroup.style.border = '';
+                  optionGroup.style.borderRadius = '';
+                  optionGroup.style.padding = '';
+                }, 2000);
+              }
+            }
+          } else if (field.type === 'checkbox') {
+            if (!field.checked) {
+              isValid = false;
+              field.style.borderColor = 'rgba(239, 68, 68, 0.5)';
+              setTimeout(() => {
+                field.style.borderColor = '';
+              }, 2000);
+            }
+          } else {
+            // Text inputs, email, tel, etc.
+            if (!field.value.trim()) {
+              isValid = false;
+              field.style.borderColor = 'rgba(239, 68, 68, 0.5)';
+              setTimeout(() => {
+                field.style.borderColor = '';
+              }, 2000);
+            }
+          }
+        });
+
+        return isValid;
+      }
+
+      // Open wizard function (global scope)
+      function openWizard(e) {
+        if (e) e.preventDefault();
+        const wizardContainer = document.querySelector('.wizard-container');
+        if (wizardContainer) {
+          // Show wizard container
+          wizardContainer.style.display = 'flex';
+          wizardContainer.classList.add('active');
+          document.body.style.overflow = 'hidden';
+          
+          // Reset to first step
+          currentStep = 0;
+          
+          // Hide all steps first
+          document.querySelectorAll('.step').forEach(step => {
+            step.classList.remove('active');
+            step.style.position = 'absolute';
+            step.style.opacity = '0';
+            step.style.pointerEvents = 'none';
+          });
+          
+          // Show first step
+          const firstStep = document.getElementById('step-1');
+          if (firstStep) {
+            firstStep.style.position = 'relative';
+            firstStep.style.pointerEvents = 'auto';
+            setTimeout(() => {
+              firstStep.classList.add('active');
+              firstStep.style.opacity = '1';
+            }, 50);
+          }
+          
+          // Update buttons and indicators
+          goToStep(0);
+          
+          // Scroll to top
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+
+      // Scroll to form function
+      function scrollToForm(e) {
+        if (e) e.preventDefault();
+        // Now opens wizard instead of scrolling
+        openWizard(e);
+      }
+
+      // Initialize wizard
+      document.addEventListener('DOMContentLoaded', () => {
+        // Wizard navigation
+        const nextBtn = document.getElementById('wizard-next-btn');
+        const backBtn = document.getElementById('wizard-back-btn');
+
+        if (nextBtn) {
+          nextBtn.addEventListener('click', () => {
+            if (validateStep(currentStep)) {
+              goToStep(currentStep + 1);
+            }
+          });
+        }
+
+        if (backBtn) {
+          backBtn.addEventListener('click', () => {
+            goToStep(currentStep - 1);
+          });
+        }
+
+        // Initialize wizard (hidden by default)
+        const wizardContainer = document.querySelector('.wizard-container');
+        if (wizardContainer) {
+          // Hide all steps initially
+          document.querySelectorAll('.step').forEach(step => {
+            step.classList.remove('active');
+            step.style.display = 'none';
+          });
+          // Hide submit button initially (it's only shown in step-3)
+          const submitBtn = document.getElementById('form-submit-btn');
+          if (submitBtn) {
+            submitBtn.style.display = 'none';
+          }
+          // Prepare first step (but don't show wizard yet)
+          const firstStep = document.getElementById('step-1');
+          if (firstStep) {
+            firstStep.style.display = 'flex';
+            firstStep.classList.add('active');
+          }
+        }
+
+        // Connect buttons to open wizard
+        const allScrollFormBtns = document.querySelectorAll('[data-action="scroll-form"]');
+        allScrollFormBtns.forEach((btn) => {
+          btn.addEventListener('click', openWizard);
+        });
+      });
+
       document.addEventListener('DOMContentLoaded', () => {
         const themeIcon = document.querySelector('[data-theme-icon]');
         const logoLight = document.querySelector('.header-logo .logo-light');
@@ -804,27 +1079,6 @@
           attributeFilter: ['data-theme']
         });
 
-        // Smooth scroll to form
-        const scrollFormBtn = document.querySelector('[data-action="scroll-form"]');
-        const stickyCtaBtn = document.querySelector('.sticky-cta-button[data-action="scroll-form"]');
-        
-        const scrollToForm = (e) => {
-          if (e) e.preventDefault();
-          const formSection = document.getElementById('contacto');
-          if (formSection) {
-            formSection.scrollIntoView({ 
-              behavior: 'smooth', 
-              block: 'start' 
-            });
-          }
-        };
-        
-        if (scrollFormBtn) {
-          scrollFormBtn.addEventListener('click', scrollToForm);
-        }
-        if (stickyCtaBtn) {
-          stickyCtaBtn.addEventListener('click', scrollToForm);
-        }
 
         // Sticky CTA visibility control
         const stickyCta = document.getElementById('sticky-cta');
@@ -885,8 +1139,14 @@
         // ============================================
         
         // Normalize RUT: Format to 12.345.678-9 and validate
-        function normalizeRUT(value) {
-          if (!value) return '';
+        function normalizeRUT(value, cursorPosition) {
+          if (!value) return { formatted: '', newCursorPos: 0 };
+          
+          cursorPosition = cursorPosition || 0;
+          
+          // Count how many digits are before the cursor in the original value
+          const beforeCursor = value.substring(0, cursorPosition);
+          let digitsBeforeCursor = (beforeCursor.match(/[0-9kK]/g) || []).length;
           
           // Remove all non-alphanumeric except dots and dash
           let clean = value.replace(/[^0-9kK\.-]/g, '');
@@ -896,26 +1156,72 @@
           let number = parts[0]?.replace(/\./g, '') || '';
           let digit = parts[1] || '';
           
-          // If no dash, try to extract last character as digit
-          if (!digit && number.length > 0) {
-            const lastChar = number.slice(-1);
-            if (lastChar.toLowerCase() === 'k' || lastChar === '0') {
-              digit = lastChar;
-              number = number.slice(0, -1);
-            } else if (number.length > 1) {
-              digit = number.slice(-1);
-              number = number.slice(0, -1);
+          // Only extract digit if we have 8 or more digits (complete RUT)
+          // Don't extract digit while user is still typing (less than 8 digits)
+          if (!digit && number.length >= 8) {
+            // Extract last char as digit if we have 8+ digits
+            digit = number.slice(-1);
+            number = number.slice(0, -1);
+            // Adjust cursor if we extracted the last char
+            if (digitsBeforeCursor > number.length) {
+              digitsBeforeCursor = number.length;
+            }
+          } else if (!digit && number.length === 7 && number.slice(-1).toLowerCase() === 'k') {
+            // Special case: if we have 7 digits ending in 'k', extract it
+            digit = number.slice(-1).toUpperCase();
+            number = number.slice(0, -1);
+            if (digitsBeforeCursor > number.length) {
+              digitsBeforeCursor = number.length;
             }
           }
           
           // Format number with dots
+          let formatted = '';
+          let newCursorPos = 0;
+          
           if (number) {
             number = number.replace(/\D/g, '');
-            const formatted = number.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-            return digit ? `${formatted}-${digit.toUpperCase()}` : formatted;
+            
+            // Build formatted string from left to right, adding dots every 3 digits from right
+            let digitCount = 0;
+            for (let i = 0; i < number.length; i++) {
+              // Add dot before every group of 3 digits (from right)
+              // Dots appear at positions: length-3, length-6, length-9, etc.
+              if (i > 0 && (number.length - i) % 3 === 0) {
+                formatted += '.';
+                // If cursor is at or after this position, account for the dot
+                if (digitsBeforeCursor > i) {
+                  newCursorPos++;
+                }
+              }
+              formatted += number[i];
+              digitCount++;
+              
+              // If cursor is right after this digit
+              if (digitsBeforeCursor === digitCount) {
+                newCursorPos = formatted.length;
+              }
+            }
+            
+            // If cursor is at the end of the number
+            if (digitsBeforeCursor >= number.length) {
+              newCursorPos = formatted.length;
+            }
+            
+            // Add dash and digit only if we have a complete RUT (7 digits + 1 digit)
+            if (digit && number.length >= 7) {
+              formatted = formatted + '-' + digit.toUpperCase();
+              // If cursor was at or after the last digit of the number, move it after the dash+digit
+              if (digitsBeforeCursor >= number.length) {
+                newCursorPos = formatted.length;
+              }
+            }
+          } else {
+            formatted = clean;
+            newCursorPos = Math.min(cursorPosition, formatted.length);
           }
           
-          return clean;
+          return { formatted, newCursorPos };
         }
         
         // Validate RUT digit
@@ -1027,18 +1333,21 @@
           const rutInput = form.querySelector('#rut');
           if (rutInput) {
             rutInput.addEventListener('input', (e) => {
-              const normalized = normalizeRUT(e.target.value);
-              if (normalized !== e.target.value) {
-                const cursorPos = e.target.selectionStart;
-                e.target.value = normalized;
-                // Try to maintain cursor position
-                const newPos = Math.min(cursorPos, normalized.length);
+              const cursorPos = e.target.selectionStart;
+              const result = normalizeRUT(e.target.value, cursorPos);
+              
+              if (result.formatted !== e.target.value) {
+                e.target.value = result.formatted;
+                // Set cursor to calculated position
+                const newPos = Math.max(0, Math.min(result.newCursorPos, result.formatted.length));
                 e.target.setSelectionRange(newPos, newPos);
               }
             });
             
             rutInput.addEventListener('blur', (e) => {
-              const normalized = normalizeRUT(e.target.value);
+              const result = normalizeRUT(e.target.value, e.target.selectionStart);
+              const normalized = result.formatted;
+              
               if (normalized && !validateRUT(normalized)) {
                 e.target.style.borderColor = 'rgba(248, 113, 113, 0.5)';
               } else {
@@ -1145,7 +1454,8 @@
             
             // Normalize RUT
             if (rutInput) {
-              const normalizedRUT = normalizeRUT(rutInput.value);
+              const result = normalizeRUT(rutInput.value, rutInput.selectionStart);
+              const normalizedRUT = result.formatted;
               rutInput.value = normalizedRUT;
               
               if (normalizedRUT && !validateRUT(normalizedRUT)) {
@@ -1223,22 +1533,64 @@
               formData.append('objetivo', objetivoRadio?.value || '');
               formData.append('tipo_ingreso', 'dependiente'); // Default value (form doesn't have this field)
               
-              // Send renta as clean number (without formatting)
-              const rentaValue = form.querySelector('#renta')?.value || '';
-              formData.append('renta_liquida', normalizeNumber(rentaValue) || '');
-              
-              // Handle ahorro field
-              const ahorroValue = form.querySelector('#ahorro')?.value || '';
-              const tieneAhorro = /no\s+tengo/i.test(ahorroValue) ? 'no' : 'si';
-              formData.append('tiene_ahorro', tieneAhorro);
-              // Send ahorro as clean number if it's a number, otherwise as text
-              if (tieneAhorro === 'si' && /\d/.test(ahorroValue)) {
-                formData.append('monto_ahorro', normalizeNumber(ahorroValue) || '0');
+              // Handle renta - check for new radio buttons first, then fallback to input
+              const rentaRangoRadio = form.querySelector('input[name="renta-rango"]:checked');
+              let rentaValue = '';
+              if (rentaRangoRadio) {
+                rentaValue = rentaRangoRadio.value;
+                // Map range to approximate value for backend
+                if (rentaValue === '1000001-1400000') {
+                  formData.append('renta_liquida', '1200000');
+                } else if (rentaValue === '1400001-1800000') {
+                  formData.append('renta_liquida', '1600000');
+                } else if (rentaValue === '1800001+') {
+                  formData.append('renta_liquida', '2000000');
+                } else {
+                  formData.append('renta_liquida', '0');
+                }
               } else {
-                formData.append('monto_ahorro', '0');
+                // Fallback to old input field
+                const rentaInput = form.querySelector('#renta');
+                rentaValue = rentaInput?.value || '';
+                formData.append('renta_liquida', normalizeNumber(rentaValue) || '0');
               }
-              // capacidad_ahorro_mensual is required but not in form - send default value
-              formData.append('capacidad_ahorro_mensual', '0');
+              
+              // Handle ahorro mensual - check for new radio buttons first
+              const ahorroMensualRadio = form.querySelector('input[name="ahorro-mensual"]:checked');
+              let capacidadAhorro = '0';
+              let tieneAhorro = 'si';
+              let montoAhorro = '0';
+              
+              if (ahorroMensualRadio) {
+                const ahorroValue = ahorroMensualRadio.value;
+                if (ahorroValue === '0') {
+                  tieneAhorro = 'no';
+                  capacidadAhorro = '0';
+                  montoAhorro = '0';
+                } else if (ahorroValue === '100000-200000') {
+                  capacidadAhorro = '150000';
+                  montoAhorro = '150000';
+                } else if (ahorroValue === '200001-400000') {
+                  capacidadAhorro = '300000';
+                  montoAhorro = '300000';
+                } else if (ahorroValue === '400001+') {
+                  capacidadAhorro = '500000';
+                  montoAhorro = '500000';
+                }
+              } else {
+                // Fallback to old input field
+                const ahorroInput = form.querySelector('#ahorro');
+                const ahorroValue = ahorroInput?.value || '';
+                tieneAhorro = /no\s+tengo/i.test(ahorroValue) ? 'no' : 'si';
+                if (tieneAhorro === 'si' && /\d/.test(ahorroValue)) {
+                  montoAhorro = normalizeNumber(ahorroValue) || '0';
+                  capacidadAhorro = montoAhorro;
+                }
+              }
+              
+              formData.append('tiene_ahorro', tieneAhorro);
+              formData.append('monto_ahorro', montoAhorro);
+              formData.append('capacidad_ahorro_mensual', capacidadAhorro);
               
               formData.append('comunas_interes', 'Santiago Centro'); // Project location
               // Get canal_preferido from radio button
@@ -1398,10 +1750,8 @@
 
       // Sticky Navigation
       const stickyNav = document.getElementById('sticky-nav');
-      const mainThemeToggle = document.querySelector('[data-theme-toggle]');
-      const navThemeToggle = document.querySelector('[data-theme-toggle-nav]');
+      const mainThemeToggle = document.querySelector('.theme-toggle[data-theme-toggle]');
       const mainThemeIcon = document.querySelector('[data-theme-icon]');
-      const navThemeIcon = document.querySelector('[data-theme-icon-nav]');
 
       // Show/hide sticky nav on scroll
       let lastScroll = 0;
@@ -1417,31 +1767,24 @@
         lastScroll = currentScroll;
       });
 
-      // Sync theme toggles
-      if (navThemeToggle) {
-        navThemeToggle.addEventListener('click', () => {
-          mainThemeToggle.click();
-        });
-      }
-
-      // Sync theme icons when theme changes
-      const syncThemeIcons = () => {
-        const currentTheme = document.body.getAttribute('data-theme');
+      // Sync theme icon when theme changes
+      const syncThemeIcon = () => {
+        // Read theme from documentElement (html tag), not body
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
         const icon = currentTheme === 'dark' ? '☀️' : '🌙';
-        mainThemeIcon.textContent = icon;
-        navThemeIcon.textContent = icon;
+        if (mainThemeIcon) mainThemeIcon.textContent = icon;
       };
 
-      // Observer for theme changes
+      // Observer for theme changes - observe documentElement, not body
       const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
           if (mutation.attributeName === 'data-theme') {
-            syncThemeIcons();
+            syncThemeIcon();
           }
         });
       });
 
-      observer.observe(document.body, {
+      observer.observe(document.documentElement, {
         attributes: true,
         attributeFilter: ['data-theme']
       });
@@ -1464,10 +1807,10 @@
         });
       });
 
-        // Initialize theme icons
-        syncThemeIcons();
+        // Initialize theme icon
+        syncThemeIcon();
 
-        // Option Cards Interaction Handler
+        // Option Cards Interaction Handler (legacy)
         document.querySelectorAll('.option-card').forEach(card => {
           const radio = card.querySelector('input[type="radio"]');
           
@@ -1490,6 +1833,32 @@
           // Initialize selected state
           if (radio.checked) {
             card.classList.add('selected');
+          }
+        });
+
+        // Option Buttons Interaction Handler (new Capitalizarme style)
+        document.querySelectorAll('.option-button').forEach(button => {
+          const radio = button.querySelector('input[type="radio"]');
+          
+          // Update button appearance when radio is checked/unchecked
+          radio.addEventListener('change', () => {
+            // Remove selected class from all buttons in the same group
+            const group = button.closest('.option-buttons');
+            if (group) {
+              group.querySelectorAll('.option-button').forEach(b => {
+                b.classList.remove('selected');
+              });
+            }
+            
+            // Add selected class to checked button
+            if (radio.checked) {
+              button.classList.add('selected');
+            }
+          });
+          
+          // Initialize selected state
+          if (radio.checked) {
+            button.classList.add('selected');
           }
         });
     </script>
