@@ -1,157 +1,95 @@
-# Priorizar index.html sobre otros archivos index
-DirectoryIndex index.html index.php default.php
+# Select Capital - Optimización de Performance
+# Compresión y Caché
 
-# Prevenir acceso directo a default.php (opcional)
-<Files "default.php">
-    Order allow,deny
-    Deny from all
-</Files>
-
-# ============================================
-# REDIRECTS Y SHORTLINKS
-# ============================================
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    
-    # Shortlink para VIVA MARÍN
-    RewriteRule ^viva-marin/?$ /landing/proyecto-inmobiliario/base.html [L,R=301]
-    RewriteRule ^viva/?$ /landing/proyecto-inmobiliario/base.html [L,R=301]
-    RewriteRule ^vivamarin/?$ /landing/proyecto-inmobiliario/base.html [L,R=301]
-    
-    # Página de gracias
-    RewriteRule ^gracias/?$ /landing/proyecto-inmobiliario/gracias.html [L,R=301]
-</IfModule>
-
-# ============================================
-# HEADERS DE SEGURIDAD
-# ============================================
-<IfModule mod_headers.c>
-    # Prevenir MIME type sniffing
-    Header set X-Content-Type-Options "nosniff"
-    
-    # Prevenir clickjacking
-    Header set X-Frame-Options "DENY"
-    
-    # Protección XSS (legacy pero útil)
-    Header set X-XSS-Protection "1; mode=block"
-    
-    # Control de referrer
-    Header set Referrer-Policy "strict-origin-when-cross-origin"
-    
-    # Permisos de características del navegador
-    Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
-    
-    # HSTS (solo en HTTPS - descomentar en producción con SSL)
-    # Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-    
-    # Content Security Policy
-    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://challenges.cloudflare.com https://script.google.com; frame-src https://challenges.cloudflare.com; form-action 'self'; base-uri 'self'; frame-ancestors 'none';"
-    
-    # Vary header para cache correcto
-    Header append Vary Accept-Encoding
-</IfModule>
-
-# ============================================
-# COMPRESIÓN MEJORADA
-# ============================================
+# Habilitar compresión Gzip
 <IfModule mod_deflate.c>
-    # Comprimir HTML, CSS, JavaScript, Text, XML y fuentes
-    AddOutputFilterByType DEFLATE text/html
-    AddOutputFilterByType DEFLATE text/plain
-    AddOutputFilterByType DEFLATE text/xml
-    AddOutputFilterByType DEFLATE text/css
-    AddOutputFilterByType DEFLATE text/javascript
-    AddOutputFilterByType DEFLATE application/javascript
-    AddOutputFilterByType DEFLATE application/json
-    AddOutputFilterByType DEFLATE application/xml
-    AddOutputFilterByType DEFLATE application/xhtml+xml
-    AddOutputFilterByType DEFLATE application/rss+xml
-    AddOutputFilterByType DEFLATE application/atom+xml
-    AddOutputFilterByType DEFLATE image/svg+xml
-    AddOutputFilterByType DEFLATE font/truetype
-    AddOutputFilterByType DEFLATE font/opentype
-    AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
-    AddOutputFilterByType DEFLATE application/x-font-ttf
-    AddOutputFilterByType DEFLATE application/font-woff
-    AddOutputFilterByType DEFLATE application/font-woff2
-    
-    # Excluir imágenes ya comprimidas
-    SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|webp|avif)$ no-gzip dont-vary
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/atom+xml
+  AddOutputFilterByType DEFLATE image/svg+xml
 </IfModule>
 
-# ============================================
-# CACHE MEJORADO
-# ============================================
+# Habilitar compresión Brotli (si está disponible)
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html
+  AddOutputFilterByType BROTLI_COMPRESS text/css
+  AddOutputFilterByType BROTLI_COMPRESS text/javascript
+  AddOutputFilterByType BROTLI_COMPRESS text/xml
+  AddOutputFilterByType BROTLI_COMPRESS text/plain
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript
+  AddOutputFilterByType BROTLI_COMPRESS application/json
+  AddOutputFilterByType BROTLI_COMPRESS application/xml
+  AddOutputFilterByType BROTLI_COMPRESS image/svg+xml
+</IfModule>
+
+# Headers de caché para recursos estáticos
 <IfModule mod_expires.c>
-    ExpiresActive On
-    
-    # Imágenes
-    ExpiresByType image/jpg "access plus 1 year"
-    ExpiresByType image/jpeg "access plus 1 year"
-    ExpiresByType image/gif "access plus 1 year"
-    ExpiresByType image/png "access plus 1 year"
-    ExpiresByType image/webp "access plus 1 year"
-    ExpiresByType image/avif "access plus 1 year"
-    ExpiresByType image/svg+xml "access plus 1 year"
-    ExpiresByType image/x-icon "access plus 1 year"
-    
-    # CSS y JavaScript (cache corto para facilitar actualizaciones)
-    ExpiresByType text/css "access plus 1 day"
-    ExpiresByType text/javascript "access plus 1 day"
-    ExpiresByType application/javascript "access plus 1 day"
-    ExpiresByType application/x-javascript "access plus 1 day"
-    
-    # Fuentes
-    ExpiresByType font/truetype "access plus 1 year"
-    ExpiresByType font/opentype "access plus 1 year"
-    ExpiresByType font/woff "access plus 1 year"
-    ExpiresByType font/woff2 "access plus 1 year"
-    ExpiresByType application/font-woff "access plus 1 year"
-    ExpiresByType application/font-woff2 "access plus 1 year"
-    ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
-    ExpiresByType application/x-font-ttf "access plus 1 year"
-    
-    # HTML (cache corto con validación)
-    ExpiresByType text/html "access plus 0 seconds"
-    
-    # JSON y XML
-    ExpiresByType application/json "access plus 0 seconds"
-    ExpiresByType application/xml "access plus 0 seconds"
-    ExpiresByType text/xml "access plus 0 seconds"
+  ExpiresActive On
+  
+  # Imágenes
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  
+  # CSS y JavaScript
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType application/x-javascript "access plus 1 month"
+  
+  # Fuentes
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType application/font-woff "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+  
+  # HTML
+  ExpiresByType text/html "access plus 0 seconds"
+  
+  # Otros
+  ExpiresByType application/json "access plus 0 seconds"
+  ExpiresByType application/xml "access plus 0 seconds"
 </IfModule>
 
-# ============================================
-# CACHE CONTROL HEADERS
-# ============================================
+# Cache-Control headers
 <IfModule mod_headers.c>
-    # Cache para imágenes
-    <FilesMatch "\.(jpg|jpeg|png|gif|webp|avif|svg|ico)$">
-        Header set Cache-Control "max-age=31536000, public, immutable"
-    </FilesMatch>
-    
-    # Cache para CSS y JS (1 día = 86400 segundos)
-    <FilesMatch "\.(css|js)$">
-        Header set Cache-Control "max-age=86400, public"
-    </FilesMatch>
-    
-    # Cache para fuentes
-    <FilesMatch "\.(woff|woff2|ttf|otf|eot)$">
-        Header set Cache-Control "max-age=31536000, public, immutable"
-    </FilesMatch>
-    
-    # No cache para HTML
-    <FilesMatch "\.(html|htm|php)$">
-        Header set Cache-Control "no-cache, no-store, must-revalidate"
-        Header set Pragma "no-cache"
-        Header set Expires "0"
-    </FilesMatch>
+  # Recursos estáticos - caché largo
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico|woff|woff2|ttf|eot)$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
+  </FilesMatch>
+  
+  # CSS y JS minificados - caché medio
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "max-age=2592000, public"
+  </FilesMatch>
+  
+  # HTML - sin caché
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+  
+  # ETags
+  Header unset ETag
+  FileETag None
 </IfModule>
 
-
-
-
-
-
-
-
-
+# Deshabilitar ETags (usar Cache-Control en su lugar)
+<IfModule mod_headers.c>
+  Header unset ETag
+</IfModule>
+FileETag None

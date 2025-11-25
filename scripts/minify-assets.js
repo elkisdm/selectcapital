@@ -10,8 +10,10 @@ const distDir = resolve(projectRoot, 'dist');
 const assets = [
   { path: 'lenguaje visual/theme/select-capital-theme.css', type: 'css' },
   { path: 'lenguaje visual/theme/home.css', type: 'css' },
+  { path: 'lenguaje visual/theme/home-styles.css', type: 'css' },
   { path: 'lenguaje visual/theme/sc-header-footer.css', type: 'css' },
   { path: 'lenguaje visual/theme/theme-toggle.js', type: 'js' },
+  { path: 'scripts/home-page.js', type: 'js' },
 ];
 
 const htmlTargets = [
