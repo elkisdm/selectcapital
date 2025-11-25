@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="es" data-theme="dark" data-theme-transition>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Select Capital — Asesoría Integral Inmobiliaria</title>
+  <meta name="description" content="Asesoría integral desde preevaluación hasta entrega de llaves. Te mostramos 3 proyectos según tu perfil y te acompañamos en todo el proceso." />
+  <meta property="og:title" content="Select Capital — Asesoría Integral Inmobiliaria" />
+  <meta property="og:description" content="Te encontramos el departamento ideal. Nosotros nos encargamos del resto." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/images/hero-la-florida.jpg" />
+  <meta name="theme-color" content="#0B0E12" />
+  <link rel="icon" href="images/icono.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="lenguaje visual/theme/select-capital-theme.min.css?v=66e592e976" />
+  <link rel="stylesheet" href="lenguaje visual/forms/sc-forms.css" />
+  <link rel="stylesheet" href="lenguaje visual/theme/sc-header-footer.min.css?v=507b6d0414" />
+  <link rel="stylesheet" href="lenguaje visual/theme/home.min.css?v=6763d234b7" />
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+</head>
+<body class="sc-noise">
+  <header class="sc-appbar" data-state="default" data-menu="closed" data-micro="open" style="display: none !important;">
+    <div class="sc-microbar">
+      <div class="sc-microbar__message">
+        <span>Asesoría integral · sin costo · datos protegidos</span>
+      </div>
+      <div class="sc-microbar__actions">
+        <a href="tel:+56966013182" data-track-event="micro_contact" data-track-detail='{"type":"phone"}'>+56 9 6601 3182</a>
+        <a href="mailto:contacto@selectcapital.cl" data-track-event="micro_contact" data-track-detail='{"type":"mail"}'>contacto@selectcapital.cl</a>
+        <a href="https://wa.me/56966013182?text=Quiero%20recibir%20mi%20asesoria" target="_blank" rel="noopener" data-track-event="micro_contact" data-track-detail='{"type":"whatsapp"}'>WhatsApp</a>
+        <button type="button" data-theme-toggle data-track-event="micro_contact" data-track-detail='{"type":"theme"}'>ES | EN</button>
+      </div>
+    </div>
+    <div class="sc-appbar-main">
+      <a class="sc-brand" href="/">
+        <img src="images/logo_blanco.png" alt="Select Capital" loading="lazy" />
+        <span>SELECT CAPITAL</span>
+      </a>
+      <button class="sc-micro-pill" type="button" data-micro-toggle>
+        <span>Ver mensaje de confianza</span>
+      </button>
+      <nav class="sc-nav" aria-label="Navegación principal">
+        <a href="#proyectos" data-track-event="nav_click" data-track-detail='{"item":"proyectos_home"}'>Proyectos</a>
+        <a href="simulador/index.html" data-track-event="nav_click" data-track-detail='{"item":"simulador"}'>Simulador</a>
+        <a href="#servicios" aria-current="page" data-track-event="nav_click" data-track-detail='{"item":"servicios_home"}'>Servicios</a>
+        <a href="#equipo" data-track-event="nav_click" data-track-detail='{"item":"equipo_home"}'>Equipo</a>
+        <a href="#form" data-track-event="nav_click" data-track-detail='{"item":"recursos_home"}'>Recursos</a>
+      </nav>
+      <div class="sc-status-pill">
+        <span>Agenda abierta</span>
+        <span class="sc-chip">Respuesta &lt; 10 min</span>
+      </div>
+      <div class="sc-cta-cluster">
+        <a class="sc-btn-ghost" href="https://wa.me/56966013182?text=Quiero%20recibir%20mi%20asesoria" target="_blank" rel="noopener" data-track-event="cta_click" data-track-detail='{"cta_id":"header_whatsapp"}'>WhatsApp</a>
+        <a class="sc-btn-primary" href="#form" data-track-event="cta_click" data-track-detail='{"cta_id":"header_primary"}'>Recibir asesoría</a>
+      </div>
+      <button class="sc-menu-toggle" type="button" aria-label="Abrir menú principal" aria-expanded="false" data-menu-toggle>
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
+    <div class="sc-mobile-panel" role="dialog" aria-modal="true" aria-label="Menú principal">
+      <nav>
+        <a href="#proyectos" data-track-event="nav_click" data-track-detail='{"item":"proyectos_mobile"}'>Proyectos</a>
+        <a href="simulador/index.html" data-track-event="nav_click" data-track-detail='{"item":"simulador_mobile"}'>Simulador</a>
+        <a href="#servicios" aria-current="page" data-track-event="nav_click" data-track-detail='{"item":"servicios_mobile"}'>Servicios</a>
+        <a href="#equipo" data-track-event="nav_click" data-track-detail='{"item":"equipo_mobile"}'>Equipo</a>
+        <a href="#form" data-track-event="nav_click" data-track-detail='{"item":"recursos_mobile"}'>Recursos</a>
+      </nav>
+      <div class="sc-chip">Sin costo para el inversionista</div>
+      <div class="sc-mobile-cta">
+        <a class="sc-btn-primary" href="#form" data-track-event="cta_click" data-track-detail='{"cta_id":"mobile_menu_primary"}'>Recibir asesoría</a>
+        <a class="sc-btn-ghost" href="https://wa.me/56966013182?text=Quiero%20recibir%20mi%20asesoria" target="_blank" rel="noopener" data-track-event="cta_click" data-track-detail='{"cta_id":"mobile_menu_whatsapp"}'>Hablar por WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="section-inner">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <h1>Sueña con tu departamento ideal.<br />Nosotros nos encargamos del resto.</h1>
+            <div class="hero-cta">
+              <a href="#form" class="btn-primary" data-track-event="cta_click" data-track-detail="{&quot;cta_id&quot;:&quot;hero_primary&quot;}"><span>Recibir asesoría integral</span></a>
+            </div>
+            <p class="trust-line">Respuesta &lt;10 min<span class="trust-separator" aria-hidden="true"> · </span>Sin costo<span class="trust-separator" aria-hidden="true"> · </span>Datos protegidos</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Galería de renders placeholder -->
+    <section class="section media-gallery">
+      <div class="section-inner">
+        <h2 class="text-center">Renders & moodboard</h2>
+        <div class="media-grid">
+          <div class="media-placeholder">
+            <span>Render fachada</span>
+          </div>
+          <div class="media-placeholder">
+            <span>Interior / lobby</span>
+          </div>
+          <div class="media-placeholder">
+            <span>Lifestyle shot</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Cómo funciona (3 pasos) -->
+    <section class="section" id="servicios">
+      <div class="section-inner">
+        <h2 class="text-center">Cómo funciona</h2>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Perfil y opciones</h3>
+            <p>Te mostramos <strong>3 proyectos</strong> según tu objetivo y ticket.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Simulación honesta</h3>
+            <p>Flujo, rentabilidad y sensibilidad (sin letra chica).</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Ejecución total</h3>
+            <p>Preevaluación, crédito, firma, <strong>entrega</strong> y puesta en <strong>arriendo</strong>.</p>
+          </div>
+        </div>
+        <div class="cta-section">
+          <a href="#form" class="btn-primary" data-track-event="cta_click" data-track-detail="{&quot;cta_id&quot;:&quot;steps_primary&quot;}"><span>Recibir asesoría integral</span></a>
+        </div>
+      </div>
+    </section>
+    <!-- Por qué Select Capital (pilares) -->
+    <section class="section">
+      <div class="section-inner">
+        <h2 class="text-center">Por qué Select Capital</h2>
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <h3>Curaduría experta</h3>
+            <p>Zonas con <strong>demanda real</strong> de arriendo y conectividad.</p>
+          </div>
+          <div class="pillar-card">
+            <h3>Transparencia total</h3>
+            <p>Supuestos visibles y escenarios comparables. <strong>Sin letra chica</strong>.</p>
+          </div>
+          <div class="pillar-card">
+            <h3>Acompañamiento hasta llaves</h3>
+            <p>Del <strong>crédito</strong> a la <strong>entrega</strong> y la puesta en <strong>arriendo</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Zonas con demanda -->
+    <section class="section" id="proyectos">
+      <div class="section-inner">
+        <h2 class="text-center">Zonas con demanda</h2>
+        <div class="zones-grid">
+          <div class="zone-card">
+            <div class="zone-image zone-image--rose">
+              <span class="zone-tag zone-tag--rose">La Florida</span>
+            </div>
+            <div class="zone-content">
+              <h3>La Florida</h3>
+              <p>Conectividad y ticket accesible. <em>Entrega estimada 2026.</em></p>
+            </div>
+          </div>
+          <div class="zone-card">
+            <div class="zone-image zone-image--gold">
+              <span class="zone-tag zone-tag--gold">Ñuñoa</span>
+            </div>
+            <div class="zone-content">
+              <h3>Ñuñoa</h3>
+              <p>Servicios y baja vacancia. <em>Entrega estimada 2025.</em></p>
+            </div>
+          </div>
+          <div class="zone-card">
+            <div class="zone-image zone-image--gold">
+              <span class="zone-tag zone-tag--gold">Independencia</span>
+            </div>
+            <div class="zone-content">
+              <h3>Independencia</h3>
+              <p>Cercanía salud/educación; rotación estable.</p>
+            </div>
+          </div>
+        </div>
+        <p class="zones-note">Estas son referencias para contexto. Te guiamos a la mejor opción para ti.</p>
+      </div>
+    </section>
+    <!-- Equipo -->
+    <section class="section team-section" id="equipo" aria-labelledby="team-heading">
+      <div class="section-inner">
+        <div class="team-header">
+          <p class="team-eyebrow">Equipo select</p>
+          <h2 id="team-heading">Personas que acompañan tu inversión</h2>
+          <p class="team-subtitle">Perfilamos, simulamos y ejecutamos contigo. Este núcleo combina estrategia, financiamiento y customer success para que llegues a la entrega con claridad total.</p>
+          <a class="team-cta" href="mailto:asesoria@selectcapital.cl">Conoce al equipo completo &rarr;</a>
+        </div>
+        <div class="team-grid" role="list">
+          <article class="team-card" role="listitem" aria-labelledby="team-emily">
+            <div class="team-card-header">
+              <div class="team-chips team-chips--dual">
+                <span class="team-chip team-chip--accent">Master Business Partner</span>
+                <span class="team-chip team-chip--muted">Consultora inmobiliaria</span>
+              </div>
+            </div>
+            <div class="team-photo">
+              <img src="images/asesores/emily.png" alt="Retrato de Emily" loading="lazy" />
+            </div>
+            <div class="team-info-row">
+              <div class="team-info">
+                <h3 id="team-emily">Emily</h3>
+              </div>
+              <div class="team-actions" role="group" aria-label="Redes de Emily">
+                <a class="team-icon-btn" href="https://www.linkedin.com/company/selectcapital" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn de Emily">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-solid">
+                    <path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zm2.2 6.5H2.8V20h4.38zm4.32 0H15.5v1.67h.06c.58-1.1 2-2.27 4.12-2.27 4.4 0 5.2 2.9 5.2 6.68V20h-4.2v-3.9c0-.93-.02-2.14-1.3-2.14-1.3 0-1.5 1.02-1.5 2.07V20h-4.4z"/>
+                  </svg>
+                  <span class="sr-only">LinkedIn</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="team-card" role="listitem" aria-labelledby="team-christian">
+            <div class="team-card-header">
+              <div class="team-chips">
+                <span class="team-chip">Consultor inmobiliario</span>
+              </div>
+            </div>
+            <div class="team-photo">
+              <img src="images/asesores/christian.png" alt="Retrato de Christian" loading="lazy" />
+            </div>
+            <div class="team-info-row">
+              <div class="team-info">
+                <h3 id="team-christian">Christian</h3>
+              </div>
+              <div class="team-actions" role="group" aria-label="Redes de Christian">
+                <a class="team-icon-btn" href="https://www.linkedin.com/company/selectcapital" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn de Christian">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-solid">
+                    <path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zm2.2 6.5H2.8V20h4.38zm4.32 0H15.5v1.67h.06c.58-1.1 2-2.27 4.12-2.27 4.4 0 5.2 2.9 5.2 6.68V20h-4.2v-3.9c0-.93-.02-2.14-1.3-2.14-1.3 0-1.5 1.02-1.5 2.07V20h-4.4z"/>
+                  </svg>
+                  <span class="sr-only">LinkedIn</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="team-card" role="listitem" aria-labelledby="team-cathy">
+            <div class="team-card-header">
+              <div class="team-chips">
+                <span class="team-chip">Consultora inmobiliaria</span>
+              </div>
+            </div>
+            <div class="team-photo">
+              <img src="images/asesores/cathy.png" alt="Retrato de Cathy" loading="lazy" />
+            </div>
+            <div class="team-info-row">
+              <div class="team-info">
+                <h3 id="team-cathy">Cathy</h3>
+              </div>
+              <div class="team-actions" role="group" aria-label="Redes de Cathy">
+                <a class="team-icon-btn" href="https://www.linkedin.com/company/selectcapital" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn de Cathy">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-solid">
+                    <path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zm2.2 6.5H2.8V20h4.38zm4.32 0H15.5v1.67h.06c.58-1.1 2-2.27 4.12-2.27 4.4 0 5.2 2.9 5.2 6.68V20h-4.2v-3.9c0-.93-.02-2.14-1.3-2.14-1.3 0-1.5 1.02-1.5 2.07V20h-4.4z"/>
+                  </svg>
+                  <span class="sr-only">LinkedIn</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="team-card" role="listitem" aria-labelledby="team-marianella">
+            <div class="team-card-header">
+              <div class="team-chips">
+                <span class="team-chip">Consultora inmobiliaria</span>
+              </div>
+            </div>
+            <div class="team-photo">
+              <img src="images/asesores/marianella.png" alt="Retrato de Marianella" loading="lazy" />
+            </div>
+            <div class="team-info-row">
+              <div class="team-info">
+                <h3 id="team-marianella">Marianella</h3>
+              </div>
+              <div class="team-actions" role="group" aria-label="Redes de Marianella">
+                <a class="team-icon-btn" href="https://www.linkedin.com/company/selectcapital" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn de Marianella">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-solid">
+                    <path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zm2.2 6.5H2.8V20h4.38zm4.32 0H15.5v1.67h.06c.58-1.1 2-2.27 4.12-2.27 4.4 0 5.2 2.9 5.2 6.68V20h-4.2v-3.9c0-.93-.02-2.14-1.3-2.14-1.3 0-1.5 1.02-1.5 2.07V20h-4.4z"/>
+                  </svg>
+                  <span class="sr-only">LinkedIn</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="team-card" role="listitem" aria-labelledby="team-marianny">
+            <div class="team-card-header">
+              <div class="team-chips">
+                <span class="team-chip">Consultora inmobiliaria</span>
+              </div>
+            </div>
+            <div class="team-photo">
+              <img src="images/asesores/marianny.png" alt="Retrato de Marianny" loading="lazy" />
+            </div>
+            <div class="team-info-row">
+              <div class="team-info">
+                <h3 id="team-marianny">Marianny</h3>
+              </div>
+              <div class="team-actions" role="group" aria-label="Redes de Marianny">
+                <a class="team-icon-btn" href="https://www.linkedin.com/company/selectcapital" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn de Marianny">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-solid">
+                    <path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zm2.2 6.5H2.8V20h4.38zm4.32 0H15.5v1.67h.06c.58-1.1 2-2.27 4.12-2.27 4.4 0 5.2 2.9 5.2 6.68V20h-4.2v-3.9c0-.93-.02-2.14-1.3-2.14-1.3 0-1.5 1.02-1.5 2.07V20h-4.4z"/>
+                  </svg>
+                  <span class="sr-only">LinkedIn</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="team-card" role="listitem" aria-labelledby="team-paola">
+            <div class="team-card-header">
+              <div class="team-chips">
+                <span class="team-chip">Consultora inmobiliaria</span>
+              </div>
+            </div>
+            <div class="team-photo">
+              <img src="images/asesores/paola.png" alt="Retrato de Paola" loading="lazy" />
+            </div>
+            <div class="team-info-row">
+              <div class="team-info">
+                <h3 id="team-paola">Paola</h3>
+              </div>
+              <div class="team-actions" role="group" aria-label="Redes de Paola">
+                <a class="team-icon-btn" href="https://www.linkedin.com/company/selectcapital" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn de Paola">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-solid">
+                    <path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zm2.2 6.5H2.8V20h4.38zm4.32 0H15.5v1.67h.06c.58-1.1 2-2.27 4.12-2.27 4.4 0 5.2 2.9 5.2 6.68V20h-4.2v-3.9c0-.93-.02-2.14-1.3-2.14-1.3 0-1.5 1.02-1.5 2.07V20h-4.4z"/>
+                  </svg>
+                  <span class="sr-only">LinkedIn</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="team-card" role="listitem" aria-labelledby="team-deisy">
+            <div class="team-card-header">
+              <div class="team-chips">
+                <span class="team-chip">Consultora inmobiliaria</span>
+              </div>
+            </div>
+            <div class="team-photo">
+              <img src="images/asesores/deisymontilla.png" alt="Retrato de Deisy Montilla" loading="lazy" />
+            </div>
+            <div class="team-info-row">
+              <div class="team-info">
+                <h3 id="team-deisy">Deisy Montilla</h3>
+              </div>
+              <div class="team-actions" role="group" aria-label="Redes de Deisy Montilla">
+                <a class="team-icon-btn" href="https://www.linkedin.com/company/selectcapital" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn de Deisy Montilla">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-solid">
+                    <path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zm2.2 6.5H2.8V20h4.38zm4.32 0H15.5v1.67h.06c.58-1.1 2-2.27 4.12-2.27 4.4 0 5.2 2.9 5.2 6.68V20h-4.2v-3.9c0-.93-.02-2.14-1.3-2.14-1.3 0-1.5 1.02-1.5 2.07V20h-4.4z"/>
+                  </svg>
+                  <span class="sr-only">LinkedIn</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="team-card" role="listitem" aria-labelledby="team-elkis">
+            <div class="team-card-header">
+              <div class="team-chips">
+                <span class="team-chip">Consultor inmobiliario</span>
+              </div>
+            </div>
+            <div class="team-photo">
+              <img src="images/asesores/elkis.PNG" alt="Retrato de Elkis Daza" loading="lazy" />
+            </div>
+            <div class="team-info-row">
+              <div class="team-info">
+                <h3 id="team-elkis">Elkis Daza</h3>
+              </div>
+              <div class="team-actions" role="group" aria-label="Redes de Elkis Daza">
+                <a class="team-icon-btn" href="https://www.linkedin.com/company/selectcapital" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn de Elkis Daza">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-solid">
+                    <path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zm2.2 6.5H2.8V20h4.38zm4.32 0H15.5v1.67h.06c.58-1.1 2-2.27 4.12-2.27 4.4 0 5.2 2.9 5.2 6.68V20h-4.2v-3.9c0-.93-.02-2.14-1.3-2.14-1.3 0-1.5 1.02-1.5 2.07V20h-4.4z"/>
+                  </svg>
+                  <span class="sr-only">LinkedIn</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Testimonios -->
+    <section class="section">
+      <div class="section-inner">
+        <h2 class="text-center">Testimonios</h2>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <p class="testimonial-text">Entré con UF 1.200; me guiaron de la preevaluación a la entrega. Vi los escenarios difíciles antes de decidir.</p>
+            <p class="testimonial-author">— Paula R.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Formulario principal -->
+    <section class="section" id="form">
+      <div class="section-inner">
+        <h2 class="text-center">Recibir asesoría integral</h2>
+        <div class="form-container">
+          <form id="asesoria-form" action="/submit.php" method="POST" data-track-form data-home-wizard data-form-anchor novalidate>
+            <input type="hidden" name="utm_source" />
+            <input type="hidden" name="utm_medium" />
+            <input type="hidden" name="utm_campaign" />
+            <input type="hidden" name="gclid" />
+            <input type="hidden" name="fbclid" />
+            <input type="hidden" name="ttclid" />
+            <input type="hidden" name="cf-turnstile-response" id="ts-token" />
+            <input type="text" name="honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" aria-hidden="true" />
+
+            <div class="form-wizard" data-form-wizard>
+              <div class="wizard-shell">
+                <aside class="wizard-steps">
+                  <div class="wizard-progress-bar" data-progress-bar role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" aria-valuetext="Paso 1 de 3">
+                    <span class="wizard-progress-value" data-progress-value></span>
+                  </div>
+                  <p class="wizard-progress-label" data-progress-label>Paso 1 de 3</p>
+                  <p class="wizard-summary sc-text-muted" data-step-summary>Informacion personal</p>
+                  <div id="form-error" class="sc-error" role="alert" aria-live="polite" aria-hidden="true"></div>
+                  <div class="form-steps-progress" role="tablist" aria-live="polite">
+                    <button type="button" class="form-step-pill is-active" data-step-pill="0" role="tab" aria-selected="true" aria-controls="home-step-1">
+                      <span>1</span>
+                      <div>
+                        <strong>Datos personales</strong>
+                        <p>Identidad y contacto.</p>
+                      </div>
+                    </button>
+                    <button type="button" class="form-step-pill" data-step-pill="1" role="tab" aria-selected="false" aria-controls="home-step-2">
+                      <span>2</span>
+                      <div>
+                        <strong>Perfil e ingresos</strong>
+                        <p>Objetivo, tipo de ingreso y montos.</p>
+                      </div>
+                    </button>
+                    <button type="button" class="form-step-pill" data-step-pill="2" role="tab" aria-selected="false" aria-controls="home-step-3">
+                      <span>3</span>
+                      <div>
+                        <strong>Comunas y cierre</strong>
+                        <p>Zona de interes, notas y consentimiento.</p>
+                      </div>
+                    </button>
+                  </div>
+                </aside>
+
+                <div class="wizard-main">
+                  <div class="form-wizard-viewport">
+                    <div class="form-wizard-track" data-step-track style="--wizard-step:0;">
+                      <section class="wizard-step" data-step-panel="0" data-next-label="Continuar a Perfil e ingresos" aria-labelledby="home-step-1">
+                    <div class="step-header">
+                      <p class="step-kicker">Paso 1</p>
+                      <h3 id="home-step-1">Informacion personal</h3>
+                      <p class="sc-hint">Validamos tus datos para enviarte la propuesta personalizada.</p>
+                    </div>
+                    <div class="form-grid">
+                      <label class="sc-field">
+                        <span class="sc-label">Nombre completo</span>
+                        <input type="text" name="nombre" id="nombre" class="sc-input" placeholder="Tu nombre completo" autocomplete="name" autocapitalize="words" data-step-required required />
+                      </label>
+                      <label class="sc-field">
+                        <span class="sc-label">RUT</span>
+                        <input type="text" name="rut" id="rut" class="sc-input" placeholder="12.345.678-9" data-mask="rut" autocomplete="off" data-step-required required />
+                        <p class="sc-error" id="r-error" aria-hidden="true">Ingresa un RUT valido.</p>
+                      </label>
+                      <label class="sc-field form-field-full">
+                        <span class="sc-label">Correo electronico</span>
+                        <input type="email" name="email" id="email" class="sc-input" placeholder="correo@ejemplo.com" autocomplete="email" data-step-required required />
+                        <p class="sc-error" id="e-error" aria-hidden="true">Ingresa un correo valido.</p>
+                      </label>
+                      <label class="sc-field form-field-full">
+                        <span class="sc-label">Telefono / WhatsApp</span>
+                        <input type="tel" name="whatsapp" id="whatsapp" class="sc-input" data-mask="phone" placeholder="+56 9 1234 5678" inputmode="tel" autocomplete="tel" data-step-required required />
+                        <p class="sc-hint">Prefijo +56 autocompletado · Validamos largo automaticamente.</p>
+                        <p class="sc-error" id="w-error" aria-hidden="true">Usa un numero chileno valido.</p>
+                      </label>
+                    </div>
+                    <div class="form-wizard-nav">
+                      <button type="button" class="btn-primary" data-step-next>Siguiente</button>
+                    </div>
+                  </section>
+
+                  <section class="wizard-step" data-step-panel="1" data-next-label="Siguiente" aria-labelledby="home-step-2">
+                    <div class="step-header">
+                      <p class="step-kicker">Paso 2</p>
+                      <h3 id="home-step-2">Perfil del cliente e ingresos</h3>
+                      <p class="sc-hint">Selecciona el objetivo, tipo de ingreso y montos aproximados.</p>
+                    </div>
+
+                    <fieldset>
+                      <legend class="sc-label">Objetivo principal</legend>
+                      <p class="sc-hint">Elige una opcion para enfocar la asesoria.</p>
+                      <div class="option-grid">
+                        <label class="option-card" data-card>
+                          <input type="radio" name="objetivo" value="Vivir" data-card-input data-step-required required />
+                          <span class="option-icon" aria-hidden="true">🏠</span>
+                          <strong>Vivir</strong>
+                          <p>Buscas tu proxima vivienda para uso propio.</p>
+                        </label>
+                        <label class="option-card" data-card>
+                          <input type="radio" name="objetivo" value="Invertir" data-card-input data-step-required required />
+                          <span class="option-icon" aria-hidden="true">💼</span>
+                          <strong>Invertir</strong>
+                          <p>Quieres generar ingresos y construir patrimonio.</p>
+                        </label>
+                        <label class="option-card" data-card>
+                          <input type="radio" name="objetivo" value="No lo se" data-card-input data-step-required required />
+                          <span class="option-icon" aria-hidden="true">❔</span>
+                          <strong>No lo se todavia</strong>
+                          <p>Te ayudamos a descubrir que te conviene hoy.</p>
+                        </label>
+                      </div>
+                    </fieldset>
+
+                    <fieldset>
+                      <legend class="sc-label">Tipo de ingreso</legend>
+                      <p class="sc-hint">Seleccion unica. Mostramos chips extra segun tu eleccion.</p>
+                      <div class="option-grid">
+                        <label class="option-card" data-card data-ingreso-card="dependiente">
+                          <input type="radio" name="tipo_ingreso" value="Dependiente" data-card-input data-step-required required />
+                          <strong>Dependiente</strong>
+                          <p>Recibes sueldo fijo con contrato y liquidaciones.</p>
+                        </label>
+                        <label class="option-card" data-card data-ingreso-card="independiente">
+                          <input type="radio" name="tipo_ingreso" value="Independiente" data-card-input data-step-required required />
+                          <strong>Independiente</strong>
+                          <p>Ingresos variables como profesional, freelancer o empresario.</p>
+                        </label>
+                        <label class="option-card" data-card data-ingreso-card="mixto">
+                          <input type="radio" name="tipo_ingreso" value="Mixto" data-card-input data-step-required required />
+                          <strong>Mixto</strong>
+                          <p>Combinacion de sueldo fijo + ingresos adicionales.</p>
+                        </label>
+                      </div>
+                    </fieldset>
+
+                    <div class="option-secondary" data-ingreso-extra="dependiente" hidden aria-hidden="true">
+                      <span class="sc-label">Tipo de contrato (Dependiente)</span>
+                      <div class="chip-set" data-chip-group="tipo_contrato" role="radiogroup" aria-label="Tipo de contrato">
+                        <button type="button" class="chip" data-chip-value="Indefinido" data-chip-target="tipo_contrato" role="radio" aria-checked="false">
+                          <strong>Indefinido</strong>
+                          <span>Mayor estabilidad laboral. Mejor evaluacion crediticia.</span>
+                        </button>
+                        <button type="button" class="chip" data-chip-value="Plazo fijo" data-chip-target="tipo_contrato" role="radio" aria-checked="false">
+                          <strong>Plazo fijo</strong>
+                          <span>Contrato con termino definido. Revisamos antiguedad.</span>
+                        </button>
+                        <button type="button" class="chip" data-chip-value="Sin contrato / Informal" data-chip-target="tipo_contrato" role="radio" aria-checked="false">
+                          <strong>Sin contrato / Informal</strong>
+                          <span>Ingresos no formales. Es clave detallar montos.</span>
+                        </button>
+                      </div>
+                      <input type="hidden" name="tipo_contrato" data-chip-store="tipo_contrato" data-required-when="tipo_ingreso=Dependiente|Mixto">
+                      <p class="sc-error" data-chip-error="tipo_contrato" aria-hidden="true">Selecciona el tipo de contrato.</p>
+                    </div>
+
+                    <div class="option-secondary" data-ingreso-extra="independiente" hidden aria-hidden="true">
+                      <span class="sc-label">Tipo de ingresos (Independiente)</span>
+                      <div class="chip-set" data-chip-group="tipo_ingreso_independiente" role="radiogroup" aria-label="Tipo de ingresos independientes">
+                        <button type="button" class="chip" data-chip-value="Boletas de honorarios" data-chip-target="tipo_ingreso_independiente" role="radio" aria-checked="false">
+                          <strong>Boletas de honorarios</strong>
+                          <span>Ingresos declarados como profesional independiente.</span>
+                        </button>
+                        <button type="button" class="chip" data-chip-value="Retiros de empresa" data-chip-target="tipo_ingreso_independiente" role="radio" aria-checked="false">
+                          <strong>Retiros de empresa</strong>
+                          <span>Ingresos derivados de utilidades o participaciones.</span>
+                        </button>
+                      </div>
+                      <input type="hidden" name="tipo_ingreso_independiente" data-chip-store="tipo_ingreso_independiente" data-required-when="tipo_ingreso=Independiente|Mixto">
+                      <p class="sc-error" data-chip-error="tipo_ingreso_independiente" aria-hidden="true">Selecciona el tipo de ingreso.</p>
+                    </div>
+
+                    <div class="form-grid">
+                      <label class="sc-field">
+                        <span class="sc-label">Ingreso mensual liquido (CLP)</span>
+                        <input type="text" name="renta_liquida" class="sc-input" inputmode="numeric" data-money-input="renta_liquida" placeholder="$ 1.200.000" data-step-required required />
+                        <p class="sc-error" id="renta-error" aria-hidden="true">Ingresa tu renta liquida aproximada.</p>
+                      </label>
+                      <label class="sc-field">
+                        <span class="sc-label">Capacidad de ahorro mensual (CLP)</span>
+                        <input type="text" name="capacidad_ahorro_mensual" class="sc-input" inputmode="numeric" data-money-input="capacidad_ahorro_mensual" placeholder="$ 400.000" data-step-required required />
+                        <p class="sc-error" id="capacidad-error" aria-hidden="true">Indica tu capacidad mensual de ahorro.</p>
+                      </label>
+                    </div>
+                    <div class="form-grid">
+                      <label class="sc-field">
+                        <span class="sc-label">¿Tienes ahorro disponible?</span>
+                        <div class="chip-set chip-set--inline" data-savings-toggle role="radiogroup" aria-label="¿Tienes ahorro disponible?">
+                          <button type="button" class="chip chip--compact" data-savings-value="si" role="radio" aria-checked="false" tabindex="0">Sí</button>
+                          <button type="button" class="chip chip--compact" data-savings-value="no" role="radio" aria-checked="false" tabindex="-1">No</button>
+                        </div>
+                        <input type="hidden" name="tiene_ahorro" data-savings-store data-step-required required />
+                        <p class="sc-error" id="ahorro-toggle-error" aria-hidden="true">Selecciona si cuentas con ahorro.</p>
+                      </label>
+                      <label class="sc-field" data-savings-field>
+                        <span class="sc-label">Monto de ahorro disponible</span>
+                        <input type="text" name="monto_ahorro" class="sc-input" inputmode="numeric" data-money-input="monto_ahorro" placeholder="$ 2.000.000" data-step-required data-savings-input disabled />
+                        <span class="sc-hint">Solo ingresa el monto total ahorrado.</span>
+                        <p class="sc-error" id="ahorro-error" aria-hidden="true">Ingresa el monto ahorrado.</p>
+                      </label>
+                    </div>
+                    <div class="form-wizard-nav">
+                      <button type="button" class="btn-ghost" data-step-prev aria-label="Volver al paso anterior">Volver</button>
+                      <button type="button" class="btn-primary" data-step-next>Siguiente</button>
+                    </div>
+                  </section>
+
+                  <section class="wizard-step" data-step-panel="2" aria-labelledby="home-step-3">
+                    <div class="step-header">
+                      <p class="step-kicker">Paso 3</p>
+                      <h3 id="home-step-3">Ubicación y contacto</h3>
+                      <p class="sc-hint">Selecciona comunas, agrega notas y autoriza el contacto.</p>
+                    </div>
+
+                    <div class="sc-field">
+                      <span class="sc-label">Zona o comuna de interes</span>
+                      <div class="commune-enhanced" data-commune-enhanced>
+                        <p class="sc-hint">Elige rapidamente o escribe para buscar. Presiona Enter para confirmar.</p>
+                        <div class="commune-quick" data-commune-pills>
+                          <button type="button" class="pill-chip" data-commune-pill="La Florida" aria-pressed="false">La Florida</button>
+                          <button type="button" class="pill-chip" data-commune-pill="Santiago Centro" aria-pressed="false">Santiago Centro</button>
+                          <button type="button" class="pill-chip" data-commune-pill="Independencia" aria-pressed="false">Independencia</button>
+                          <button type="button" class="pill-chip" data-commune-pill="Estacion Central" aria-pressed="false">Estacion Central</button>
+                          <button type="button" class="pill-chip" data-commune-pill="Ñuñoa" aria-pressed="false">Ñuñoa</button>
+                          <button type="button" class="pill-chip" data-commune-pill="San Miguel" aria-pressed="false">San Miguel</button>
+                          <button type="button" class="pill-chip" data-commune-pill="Macul" aria-pressed="false">Macul</button>
+                        </div>
+                        <label class="sc-field">
+                          <span class="sc-label sc-optional">Buscador</span>
+                          <input type="text" class="sc-input" placeholder="Escribe una comuna (ej: Ñuñoa, La Florida…)" list="comunas-populares" data-commune-input autocomplete="off">
+                        </label>
+                        <datalist id="comunas-populares">
+                          <option value="Cerrillos"></option>
+                          <option value="Cerro Navia"></option>
+                          <option value="Conchali"></option>
+                          <option value="El Bosque"></option>
+                          <option value="Estacion Central"></option>
+                          <option value="Huechuraba"></option>
+                          <option value="Independencia"></option>
+                          <option value="La Cisterna"></option>
+                          <option value="La Florida"></option>
+                          <option value="La Granja"></option>
+                          <option value="La Pintana"></option>
+                          <option value="La Reina"></option>
+                          <option value="Las Condes"></option>
+                          <option value="Lo Barnechea"></option>
+                          <option value="Lo Espejo"></option>
+                          <option value="Lo Prado"></option>
+                          <option value="Macul"></option>
+                          <option value="Maipu"></option>
+                          <option value="Ñuñoa"></option>
+                          <option value="Pedro Aguirre Cerda"></option>
+                          <option value="Peñalolen"></option>
+                          <option value="Providencia"></option>
+                          <option value="Pudahuel"></option>
+                          <option value="Quilicura"></option>
+                          <option value="Quinta Normal"></option>
+                          <option value="Recoleta"></option>
+                          <option value="Renca"></option>
+                          <option value="San Joaquin"></option>
+                          <option value="San Miguel"></option>
+                          <option value="San Ramon"></option>
+                          <option value="Santiago Centro"></option>
+                          <option value="Vitacura"></option>
+                        </datalist>
+                        <div class="commune-selected" data-commune-selected aria-live="polite"></div>
+                      </div>
+                      <div class="sc-field" data-commune-fallback>
+                        <span class="sc-label sc-optional">Escribe tus comunas (fallback)</span>
+                        <textarea name="comunas_interes" rows="2" class="sc-input" placeholder="Ej: Ñuñoa, La Florida, Santiago Centro" data-commune-store data-step-required required></textarea>
+                      </div>
+                      <p class="sc-error" id="comunas-error" aria-hidden="true">Selecciona al menos una comuna.</p>
+                    </div>
+
+                    <label class="sc-field">
+                      <span class="sc-label">Comentarios adicionales (opcional)</span>
+                      <textarea name="comentarios" rows="3" class="sc-input" placeholder="¿Quieres contarnos algo mas sobre lo que buscas?" style="resize:vertical;"></textarea>
+                    </label>
+
+                    <div class="form-grid">
+                      <label class="sc-field">
+                        <span class="sc-label">¿Como prefieres que te contactemos?</span>
+                        <select name="canal_preferido" class="sc-input" data-select-enhanced data-step-required required>
+                          <option value="">Selecciona el canal</option>
+                          <option value="whatsapp">WhatsApp</option>
+                          <option value="correo">Correo</option>
+                          <option value="llamada">Llamada</option>
+                        </select>
+                      </label>
+                      <label class="sc-field">
+                        <span class="sc-label">Franja horaria</span>
+                        <select name="franja_preferida" class="sc-input" data-select-enhanced data-step-required required>
+                          <option value="">Selecciona la franja</option>
+                          <option value="manana">Mañana</option>
+                          <option value="tarde">Tarde</option>
+                          <option value="indiferente">Indiferente</option>
+                        </select>
+                      </label>
+                    </div>
+
+                    <label class="consent-field">
+                      <input type="checkbox" name="consentimiento_privacidad" value="si" data-step-required required>
+                      <span>
+                        <strong>Acepto el tratamiento de mis datos segun la Ley 19.628.</strong>
+                        <span class="sc-hint">Consulta nuestra <a href="https://www.selectcapital.cl/privacidad" target="_blank" rel="noopener">Politica de Privacidad</a>.</span>
+                      </span>
+                    </label>
+
+                    <label class="consent-field">
+                      <input type="checkbox" name="consentimiento_contacto" value="si" data-step-required required>
+                      <span>
+                        <strong>Autorizo a ser contactado por un asesor inmobiliario de Select Capital.</strong>
+                        <span class="sc-hint">Tus datos se utilizan unicamente para brindarte una asesoria personalizada. No seran compartidos con terceros sin tu consentimiento.</span>
+                      </span>
+                    </label>
+
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAAB_bjq2YOWp-yEXx" data-theme="auto" data-callback="onTurnstileSuccess"></div>
+                    <p id="t-error" class="sc-error" aria-hidden="true">Confirma que no eres un bot</p>
+                    
+                    <div class="form-wizard-nav">
+                      <button type="button" class="btn-ghost" data-step-prev aria-label="Volver al paso anterior">Volver</button>
+                      <button type="submit" id="submitBtn" class="btn-primary" data-step-submit>
+                        <span id="s-text">Recibir mi propuesta personalizada</span>
+                        <span id="s-load" style="display:none;">Enviando…</span>
+                      </button>
+                    </div>
+                  </section>
+                </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-success" id="form-success">
+              ¡Listo! En breve te contactaremos con <strong>3 opciones ajustadas a tu perfil</strong> y los <strong>primeros pasos</strong> del proceso.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ breve + Legal -->
+      <section class="section" id="faq">
+        <div class="section-inner">
+          <h2 class="text-center">Preguntas frecuentes</h2>
+          <div class="faq-grid">
+            <div class="faq-card">
+              <h4>¿Desde cuánto puedo empezar?</h4>
+              <p>Te mostramos opciones según tu presupuesto y capacidad de crédito. No hay mínimo fijo.</p>
+            </div>
+            <div class="faq-card">
+              <h4>¿Me ayudan con el crédito?</h4>
+              <p>Sí, te acompañamos en la preevaluación y comparación de opciones bancarias.</p>
+            </div>
+            <div class="faq-card">
+              <h4>¿Garantizan rentabilidad?</h4>
+              <p>No garantizamos rentabilidad, pero te mostramos proyecciones basadas en datos reales de la zona.</p>
+            </div>
+            <div class="faq-card">
+              <h4>¿Y si cambian tasas o arriendos?</h4>
+              <p>Te mostramos escenarios de sensibilidad para que evalúes diferentes situaciones.</p>
+            </div>
+          </div>
+          <div class="legal-notice">
+            Las proyecciones no garantizan resultados. Revisa tu situación financiera antes de comprometerte.
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="sc-footer">
+      <div class="sc-footer__inner">
+        <section class="sc-footer-cta sc-glass">
+          <div>
+            <h2>¿Listo para curar tu próxima inversión?</h2>
+            <p>Completa el formulario y recibe 2–3 proyectos con pie estimado, dividendo y retorno proyectado en menos de 24 horas.</p>
+            <div class="sc-chip-stack">
+              <span class="sc-chip">+250 proyectos evaluados</span>
+              <span class="sc-chip">Sin costo para el inversionista</span>
+              <span class="sc-chip">Respuesta &lt; 10 min</span>
+            </div>
+          </div>
+          <div class="sc-footer-cta-actions">
+            <a class="sc-btn-primary" href="#form" data-track-event="cta_click" data-track-detail='{"cta_id":"footer_primary"}'>Recibir asesoría integral</a>
+            <a class="sc-btn-ghost" href="https://wa.me/56966013182?text=Quiero%20recibir%20mi%20asesoria" target="_blank" rel="noopener" data-track-event="cta_click" data-track-detail='{"cta_id":"footer_whatsapp"}'>WhatsApp inmediato</a>
+            <a class="sc-link" href="pdf/proposal-template.html" target="_blank" rel="noopener">Descargar brochure</a>
+          </div>
+        </section>
+
+        <div class="sc-footer-grid">
+          <div>
+            <h3>Propósito</h3>
+            <p>Curamos proyectos con demanda real, negociamos beneficios y te acompañamos hasta la puesta en arriendo.</p>
+            <div class="sc-chip">Liquid Glass · Selección curada</div>
+          </div>
+          <div>
+            <h3>Soluciones</h3>
+            <ul>
+              <li><a href="#servicios">Acompañamiento integral</a></li>
+              <li><a href="#equipo">Equipo experto</a></li>
+              <li><a href="simulador/index.html">Simulador hipotecario</a></li>
+              <li><a href="#form">Eventos y workshops</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Recursos</h3>
+            <ul>
+              <li><a href="#proyectos">Proyectos destacados</a><span class="sc-footer-badge">Nuevo</span></li>
+              <li><a href="dashboard/insights-dashboard.html" target="_blank" rel="noopener">Dashboard funnel</a></li>
+              <li><a href="#faq">Preguntas frecuentes</a></li>
+              <li><a href="pdf/proposal-template.html" target="_blank" rel="noopener">Propuesta PDF demo</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Contacto</h3>
+            <div class="sc-footer-contact">
+              <span><a href="mailto:contacto@selectcapital.cl">contacto@selectcapital.cl</a></span>
+              <span><a href="tel:+56966013182">+56 9 6601 3182</a></span>
+              <span>Las Condes · Santiago de Chile</span>
+            </div>
+            <div class="sc-footer-social" aria-label="Redes sociales">
+              <a href="https://www.linkedin.com/company/selectcapital" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+              <a href="https://www.instagram.com/selectcapital" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+              <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="sc-footer-legal">
+          <span>© <span id="year"></span> Select Capital. No constituye oferta de valores.</span>
+          <div class="sc-footer-links">
+            <a href="#faq">Política de privacidad</a>
+            <span>·</span>
+            <a href="#faq">Aviso legal</a>
+            <span>·</span>
+            <span>ES | EN</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+<!-- Scripts -->
+  <script src="scripts/sc-header.js" defer></script>
+  <script src="analytics/sc-tracking.js" defer></script>
+  <script type="module" src="lenguaje visual/forms/sc-masks.js" defer></script>
+  <script type="module" src="lenguaje visual/theme/theme-toggle.min.js?v=52cd60c50c"></script>
+  <script type="module" src="scripts/home-wizard.js"></script>
+
+</body>
+</html>

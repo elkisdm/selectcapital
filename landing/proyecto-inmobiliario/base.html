@@ -31,7 +31,7 @@
   <body>
     <nav class="sticky-nav" id="sticky-nav">
       <div class="sticky-nav-content">
-        <img src="/images/logo_blanco.png" alt="Select Capital" class="sticky-nav-logo" />
+        <img src="/images/logo_largo_principal.png" alt="Select Capital" class="sticky-nav-logo" />
         <div class="sticky-nav-links">
           <a href="#tipologias">Tipologías</a>
           <a href="#ubicacion">Ubicación</a>
@@ -352,22 +352,20 @@
           </div>
 
           <div class="map-card">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.5!2d-70.648!3d-33.437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c5a8b8b8b8b9%3A0x8b8b8b8b8b8b8b8b!2sCalle%20Mar%C3%ADn%20%26%20Calle%20Lira%2C%20Santiago%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1700000000000!5m2!1ses!2scl" 
-              width="100%" 
-              height="400" 
-              style="border:0; border-radius: var(--lp-radius-lg);" 
-              allowfullscreen="" 
-              loading="lazy" 
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Ubicación del proyecto en Santiago Centro">
-            </iframe>
-            <div class="map-overlay">
-              <a href="https://www.google.com/maps/search/?api=1&query=Santiago+Centro" target="_blank" rel="noopener" class="map-link">
-                <span>📍 Santiago Centro — Solicita información</span>
-                <span style="font-size: 10px; opacity: 0.8;">Abrir en Google Maps</span>
-              </a>
-            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=-33.437,-70.648" target="_blank" rel="noopener" style="display: block; text-decoration: none; color: inherit; width: 100%; height: 100%; position: relative;">
+              <img 
+                src="/images/mapa-viva.png" 
+                alt="Ubicación: Calle Lira esq. Marín, Santiago Centro" 
+                style="width: 100%; height: 100%; object-fit: cover; display: block; position: absolute; top: 0; left: 0;"
+                loading="lazy" />
+              <!-- Overlay con botón para abrir en Google Maps -->
+              <div class="map-overlay">
+                <a href="https://www.google.com/maps/search/?api=1&query=-33.437,-70.648" target="_blank" rel="noopener" class="map-link">
+                  <span>📍 Santiago Centro — Solicita información</span>
+                  <span style="font-size: 10px; opacity: 0.8;">Abrir en Google Maps</span>
+                </a>
+              </div>
+            </a>
           </div>
         </div>
       </section>
