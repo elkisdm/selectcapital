@@ -1,328 +1,302 @@
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="es" data-theme="light" data-theme-transition>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>¡Registro exitoso! — Lanzamiento La Florida</title>
-  <meta name="description" content="Gracias por registrarte para el lanzamiento de La Florida. Te contactaremos pronto con información detallada." />
-  <meta name="facebook-domain-verification" content="6nxcn88cvfk8n6tstgwnvvtamvfp69" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>¡Gracias! — Select Capital</title>
+  
+  <!-- Preconnect a dominios externos -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="dns-prefetch" href="https://connect.facebook.net" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- CSS -->
   <link rel="stylesheet" href="lenguaje visual/theme/select-capital-theme.min.css?v=66e592e976" />
-  <link rel="stylesheet" href="lenguaje visual/theme/sc-header-footer.min.css?v=507b6d0414" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] }}}}
-  </script>
-</head>
-<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-  <header class="sc-appbar" data-state="default" data-menu="closed" data-micro="open">
-    <div class="sc-microbar">
-      <div class="sc-microbar__message">
-        <span>Registro confirmado · nos contactaremos por WhatsApp y correo</span>
-      </div>
-      <div class="sc-microbar__actions">
-        <a href="tel:+56966013182" data-track-event="micro_contact" data-track-detail='{"type":"phone"}'>+56 9 6601 3182</a>
-        <a href="mailto:contacto@selectcapital.cl" data-track-event="micro_contact" data-track-detail='{"type":"mail"}'>contacto@selectcapital.cl</a>
-        <a href="https://wa.me/56966013182?text=Quiero%20confirmar%20mi%20cupo" target="_blank" rel="noopener" data-track-event="micro_contact" data-track-detail='{"type":"whatsapp"}'>WhatsApp</a>
-        <button type="button" data-theme-toggle data-track-event="micro_contact" data-track-detail='{"type":"theme"}'>ES | EN</button>
-      </div>
-    </div>
-    <div class="sc-appbar-main">
-      <a class="sc-brand" href="index.html">
-        <img src="images/logo_largo_principal.png" alt="Select Capital" loading="lazy" />
-        <span>SELECT CAPITAL</span>
-      </a>
-      <button class="sc-micro-pill" type="button" data-micro-toggle>
-        <span>Recordatorio de contacto</span>
-      </button>
-      <nav class="sc-nav" aria-label="Navegación principal">
-        <a href="/#proyectos" data-track-event="nav_click" data-track-detail='{"item":"proyectos"}'>Proyectos</a>
-        <a href="simulador/index.html" data-track-event="nav_click" data-track-detail='{"item":"simulador"}'>Simulador</a>
-        <a href="/#servicios" data-track-event="nav_click" data-track-detail='{"item":"servicios"}'>Servicios</a>
-        <a href="/#equipo" data-track-event="nav_click" data-track-detail='{"item":"equipo"}'>Equipo</a>
-        <a href="index.html#faq" aria-current="page" data-track-event="nav_click" data-track-detail='{"item":"recursos"}'>Recursos</a>
-      </nav>
-      <div class="sc-status-pill">
-        <span>Te contactaremos &lt; 24h</span>
-        <span class="sc-chip">Agenda prioritaria</span>
-      </div>
-      <div class="sc-cta-cluster">
-        <a class="sc-btn-ghost" href="https://wa.me/56966013182?text=Quiero%20confirmar%20mi%20cupo" target="_blank" rel="noopener" data-track-event="cta_click" data-track-detail='{"cta_id":"header_whatsapp"}'>WhatsApp</a>
-          <a class="sc-btn-primary" href="/#contacto" data-track-event="cta_click" data-track-detail='{"cta_id":"header_primary"}'>Ver otros proyectos</a>
-      </div>
-      <button class="sc-menu-toggle" type="button" aria-label="Abrir menú principal" aria-expanded="false" data-menu-toggle>
-        <span aria-hidden="true"></span>
-      </button>
-    </div>
-    <div class="sc-mobile-panel" role="dialog" aria-modal="true" aria-label="Menú principal">
-      <nav>
-        <a href="/#proyectos" data-track-event="nav_click" data-track-detail='{"item":"proyectos_mobile"}'>Proyectos</a>
-        <a href="simulador/index.html" data-track-event="nav_click" data-track-detail='{"item":"simulador_mobile"}'>Simulador</a>
-        <a href="/#servicios" data-track-event="nav_click" data-track-detail='{"item":"servicios_mobile"}'>Servicios</a>
-        <a href="/#equipo" data-track-event="nav_click" data-track-detail='{"item":"equipo_mobile"}'>Equipo</a>
-        <a href="index.html#faq" aria-current="page" data-track-event="nav_click" data-track-detail='{"item":"recursos_mobile"}'>Recursos</a>
-      </nav>
-      <div class="sc-chip">Revisa tu correo y WhatsApp</div>
-      <div class="sc-mobile-cta">
-        <a class="sc-btn-primary" href="index.html#form" data-track-event="cta_click" data-track-detail='{"cta_id":"mobile_menu_primary"}'>Editar mis datos</a>
-        <a class="sc-btn-ghost" href="https://wa.me/56966013182?text=Quiero%20confirmar%20mi%20cupo" target="_blank" rel="noopener" data-track-event="cta_click" data-track-detail='{"cta_id":"mobile_menu_whatsapp"}'>Hablar ahora</a>
-      </div>
-    </div>
-  </header>
-
-  <main class="min-h-screen flex items-center justify-center px-4">
-    <div class="max-w-md w-full text-center">
-      <div class="mx-auto w-20 h-20 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20 shadow-2xl">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M20 6L9 17l-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <h1 id="heroTitle" class="mt-8 text-4xl font-extrabold text-white">¡Registro exitoso!</h1>
-      <p class="mt-4 text-white/80 text-lg">Te contactaremos pronto con información del lanzamiento en La Florida.</p>
-
-      <!-- Próximos pasos (mobile-first) -->
-      <div class="mt-8 bg-white/5 border border-white/10 rounded-2xl backdrop-blur p-6 flex flex-col gap-5 text-sm text-white/80 shadow-inner">
-        <h2 class="text-base font-semibold text-white tracking-wide">Próximos pasos</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <!-- Paso 1: Calendario -->
-          <div class="rounded-xl bg-white/10 p-4 text-left">
-            <div class="flex items-center gap-3">
-              <span class="text-blue-300 text-2xl">📅</span>
-              <div>
-                <p class="text-white font-semibold text-sm">Agenda el evento</p>
-                <p class="text-xs text-white/70">Mar 11 nov • 19:30 — Las Condes</p>
-              </div>
-            </div>
-            <div class="mt-3 flex gap-2">
-              <a id="gcal" href="#" class="flex-1 inline-flex justify-center rounded-lg bg-white text-slate-900 px-3 py-2 text-xs font-semibold hover:bg-slate-100">Google Calendar</a>
-              <a id="ical" href="#" class="flex-1 inline-flex justify-center rounded-lg border border-white/30 px-3 py-2 text-xs hover:bg-white/10">Descargar .ics</a>
-            </div>
-          </div>
-          <!-- Paso 2: WhatsApp -->
-          <div class="rounded-xl bg-white/10 p-4 text-left">
-            <div class="flex items-center gap-3">
-              <span class="text-emerald-300 text-2xl">💬</span>
-              <div>
-                <p class="text-white font-semibold text-sm">Confirma por WhatsApp</p>
-                <p class="text-xs text-white/70">Prioridad de cupo y resolución de dudas al instante.</p>
-              </div>
-            </div>
-            <div class="mt-3">
-              <a id="wa2" href="#" class="w-full inline-flex justify-center rounded-lg border border-emerald-400/50 text-emerald-300 px-3 py-2 text-xs hover:bg-emerald-400/10">Abrir WhatsApp</a>
-            </div>
-          </div>
-          <!-- Paso 3: Correo -->
-          <div class="rounded-xl bg-white/10 p-4 text-left">
-            <div class="flex items-center gap-3">
-              <span class="text-amber-300 text-2xl">✉️</span>
-              <div>
-                <p class="text-white font-semibold text-sm">Revisa tu correo</p>
-                <p class="text-xs text-white/70">Asunto: “Confirmación — Evento Mirador de La Florida”.</p>
-              </div>
-            </div>
-            <div class="mt-3">
-              <a id="emailLink" class="inline-flex justify-center rounded-lg border border-white/30 px-3 py-2 text-xs hover:bg-white/10" href="mailto:contacto@selectcapital.cl?subject=Confirmaci%C3%B3n%20%E2%80%94%20Evento%20Mirador%20de%20La%20Florida&body=Hola%2C%20me%20acabo%20de%20registrar.%20%C2%BFPueden%20confirmar%20mi%20cupo%3F">Reenviar confirmación</a>
-            </div>
-          </div>
-          <!-- Paso 4: Documentos sugeridos -->
-          <div class="rounded-xl bg-white/10 p-4 text-left">
-            <div class="flex items-center gap-3">
-              <span class="text-indigo-300 text-2xl">🗂️</span>
-              <div>
-                <p class="text-white font-semibold text-sm">Lleva estos documentos</p>
-                <p class="text-xs text-white/70">Para precalificar en sala.</p>
-              </div>
-            </div>
-            <ul class="mt-3 space-y-2 text-xs leading-relaxed">
-              <li class="flex items-center gap-2"><span class="text-emerald-300">✔</span> Cédula de identidad vigente</li>
-              <li class="flex items-center gap-2"><span class="text-emerald-300">✔</span> 3 últimas liquidaciones de sueldo</li>
-              <li class="flex items-center gap-2"><span class="text-emerald-300">✔</span> Certificado de cotizaciones AFP (12 meses)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-        <a id="wa" href="#" class="inline-flex items-center justify-center rounded-3xl px-6 py-4 text-sm font-medium border border-white/40 bg-white/10 text-white hover:bg-white/20 transition-all duration-200 backdrop-blur-sm">Hablar por WhatsApp ahora</a>
-        <a href="index.html#evento" class="inline-flex items-center justify-center rounded-3xl px-6 py-4 text-sm font-medium border border-white/40 bg-white/10 text-white hover:bg-white/20 transition-all duration-200 backdrop-blur-sm" rel="noopener">Ver detalles del evento</a>
-        <button id="shareBtn" class="inline-flex items-center justify-center rounded-3xl px-6 py-4 text-sm font-medium border border-white/40 bg-white/10 text-white hover:bg-white/20 transition-all duration-200 backdrop-blur-sm">Compartir</button>
-      </div>
-      <p class="mt-8 text-xs text-white/60">Si no ves nuestro correo, revisa Spam/Promociones.</p>
-    </div>
-  </main>
-
-  <footer class="sc-footer">
-    <div class="sc-footer__inner">
-      <section class="sc-footer-cta sc-glass">
-        <div>
-          <h2>¿Quieres seguir explorando oportunidades Select Capital?</h2>
-          <p>Agenda una asesoría sin costo o revisa el simulador para llegar al evento con tus números listos.</p>
-          <div class="sc-chip-stack">
-            <span class="sc-chip">+250 proyectos evaluados</span>
-            <span class="sc-chip">Sin costo para el inversionista</span>
-            <span class="sc-chip">Respuesta &lt; 10 min</span>
-          </div>
-        </div>
-        <div class="sc-footer-cta-actions">
-          <a class="sc-btn-primary" href="/#contacto" data-track-event="cta_click" data-track-detail='{"cta_id":"footer_primary"}'>Ver más proyectos</a>
-          <a class="sc-btn-ghost" href="https://wa.me/56966013182?text=Quiero%20confirmar%20mi%20cupo" target="_blank" rel="noopener" data-track-event="cta_click" data-track-detail='{"cta_id":"footer_whatsapp"}'>WhatsApp inmediato</a>
-          <a class="sc-link" href="pdf/proposal-template.html" target="_blank" rel="noopener">Descargar brochure</a>
-        </div>
-      </section>
-
-      <div class="sc-footer-grid">
-        <div>
-          <h3>Propósito</h3>
-          <p>Curamos proyectos, negociamos condiciones y acompañamos hasta la puesta en arriendo.</p>
-          <div class="sc-chip">Liquid Glass · Selección curada</div>
-        </div>
-        <div>
-          <h3>Soluciones</h3>
-          <ul>
-            <li><a href="/#servicios">Asesoría integral</a></li>
-            <li><a href="/#equipo">Equipo experto</a></li>
-            <li><a href="simulador/index.html">Simulador hipotecario</a></li>
-            <li><a href="/#contacto">Eventos privados</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3>Recursos</h3>
-          <ul>
-            <li><a href="/#proyectos">Proyectos destacados</a><span class="sc-footer-badge">Actualizado</span></li>
-            <li><a href="pdf/proposal-template.html" target="_blank" rel="noopener">Propuesta PDF demo</a></li>
-            <li><a href="dashboard/insights-dashboard.html" target="_blank" rel="noopener">Dashboard funnel</a></li>
-            <li><a href="/#faq">Preguntas frecuentes</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3>Contacto</h3>
-          <div class="sc-footer-contact">
-            <span><a href="mailto:contacto@selectcapital.cl">contacto@selectcapital.cl</a></span>
-            <span><a href="tel:+56966013182">+56 9 6601 3182</a></span>
-            <span>Las Condes · Santiago de Chile</span>
-          </div>
-          <div class="sc-footer-social" aria-label="Redes sociales">
-            <a href="https://www.linkedin.com/company/selectcapital" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
-            <a href="https://www.instagram.com/selectcapital" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
-            <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="sc-footer-legal">
-        <span>© <span id="year-gracias"></span> Select Capital. No constituye oferta de valores.</span>
-        <div class="sc-footer-links">
-          <a href="/#faq">Política de privacidad</a>
-          <span>·</span>
-          <a href="/#faq">Aviso legal</a>
-          <span>·</span>
-          <span>ES | EN</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="scripts/sc-header.js" defer></script>
-
-  <script>
-    const WA_NUMBER = "56966013182";
-    const params = new URLSearchParams(window.location.search);
-    const nombre = params.get('nombre') || 'inversionista';
-    const yearGracias = document.getElementById('year-gracias');
-    if (yearGracias) { yearGracias.textContent = new Date().getFullYear(); }
-    const title = document.getElementById('heroTitle');
-    if (title && nombre) { title.textContent = `¡Registro exitoso, ${nombre}!`; }
-    const msg = `Hola, soy ${nombre}. Acabo de registrarme para el lanzamiento en La Florida y quiero más información.`;
-    document.getElementById('wa').href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
-    const wa2 = document.getElementById('wa2');
-    if (wa2) { wa2.href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`; }
-
-    // Enlaces de calendario (Google e ICS)
-    const eventTitle = 'Evento Gratuito de inversión inmobiliaria — Mirador de La Florida';
-    const startLocal = '2025-11-11T19:30:00-03:00';
-    const endLocal   = '2025-11-11T21:00:00-03:00';
-    const start = new Date(startLocal); const end = new Date(endLocal);
-    const pad = n => String(n).padStart(2,'0');
-    const toCal = d => `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}T${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}Z`;
-    const gcal = document.getElementById('gcal');
-    const ical = document.getElementById('ical');
-    const locationTxt = 'Best Western Premier Marina Las Condes, Alonso de Córdova 5727, Las Condes';
-    const detailsTxt  = 'Evento presencial con Select Capital. Confirma tu asistencia por WhatsApp.';
-    if (gcal) {
-      const gHref = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventTitle)}&dates=${toCal(start)}/${toCal(end)}&details=${encodeURIComponent(detailsTxt)}&location=${encodeURIComponent(locationTxt)}`;
-      gcal.href = gHref; gcal.target = '_blank'; gcal.rel = 'noopener';
+  <link rel="stylesheet" href="lenguaje visual/forms/sc-forms.css?v=20250118" />
+  
+  <style>
+    :root {
+      --sc-primary: #0A2540;
+      --sc-accent: #CD7F32;
+      --sc-glass-bg: rgba(255, 255, 255, 0.8);
+      --sc-border-glass: rgba(15, 23, 42, 0.15);
+      --sc-text-primary: #0f172a;
+      --sc-text-secondary: #475569;
+      --sc-shadow-e1: 0 8px 24px rgba(0, 0, 0, 0.08);
+      --lp-max-width: 1120px;
+      --lp-gutter: 24px;
+      --lp-radius-xl: 24px;
     }
-    if (ical) {
-      const ics = [
-        'BEGIN:VCALENDAR',
-        'VERSION:2.0',
-        'PRODID:-//Select Capital//Evento//ES',
-        'BEGIN:VEVENT',
-        `UID:${Date.now()}@selectcapital.cl`,
-        `DTSTAMP:${toCal(new Date())}`,
-        `DTSTART:${toCal(start)}`,
-        `DTEND:${toCal(end)}`,
-        `SUMMARY:${eventTitle}`,
-        `DESCRIPTION:${detailsTxt}`,
-        `LOCATION:${locationTxt}`,
-        'END:VEVENT',
-        'END:VCALENDAR'
-      ].join('\n'); // <-- fix: evitar salto de línea literal que causaba SyntaxError
-      const blob = new Blob([ics], { type: 'text/calendar' });
-      const url = URL.createObjectURL(blob);
-      ical.href = url; ical.download = 'evento-selectcapital.ics';
+    
+    body[data-theme="dark"] {
+      --sc-glass-bg: rgba(15, 23, 42, 0.9);
+      --sc-border-glass: rgba(255, 255, 255, 0.15);
+      --sc-text-primary: #f1f5f9;
+      --sc-text-secondary: #cbd5e1;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     }
-
-    // Share button
-    const shareBtn = document.getElementById('shareBtn');
-    if (shareBtn) {
-      shareBtn.addEventListener('click', async ()=>{
-        const shareData = { title: 'Lanzamiento La Florida — Select Capital', text: 'Me acabo de registrar. ¿Vamos juntos?', url: location.href };
-        try {
-          if (navigator.share) { await navigator.share(shareData); }
-          else { await navigator.clipboard.writeText(location.href); shareBtn.textContent = 'Enlace copiado'; setTimeout(()=> shareBtn.textContent = 'Compartir', 2000); }
-        } catch(e) { /* silencio UX */ }
-      });
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-
-    // ================================
-    // TESTS ligeros (no intrusivos)
-    // ================================
-    (function runUnitTests(){
-      const results = [];
-      function test(name, fn){
-        try { const ok = !!fn(); results.push({name, ok}); }
-        catch(e){ results.push({name, ok:false, error: String(e)}); }
+    
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+      padding: 0;
+      margin: 0;
+      max-width: 100vw;
+    }
+    
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--lp-gutter);
+    }
+    
+    .page {
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    
+    .success-card {
+      background: var(--sc-glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: var(--lp-radius-xl);
+      border: 2px solid var(--sc-border-glass);
+      box-shadow: var(--sc-shadow-e1);
+      padding: 48px 32px;
+      text-align: center;
+    }
+    
+    .success-icon {
+      font-size: 64px;
+      margin-bottom: 24px;
+      animation: bounce 1s ease-in-out;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .success-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--sc-text-primary);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    
+    .success-name {
+      color: var(--sc-accent);
+    }
+    
+    .success-message {
+      font-size: 18px;
+      color: var(--sc-text-secondary);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    
+    .contact-options {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    
+    .contact-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      border: 2px solid var(--sc-border-glass);
+      min-height: 52px;
+    }
+    
+    .contact-btn.whatsapp {
+      background: #25D366;
+      color: white;
+      border-color: #25D366;
+    }
+    
+    .contact-btn.whatsapp:hover {
+      background: #20BA5A;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(37, 211, 102, 0.3);
+    }
+    
+    .contact-btn.email {
+      background: var(--sc-glass-bg);
+      color: var(--sc-text-primary);
+    }
+    
+    .contact-btn.email:hover {
+      background: var(--sc-primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(10, 37, 64, 0.2);
+    }
+    
+    .back-link {
+      color: var(--sc-text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+    
+    .back-link:hover {
+      color: var(--sc-accent);
+    }
+    
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--sc-glass-bg);
+      backdrop-filter: blur(20px);
+      border: 2px solid var(--sc-border-glass);
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      border: none;
+    }
+    
+    .theme-toggle:hover {
+      transform: scale(1.1) rotate(15deg);
+    }
+    
+    @media (max-width: 640px) {
+      body {
+        padding: 16px;
       }
-      // WhatsApp links construidos
-      test('WA principal contiene número y nombre', ()=> {
-        const href = document.getElementById('wa').href || '';
-        return href.includes(WA_NUMBER) && href.includes(encodeURIComponent(nombre));
-      });
-      test('WA secundario existe (si hay botón)', ()=> {
-        const el = document.getElementById('wa2');
-        return !el || (el.href && el.href.includes('wa.me'));
-      });
-      // Google Calendar link básico
-      test('GCAL link tiene action=TEMPLATE', ()=> {
-        const el = document.getElementById('gcal');
-        return el && el.href.includes('action=TEMPLATE');
-      });
-      // ICS generado con cabeceras
-      test('ICS contiene BEGIN/END VCALENDAR', ()=> {
-        const el = document.getElementById('ical');
-        return el && el.href && el.download && typeof el.href === 'string';
-      });
-      test('toCal formato UTC básico', ()=> /Z$/.test(toCal(new Date())) );
-      // Personalización de H1
-      test('H1 personalizado con nombre', ()=> document.getElementById('heroTitle') && document.getElementById('heroTitle').textContent.length > 0);
       
-      const pass = results.filter(r=>r.ok).length;
-      console.log(`[UNIT TESTS] ${pass}/${results.length} ok`, results);
-    })();
+      .success-card {
+        padding: 32px 24px;
+      }
+      
+      .success-title {
+        font-size: 24px;
+      }
+      
+      .success-message {
+        font-size: 16px;
+        margin-bottom: 24px;
+      }
+      
+      .contact-btn {
+        min-height: 48px;
+        font-size: 15px;
+        padding: 14px 20px;
+      }
+      
+      .theme-toggle {
+        top: 12px;
+        right: 12px;
+        width: 44px;
+        height: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema">
+    <span data-theme-icon>🌙</span>
+  </button>
+  
+  <div class="page">
+    <div class="success-card">
+      <div class="success-icon">🎉</div>
+      <h1 class="success-title">
+        ¡Gracias<span class="success-name" id="user-name"></span>!
+      </h1>
+      <p class="success-message">
+        Hemos recibido tu información y uno de nuestros ejecutivos se pondrá en contacto contigo en menos de 24 horas para enviarte tu propuesta personalizada de inversión inmobiliaria.
+      </p>
+      
+      <div class="contact-options">
+        <a href="https://wa.me/56966013182?text=Hola!%20Quiero%20más%20información%20sobre%20la%20asesoría%20inmobiliaria" 
+           class="contact-btn whatsapp" 
+           target="_blank" 
+           rel="noopener">
+          <span>📱</span>
+          <span>Conversemos por WhatsApp</span>
+        </a>
+        <a href="mailto:contacto@selectcapital.cl?subject=Consulta%20sobre%20asesoría%20inmobiliaria" 
+           class="contact-btn email">
+          <span>✉️</span>
+          <span>Escríbenos un correo</span>
+        </a>
+      </div>
+      
+      <a href="/" class="back-link">
+        ← Volver al inicio
+      </a>
+    </div>
+  </div>
+  
+  <script>
+    // Obtener nombre desde URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const userName = urlParams.get('name') || urlParams.get('nombre');
+    let cleanName = '';
+    
+    if (userName) {
+      const nameElement = document.getElementById('user-name');
+      cleanName = userName.split(' ')[0]; // Solo primer nombre
+      nameElement.textContent = ', ' + cleanName;
+      
+      // Update WhatsApp link with name
+      const whatsappLink = document.querySelector('.contact-btn.whatsapp');
+      if (whatsappLink) {
+        const message = `Hola! Mi nombre es ${cleanName} y quiero más información sobre la asesoría inmobiliaria.`;
+        whatsappLink.href = `https://wa.me/56966013182?text=${encodeURIComponent(message)}`;
+      }
+    }
+    
+    // Theme toggle
+    const themeToggle = document.querySelector('[data-theme-toggle]');
+    const themeIcon = document.querySelector('[data-theme-icon]');
+    const body = document.body;
+    
+    // Cargar tema guardado
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    body.setAttribute('data-theme', savedTheme);
+    themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    
+    // Toggle tema
+    themeToggle?.addEventListener('click', () => {
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    });
   </script>
   
   <!-- Meta Pixel -->

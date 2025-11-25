@@ -85,11 +85,39 @@ document.addEventListener('DOMContentLoaded', () => {
   function formatPhone(value) {
     if (!value) return '';
     let clean = value.replace(/\D/g, '');
+    
+    // Remove country code if present
     if (clean.startsWith('56')) clean = clean.slice(2);
+    // Remove leading 0 if present
     if (clean.startsWith('0')) clean = clean.slice(1);
-    if (clean.length < 9) return value;
+    
+    // Ensure we have at least 9 digits, pad with 9 at start if needed
+    if (clean.length > 0 && clean.length < 9) {
+      // If it doesn't start with 9, add it (Chile mobile numbers start with 9)
+      if (!clean.startsWith('9')) {
+        clean = '9' + clean;
+      }
+    }
+    
+    // Take only the last 9 digits (in case user entered more)
     clean = clean.slice(-9);
+    
+    // Validate we have exactly 9 digits
+    if (clean.length !== 9 || !clean.startsWith('9')) {
+      return value; // Return original if invalid
+    }
+    
+    // Format as +56 9 xxxx xxxx
     return `+56 ${clean.slice(0,1)} ${clean.slice(1,5)} ${clean.slice(5,9)}`;
+  }
+  
+  // Validate phone format
+  function isValidPhone(value) {
+    if (!value) return false;
+    const clean = value.replace(/\D/g, '');
+    // Must have 9 digits starting with 9, or 11 digits starting with 569
+    return (clean.length === 9 && clean.startsWith('9')) || 
+           (clean.length === 11 && clean.startsWith('569'));
   }
   
   // Capitalize name
@@ -108,12 +136,54 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const form = document.querySelector('.form');
   if (form) {
-    // Phone formatting
+    // Phone formatting with real-time formatting
     const phoneInput = form.querySelector('#telefono');
     if (phoneInput) {
+      // Format on input for better UX
+      phoneInput.addEventListener('input', (e) => {
+        const value = e.target.value;
+        let clean = value.replace(/\D/g, '');
+        
+        // Remove country code if present
+        if (clean.startsWith('56')) clean = clean.slice(2);
+        if (clean.startsWith('0')) clean = clean.slice(1);
+        
+        // Limit to 9 digits
+        clean = clean.slice(0, 9);
+        
+        // Format while typing
+        if (clean.length > 0) {
+          if (!clean.startsWith('9') && clean.length <= 8) {
+            clean = '9' + clean.slice(0, 8);
+          }
+          
+          let formatted = '+56 ' + clean.slice(0, 1);
+          if (clean.length > 1) {
+            formatted += ' ' + clean.slice(1, 5);
+          }
+          if (clean.length > 5) {
+            formatted += ' ' + clean.slice(5, 9);
+          }
+          
+          // Update value only if it changed (to avoid cursor jumping)
+          const selectionStart = phoneInput.selectionStart;
+          if (formatted !== value) {
+            phoneInput.value = formatted;
+            // Try to maintain cursor position
+            const newPos = Math.min(selectionStart + (formatted.length - value.length), formatted.length);
+            phoneInput.setSelectionRange(newPos, newPos);
+          }
+        }
+      });
+      
+      // Final format on blur
       phoneInput.addEventListener('blur', (e) => {
         e.target.value = formatPhone(e.target.value);
       });
+      
+      // Set input mode for mobile keyboards
+      phoneInput.setAttribute('inputmode', 'numeric');
+      phoneInput.setAttribute('pattern', '[0-9]*');
     }
     
     // Email normalization
@@ -154,11 +224,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const nombreInput = form.querySelector('#nombre');
       
       if (telefonoInput) {
-        const formattedPhone = formatPhone(telefonoInput.value);
+        const originalValue = telefonoInput.value;
+        const formattedPhone = formatPhone(originalValue);
         telefonoInput.value = formattedPhone;
         
-        if (!/^\+56\s9\s\d{4}\s\d{4}$/.test(formattedPhone)) {
-          showFormMessage('Por favor, ingresa un número de WhatsApp válido (9 dígitos).', 'error');
+        // Validate using both regex and custom function
+        const isValid = isValidPhone(originalValue) || /^\+56\s9\s\d{4}\s\d{4}$/.test(formattedPhone);
+        
+        if (!isValid) {
+          showFormMessage('Por favor, ingresa un número de WhatsApp válido chileno (9 dígitos, ej: 912345678).', 'error');
           telefonoInput.focus();
           return false;
         }
@@ -252,9 +326,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const result = await response.json();
 
         if (result.ok) {
-          // Success - show message or redirect
-          showFormMessage('¡Gracias! Te contactaremos en menos de 24 horas.', 'success');
-          
           // Track conversion events con event_id para deduplicación
           if (window.fbq) {
             fbq('track', 'Lead', {
@@ -267,10 +338,16 @@ document.addEventListener('DOMContentLoaded', () => {
             window.SelectTracking.trackEvent('form_submit_success', { source: 'home' });
           }
           
-          form.reset();
-          submitBtn.disabled = true;
-          const tsInput = document.getElementById('ts-token');
-          if (tsInput) tsInput.value = '';
+          // Get name for redirect
+          const nombreInput = form.querySelector('#nombre');
+          const nombre = nombreInput ? nombreInput.value.split(' ')[0] : '';
+          
+          // Redirect to gracias page
+          const graciasUrl = nombre 
+            ? `/gracias.html?nombre=${encodeURIComponent(nombre)}`
+            : '/gracias.html';
+          
+          window.location.href = graciasUrl;
         } else {
           throw new Error(result.message || 'Error al enviar el formulario');
         }

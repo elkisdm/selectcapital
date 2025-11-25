@@ -75,6 +75,10 @@ async function run() {
 
   htmlTargets.forEach((relativePath) => {
     const absPath = resolve(projectRoot, relativePath);
+    if (!existsSync(absPath)) {
+      console.log(`Skipping ${relativePath} (file not found)`);
+      return;
+    }
     let content = readFileSync(absPath, 'utf8');
     let updated = content;
 

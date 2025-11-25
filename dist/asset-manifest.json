@@ -9,6 +9,11 @@
     "hash": "6763d234b7",
     "versioned": "lenguaje visual/theme/home.min.css?v=6763d234b7"
   },
+  "lenguaje visual/theme/home-styles.css": {
+    "minPath": "lenguaje visual/theme/home-styles.min.css",
+    "hash": "0919442d2e",
+    "versioned": "lenguaje visual/theme/home-styles.min.css?v=0919442d2e"
+  },
   "lenguaje visual/theme/sc-header-footer.css": {
     "minPath": "lenguaje visual/theme/sc-header-footer.min.css",
     "hash": "507b6d0414",
@@ -18,5 +23,10 @@
     "minPath": "lenguaje visual/theme/theme-toggle.min.js",
     "hash": "52cd60c50c",
     "versioned": "lenguaje visual/theme/theme-toggle.min.js?v=52cd60c50c"
+  },
+  "scripts/home-page.js": {
+    "minPath": "scripts/home-page.min.js",
+    "hash": "e120ef0f41",
+    "versioned": "scripts/home-page.min.js?v=e120ef0f41"
   }
 }
