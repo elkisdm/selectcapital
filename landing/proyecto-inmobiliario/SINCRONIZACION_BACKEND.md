@@ -280,3 +280,5 @@ Para problemas con el backend, revisar:
 
 **Última actualización**: Noviembre 2025
 
+
+

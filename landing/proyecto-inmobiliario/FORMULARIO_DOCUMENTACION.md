@@ -273,3 +273,5 @@ El formulario mapea los campos del frontend a los nombres esperados por el backe
 - Los mensajes de error se muestran dinámicamente en el `.form-footer`
 - El código de error solo se muestra en desarrollo (localhost, 127.0.0.1, o dominios con "dev.")
 
+
+

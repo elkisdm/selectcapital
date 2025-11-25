@@ -74,10 +74,10 @@ function summarize_payload_for_log(array $payload): array {
   return [
     'timestamp' => $payload['timestamp'] ?? date('c'),
     'nombre'    => $payload['nombre'] ?? '',
-    'rut_masked'=> isset($payload['rut']) ? mask_rut((string)$payload['rut']) : '',
+    'rut_masked'=> isset($payload['rut']) && $payload['rut'] !== '' ? mask_rut((string)$payload['rut']) : 'N/A',
     'email_masked' => isset($payload['email']) ? mask_email((string)$payload['email']) : '',
+    'form_version' => $payload['form_version'] ?? 'unknown',
     'hash'      => hash('sha256', json_encode([
-      $payload['rut'] ?? '',
       $payload['email'] ?? '',
       $payload['whatsapp'] ?? '',
     ])),
@@ -280,31 +280,65 @@ foreach ($allowed as $f) {
   }
 }
 
-$required = $cfg['security']['required_fields'] ?? ['nombre','rut','email','whatsapp','objetivo','tipo_ingreso','renta_liquida','capacidad_ahorro_mensual','tiene_ahorro','comunas_interes','canal_preferido','franja_preferida','consentimiento_privacidad','consentimiento_contacto'];
+// Detect form version: landing form has 'renta_rango', home.html has 'renta_liquida'
+$isNewForm = !empty($data['renta_rango']);
+
+// Set required fields based on form version
+if ($isNewForm) {
+  // Landing proyecto form (simplified)
+  $required = $cfg['security']['required_fields_new'] ?? [
+    'nombre', 'whatsapp', 'email',
+    'renta_rango', 'complemento_renta', 'situacion_financiera', 'capacidad_ahorro',
+    'canal_preferido', 'consentimiento_privacidad', 'consentimiento_contacto'
+  ];
+} else {
+  // home.html form (legacy wizard)
+  $required = $cfg['security']['required_fields_legacy'] ?? [
+    'nombre', 'rut', 'whatsapp', 'email',
+    'objetivo', 'tipo_ingreso', 'renta_liquida', 'capacidad_ahorro_mensual',
+    'tiene_ahorro', 'comunas_interes', 'canal_preferido', 'franja_preferida',
+    'consentimiento_privacidad', 'consentimiento_contacto'
+  ];
+}
+
+// Validate required fields
 foreach ($required as $f) {
   // capacidad_ahorro_mensual can be '0' which is valid
   if ($f === 'capacidad_ahorro_mensual' && isset($data[$f]) && $data[$f] === '0') {
     continue;
   }
   if (empty($data[$f])) {
-    fail(400, "Falta el campo requerido: $f");
+    app_log("MISSING_REQUIRED_FIELD field={$f} form_type=" . ($isNewForm ? 'new' : 'legacy'), 'WARNING');
+    fail(400, "Falta el campo requerido: {$f}");
   }
 }
 
+// Validate email
 if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) fail(400, 'Email inválido.');
-if (!preg_match('/^(?:\+?56\s?)?9\s?\d{4}\s?\d{4}$/', $data['whatsapp'])) fail(400, 'WhatsApp inválido. Usa +56 9 xxxx xxxx');
 
-$tieneAhorro = strtolower($data['tiene_ahorro'] ?? '') === 'si';
-if ($tieneAhorro && empty($data['monto_ahorro'])) {
-  fail(400, 'Ingresa el monto de ahorro disponible.');
-}
-if (!$tieneAhorro) {
-  $data['monto_ahorro'] = '0';
+// Validate WhatsApp (flexible format)
+$whatsapp = $data['whatsapp'] ?? '';
+if (!preg_match('/^(?:\+?56\s?)?9\s?\d{4}\s?\d{4}$/', $whatsapp)) {
+  fail(400, 'WhatsApp inválido. Usa +56 9 xxxx xxxx');
 }
 
-// capacidad_ahorro_mensual is required but can be '0' if not specified
-if (empty($data['capacidad_ahorro_mensual'])) {
-  $data['capacidad_ahorro_mensual'] = '0';
+// Validate RUT for legacy form
+if (!$isNewForm && !empty($data['rut'])) {
+  $cleanRut = preg_replace('/[^0-9kK]/', '', strtoupper($data['rut']));
+  if (strlen($cleanRut) < 8 || strlen($cleanRut) > 9) {
+    fail(400, 'RUT inválido. Usa formato 12.345.678-9');
+  }
+}
+
+// Normalize optional fields for legacy compatibility
+if (!$isNewForm) {
+  $tieneAhorro = strtolower($data['tiene_ahorro'] ?? '') === 'si';
+  if (!$tieneAhorro) {
+    $data['monto_ahorro'] = '0';
+  }
+  if (empty($data['capacidad_ahorro_mensual'])) {
+    $data['capacidad_ahorro_mensual'] = '0';
+  }
 }
 
 // Turnstile verification (skip in development)
@@ -347,35 +381,70 @@ $maskOctets = (int)($cfg['privacy']['mask_ip_octets'] ?? 1);
 $clientIp   = anonymize_ip($_SERVER['REMOTE_ADDR'] ?? '', $maskOctets);
 $clientUa   = should_log_user_agent() ? (string)($_SERVER['HTTP_USER_AGENT'] ?? '') : '';
 
-$payload = [
-  'timestamp' => date('c'),
-  'nombre'    => $data['nombre'],
-  'rut'       => $data['rut'],
-  'email'     => $data['email'],
-  'whatsapp'  => $data['whatsapp'],
-  'objetivo'  => $data['objetivo'],
-  'tipo_ingreso' => $data['tipo_ingreso'],
-  'tipo_contrato' => $data['tipo_contrato'] ?? '',
-  'tipo_ingreso_independiente' => $data['tipo_ingreso_independiente'] ?? '',
-  'renta_liquida' => $data['renta_liquida'],
-  'capacidad_ahorro_mensual' => $data['capacidad_ahorro_mensual'],
-  'tiene_ahorro' => $data['tiene_ahorro'],
-  'monto_ahorro' => $data['monto_ahorro'],
-  'comunas_interes' => $data['comunas_interes'],
-  'comentarios' => $data['comentarios'] ?? '',
-  'canal_preferido' => $data['canal_preferido'],
-  'franja_preferida' => $data['franja_preferida'],
-  'consentimiento_privacidad' => $data['consentimiento_privacidad'],
-  'consentimiento_contacto' => $data['consentimiento_contacto'],
-  'utm_source'=> $data['utm_source'] ?? '',
-  'utm_medium'=> $data['utm_medium'] ?? '',
-  'utm_campaign'=> $data['utm_campaign'] ?? '',
-  'gclid'     => $data['gclid'] ?? '',
-  'fbclid'    => $data['fbclid'] ?? '',
-  'ttclid'    => $data['ttclid'] ?? '',
-  'ip'        => $clientIp,
-  'ua'        => $clientUa,
-];
+// Build payload based on form version
+if ($isNewForm) {
+  // New simplified form payload
+  $payload = [
+    'timestamp' => date('c'),
+    'nombre'    => $data['nombre'],
+    'email'     => $data['email'],
+    'whatsapp'  => $data['whatsapp'],
+    'proyecto'  => $data['proyecto'] ?? 'Santiago Centro',
+    'objetivo'  => $data['objetivo'] ?? 'inversion',
+    // Financial qualification
+    'renta_rango' => $data['renta_rango'],
+    'complemento_renta' => $data['complemento_renta'],
+    'situacion_financiera' => $data['situacion_financiera'],
+    'capacidad_ahorro' => $data['capacidad_ahorro'],
+    // Contact preference
+    'canal_preferido' => $data['canal_preferido'],
+    // Consent
+    'consentimiento_privacidad' => $data['consentimiento_privacidad'],
+    'consentimiento_contacto' => $data['consentimiento_contacto'],
+    // Tracking
+    'utm_source'=> $data['utm_source'] ?? '',
+    'utm_medium'=> $data['utm_medium'] ?? '',
+    'utm_campaign'=> $data['utm_campaign'] ?? '',
+    'gclid'     => $data['gclid'] ?? '',
+    'fbclid'    => $data['fbclid'] ?? '',
+    'ttclid'    => $data['ttclid'] ?? '',
+    'ip'        => $clientIp,
+    'ua'        => $clientUa,
+    'form_version' => 'v2_simplified',
+  ];
+} else {
+  // Legacy form payload
+  $payload = [
+    'timestamp' => date('c'),
+    'nombre'    => $data['nombre'],
+    'rut'       => $data['rut'] ?? '',
+    'email'     => $data['email'],
+    'whatsapp'  => $data['whatsapp'],
+    'objetivo'  => $data['objetivo'] ?? '',
+    'tipo_ingreso' => $data['tipo_ingreso'] ?? '',
+    'tipo_contrato' => $data['tipo_contrato'] ?? '',
+    'tipo_ingreso_independiente' => $data['tipo_ingreso_independiente'] ?? '',
+    'renta_liquida' => $data['renta_liquida'] ?? '',
+    'capacidad_ahorro_mensual' => $data['capacidad_ahorro_mensual'] ?? '0',
+    'tiene_ahorro' => $data['tiene_ahorro'] ?? '',
+    'monto_ahorro' => $data['monto_ahorro'] ?? '0',
+    'comunas_interes' => $data['comunas_interes'] ?? '',
+    'comentarios' => $data['comentarios'] ?? '',
+    'canal_preferido' => $data['canal_preferido'] ?? '',
+    'franja_preferida' => $data['franja_preferida'] ?? '',
+    'consentimiento_privacidad' => $data['consentimiento_privacidad'],
+    'consentimiento_contacto' => $data['consentimiento_contacto'],
+    'utm_source'=> $data['utm_source'] ?? '',
+    'utm_medium'=> $data['utm_medium'] ?? '',
+    'utm_campaign'=> $data['utm_campaign'] ?? '',
+    'gclid'     => $data['gclid'] ?? '',
+    'fbclid'    => $data['fbclid'] ?? '',
+    'ttclid'    => $data['ttclid'] ?? '',
+    'ip'        => $clientIp,
+    'ua'        => $clientUa,
+    'form_version' => 'v1_legacy',
+  ];
+}
 
 // Persist to Google Sheets via Apps Script (skip network in development)
 if ($env === 'production') {
@@ -412,21 +481,53 @@ if (!empty($cfg['email']['enabled'])) {
   $to = $cfg['email']['notify_to'];
   $cleanNombre = sanitize_header_value($data['nombre']);
   $subj = ($cfg['email']['subject_prefix'] ?? '[Nueva solicitud]') . ' ' . $cleanNombre;
-  $body = "Nombre: {$data['nombre']}\nRUT: {$data['rut']}\nEmail: {$data['email']}\nWhatsApp: {$data['whatsapp']}\n"
-        . "Objetivo: {$data['objetivo']}\nTipo Ingreso: {$data['tipo_ingreso']}\n"
-        . "Renta Líquida: {$data['renta_liquida']}\nCapacidad Ahorro Mensual: {$data['capacidad_ahorro_mensual']}\nTiene Ahorro: {$data['tiene_ahorro']}\nMonto Ahorro: {$data['monto_ahorro']}\n"
-        . "Comunas: {$data['comunas_interes']}\nComentarios: {$data['comentarios']}\n"
-        . "Canal Preferido: {$data['canal_preferido']}\nFranja: {$data['franja_preferida']}\n"
-        . "UTM: {$data['utm_source']} / {$data['utm_medium']} / {$data['utm_campaign']}\n"
+  
+  if ($isNewForm) {
+    // New form email body
+    $body = "=== NUEVO LEAD (Formulario Simplificado) ===\n\n"
+          . "DATOS DE CONTACTO\n"
+          . "Nombre: {$data['nombre']}\n"
+          . "Email: {$data['email']}\n"
+          . "WhatsApp: {$data['whatsapp']}\n"
+          . "Contactar por: {$data['canal_preferido']}\n\n"
+          . "CALIFICACIÓN FINANCIERA\n"
+          . "Renta mensual: {$data['renta_rango']}\n"
+          . "Complemento renta: {$data['complemento_renta']}\n"
+          . "Situación financiera: {$data['situacion_financiera']}\n"
+          . "Capacidad ahorro mensual: {$data['capacidad_ahorro']}\n\n"
+          . "PROYECTO\n"
+          . "Interés: " . ($data['proyecto'] ?? 'Santiago Centro') . "\n"
+          . "Objetivo: " . ($data['objetivo'] ?? 'inversión') . "\n\n";
+  } else {
+    // Legacy form email body
+    $body = "=== NUEVO LEAD (Formulario Legacy) ===\n\n"
+          . "Nombre: {$data['nombre']}\n"
+          . "RUT: " . ($data['rut'] ?? 'N/A') . "\n"
+          . "Email: {$data['email']}\n"
+          . "WhatsApp: {$data['whatsapp']}\n"
+          . "Objetivo: " . ($data['objetivo'] ?? 'N/A') . "\n"
+          . "Tipo Ingreso: " . ($data['tipo_ingreso'] ?? 'N/A') . "\n"
+          . "Renta Líquida: " . ($data['renta_liquida'] ?? 'N/A') . "\n"
+          . "Capacidad Ahorro: " . ($data['capacidad_ahorro_mensual'] ?? '0') . "\n"
+          . "Tiene Ahorro: " . ($data['tiene_ahorro'] ?? 'N/A') . "\n"
+          . "Monto Ahorro: " . ($data['monto_ahorro'] ?? '0') . "\n"
+          . "Comunas: " . ($data['comunas_interes'] ?? 'N/A') . "\n"
+          . "Canal Preferido: " . ($data['canal_preferido'] ?? 'N/A') . "\n"
+          . "Franja: " . ($data['franja_preferida'] ?? 'N/A') . "\n\n";
+  }
+  
+  // Common footer
+  $body .= "TRACKING\n"
+        . "UTM: " . ($data['utm_source'] ?? '') . " / " . ($data['utm_medium'] ?? '') . " / " . ($data['utm_campaign'] ?? '') . "\n"
         . "IP (truncada): {$payload['ip']}\n";
 
   if ($clientUa !== '') {
     $body .= "UA: {$payload['ua']}\n";
-  } else {
-    $body .= "UA: (no almacenado por políticas de privacidad)\n";
   }
 
-  $body .= "Fecha: {$payload['timestamp']}\n";
+  $body .= "Fecha: {$payload['timestamp']}\n"
+        . "Versión form: {$payload['form_version']}\n";
+        
   $headers = 'From: ' . ($cfg['email']['from_name'] ?? 'Select Capital') . ' <' . ($cfg['email']['from_address'] ?? 'no-reply@selectcapital.cl') . '>';
   $mailSent = mail($to, $subj, $body, $headers);
   if (!$mailSent) {

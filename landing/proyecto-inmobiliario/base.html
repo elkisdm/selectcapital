@@ -539,130 +539,91 @@
 
           <form class="form" action="/submit.php" method="post">
             <div class="form-grid">
+              <!-- Datos de contacto básicos -->
               <div class="field">
                 <label for="nombre">
                   <span>Nombre completo</span>
                 </label>
-                <input id="nombre" name="nombre" type="text" placeholder="Ej: Ana Pérez" required />
-                </div>
-
-              <div class="field">
-                <label for="rut">
-                  <span>RUT</span>
-                </label>
-                <input id="rut" name="rut" type="text" placeholder="Ej: 12.345.678-9" required />
-                </div>
+                <input id="nombre" name="nombre" type="text" placeholder="Nombre y apellido" required />
+              </div>
 
               <div class="field">
                 <label for="telefono">
                   <span>Teléfono WhatsApp</span>
                 </label>
-                <input id="telefono" name="telefono" type="tel" placeholder="+56 9 ..." required />
-                  </div>
+                <input id="telefono" name="telefono" type="tel" placeholder="+56 9 1234 5678" required />
+              </div>
 
-              <div class="field">
+              <div class="field" style="grid-column: 1 / -1;">
                 <label for="correo">
                   <span>Correo electrónico</span>
                 </label>
                 <input id="correo" name="correo" type="email" placeholder="tu@correo.cl" required />
-                </div>
+              </div>
 
-              <div class="field">
-                <label>
-                  <span>Objetivo</span>
-                </label>
-                <div class="option-grid" role="radiogroup" aria-label="Objetivo">
-                  <label class="option-card" data-value="invertir">
-                    <input type="radio" id="objetivo-invertir" name="objetivo" value="invertir" required />
-                    <span class="option-icon" aria-hidden="true">💼</span>
-                    <strong>Invertir para renta</strong>
-                    <p>Buscas generar ingresos y construir patrimonio.</p>
-                  </label>
-                  <label class="option-card" data-value="vivir">
-                    <input type="radio" id="objetivo-vivir" name="objetivo" value="vivir" required />
-                    <span class="option-icon" aria-hidden="true">🏠</span>
-                    <strong>Comprar para vivir</strong>
-                    <p>Buscas tu próxima vivienda para uso propio.</p>
-                  </label>
-                  <label class="option-card" data-value="no-se">
-                    <input type="radio" id="objetivo-no-se" name="objetivo" value="no-se" required />
-                    <span class="option-icon" aria-hidden="true">❔</span>
-                    <strong>Aún no lo tengo claro</strong>
-                    <p>Te ayudamos a descubrir qué te conviene hoy.</p>
-                  </label>
-                </div>
-                </div>
-
+              <!-- Preguntas de calificación financiera -->
               <div class="field">
                 <label for="renta">
-                  <span>Renta líquida mensual (CLP)</span>
+                  <span>¿Cuál es tu renta mensual promedio?</span>
                 </label>
-                <input id="renta" name="renta" type="text" placeholder="Promedio mensual" required />
+                <select id="renta" name="renta" required>
+                  <option value="" disabled selected>Selecciona un rango</option>
+                  <option value="menos-1200">Menos de $1.200.000</option>
+                  <option value="1200-1600">$1.200.000 - $1.600.000</option>
+                  <option value="1600-2000">$1.600.000 - $2.000.000</option>
+                  <option value="2000-2500">$2.000.000 - $2.500.000</option>
+                  <option value="2500-3000">$2.500.000 - $3.000.000</option>
+                  <option value="mas-3000">Más de $3.000.000</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="complemento">
+                  <span>¿Puedes complementar renta?</span>
+                </label>
+                <select id="complemento" name="complemento" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="si-mas-1m">Sí, y gana más de $1.000.000</option>
+                  <option value="no">No tengo complemento</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="situacion">
+                  <span>¿Cuál es tu situación financiera?</span>
+                </label>
+                <select id="situacion" name="situacion" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="sin-deudas">No poseo deudas y no estoy en Dicom</option>
+                  <option value="con-deudas">Poseo deuda hipotecaria o de consumo</option>
+                  <option value="dicom">Me encuentro en Dicom</option>
+                </select>
               </div>
 
               <div class="field">
                 <label for="ahorro">
-                  <span>Ahorros disponibles para pie</span>
+                  <span>¿Cuál es tu capacidad de ahorro mensual?</span>
                 </label>
-                <input id="ahorro" name="ahorro" type="text" placeholder="Monto aprox. o 'No tengo'" required />
-                </div>
+                <select id="ahorro" name="ahorro" required>
+                  <option value="" disabled selected>Selecciona un rango</option>
+                  <option value="sin-ahorro">No tengo capacidad de ahorro</option>
+                  <option value="100-200">$100.000 - $200.000</option>
+                  <option value="200-400">$200.000 - $400.000</option>
+                  <option value="mas-400">Más de $400.000</option>
+                </select>
+              </div>
 
-              <div class="field">
-                <label>
-                  <span>Tipo de propiedad de interés</span>
-                </label>
-                <div class="option-grid" role="radiogroup" aria-label="Tipo de propiedad">
-                  <label class="option-card" data-value="studio">
-                    <input type="radio" id="tipo-studio" name="tipo" value="studio" required />
-                    <span class="option-icon" aria-hidden="true">🏢</span>
-                    <strong>Studio</strong>
-                    <p>Espacio compacto ideal para profesionales.</p>
-                  </label>
-                  <label class="option-card" data-value="1d">
-                    <input type="radio" id="tipo-1d" name="tipo" value="1d" required />
-                    <span class="option-icon" aria-hidden="true">🏡</span>
-                    <strong>1 Dormitorio</strong>
-                    <p>Ideal para solteros o parejas jóvenes.</p>
-                  </label>
-                  <label class="option-card" data-value="2d">
-                    <input type="radio" id="tipo-2d" name="tipo" value="2d" required />
-                    <span class="option-icon" aria-hidden="true">🏘️</span>
-                    <strong>2 Dormitorios</strong>
-                    <p>Mayor espacio para familia pequeña.</p>
-                  </label>
-                  <label class="option-card" data-value="todas">
-                    <input type="radio" id="tipo-todas" name="tipo" value="todas" required />
-                    <span class="option-icon" aria-hidden="true">🔍</span>
-                    <strong>Todas las opciones</strong>
-                    <p>Quiero ver todas las tipologías disponibles.</p>
-                  </label>
-                </div>
-                </div>
-
-              <div class="field">
-                <label>
+              <!-- Preferencia de contacto simplificada -->
+              <div class="field" style="grid-column: 1 / -1;">
+                <label for="contacto">
                   <span>¿Cómo prefieres que te contactemos?</span>
                 </label>
-                <div class="contact-options" role="radiogroup" aria-label="Preferencia de contacto">
-                  <label class="option-card" data-value="whatsapp">
-                    <input type="radio" id="contacto-whatsapp" name="contacto-preferencia" value="whatsapp" required />
-                    <span class="option-icon" aria-hidden="true">💬</span>
-                    <strong>WhatsApp</strong>
-                    <p>Respuesta rápida y directa.</p>
-                  </label>
-                  <label class="option-card" data-value="email">
-                    <input type="radio" id="contacto-email" name="contacto-preferencia" value="email" required />
-                    <span class="option-icon" aria-hidden="true">✉️</span>
-                    <strong>Correo</strong>
-                    <p>Recibe información detallada por email.</p>
-                  </label>
-                  <label class="option-card" data-value="llamada">
-                    <input type="radio" id="contacto-llamada" name="contacto-preferencia" value="llamada" required />
-                    <span class="option-icon" aria-hidden="true">📞</span>
-                    <strong>Llamada</strong>
-                    <p>Prefieres hablar directamente.</p>
-                  </label>
-                </div>
+                <select id="contacto" name="contacto" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="whatsapp">WhatsApp</option>
+                  <option value="llamada">Llamada telefónica</option>
+                  <option value="email">Correo electrónico</option>
+                </select>
               </div>
                 </div>
 
@@ -857,189 +818,41 @@
         }
 
         // ============================================
-        // FORM FIELD NORMALIZATION FUNCTIONS
+        // FORM FIELD HELPERS
         // ============================================
         
-        // Normalize RUT: Format to 12.345.678-9 and validate
-        function normalizeRUT(value) {
+        // Format phone: +56 9 xxxx xxxx (on blur)
+        function formatPhone(value) {
           if (!value) return '';
-          
-          // Remove all non-alphanumeric except dots and dash
-          let clean = value.replace(/[^0-9kK\.-]/g, '');
-          
-          // Extract number and digit
-          const parts = clean.split('-');
-          let number = parts[0]?.replace(/\./g, '') || '';
-          let digit = parts[1] || '';
-          
-          // If no dash, try to extract last character as digit
-          if (!digit && number.length > 0) {
-            const lastChar = number.slice(-1);
-            if (lastChar.toLowerCase() === 'k' || lastChar === '0') {
-              digit = lastChar;
-              number = number.slice(0, -1);
-            } else if (number.length > 1) {
-              digit = number.slice(-1);
-              number = number.slice(0, -1);
-            }
-          }
-          
-          // Format number with dots
-          if (number) {
-            number = number.replace(/\D/g, '');
-            const formatted = number.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-            return digit ? `${formatted}-${digit.toUpperCase()}` : formatted;
-          }
-          
-          return clean;
-        }
-        
-        // Validate RUT digit
-        function validateRUT(rut) {
-          if (!rut) return false;
-          
-          const clean = rut.replace(/\./g, '').replace(/-/g, '');
-          if (clean.length < 8 || clean.length > 10) return false;
-          
-          const number = clean.slice(0, -1);
-          const digit = clean.slice(-1).toUpperCase();
-          
-          let sum = 0;
-          let multiplier = 2;
-          
-          for (let i = number.length - 1; i >= 0; i--) {
-            sum += parseInt(number[i]) * multiplier;
-            multiplier = multiplier === 7 ? 2 : multiplier + 1;
-          }
-          
-          const remainder = sum % 11;
-          const calculatedDigit = remainder < 2 ? remainder.toString() : (11 - remainder).toString();
-          const expectedDigit = calculatedDigit === '11' ? '0' : calculatedDigit === '10' ? 'K' : calculatedDigit;
-          
-          return digit === expectedDigit;
-        }
-        
-        // Normalize phone/WhatsApp: Format to +56 9 xxxx xxxx
-        function normalizePhone(value) {
-          if (!value) return '';
-          
-          // Remove all non-digits
           let clean = value.replace(/\D/g, '');
-          
-          // If starts with 56, keep it; otherwise assume it's a Chilean number
-          if (clean.startsWith('56')) {
-            clean = clean.substring(2);
-          }
-          
-          // Remove leading 0 if present
-          if (clean.startsWith('0')) {
-            clean = clean.substring(1);
-          }
-          
-          // Ensure it starts with 9 (Chilean mobile)
-          if (!clean.startsWith('9') && clean.length >= 8) {
-            clean = '9' + clean;
-          }
-          
-          // Format: +56 9 xxxx xxxx
-          if (clean.length >= 8) {
-            const area = clean.substring(0, 1); // 9
-            const part1 = clean.substring(1, 5); // xxxx
-            const part2 = clean.substring(5, 9); // xxxx
-            return `+56 ${area} ${part1} ${part2}`.trim();
-          }
-          
-          return value; // Return as-is if can't format
+          if (clean.startsWith('56')) clean = clean.slice(2);
+          if (clean.startsWith('0')) clean = clean.slice(1);
+          if (clean.length < 9) return value;
+          clean = clean.slice(-9);
+          return `+56 ${clean.slice(0,1)} ${clean.slice(1,5)} ${clean.slice(5,9)}`;
         }
         
-        // Normalize email: trim and lowercase
-        function normalizeEmail(value) {
+        // Capitalize name
+        function formatName(value) {
           if (!value) return '';
-          return value.trim().toLowerCase();
-        }
-        
-        // Normalize name: Proper capitalization
-        function normalizeName(value) {
-          if (!value) return '';
-          
-          return value
-            .trim()
-            .split(/\s+/)
-            .map(word => {
-              if (word.length === 0) return '';
-              // Handle special prefixes (de, del, la, etc.)
-              const lowerWords = ['de', 'del', 'la', 'las', 'los', 'el', 'y', 'e'];
-              if (lowerWords.includes(word.toLowerCase())) {
-                return word.toLowerCase();
-              }
-              // Capitalize first letter, lowercase rest
-              return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-            })
-            .join(' ');
-        }
-        
-        // Normalize number: Remove formatting, keep only digits
-        function normalizeNumber(value) {
-          if (!value) return '';
-          // Remove all non-digits except decimal point
-          return value.replace(/[^\d]/g, '');
-        }
-        
-        // Format number with thousands separator
-        function formatNumber(value) {
-          if (!value) return '';
-          const clean = normalizeNumber(value);
-          if (!clean) return '';
-          return clean.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+          const lower = ['de', 'del', 'la', 'las', 'los', 'el', 'y', 'e'];
+          return value.trim().split(/\s+/).map((w, i) => {
+            if (i > 0 && lower.includes(w.toLowerCase())) return w.toLowerCase();
+            return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+          }).join(' ');
         }
         
         // ============================================
-        // APPLY NORMALIZATION TO FORM FIELDS
+        // APPLY FIELD FORMATTING
         // ============================================
         
         const form = document.querySelector('.form');
         if (form) {
-          // RUT normalization
-          const rutInput = form.querySelector('#rut');
-          if (rutInput) {
-            rutInput.addEventListener('input', (e) => {
-              const normalized = normalizeRUT(e.target.value);
-              if (normalized !== e.target.value) {
-                const cursorPos = e.target.selectionStart;
-                e.target.value = normalized;
-                // Try to maintain cursor position
-                const newPos = Math.min(cursorPos, normalized.length);
-                e.target.setSelectionRange(newPos, newPos);
-              }
-            });
-            
-            rutInput.addEventListener('blur', (e) => {
-              const normalized = normalizeRUT(e.target.value);
-              if (normalized && !validateRUT(normalized)) {
-                e.target.style.borderColor = 'rgba(248, 113, 113, 0.5)';
-              } else {
-                e.target.style.borderColor = '';
-              }
-              e.target.value = normalized;
-            });
-          }
-          
-          // Phone normalization
+          // Phone formatting
           const phoneInput = form.querySelector('#telefono');
           if (phoneInput) {
-            phoneInput.addEventListener('input', (e) => {
-              const normalized = normalizePhone(e.target.value);
-              if (normalized !== e.target.value) {
-                const cursorPos = e.target.selectionStart;
-                e.target.value = normalized;
-                const newPos = Math.min(cursorPos, normalized.length);
-                e.target.setSelectionRange(newPos, newPos);
-              }
-            });
-            
             phoneInput.addEventListener('blur', (e) => {
-              const normalized = normalizePhone(e.target.value);
-              e.target.value = normalized;
+              e.target.value = formatPhone(e.target.value);
             });
           }
           
@@ -1047,58 +860,22 @@
           const emailInput = form.querySelector('#correo');
           if (emailInput) {
             emailInput.addEventListener('blur', (e) => {
-              e.target.value = normalizeEmail(e.target.value);
+              e.target.value = e.target.value.trim().toLowerCase();
             });
           }
           
-          // Name normalization
+          // Name capitalization
           const nameInput = form.querySelector('#nombre');
           if (nameInput) {
             nameInput.addEventListener('blur', (e) => {
-              e.target.value = normalizeName(e.target.value);
-            });
-          }
-          
-          // Number formatting for renta
-          const rentaInput = form.querySelector('#renta');
-          if (rentaInput) {
-            rentaInput.addEventListener('input', (e) => {
-              const clean = normalizeNumber(e.target.value);
-              if (clean) {
-                const formatted = formatNumber(clean);
-                if (formatted !== e.target.value) {
-                  const cursorPos = e.target.selectionStart;
-                  e.target.value = formatted;
-                  const newPos = Math.min(cursorPos, formatted.length);
-                  e.target.setSelectionRange(newPos, newPos);
-                }
-              }
-            });
-          }
-          
-          // Ahorro field (allow text like "No tengo")
-          const ahorroInput = form.querySelector('#ahorro');
-          if (ahorroInput) {
-            ahorroInput.addEventListener('input', (e) => {
-              const value = e.target.value;
-              // If it's not "no tengo" or similar, format as number
-              if (!/no\s+tengo/i.test(value) && /\d/.test(value)) {
-                const clean = normalizeNumber(value);
-                if (clean) {
-                  const formatted = formatNumber(clean);
-                  if (formatted !== value) {
-                    const cursorPos = e.target.selectionStart;
-                    e.target.value = formatted;
-                    const newPos = Math.min(cursorPos, formatted.length);
-                    e.target.setSelectionRange(newPos, newPos);
-                  }
-                }
-              }
+              e.target.value = formatName(e.target.value);
             });
           }
         }
         
-        // Form validation and submission
+        // ============================================
+        // FORM SUBMISSION
+        // ============================================
         const submitBtn = document.getElementById('form-submit-btn');
         
         if (form && submitBtn) {
@@ -1111,133 +888,59 @@
               return false;
             }
 
-            // Normalize all fields before validation
-            const rutInput = form.querySelector('#rut');
+            // Format fields
             const telefonoInput = form.querySelector('#telefono');
             const correoInput = form.querySelector('#correo');
             const nombreInput = form.querySelector('#nombre');
-            const rentaInput = form.querySelector('#renta');
-            const ahorroInput = form.querySelector('#ahorro');
             
-            // Normalize RUT
-            if (rutInput) {
-              const normalizedRUT = normalizeRUT(rutInput.value);
-              rutInput.value = normalizedRUT;
-              
-              if (normalizedRUT && !validateRUT(normalizedRUT)) {
-                showFormMessage('Por favor, ingresa un RUT válido. El dígito verificador no es correcto.', 'error');
-                rutInput.focus();
-                return false;
-              }
-              
-              if (normalizedRUT) {
-                const cleanRut = normalizedRUT.replace(/\./g, '').replace(/-/g, '');
-                if (cleanRut.length < 8 || cleanRut.length > 10) {
-                  showFormMessage('Por favor, ingresa un RUT válido en formato: 12.345.678-9', 'error');
-                  rutInput.focus();
-                  return false;
-                }
-              }
-            }
-            
-            // Normalize phone
             if (telefonoInput) {
-              const normalizedPhone = normalizePhone(telefonoInput.value);
-              telefonoInput.value = normalizedPhone;
+              const formattedPhone = formatPhone(telefonoInput.value);
+              telefonoInput.value = formattedPhone;
               
-              const whatsappPattern = /^\+56\s9\s\d{4}\s\d{4}$/;
-              if (normalizedPhone && !whatsappPattern.test(normalizedPhone)) {
-                showFormMessage('Por favor, ingresa un número de WhatsApp válido en formato: +56 9 xxxx xxxx', 'error');
+              if (!/^\+56\s9\s\d{4}\s\d{4}$/.test(formattedPhone)) {
+                showFormMessage('Por favor, ingresa un número de WhatsApp válido (9 dígitos).', 'error');
                 telefonoInput.focus();
                 return false;
               }
             }
             
-            // Normalize email
-            if (correoInput) {
-              correoInput.value = normalizeEmail(correoInput.value);
-            }
-            
-            // Normalize name
-            if (nombreInput) {
-              nombreInput.value = normalizeName(nombreInput.value);
-            }
-            
-            // Normalize numbers (remove formatting for backend)
-            if (rentaInput) {
-              rentaInput.dataset.originalValue = rentaInput.value; // Store formatted for display
-            }
-            
-            if (ahorroInput) {
-              const ahorroValue = ahorroInput.value;
-              if (!/no\s+tengo/i.test(ahorroValue) && /\d/.test(ahorroValue)) {
-                ahorroInput.dataset.originalValue = ahorroValue; // Store formatted
-              }
-            }
+            if (correoInput) correoInput.value = correoInput.value.trim().toLowerCase();
+            if (nombreInput) nombreInput.value = formatName(nombreInput.value);
 
-            // Disable button and show loading state
+            // Disable button and show loading
             submitBtn.disabled = true;
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<span class="btn-primary-icon">⏳</span><span>Enviando...</span>';
             submitBtn.style.opacity = '0.7';
             submitBtn.style.cursor = 'not-allowed';
 
-            // Remove any existing messages
             removeFormMessages();
 
             try {
-              // Create FormData and map fields to backend expected format
               const formData = new FormData();
               
-              // Map form fields to backend expected fields (using normalized values)
+              // Contact info
               formData.append('nombre', form.querySelector('#nombre')?.value || '');
-              formData.append('rut', form.querySelector('#rut')?.value || '');
               formData.append('email', form.querySelector('#correo')?.value || '');
               formData.append('whatsapp', form.querySelector('#telefono')?.value || '');
-              // Get objetivo from radio button
-              const objetivoRadio = form.querySelector('input[name="objetivo"]:checked');
-              formData.append('objetivo', objetivoRadio?.value || '');
-              formData.append('tipo_ingreso', 'dependiente'); // Default value (form doesn't have this field)
               
-              // Send renta as clean number (without formatting)
-              const rentaValue = form.querySelector('#renta')?.value || '';
-              formData.append('renta_liquida', normalizeNumber(rentaValue) || '');
+              // Financial qualification
+              formData.append('renta_rango', form.querySelector('#renta')?.value || '');
+              formData.append('complemento_renta', form.querySelector('#complemento')?.value || '');
+              formData.append('situacion_financiera', form.querySelector('#situacion')?.value || '');
+              formData.append('capacidad_ahorro', form.querySelector('#ahorro')?.value || '');
               
-              // Handle ahorro field
-              const ahorroValue = form.querySelector('#ahorro')?.value || '';
-              const tieneAhorro = /no\s+tengo/i.test(ahorroValue) ? 'no' : 'si';
-              formData.append('tiene_ahorro', tieneAhorro);
-              // Send ahorro as clean number if it's a number, otherwise as text
-              let ahorroNumerico = '0';
-              if (tieneAhorro === 'si' && /\d/.test(ahorroValue)) {
-                ahorroNumerico = normalizeNumber(ahorroValue) || '0';
-                formData.append('monto_ahorro', ahorroNumerico);
-              } else {
-                formData.append('monto_ahorro', '0');
-              }
-              // capacidad_ahorro_mensual uses same value as monto_ahorro
-              formData.append('capacidad_ahorro_mensual', ahorroNumerico);
+              // Contact preference
+              formData.append('canal_preferido', form.querySelector('#contacto')?.value || 'whatsapp');
               
-              formData.append('comunas_interes', 'Santiago Centro'); // Project location
-              // Get canal_preferido from radio button
-              const contactoRadio = form.querySelector('input[name="contacto-preferencia"]:checked');
-              formData.append('canal_preferido', contactoRadio?.value || 'whatsapp');
+              // Fixed values
+              formData.append('proyecto', 'Santiago Centro');
+              formData.append('objetivo', 'inversion');
               
-              // Get tipo from radio button
-              const tipoRadio = form.querySelector('input[name="tipo"]:checked');
-              formData.append('tipo_ingreso_independiente', tipoRadio?.value || '');
-              formData.append('franja_preferida', 'flexible'); // Default value (form doesn't have this field)
-              formData.append('consentimiento_privacidad', form.querySelector('#terminos')?.checked ? 'si' : 'no');
-              formData.append('consentimiento_contacto', form.querySelector('#terminos')?.checked ? 'si' : 'no');
-              
-              // Add tipo as comentarios for reference
-              const tipoValue = form.querySelector('#tipo')?.value || '';
-              if (tipoValue) {
-                formData.append('comentarios', `Tipo de propiedad de interés: ${tipoValue}`);
-              }
-              
-              // Add tipo_contrato (optional field)
-              formData.append('tipo_contrato', '');
+              // Consent
+              const terminos = form.querySelector('#terminos')?.checked;
+              formData.append('consentimiento_privacidad', terminos ? 'si' : 'no');
+              formData.append('consentimiento_contacto', terminos ? 'si' : 'no');
               
               // Add Turnstile token
               formData.append('cf-turnstile-response', tokenInput.value);
@@ -1417,34 +1120,6 @@
         });
       });
 
-        // Initialize theme icons
-        syncThemeIcons();
-
-        // Option Cards Interaction Handler
-        document.querySelectorAll('.option-card').forEach(card => {
-          const radio = card.querySelector('input[type="radio"]');
-          
-          // Update card appearance when radio is checked/unchecked
-          radio.addEventListener('change', () => {
-            // Remove selected class from all cards in the same group
-            const group = card.closest('.option-grid, .option-cards, .contact-options');
-            if (group) {
-              group.querySelectorAll('.option-card').forEach(c => {
-                c.classList.remove('selected');
-              });
-            }
-            
-            // Add selected class to checked card
-            if (radio.checked) {
-              card.classList.add('selected');
-            }
-          });
-          
-          // Initialize selected state
-          if (radio.checked) {
-            card.classList.add('selected');
-          }
-        });
     </script>
   </body>
 </html>

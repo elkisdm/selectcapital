@@ -79,13 +79,38 @@ return [
       'max_per_minute' => 5,
     ],
     'allowed_fields' => [              // whitelisting de campos aceptados
-      'nombre', 'rut', 'whatsapp', 'email', 'objetivo', 'tipo_ingreso', 'tipo_contrato', 'tipo_ingreso_independiente',
-      'renta_liquida', 'capacidad_ahorro_mensual', 'tiene_ahorro', 'monto_ahorro', 'comunas_interes', 'comentarios', 'canal_preferido', 'franja_preferida',
-      'consentimiento_privacidad', 'consentimiento_contacto', 'honey',
+      // Datos de contacto
+      'nombre', 'whatsapp', 'email', 'rut',
+      // Calificación financiera (nuevo formulario landing)
+      'renta_rango', 'complemento_renta', 'situacion_financiera', 'capacidad_ahorro',
+      // Calificación financiera (formulario home.html legacy)
+      'renta_liquida', 'capacidad_ahorro_mensual', 'tiene_ahorro', 'monto_ahorro',
+      'tipo_ingreso', 'tipo_contrato', 'tipo_ingreso_independiente',
+      // Preferencias
+      'canal_preferido', 'franja_preferida', 'proyecto', 'objetivo',
+      'comunas_interes', 'comentarios',
+      // Consentimiento
+      'consentimiento_privacidad', 'consentimiento_contacto',
+      // Honeypot y seguridad
+      'honey', 'cf-turnstile-response',
+      // Tracking UTM
       'utm_source', 'utm_medium', 'utm_campaign', 'gclid', 'fbclid', 'ttclid',
-      'cf-turnstile-response'
+      // Otros campos legacy
+      'tipo_propiedad', 'ahorro_rango'
     ],
-    'required_fields' => ['nombre','rut','whatsapp','email','objetivo','tipo_ingreso','renta_liquida','capacidad_ahorro_mensual','tiene_ahorro','comunas_interes','canal_preferido','franja_preferida','consentimiento_privacidad','consentimiento_contacto'],
+    // Campos requeridos para formulario nuevo (landing proyecto)
+    'required_fields_new' => [
+      'nombre', 'whatsapp', 'email',
+      'renta_rango', 'complemento_renta', 'situacion_financiera', 'capacidad_ahorro',
+      'canal_preferido', 'consentimiento_privacidad', 'consentimiento_contacto'
+    ],
+    // Campos requeridos para formulario legacy (home.html)
+    'required_fields_legacy' => [
+      'nombre', 'rut', 'whatsapp', 'email',
+      'objetivo', 'tipo_ingreso', 'renta_liquida', 'capacidad_ahorro_mensual',
+      'tiene_ahorro', 'comunas_interes', 'canal_preferido', 'franja_preferida',
+      'consentimiento_privacidad', 'consentimiento_contacto'
+    ],
   ],
 
   // Redirecciones post-submit
