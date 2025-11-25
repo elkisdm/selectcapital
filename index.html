@@ -37,8 +37,8 @@
     <noscript><link rel="stylesheet" href="lenguaje visual/theme/select-capital-theme.min.css?v=66e592e976" /></noscript>
     <link rel="preload" href="lenguaje visual/forms/sc-forms.css?v=20250118" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="lenguaje visual/forms/sc-forms.css?v=20250118" /></noscript>
-    <link rel="preload" href="lenguaje visual/theme/home-styles.min.css?v=12fd638098" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="lenguaje visual/theme/home-styles.min.css?v=12fd638098" /></noscript>
+    <link rel="preload" href="lenguaje visual/theme/home-styles.min.css?v=80b7983cf7" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="lenguaje visual/theme/home-styles.min.css?v=80b7983cf7" /></noscript>
     
     <!-- DotLottie Web Component - Lazy load -->
     <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module" defer></script>
@@ -227,111 +227,98 @@
             </p>
 
             <form class="form" action="/submit.php" method="post">
-              <!-- Grupo 1: Datos de contacto -->
-              <div class="form-group">
-                <h3 class="form-group-title">Datos de contacto</h3>
-                <div class="form-grid">
-                  <div class="field">
-                    <label for="nombre" class="required">
-                      <span>Nombre completo</span>
-                    </label>
-                    <input id="nombre" name="nombre" type="text" placeholder="Nombre y apellido" required />
-                  </div>
-
-                  <div class="field">
-                    <label for="telefono" class="required">
-                      <span>Teléfono WhatsApp</span>
-                    </label>
-                    <input id="telefono" name="telefono" type="tel" placeholder="+56 9 1234 5678" inputmode="numeric" pattern="[0-9]*" required />
-                  </div>
-
-                  <div class="field" style="grid-column: 1 / -1;">
-                    <label for="correo" class="required">
-                      <span>Correo electrónico</span>
-                    </label>
-                    <input id="correo" name="correo" type="email" placeholder="tu@correo.cl" required />
-                  </div>
+              <div class="form-grid">
+                <!-- Datos de contacto básicos -->
+                <div class="field">
+                  <label for="nombre">
+                    <span>Nombre completo</span>
+                  </label>
+                  <input id="nombre" name="nombre" type="text" placeholder="Nombre y apellido" required />
                 </div>
-              </div>
 
-              <!-- Grupo 2: Calificación financiera -->
-              <div class="form-group">
-                <h3 class="form-group-title">Calificación financiera</h3>
-                <div class="form-grid">
-                  <div class="field">
-                    <label for="renta" class="required">
-                      <span>¿Cuál es tu renta mensual promedio?</span>
-                    </label>
-                    <select id="renta" name="renta" required>
-                      <option value="" disabled selected>Selecciona un rango</option>
-                      <option value="menos-1200">Menos de $1.200.000</option>
-                      <option value="1200-1600">$1.200.000 - $1.600.000</option>
-                      <option value="1600-2000">$1.600.000 - $2.000.000</option>
-                      <option value="2000-2500">$2.000.000 - $2.500.000</option>
-                      <option value="2500-3000">$2.500.000 - $3.000.000</option>
-                      <option value="mas-3000">Más de $3.000.000</option>
-                    </select>
-                  </div>
-
-                  <div class="field">
-                    <label for="complemento" class="required">
-                      <span>¿Puedes complementar renta?</span>
-                    </label>
-                    <select id="complemento" name="complemento" required>
-                      <option value="" disabled selected>Selecciona una opción</option>
-                      <option value="si-mas-1m">Sí, y gana más de $1.000.000</option>
-                      <option value="no">No tengo complemento</option>
-                    </select>
-                  </div>
-
-                  <div class="field">
-                    <label for="situacion" class="required">
-                      <span>¿Cuál es tu situación financiera?</span>
-                    </label>
-                    <select id="situacion" name="situacion" required>
-                      <option value="" disabled selected>Selecciona una opción</option>
-                      <option value="sin-deudas">No poseo deudas y no estoy en Dicom</option>
-                      <option value="con-deudas">Poseo deuda hipotecaria o de consumo</option>
-                      <option value="dicom">Me encuentro en Dicom</option>
-                    </select>
-                  </div>
-
-                  <div class="field">
-                    <label for="ahorro" class="required">
-                      <span>¿Cuál es tu capacidad de ahorro mensual?</span>
-                    </label>
-                    <select id="ahorro" name="ahorro" required>
-                      <option value="" disabled selected>Selecciona un rango</option>
-                      <option value="sin-ahorro">No tengo capacidad de ahorro</option>
-                      <option value="100-200">$100.000 - $200.000</option>
-                      <option value="200-400">$200.000 - $400.000</option>
-                      <option value="mas-400">Más de $400.000</option>
-                    </select>
-                  </div>
+                <div class="field">
+                  <label for="telefono">
+                    <span>Teléfono WhatsApp</span>
+                  </label>
+                  <input id="telefono" name="telefono" type="tel" placeholder="+56 9 1234 5678" inputmode="numeric" pattern="[0-9]*" required />
                 </div>
-              </div>
 
-              <!-- Grupo 3: Preferencia de contacto -->
-              <div class="form-group">
-                <h3 class="form-group-title">Preferencia de contacto</h3>
-                <div class="form-grid">
-                  <div class="field" style="grid-column: 1 / -1;">
-                    <label for="contacto" class="required">
-                      <span>¿Cómo prefieres que te contactemos?</span>
-                    </label>
-                    <select id="contacto" name="contacto" required>
-                      <option value="" disabled selected>Selecciona una opción</option>
-                      <option value="whatsapp">WhatsApp</option>
-                      <option value="llamada">Llamada telefónica</option>
-                      <option value="email">Correo electrónico</option>
-                    </select>
-                  </div>
+                <div class="field" style="grid-column: 1 / -1;">
+                  <label for="correo">
+                    <span>Correo electrónico</span>
+                  </label>
+                  <input id="correo" name="correo" type="email" placeholder="tu@correo.cl" required />
+                </div>
+
+                <!-- Preguntas de calificación financiera -->
+                <div class="field">
+                  <label for="renta">
+                    <span>¿Cuál es tu renta mensual promedio?</span>
+                  </label>
+                  <select id="renta" name="renta" required>
+                    <option value="" disabled selected>Selecciona un rango</option>
+                    <option value="menos-1200">Menos de $1.200.000</option>
+                    <option value="1200-1600">$1.200.000 - $1.600.000</option>
+                    <option value="1600-2000">$1.600.000 - $2.000.000</option>
+                    <option value="2000-2500">$2.000.000 - $2.500.000</option>
+                    <option value="2500-3000">$2.500.000 - $3.000.000</option>
+                    <option value="mas-3000">Más de $3.000.000</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="complemento">
+                    <span>¿Puedes complementar renta?</span>
+                  </label>
+                  <select id="complemento" name="complemento" required>
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="si-mas-1m">Sí, y gana más de $1.000.000</option>
+                    <option value="no">No tengo complemento</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="situacion">
+                    <span>¿Cuál es tu situación financiera?</span>
+                  </label>
+                  <select id="situacion" name="situacion" required>
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="sin-deudas">No poseo deudas y no estoy en Dicom</option>
+                    <option value="con-deudas">Poseo deuda hipotecaria o de consumo</option>
+                    <option value="dicom">Me encuentro en Dicom</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="ahorro">
+                    <span>¿Cuál es tu capacidad de ahorro mensual?</span>
+                  </label>
+                  <select id="ahorro" name="ahorro" required>
+                    <option value="" disabled selected>Selecciona un rango</option>
+                    <option value="sin-ahorro">No tengo capacidad de ahorro</option>
+                    <option value="100-200">$100.000 - $200.000</option>
+                    <option value="200-400">$200.000 - $400.000</option>
+                    <option value="mas-400">Más de $400.000</option>
+                  </select>
+                </div>
+
+                <!-- Preferencia de contacto simplificada -->
+                <div class="field" style="grid-column: 1 / -1;">
+                  <label for="contacto">
+                    <span>¿Cómo prefieres que te contactemos?</span>
+                  </label>
+                  <select id="contacto" name="contacto" required>
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="whatsapp">WhatsApp</option>
+                    <option value="llamada">Llamada telefónica</option>
+                    <option value="email">Correo electrónico</option>
+                  </select>
                 </div>
               </div>
 
               <div class="field-checkbox">
                 <input id="terminos" name="terminos" type="checkbox" required />
-                <label for="terminos" class="required">
+                <label for="terminos">
                   Acepto el tratamiento de mis datos y autorizo el contacto por WhatsApp y correo para recibir información sobre proyectos inmobiliarios.
                 </label>
               </div>

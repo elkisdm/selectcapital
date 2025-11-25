@@ -889,31 +889,46 @@ body[data-theme="dark"] .form-group {
 .form-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 10px;
+  gap: 12px;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
 }
 
+@media (max-width: 640px) {
+  .form-grid {
+    gap: 10px;
+  }
+}
+
 @media (min-width: 640px) {
   .form-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 16px;
   }
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   position: relative;
+  font-size: 12px;
+}
+
+@media (max-width: 640px) {
+  .field {
+    gap: 5px;
+  }
 }
 
 .field label {
   color: var(--sc-text-secondary, rgba(15, 23, 42, 0.7));
   font-weight: 600;
-  font-size: 12px;
-  display: block;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 /* Asteriscos removidos por solicitud del cliente */
@@ -933,15 +948,15 @@ body[data-theme="dark"] .field label {
 
 .field input,
 .field select {
-  border-radius: 10px;
-  border: 1.5px solid var(--sc-border-glass, rgba(15, 23, 42, 0.2));
-  background: var(--sc-glass-bg, rgba(255, 255, 255, 0.95));
+  border-radius: 12px;
+  border: 2px solid var(--sc-border-glass, rgba(15, 23, 42, 0.2));
+  background: var(--sc-glass-bg, rgba(255, 255, 255, 0.9));
   color: var(--sc-text-primary);
-  padding: 11px 14px;
+  padding: 14px 18px;
   font-size: 14px;
   outline: none;
   font-family: inherit;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
@@ -954,17 +969,16 @@ body[data-theme="dark"] .field label {
 @media (prefers-reduced-motion: no-preference) {
   .field input,
   .field select {
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
   }
 }
 
 .field select {
   cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%230F1217' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230F1217' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 14px;
-  padding-right: 36px;
+  background-position: right 14px center;
+  padding-right: 44px;
 }
 
 body[data-theme="dark"] .field select {
@@ -1285,7 +1299,7 @@ body[data-theme="dark"] .contact-link {
   
   .field input,
   .field select {
-    padding: 14px 16px; /* Aumentado para mejor touch target */
+    padding: 12px 14px; /* Aumentado para mejor touch target */
     font-size: 16px; /* Evita zoom en iOS */
     min-height: 48px; /* Touch target mínimo recomendado */
     width: 100%;
@@ -1293,6 +1307,10 @@ body[data-theme="dark"] .contact-link {
     box-sizing: border-box;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  
+  .field label {
+    font-size: 12px;
   }
   
   .form-card .text-block {
