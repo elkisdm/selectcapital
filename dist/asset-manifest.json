@@ -26,7 +26,7 @@
   },
   "scripts/home-page.js": {
     "minPath": "scripts/home-page.min.js",
-    "hash": "e120ef0f41",
-    "versioned": "scripts/home-page.min.js?v=e120ef0f41"
+    "hash": "d017785188",
+    "versioned": "scripts/home-page.min.js?v=d017785188"
   }
 }

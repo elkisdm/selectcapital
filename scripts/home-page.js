@@ -139,6 +139,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Phone formatting with real-time formatting
     const phoneInput = form.querySelector('#telefono');
     if (phoneInput) {
+      // Set input mode for mobile keyboards
+      phoneInput.setAttribute('inputmode', 'numeric');
+      
+      // Clear any HTML5 pattern validation to prevent "Match the requested format" error
+      phoneInput.removeAttribute('pattern');
+      
+      // Disable HTML5 pattern validation completely (prevents "Match the requested format" error)
+      phoneInput.removeAttribute('pattern');
+      phoneInput.setCustomValidity('');
+      
       // Format on input for better UX
       phoneInput.addEventListener('input', (e) => {
         const value = e.target.value;
@@ -151,39 +161,62 @@ document.addEventListener('DOMContentLoaded', () => {
         // Limit to 9 digits
         clean = clean.slice(0, 9);
         
-        // Format while typing
+        // Always clear custom validity to prevent HTML5 validation errors
+        phoneInput.setCustomValidity('');
+        
+        // Format while typing only if we have digits
         if (clean.length > 0) {
+          // Ensure starts with 9 if it doesn't and we have room
           if (!clean.startsWith('9') && clean.length <= 8) {
             clean = '9' + clean.slice(0, 8);
           }
           
+          // Build formatted string: +56 9 xxxx xxxx
           let formatted = '+56 ' + clean.slice(0, 1);
           if (clean.length > 1) {
-            formatted += ' ' + clean.slice(1, 5);
+            formatted += ' ' + clean.slice(1, Math.min(5, clean.length));
           }
           if (clean.length > 5) {
             formatted += ' ' + clean.slice(5, 9);
           }
           
-          // Update value only if it changed (to avoid cursor jumping)
-          const selectionStart = phoneInput.selectionStart;
+          // Only update if different to avoid infinite loops
           if (formatted !== value) {
             phoneInput.value = formatted;
-            // Try to maintain cursor position
-            const newPos = Math.min(selectionStart + (formatted.length - value.length), formatted.length);
-            phoneInput.setSelectionRange(newPos, newPos);
+            // Clear validity after formatting
+            phoneInput.setCustomValidity('');
           }
+        } else if (value.trim() === '') {
+          phoneInput.value = '';
+          phoneInput.setCustomValidity('');
         }
       });
       
-      // Final format on blur
+      // Final format and validation on blur
       phoneInput.addEventListener('blur', (e) => {
-        e.target.value = formatPhone(e.target.value);
+        const formatted = formatPhone(e.target.value);
+        e.target.value = formatted;
+        
+        // Validate format on blur - use custom validation instead of HTML5
+        const clean = formatted.replace(/\D/g, '').replace(/^56/, '').replace(/^0/, '');
+        if (clean.length === 9 && clean.startsWith('9')) {
+          e.target.setCustomValidity('');
+        } else if (e.target.hasAttribute('required') && formatted.length > 0) {
+          // Set custom error message
+          e.target.setCustomValidity('Por favor, ingresa un número de WhatsApp válido (9 dígitos)');
+        } else {
+          e.target.setCustomValidity('');
+        }
       });
       
-      // Set input mode for mobile keyboards
-      phoneInput.setAttribute('inputmode', 'numeric');
-      phoneInput.setAttribute('pattern', '[0-9]*');
+      // Prevent form submission if phone is invalid
+      phoneInput.addEventListener('invalid', (e) => {
+        // Override default HTML5 validation message
+        const clean = phoneInput.value.replace(/\D/g, '').replace(/^56/, '').replace(/^0/, '');
+        if (clean.length !== 9 || !clean.startsWith('9')) {
+          phoneInput.setCustomValidity('Por favor, ingresa un número de WhatsApp válido (9 dígitos)');
+        }
+      });
     }
     
     // Email normalization
