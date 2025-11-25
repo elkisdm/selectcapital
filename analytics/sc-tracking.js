@@ -1,7 +1,7 @@
 (() => {
   const CONFIG = {
     gaKey: 'G-XXXXXXXXXX',
-    metaPixel: 'YOUR_PIXEL_ID',
+    metaPixel: '1726961441305783',
   };
 
   const GA_EVENT_MAP = {

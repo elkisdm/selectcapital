@@ -215,8 +215,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
       removeFormMessages();
 
+      // Generar event_id único para deduplicación entre Pixel y Conversions API
+      const generateEventId = () => {
+        const seed = [
+          Date.now(),
+          form.querySelector('#correo')?.value || '',
+          form.querySelector('#telefono')?.value || '',
+          form.querySelector('#nombre')?.value || '',
+          Math.random().toString(36),
+        ];
+        // Hash simple usando btoa y slice (compatible con navegadores)
+        const str = seed.join('|');
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+          const char = str.charCodeAt(i);
+          hash = ((hash << 5) - hash) + char;
+          hash = hash & hash; // Convert to 32bit integer
+        }
+        return Math.abs(hash).toString(36) + Date.now().toString(36);
+      };
+      
+      const eventId = generateEventId();
+
       try {
+        
         const formData = new FormData();
+        
+        // Enviar event_id al backend para deduplicación
+        formData.append('meta_event_id', eventId);
         
         // Contact info
         formData.append('nombre', form.querySelector('#nombre')?.value || '');
@@ -267,6 +293,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (result.ok) {
           // Success - show message or redirect
           showFormMessage('¡Gracias! Te contactaremos en menos de 24 horas.', 'success');
+          
+          // Track conversion events con event_id para deduplicación
+          if (window.fbq) {
+            fbq('track', 'Lead', {
+              content_name: 'Asesoría Integral',
+              content_category: 'Formulario Contacto',
+              eventID: eventId // Importante: mismo event_id que se envía al servidor
+            });
+          }
+          if (window.SelectTracking) {
+            window.SelectTracking.trackEvent('form_submit_success', { source: 'home' });
+          }
+          
           form.reset();
           submitBtn.disabled = true;
           const tsInput = document.getElementById('ts-token');

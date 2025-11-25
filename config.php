@@ -95,6 +95,8 @@ return [
       'honey', 'cf-turnstile-response',
       // Tracking UTM
       'utm_source', 'utm_medium', 'utm_campaign', 'gclid', 'fbclid', 'ttclid',
+      // Meta Conversions API
+      'meta_event_id',
       // Otros campos legacy
       'tipo_propiedad', 'ahorro_rango'
     ],
@@ -122,7 +124,15 @@ return [
   // Tracking (server-side opcional, la landing ya hace client-side)
   'analytics' => [
     'ga4_measurement_id' => 'G-XXXXXXXXXX', // reemplaza si implementas hits server-side
-    'meta_pixel_id'      => 'YOUR_PIXEL_ID',
+    'meta_pixel_id'      => '1726961441305783',
+  ],
+
+  // Meta Conversions API
+  'meta_conversions' => [
+    'enabled'        => filter_var(getenv('META_CONVERSIONS_ENABLED') ?: 'true', FILTER_VALIDATE_BOOLEAN),
+    'pixel_id'       => getenv('META_CONVERSIONS_PIXEL_ID') ?: '1726961441305783',
+    'access_token'   => getenv('META_CONVERSIONS_ACCESS_TOKEN') ?: '',
+    'test_event_code'=> getenv('META_CONVERSIONS_TEST_EVENT_CODE') ?: '', // Opcional, para testing
   ],
 
   // Logging

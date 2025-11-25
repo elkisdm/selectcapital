@@ -535,12 +535,48 @@ if (!empty($cfg['email']['enabled'])) {
   }
 }
 
+// Enviar evento a Meta Conversions API
+$metaConversionSent = false;
+if (!empty($cfg['meta_conversions']['enabled']) && !empty($cfg['meta_conversions']['access_token'])) {
+  require_once __DIR__ . '/api/meta-conversions.php';
+  
+  try {
+    $eventId = $data['meta_event_id'] ?? generate_meta_event_id($data);
+    $userData = prepare_meta_user_data($data, $clientIp, $clientUa);
+    $customData = prepare_meta_custom_data($data);
+    
+    $eventData = [
+      'user_data' => $userData,
+      'custom_data' => $customData,
+    ];
+    
+    $metaResponse = send_meta_conversion_event(
+      $cfg['meta_conversions'],
+      'Lead',
+      $eventData,
+      $eventId
+    );
+    
+    if ($metaResponse !== null) {
+      $metaConversionSent = true;
+      app_log('META_CONVERSION_SENT event_id=' . $eventId, 'INFO');
+    } else {
+      app_log('META_CONVERSION_FAILED event_id=' . $eventId, 'WARNING');
+    }
+  } catch (Exception $e) {
+    app_log('META_CONVERSION_EXCEPTION: ' . $e->getMessage(), 'ERROR');
+  }
+}
+
 $response = ['ok'=>true,'message'=>'Registro almacenado.'];
 if ($mailSent !== null) {
   $response['mail_sent'] = (bool)$mailSent;
 }
 if (should_log_user_agent()) {
   $response['ua_logged'] = true;
+}
+if ($metaConversionSent) {
+  $response['meta_conversion_sent'] = true;
 }
 
 echo json_encode($response);
