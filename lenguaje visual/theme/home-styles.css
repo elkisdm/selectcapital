@@ -1,5 +1,50 @@
 /* Select Capital Home - Estilos compactos y minimalistas */
 
+/* Prevenir overflow horizontal y zoom */
+html {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  touch-action: pan-y pinch-zoom;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevenir zoom en inputs móviles */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+select,
+textarea {
+  font-size: 16px !important;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Asegurar que todos los elementos principales estén contenidos */
+main,
+section,
+div[class*="section"],
+div[class*="card"],
+div[class*="form"] {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
 :root {
   --lp-max-width: 1120px;
   --lp-gutter: clamp(16px, 3vw, 24px);
@@ -166,6 +211,8 @@ body[data-theme="dark"] .sticky-nav-links a.active {
   margin-right: auto !important;
   padding: calc(64px + clamp(16px, 3vw, 24px)) var(--lp-gutter) clamp(24px, 4vw, 32px);
   box-sizing: border-box;
+  overflow-x: hidden;
+  position: relative;
 }
 
 @media (min-width: 1200px) {
@@ -424,6 +471,10 @@ body[data-theme="dark"] .hero .subtitle {
   gap: 6px;
   text-decoration: none;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -490,7 +541,11 @@ body[data-theme="dark"] .hero .subtitle {
   cursor: pointer;
   text-decoration: none;
   width: 100%;
+  max-width: 100%;
   min-height: 44px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -756,8 +811,12 @@ body[data-theme="dark"] .why-list li {
   padding: 24px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
   margin-top: 20px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 640px) {
@@ -831,6 +890,9 @@ body[data-theme="dark"] .form-group {
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 640px) {
@@ -881,9 +943,12 @@ body[data-theme="dark"] .field label {
   font-family: inherit;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
   width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
   -webkit-appearance: none;
   appearance: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -1202,6 +1267,20 @@ body[data-theme="dark"] .contact-link {
     padding: 20px 16px;
     margin-left: 0;
     margin-right: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  
+  .form-grid {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .field {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   
   .field input,
@@ -1210,7 +1289,10 @@ body[data-theme="dark"] .contact-link {
     font-size: 16px; /* Evita zoom en iOS */
     min-height: 48px; /* Touch target mínimo recomendado */
     width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .form-card .text-block {
@@ -1227,12 +1309,17 @@ body[data-theme="dark"] .contact-link {
   .btn-primary,
   .btn-secondary {
     min-height: 48px; /* Touch target mínimo recomendado */
-    padding: 14px 24px; /* Aumentado para mejor tap */
+    padding: 14px 20px; /* Ajustado para mejor ajuste */
     font-size: 15px; /* Ligeramente más grande para legibilidad */
     width: 100%;
+    max-width: 100%;
     margin: 0;
+    box-sizing: border-box;
     -webkit-tap-highlight-color: rgba(205, 127, 50, 0.2); /* Feedback visual en tap */
     touch-action: manipulation; /* Mejora respuesta al touch */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   
   .hero-buttons {
