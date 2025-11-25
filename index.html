@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="es" data-theme="light" data-theme-transition>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Select Capital — Asesoría Integral Inmobiliaria</title>
+    <meta name="description" content="Curamos proyectos con demanda real, negociamos beneficios y te acompañamos hasta la puesta en arriendo. Asesoría sin costo." />
+    <meta name="theme-color" content="#F6F8FC" />
+    <meta name="facebook-domain-verification" content="6nxcn88cvfk8n6tstgwnvvtamvfp69" />
+    <link rel="icon" href="images/icono.png" />
+    
+    <!-- DNS Prefetch para recursos externos -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://challenges.cloudflare.com" />
+    <link rel="dns-prefetch" href="https://connect.facebook.net" />
+    
+    <!-- Preconnect para recursos críticos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Fuentes con font-display swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- CSS crítico -->
+    <link rel="stylesheet" href="lenguaje visual/theme/select-capital-theme.min.css?v=66e592e976" />
+    <link rel="stylesheet" href="lenguaje visual/forms/sc-forms.css?v=20250118" />
+    <link rel="stylesheet" href="landing/proyecto-inmobiliario/viva-marin-styles.css?v=20250118-4" />
+    <link rel="stylesheet" href="lenguaje visual/theme/home-styles.css?v=20250118" />
+  </head>
+  <body>
+    <nav class="sticky-nav" id="sticky-nav">
+      <div class="sticky-nav-content">
+        <img src="images/logo_largo_principal.png" alt="Select Capital" class="sticky-nav-logo" />
+        <div class="sticky-nav-links">
+          <a href="#mision">Misión</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="page">
+      <!-- HERO -->
+      <header class="header">
+        <div class="header-main">
+          <div class="hero-content-wrapper">
+            <div class="hero-text-content">
+              <h1 class="headline">
+                Asesoría Integral<br />
+                <span>Inmobiliaria</span>
+              </h1>
+              <p class="subheadline">
+                Te encontramos el departamento ideal. Nosotros nos encargamos del resto.
+              </p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- MISIÓN -->
+      <section class="section mission-section" id="mision">
+        <div class="mission-content">
+          <h2 class="mission-title">Nuestra Misión</h2>
+          <p class="mission-text">
+            Curamos proyectos con demanda real, negociamos beneficios y te acompañamos hasta la puesta en arriendo.
+          </p>
+          
+          <div class="mission-pillars">
+            <div class="mission-pillar">
+              <div class="mission-pillar-icon">🔍</div>
+              <h3>Curaduría experta</h3>
+              <p>Zonas con demanda real de arriendo y conectividad.</p>
+            </div>
+            <div class="mission-pillar">
+              <div class="mission-pillar-icon">🤝</div>
+              <h3>Negociación de beneficios</h3>
+              <p>Obtén mejores condiciones y promociones exclusivas.</p>
+            </div>
+            <div class="mission-pillar">
+              <div class="mission-pillar-icon">🏠</div>
+              <h3>Acompañamiento completo</h3>
+              <p>Desde la evaluación hasta la puesta en arriendo.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FORMULARIO -->
+      <section class="section" id="contacto">
+        <div class="section-header">
+          <h2 class="section-title">Recibe tu propuesta</h2>
+          <p class="section-kicker">Déjanos tus datos y te enviamos números claros para tu caso</p>
+        </div>
+
+        <div class="form-card">
+          <p class="text-block" style="margin-bottom: 16px;">
+            Te enviaremos una propuesta con valor estimado de la unidad, pie, monto de dividendo y renta proyectada según tu perfil. Sin costo y sin compromiso.
+          </p>
+
+          <form class="form" action="/submit.php" method="post">
+            <div class="form-grid">
+              <!-- Datos de contacto básicos -->
+              <div class="field">
+                <label for="nombre">
+                  <span>Nombre completo</span>
+                </label>
+                <input id="nombre" name="nombre" type="text" placeholder="Nombre y apellido" required />
+              </div>
+
+              <div class="field">
+                <label for="telefono">
+                  <span>Teléfono WhatsApp</span>
+                </label>
+                <input id="telefono" name="telefono" type="tel" placeholder="+56 9 1234 5678" required />
+              </div>
+
+              <div class="field" style="grid-column: 1 / -1;">
+                <label for="correo">
+                  <span>Correo electrónico</span>
+                </label>
+                <input id="correo" name="correo" type="email" placeholder="tu@correo.cl" required />
+              </div>
+
+              <!-- Preguntas de calificación financiera -->
+              <div class="field">
+                <label for="renta">
+                  <span>¿Cuál es tu renta mensual promedio?</span>
+                </label>
+                <select id="renta" name="renta" required>
+                  <option value="" disabled selected>Selecciona un rango</option>
+                  <option value="menos-1200">Menos de $1.200.000</option>
+                  <option value="1200-1600">$1.200.000 - $1.600.000</option>
+                  <option value="1600-2000">$1.600.000 - $2.000.000</option>
+                  <option value="2000-2500">$2.000.000 - $2.500.000</option>
+                  <option value="2500-3000">$2.500.000 - $3.000.000</option>
+                  <option value="mas-3000">Más de $3.000.000</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="complemento">
+                  <span>¿Puedes complementar renta?</span>
+                </label>
+                <select id="complemento" name="complemento" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="si-mas-1m">Sí, y gana más de $1.000.000</option>
+                  <option value="no">No tengo complemento</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="situacion">
+                  <span>¿Cuál es tu situación financiera?</span>
+                </label>
+                <select id="situacion" name="situacion" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="sin-deudas">No poseo deudas y no estoy en Dicom</option>
+                  <option value="con-deudas">Poseo deuda hipotecaria o de consumo</option>
+                  <option value="dicom">Me encuentro en Dicom</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="ahorro">
+                  <span>¿Cuál es tu capacidad de ahorro mensual?</span>
+                </label>
+                <select id="ahorro" name="ahorro" required>
+                  <option value="" disabled selected>Selecciona un rango</option>
+                  <option value="sin-ahorro">No tengo capacidad de ahorro</option>
+                  <option value="100-200">$100.000 - $200.000</option>
+                  <option value="200-400">$200.000 - $400.000</option>
+                  <option value="mas-400">Más de $400.000</option>
+                </select>
+              </div>
+
+              <!-- Preferencia de contacto simplificada -->
+              <div class="field" style="grid-column: 1 / -1;">
+                <label for="contacto">
+                  <span>¿Cómo prefieres que te contactemos?</span>
+                </label>
+                <select id="contacto" name="contacto" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="whatsapp">WhatsApp</option>
+                  <option value="llamada">Llamada telefónica</option>
+                  <option value="email">Correo electrónico</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-checkbox">
+              <input id="terminos" name="terminos" type="checkbox" required />
+              <label for="terminos">
+                Acepto el tratamiento de mis datos y autorizo el contacto por WhatsApp y correo para recibir información sobre proyectos inmobiliarios.
+              </label>
+            </div>
+
+            <input type="hidden" name="cf-turnstile-response" id="ts-token" />
+            
+            <div class="form-footer">
+              <p>⏰ Respuesta en menos de 24 horas. Sin costo y sin compromiso.</p>
+              
+              <div class="turnstile-container" style="margin: 16px 0; display: flex; justify-content: center;">
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAB_bjq2YOWp-yEXx" data-theme="auto" data-callback="onTurnstileSuccess"></div>
+              </div>
+
+              <button type="submit" class="btn-primary" id="form-submit-btn" disabled>
+                <span class="btn-primary-icon">📄</span>
+                <span>Recibir mi propuesta personalizada</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div>
+          <img src="images/logo_negro.png" alt="Select Capital" class="footer-logo footer-logo-light" style="height: 32px; margin-bottom: 12px;" />
+          <img src="images/logo_blanco.png" alt="Select Capital" class="footer-logo footer-logo-dark" style="height: 32px; margin-bottom: 12px; display: none;" />
+          <p style="margin: 0 0 8px 0; font-size: 12px;">
+            <strong>Select Capital</strong> · Asesoría Inmobiliaria<br />
+            Av. Apoquindo 6410, Of. 1203, Las Condes
+          </p>
+        </div>
+        <div>
+          <div class="footer-contact">
+            <a href="https://wa.me/56966013182?text=Hola,%20quiero%20información%20sobre%20la%20asesoría%20inmobiliaria" target="_blank" rel="noopener" class="contact-link">
+              <span>💬</span>
+              <span>WhatsApp</span>
+            </a>
+            <a href="mailto:contacto@selectcapital.cl" class="contact-link">
+              <span>✉️</span>
+              <span>contacto@selectcapital.cl</span>
+            </a>
+          </div>
+          <p style="margin: 12px 0 0 0; font-size: 11px; color: var(--sc-text-tertiary, rgba(15, 23, 42, 0.5));">
+            Asesoría sin costo para el inversionista. Respuesta en menos de 24 horas.
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Sticky CTA Button (Mobile) -->
+    <div class="sticky-cta" id="sticky-cta">
+      <button type="button" class="sticky-cta-button" data-action="scroll-form">
+        <span class="btn-primary-icon">📄</span>
+        <span>Quiero mi propuesta</span>
+      </button>
+    </div>
+
+    <!-- Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    
+    <!-- Meta Pixel -->
+    <script src="/analytics/meta-pixel.js"></script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1726961441305783&ev=PageView&noscript=1" /></noscript>
+    
+    <script type="module" src="lenguaje visual/theme/theme-toggle.min.js"></script>
+    <script src="scripts/home.js?v=20250118"></script>
+  </body>
+</html>
+
