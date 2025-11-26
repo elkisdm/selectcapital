@@ -92,8 +92,17 @@ export function ValidatedInput({
           setDisplayValue(formatNumberWithThousands(numValue))
         } else if (decimalPlaces > 0) {
           // Formato con decimales limitados
-          const formatted = numValue.toFixed(decimalPlaces)
-          setDisplayValue(formatted.replace('.', ','))
+          if (isPercentage) {
+            // Para porcentajes, mostrar solo los decimales necesarios (sin ceros finales)
+            const formatted = numValue.toFixed(decimalPlaces)
+            // Eliminar ceros finales después del punto
+            const trimmed = formatted.replace(/\.?0+$/, '')
+            setDisplayValue(trimmed.replace('.', ','))
+          } else {
+            // Para otros decimales, usar formato completo
+            const formatted = numValue.toFixed(decimalPlaces)
+            setDisplayValue(formatted.replace('.', ','))
+          }
         } else {
           // Entero
           setDisplayValue(Math.round(numValue).toString())
@@ -120,24 +129,44 @@ export function ValidatedInput({
       return
     }
 
-    let parsed = parseFormattedNumber(displayValue)
+    let parsed = parseFormattedNumber(displayValue, isPercentage)
     
     // Normalizar según el tipo
     if (isPercentage) {
       // El valor ingresado está en porcentaje (ej: 4.5), convertirlo a decimal (0.045)
-      parsed = normalizePercentage(parsed) / 100
+      // Primero normalizar el porcentaje (limitar decimales)
+      parsed = normalizePercentage(parsed)
+      
+      // Validar límites en porcentaje (antes de convertir a decimal)
+      if (min !== undefined && parsed < min * 100) {
+        parsed = min * 100
+      }
+      if (max !== undefined && parsed > max * 100) {
+        parsed = max * 100
+      }
+      
+      // Convertir a decimal
+      parsed = parsed / 100
     } else if (decimalPlaces > 0) {
       parsed = normalizeDecimal(parsed, decimalPlaces)
+      
+      // Aplicar límites
+      if (min !== undefined && parsed < min) {
+        parsed = min
+      }
+      if (max !== undefined && parsed > max) {
+        parsed = max
+      }
     } else {
       parsed = normalizeInteger(parsed)
-    }
-
-    // Aplicar límites
-    if (min !== undefined && parsed < min) {
-      parsed = min
-    }
-    if (max !== undefined && parsed > max) {
-      parsed = max
+      
+      // Aplicar límites
+      if (min !== undefined && parsed < min) {
+        parsed = min
+      }
+      if (max !== undefined && parsed > max) {
+        parsed = max
+      }
     }
 
     onChange(parsed)
@@ -159,10 +188,64 @@ export function ValidatedInput({
       const cleaned = inputValue.replace(/[^\d.,]/g, '')
       setDisplayValue(cleaned)
     } else {
-      // Para otros campos, permitir números y coma/punto decimal
-      const cleaned = inputValue.replace(/[^\d.,]/g, '')
-      // Reemplazar coma por punto para procesamiento
-      setDisplayValue(cleaned.replace(',', '.'))
+      // Para campos con decimales (porcentajes, UF, etc.)
+      // Permitir números, un solo punto o coma decimal
+      let cleaned = inputValue.replace(/[^\d.,]/g, '')
+      
+      // Si es porcentaje, nunca tiene separadores de miles, solo decimales
+      if (isPercentage) {
+        // Solo permitir un punto o coma como separador decimal
+        const hasPoint = cleaned.includes('.')
+        const hasComma = cleaned.includes(',')
+        
+        if (hasPoint && hasComma) {
+          // Si hay ambos, mantener el primero que aparezca
+          const pointIndex = cleaned.indexOf('.')
+          const commaIndex = cleaned.indexOf(',')
+          if (pointIndex < commaIndex) {
+            cleaned = cleaned.replace(/,/g, '')
+          } else {
+            cleaned = cleaned.replace(/\./g, '').replace(',', '.')
+          }
+        } else if (hasComma) {
+          // Solo coma, convertir a punto para consistencia interna
+          cleaned = cleaned.replace(',', '.')
+        }
+        
+        // Asegurar que solo hay un punto decimal
+        const parts = cleaned.split('.')
+        if (parts.length > 2) {
+          // Múltiples puntos, mantener solo el primero como decimal
+          cleaned = parts[0] + '.' + parts.slice(1).join('')
+        }
+      } else {
+        // Para otros campos, manejar puntos y comas
+        const hasPoint = cleaned.includes('.')
+        const hasComma = cleaned.includes(',')
+        
+        if (hasPoint && hasComma) {
+          // Si hay ambos, mantener el primero que aparezca
+          const pointIndex = cleaned.indexOf('.')
+          const commaIndex = cleaned.indexOf(',')
+          if (pointIndex < commaIndex) {
+            cleaned = cleaned.replace(/,/g, '')
+          } else {
+            cleaned = cleaned.replace(/\./g, '').replace(',', '.')
+          }
+        } else if (hasComma) {
+          // Solo coma, convertir a punto para consistencia interna
+          cleaned = cleaned.replace(',', '.')
+        }
+        
+        // Asegurar que solo hay un punto decimal
+        const parts = cleaned.split('.')
+        if (parts.length > 2) {
+          // Múltiples puntos, mantener solo el primero como decimal
+          cleaned = parts[0] + '.' + parts.slice(1).join('')
+        }
+      }
+      
+      setDisplayValue(cleaned)
     }
   }
 
@@ -180,22 +263,26 @@ export function ValidatedInput({
     <div className="flex items-center gap-1.5">
       <Label htmlFor={id} className="cursor-text">{label}</Label>
       {fieldDescription && (
-        <Tooltip content={
-          <div className="space-y-1.5">
-            <div className="font-semibold">{fieldDescription.title}</div>
-            <div className="text-xs">{fieldDescription.description}</div>
-            {fieldDescription.example && (
-              <div className="text-xs text-muted-foreground/80 mt-1 pt-1 border-t border-border/50">
-                {fieldDescription.example}
-              </div>
-            )}
-            {fieldDescription.note && (
-              <div className="text-xs text-primary/80 mt-1">
-                💡 {fieldDescription.note}
-              </div>
-            )}
-          </div>
-        }>
+        <Tooltip 
+          content={
+            <div className="space-y-2.5">
+              <div className="font-semibold text-sm">{fieldDescription.title}</div>
+              <div className="text-xs leading-relaxed text-foreground/90">{fieldDescription.description}</div>
+              {fieldDescription.example && (
+                <div className="text-xs text-muted-foreground/70 pt-2 border-t border-border/30">
+                  {fieldDescription.example}
+                </div>
+              )}
+              {fieldDescription.note && (
+                <div className="text-xs text-primary/70 pt-2 border-t border-border/30 flex items-start gap-1.5">
+                  <span>💡</span>
+                  <span>{fieldDescription.note}</span>
+                </div>
+              )}
+            </div>
+          }
+          side="bottom"
+        >
           <HelpCircle className="h-3.5 w-3.5 text-muted-foreground hover:text-foreground transition-colors cursor-help" />
         </Tooltip>
       )}

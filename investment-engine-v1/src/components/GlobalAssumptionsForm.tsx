@@ -27,7 +27,7 @@ export function GlobalAssumptionsForm({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Supuestos Globales</CardTitle>
+        <CardTitle>Parámetros Base</CardTitle>
         <CardDescription>
           Configura los parámetros generales para todos los cálculos
         </CardDescription>

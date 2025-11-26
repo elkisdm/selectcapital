@@ -6,95 +6,49 @@ import type {
 } from '@/src/types/investment'
 
 /**
- * CRITICAL: Value Normalization Logic
+ * STANDARDIZED CONTRACT:
  * 
- * The Excel model uses TWO different values:
- * - VALOR A ESCRITURAR (100% UF) → Total property value
- * - VALOR A FINANCIAR (UF × % financiamiento) → Credit amount only
+ * property.valorUf MUST ALWAYS represent the TOTAL property value in UF (100%).
  * 
- * ALL calculations (except dividendo) must use valorUfTotal (100%).
- * Only dividendo uses the financed UF.
+ * The financed UF amount MUST ALWAYS be derived from valorUf and porcentajeFinanciamiento:
+ *   montoFinanciadoUf = valorUf * porcentajeFinanciamiento
  * 
- * This function detects and normalizes the input to ensure we always have:
- * - valorUfTotal: The total property value (100% UF)
- * - valorFinanciadoUf: The amount to be financed (valorUfTotal × porcentajeFinanciamiento)
+ * ALL calculations (except dividendo) use valorUf (100%).
+ * Only dividendo uses the financed UF (montoFinanciadoUf).
  */
 
 /**
  * Gets the total property value in UF (100%)
  * 
- * CRITICAL LOGIC:
- * The Excel model uses TWO different values:
- * - VALOR A ESCRITURAR (100% UF) → Total property value - used for ALL calculations
- * - VALOR A FINANCIAR (UF × % financiamiento) → Credit amount - used ONLY for dividendo
- * 
- * Detection Logic:
- * 1. If valorUfTotal is explicitly provided, use it (highest priority)
- * 2. If valorFinanciadoUf is provided, calculate: valorFinanciadoUf / porcentajeFinanciamiento
- * 3. If only valorUf is provided, detect if it's total or financed:
- *    - Heuristic: If valorUf < 3000 UF, it's likely financed (typical range: 2000-3000)
- *    - If valorUf >= 3000 UF, it's likely total (typical range: 3000+)
- *    - This handles cases like "Compañía 1735" where valorFinanciadoUf = 2860
- * 
- * Examples:
- * - valorUf = 2860, porcentajeFinanciamiento = 0.9 → valorUfTotal = 3177.777...
- * - valorUf = 2880, porcentajeFinanciamiento = 0.9 → valorUfTotal = 3200 (if 2880 is total)
- * - valorUf = 2880, porcentajeFinanciamiento = 0.9 → valorUfTotal = 3200 (if 2880 is financed)
+ * STANDARDIZED: valorUf is ALWAYS the total property value (100% UF).
+ * No inference or normalization needed.
  */
 export function getValorUfTotal(input: PropertyInput): number {
-  // Case 1: Explicit total provided (highest priority)
-  if (input.valorUfTotal !== undefined && input.valorUfTotal > 0) {
-    return input.valorUfTotal
-  }
-
-  // Case 2: Explicit financed value provided
-  if (input.valorFinanciadoUf !== undefined && input.valorFinanciadoUf > 0) {
-    if (input.porcentajeFinanciamiento > 0 && input.porcentajeFinanciamiento <= 1) {
-      return input.valorFinanciadoUf / input.porcentajeFinanciamiento
-    }
-  }
-
-  // Case 3: Only valorUf provided - detect if it's total or financed
-  // Heuristic: 
-  // - Financed values are typically 2000-2870 UF (e.g., 2860, 2592)
-  // - Total values are typically 2880+ UF (e.g., 2880, 3200, 3500)
-  // - The threshold is set to 2870 to handle edge cases:
-  //   - 2860 < 2870 → treated as financed (Compañía 1735)
-  //   - 2880 >= 2870 → treated as total (NEO FLORIDA)
-  // 
-  // NOTE: For ambiguous cases (2850-2900), the user should explicitly provide
-  // valorUfTotal or valorFinanciadoUf to avoid confusion
-  const THRESHOLD_UF = 2870
-  
-  if (input.valorUf < THRESHOLD_UF) {
-    // valorUf < 2870, likely the financed amount
-    // Calculate total: valorUf / porcentajeFinanciamiento
-    if (input.porcentajeFinanciamiento > 0 && input.porcentajeFinanciamiento <= 1) {
-      return input.valorUf / input.porcentajeFinanciamiento
-    }
-  }
-  
-  // valorUf >= 2870, assume it's the total property value
+  // valorUf is always the total property value (100% UF)
   return input.valorUf
 }
 
 /**
- * Gets the financed amount in UF (valorUfTotal × porcentajeFinanciamiento)
+ * Gets the financed amount in UF (valorUf × porcentajeFinanciamiento)
+ * 
+ * STANDARDIZED: valorUf is the total, so financed = valorUf * porcentajeFinanciamiento
  */
 export function getValorFinanciadoUf(input: PropertyInput): number {
-  const valorUfTotal = getValorUfTotal(input)
-  return valorUfTotal * input.porcentajeFinanciamiento
+  // valorUf is always total, so financed amount = valorUf * porcentajeFinanciamiento
+  return input.valorUf * input.porcentajeFinanciamiento
 }
 
 /**
- * Gets the total property value in CLP (valorUfTotal × ufActual)
+ * Gets the total property value in CLP (valorUf × ufActual)
+ * 
+ * STANDARDIZED: valorUf is the total, so CLP = valorUf * ufActual
  */
 export function getValorClp(
   input: PropertyInput,
   assumptions: GlobalAssumptions
 ): number {
-  const valorUfTotal = getValorUfTotal(input)
-  return valorUfTotal * assumptions.ufActual
+  // valorUf is always total, so CLP = valorUf * ufActual
+  return input.valorUf * assumptions.ufActual
 }
 
 /**
@@ -104,7 +58,9 @@ export function calcularDividendo(
   assumptions: GlobalAssumptions,
   montoFinanciadoUf: number
 ): { dividendoUf: number; dividendoClp: number } {
-  const tasaMensual = Math.pow(1 + assumptions.tasaAnual, 1 / 12) - 1
+  // Excel-style: tasaAnual is treated as NOMINAL annual rate
+  // Monthly rate = tasaAnual / 12 (NOT effective rate)
+  const tasaMensual = assumptions.tasaAnual / 12
   const nMeses = assumptions.plazoAnios * 12
 
   if (tasaMensual <= 0 || nMeses <= 0 || montoFinanciadoUf <= 0) {
@@ -182,24 +138,22 @@ export function calcularInversionTotalPropiedad(
 /**
  * Calcula todos los resultados para una propiedad
  * 
- * CRITICAL: All calculations use valorUfTotal (100% UF), NOT the financed amount.
- * Only dividendo uses the financed UF.
+ * STANDARDIZED: All calculations use valorUf (100% UF), NOT the financed amount.
+ * Only dividendo uses the financed UF (montoFinanciadoUf).
  */
 export function calcularPropertyResult(
   assumptions: GlobalAssumptions,
   input: PropertyInput
 ): PropertyResult {
-  // 1) Normalize values - get total UF (100%)
-  // CRITICAL: Always use getValorUfTotal to get the true total property value
-  const valorUfTotal = getValorUfTotal(input)
+  // 1) Total UF value - STANDARDIZED: valorUf is always the total (100%)
+  const valorUfTotal = input.valorUf
   
   // 2) Valores base - ALL use valorUfTotal (100%)
-  const valorClp = getValorClp(input, assumptions)
+  const valorClp = valorUfTotal * assumptions.ufActual
   const pieTeoricoClp = valorClp * assumptions.porcentajePieTeorico
 
   // 3) Financed amounts - ONLY used for dividendo
-  // CRITICAL FIX: ALWAYS calculate montoFinanciadoUf as valorUfTotal * porcentajeFinanciamiento
-  // NEVER use input.valorUf directly, as it may represent total, financed, or ambiguous values
+  // STANDARDIZED: montoFinanciadoUf = valorUf * porcentajeFinanciamiento
   const montoFinanciadoUf = valorUfTotal * input.porcentajeFinanciamiento
   const montoFinanciadoClp = montoFinanciadoUf * assumptions.ufActual
 

@@ -1,7 +1,9 @@
 import React from 'react'
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer'
+import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer'
 import type { PortfolioResult, GlobalAssumptions } from '@/src/types/investment'
 import { formatCLP, formatPercentage } from '@/lib/utils'
+import fs from 'fs'
+import path from 'path'
 
 interface AdvisorData {
   nombre: string
@@ -40,53 +42,66 @@ const styles = StyleSheet.create({
   // Header premium
   header: {
     backgroundColor: colors.navy,
-    paddingTop: 32,
-    paddingBottom: 24,
+    paddingTop: 28,
+    paddingBottom: 20,
     paddingHorizontal: 48,
     color: colors.white,
+    minHeight: 140, // Tamaño fijo para header
   },
   headerTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 12,
+  },
+  logoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  logo: {
+    height: 32,
+    width: 'auto',
+    maxWidth: 200,
   },
   logoText: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     color: colors.white,
     letterSpacing: 0.5,
   },
   headerDate: {
-    fontSize: 10,
+    fontSize: 9,
     color: colors.white,
     opacity: 0.7,
   },
   headerTitle: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
     color: colors.white,
     marginBottom: 4,
-  },
-  headerSubtitle: {
-    fontSize: 12,
-    color: colors.white,
-    opacity: 0.8,
-  },
-  headerContact: {
-    fontSize: 9,
-    color: colors.white,
-    opacity: 0.6,
     marginTop: 8,
   },
-  // Hero section
+  headerSubtitle: {
+    fontSize: 11,
+    color: colors.white,
+    opacity: 0.85,
+    marginBottom: 4,
+  },
+  headerContact: {
+    fontSize: 8,
+    color: colors.white,
+    opacity: 0.65,
+    marginTop: 6,
+  },
+  // Hero section - Tamaño adaptativo según número de propiedades
   hero: {
     backgroundColor: colors.navy,
-    padding: 32,
+    padding: 24,
     marginHorizontal: 48,
-    marginTop: 24,
-    marginBottom: 32,
-    borderRadius: 12,
+    marginTop: 20,
+    marginBottom: 24,
+    borderRadius: 10,
   },
   heroTitle: {
     fontSize: 14,
@@ -129,14 +144,20 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: colors.green,
   },
-  // Contenido principal
+  // Contenido principal - Sin minHeight para permitir mejor distribución
   content: {
     paddingHorizontal: 48,
-    paddingBottom: 40,
+    paddingBottom: 24,
+    paddingTop: 20,
+    flexGrow: 1,
   },
-  // Tabla comparativa
+  // Tabla comparativa - Tamaño según número de propiedades
   section: {
-    marginBottom: 32,
+    marginBottom: 24,
+  },
+  // Sección compacta para múltiples propiedades
+  sectionCompact: {
+    marginBottom: 16,
   },
   sectionTitle: {
     fontSize: 18,
@@ -196,19 +217,28 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: colors.orange,
   },
-  // Property Card premium
+  // Property Card premium - Sin minHeight para mejor distribución
   propertyCard: {
     backgroundColor: colors.white,
-    borderRadius: 12,
-    marginBottom: 24,
+    borderRadius: 10,
+    marginBottom: 20,
     overflow: 'hidden',
     borderWidth: 1,
     borderColor: colors.grayLight,
     boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
   } as any,
+  // Card compacta para múltiples propiedades
+  propertyCardCompact: {
+    backgroundColor: colors.white,
+    borderRadius: 8,
+    marginBottom: 16,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: colors.grayLight,
+  } as any,
   propertyCardHeader: {
     backgroundColor: colors.navy,
-    padding: 16,
+    padding: 14,
     borderLeftWidth: 4,
     borderLeftColor: colors.orange,
   },
@@ -313,12 +343,22 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontWeight: 'bold',
   },
-  // Footer premium
+  // Footer premium - Tamaño adaptativo
   footer: {
     backgroundColor: colors.navy,
-    padding: 32,
-    marginTop: 40,
+    padding: 24,
+    marginTop: 'auto',
     color: colors.white,
+  },
+  footerLogoContainer: {
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  footerLogo: {
+    height: 24,
+    width: 'auto',
+    maxWidth: 150,
+    opacity: 0.9,
   },
   footerQuote: {
     fontSize: 14,
@@ -382,6 +422,10 @@ export const PDFDocument: React.FC<PDFDocumentProps> = ({
   // Valores por defecto si no se proporciona advisor
   const advisorNombre = advisor?.nombre || 'Asesor'
   const advisorTelefono = advisor?.telefono || ''
+  
+  // Determinar si usar layout compacto (más de 2 propiedades)
+  const isCompactLayout = portfolio.properties.length > 2
+  
   // Calcular proyección de plusvalía para la primera propiedad
   const firstProperty = portfolio.properties[0]
   const annualProjection = firstProperty
@@ -393,13 +437,50 @@ export const PDFDocument: React.FC<PDFDocumentProps> = ({
     firstProperty?.valorClp || 0
   )
 
-  return (
-    <Document>
-      <Page size="A4" style={styles.page}>
-        {/* Header Premium */}
+  // Cargar logos para react-pdf
+  // En react-pdf con Next.js, necesitamos rutas absolutas desde process.cwd()
+  const getImagePath = (imageName: string): string => {
+    try {
+      // Rutas posibles según el entorno (desarrollo vs producción)
+      const possiblePaths = [
+        path.join(process.cwd(), 'public', 'images', imageName),
+        path.join(process.cwd(), '..', 'public', 'images', imageName),
+        // Para Next.js build
+        path.join(process.cwd(), '.next', 'server', 'app', '..', '..', '..', 'public', 'images', imageName),
+      ]
+      
+      // Buscar la primera ruta que exista
+      for (const imagePath of possiblePaths) {
+        try {
+          if (fs.existsSync(imagePath)) {
+            return imagePath
+          }
+        } catch (e) {
+          // Continuar con la siguiente ruta
+          continue
+        }
+      }
+      
+      // Si ninguna ruta funciona, retornar la ruta estándar
+      // react-pdf intentará cargarla y fallará silenciosamente si no existe
+      return path.join(process.cwd(), 'public', 'images', imageName)
+    } catch (error) {
+      // En caso de error, retornar ruta por defecto
+      console.warn(`Warning: Could not resolve image path for ${imageName}:`, error)
+      return path.join(process.cwd(), 'public', 'images', imageName)
+    }
+  }
+  
+  const logoBlanco = getImagePath('logo_blanco.png')
+  const logoLargo = getImagePath('logo_largo_principal.png')
+
+  // Componente de Header reutilizable
+  const HeaderComponent = () => (
         <View style={styles.header}>
           <View style={styles.headerTop}>
-            <Text style={styles.logoText}>SELECT CAPITAL</Text>
+        <View style={styles.logoContainer}>
+          <Image src={logoBlanco} style={styles.logo} />
+        </View>
             <Text style={styles.headerDate}>{fecha}</Text>
           </View>
           <Text style={styles.headerTitle}>
@@ -407,7 +488,9 @@ export const PDFDocument: React.FC<PDFDocumentProps> = ({
           </Text>
           {portfolio.properties.length > 0 && (
             <Text style={styles.headerSubtitle}>
-              {portfolio.properties[0].input.nombreProyecto}
+          {portfolio.properties.length === 1
+            ? portfolio.properties[0].input.nombreProyecto
+            : `${portfolio.properties.length} Propiedades Seleccionadas`}
             </Text>
           )}
           {advisorTelefono && (
@@ -416,6 +499,32 @@ export const PDFDocument: React.FC<PDFDocumentProps> = ({
             </Text>
           )}
         </View>
+  )
+
+  // Componente de Footer reutilizable
+  const FooterComponent = () => (
+    <View style={styles.footer}>
+      <View style={styles.footerLogoContainer}>
+        <Image src={logoLargo} style={styles.footerLogo} />
+      </View>
+      <Text style={styles.footerQuote}>
+        "Construimos inversión con análisis, estrategia y claridad."
+      </Text>
+      <Text style={styles.footerInfo}>
+        {advisorNombre} – Asesor Inmobiliario
+      </Text>
+      {advisorTelefono && (
+        <Text style={styles.footerInfo}>WhatsApp: {advisorTelefono}</Text>
+      )}
+      <Text style={styles.footerInfo}>contacto@selectcapital.cl</Text>
+    </View>
+  )
+
+  return (
+    <Document>
+      {/* Página 1: Header + Resumen + Tabla Comparativa */}
+      <Page size="A4" style={styles.page} wrap={false}>
+        <HeaderComponent />
 
         {/* Hero Section - Métricas Principales */}
         <View style={styles.hero}>
@@ -448,9 +557,9 @@ export const PDFDocument: React.FC<PDFDocumentProps> = ({
           </View>
         </View>
 
-        {/* Contenido Principal */}
+        {/* Tabla Comparativa - Solo si hay múltiples propiedades */}
+        {portfolio.properties.length > 1 && (
         <View style={styles.content}>
-          {/* Tabla Comparativa del Portafolio */}
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Análisis de Portafolio</Text>
             <View style={styles.table}>
@@ -492,15 +601,18 @@ export const PDFDocument: React.FC<PDFDocumentProps> = ({
               ))}
             </View>
           </View>
+          </View>
+        )}
 
-          {/* Cards Premium de Propiedades */}
+        {/* Si solo hay 1 propiedad, mostrar su card en la primera página */}
+        {portfolio.properties.length === 1 && (
+          <View style={styles.content}>
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>
-              Propiedades ({portfolio.properties.length})
+                Propiedad Detallada
             </Text>
             {portfolio.properties.map((result, index) => (
               <View key={result.input.id} style={styles.propertyCard}>
-                {/* Header de la Card */}
                 <View style={styles.propertyCardHeader}>
                   <Text style={styles.propertyCardTitle}>
                     {index + 1}. {result.input.nombreProyecto}
@@ -510,8 +622,6 @@ export const PDFDocument: React.FC<PDFDocumentProps> = ({
                     {result.input.m2Totales} m²
                   </Text>
                 </View>
-
-                {/* Contenido de la Card */}
                 <View style={styles.propertyCardContent}>
                   <View style={styles.propertyMetrics}>
                     <View style={styles.propertyMetric}>
@@ -591,20 +701,135 @@ export const PDFDocument: React.FC<PDFDocumentProps> = ({
               </View>
             ))}
           </View>
+          </View>
+        )}
 
-          {/* Proyección de Plusvalía */}
-          {firstProperty && annualProjection.length > 0 && (
+        <FooterComponent />
+      </Page>
+
+      {/* Páginas adicionales: Una propiedad por página (si hay múltiples) */}
+      {portfolio.properties.length > 1 &&
+        portfolio.properties.map((result, index) => (
+          <Page key={result.input.id} size="A4" style={styles.page} wrap={false}>
+            <HeaderComponent />
+            <View style={styles.content}>
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>
+                  Propiedad {index + 1} de {portfolio.properties.length}
+                </Text>
+                <View style={styles.propertyCard}>
+                  <View style={styles.propertyCardHeader}>
+                    <Text style={styles.propertyCardTitle}>
+                      {index + 1}. {result.input.nombreProyecto}
+                    </Text>
+                    <Text style={styles.propertyCardSubtitle}>
+                      {result.input.comuna} • {result.input.tipologia} •{' '}
+                      {result.input.m2Totales} m²
+                    </Text>
+                  </View>
+                  <View style={styles.propertyCardContent}>
+                    <View style={styles.propertyMetrics}>
+                      <View style={styles.propertyMetric}>
+                        <Text style={styles.propertyMetricLabel}>
+                          Valor Propiedad
+                        </Text>
+                        <Text style={styles.propertyMetricValueLarge}>
+                          {formatCLP(result.valorClp)}
+                        </Text>
+                      </View>
+                      <View style={styles.propertyMetric}>
+                        <Text style={styles.propertyMetricLabel}>
+                          Dividendo Mensual
+                        </Text>
+                        <Text style={styles.propertyMetricValue}>
+                          {formatCLP(result.dividendoClp)}
+                        </Text>
+                      </View>
+                      <View style={styles.propertyMetric}>
+                        <Text style={styles.propertyMetricLabel}>
+                          Inversión Total
+                        </Text>
+                        <Text style={styles.propertyMetricValueLarge}>
+                          {formatCLP(result.inversionTotalPropiedadClp)}
+                        </Text>
+                      </View>
+                      <View style={styles.propertyMetric}>
+                        <Text style={styles.propertyMetricLabel}>
+                          Ganancia Bruta (4 años)
+                        </Text>
+                        <Text style={styles.propertyMetricValueGreen}>
+                          {formatCLP(result.gananciaBrutaClp)}
+                        </Text>
+                      </View>
+                      <View style={styles.propertyMetric}>
+                        <Text style={styles.propertyMetricLabel}>
+                          Ganancia Neta (4 años)
+                        </Text>
+                        <Text style={styles.propertyMetricValueOrange}>
+                          {formatCLP(result.gananciaNetaClp)}
+                        </Text>
+                      </View>
+                      <View style={styles.propertyMetric}>
+                        <Text style={styles.propertyMetricLabel}>
+                          Plusvalía ({assumptions.horizonteAnios} años)
+                        </Text>
+                        <Text style={styles.propertyMetricValueGreen}>
+                          {formatCLP(result.plusvaliaHorizonteClp)}
+                        </Text>
+                      </View>
+                      {result.bonoPieClp > 0 && (
+                        <View style={styles.propertyMetric}>
+                          <Text style={styles.propertyMetricLabel}>Bono Pie</Text>
+                          <Text style={styles.propertyMetricValueGreen}>
+                            {formatCLP(result.bonoPieClp)}
+                          </Text>
+                        </View>
+                      )}
+                      <View style={styles.propertyMetric}>
+                        <Text style={styles.propertyMetricLabel}>
+                          Rentabilidad Bruta
+                        </Text>
+                        <Text style={styles.propertyMetricValue}>
+                          {formatPercentage(result.rentabilidadBruta)}
+                        </Text>
+                      </View>
+                      <View style={styles.propertyMetric}>
+                        <Text style={styles.propertyMetricLabel}>
+                          ROI Individual
+                        </Text>
+                        <Text style={styles.propertyMetricValueGreen}>
+                          {formatPercentage(result.roiSobreInversion)}
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <FooterComponent />
+          </Page>
+        ))}
+
+      {/* Última página: Proyección de Plusvalía (solo si hay 1-2 propiedades) */}
+      {firstProperty &&
+        annualProjection.length > 0 &&
+        portfolio.properties.length <= 2 && (
+          <Page size="A4" style={styles.page} wrap={false}>
+            <HeaderComponent />
+            <View style={styles.content}>
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>
                 Proyección de Plusvalía ({assumptions.horizonteAnios} años)
               </Text>
               <View style={styles.chartContainer}>
-                {annualProjection.map((projection, index) => {
+                  {annualProjection.map((projection) => {
                   const percentage =
                     (projection.value / maxProjectionValue) * 100
                   return (
                     <View key={projection.year} style={styles.chartBar}>
-                      <Text style={styles.chartBarLabel}>{projection.year}</Text>
+                        <Text style={styles.chartBarLabel}>
+                          {projection.year}
+                        </Text>
                       <View style={styles.chartBarContainer}>
                         <View
                           style={[
@@ -622,24 +847,10 @@ export const PDFDocument: React.FC<PDFDocumentProps> = ({
                 })}
               </View>
             </View>
-          )}
         </View>
-
-        {/* Footer Premium */}
-        <View style={styles.footer}>
-          <Text style={styles.footerQuote}>
-            "Construimos inversión con análisis, estrategia y claridad."
-          </Text>
-          <Text style={styles.footerInfo}>
-            {advisorNombre} – Asesor Inmobiliario
-          </Text>
-          {advisorTelefono && (
-            <Text style={styles.footerInfo}>WhatsApp: {advisorTelefono}</Text>
-          )}
-          <Text style={styles.footerInfo}>contacto@selectcapital.cl</Text>
-          <Text style={styles.footerBrand}>SELECT CAPITAL</Text>
-        </View>
-      </Page>
+            <FooterComponent />
+          </Page>
+        )}
     </Document>
   )
 }

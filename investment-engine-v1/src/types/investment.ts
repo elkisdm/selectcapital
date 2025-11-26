@@ -22,14 +22,12 @@ export interface PropertyInput {
   tipologia: string;              // "1D1B", "2D2B", etc.
   m2Totales: number;
 
-  // IMPORTANT: valorUf can be EITHER:
-  // A) Total property value (100% UF) - when valorUfTotal is provided or valorUf is clearly total
-  // B) Financed value (80/85/90% UF) - when valorUf is the credit amount
-  // The engine will auto-detect and normalize to valorUfTotal
-  valorUf: number;                // valor a escriturar en UF (may be total or financed)
-  valorUfTotal?: number;          // Optional: explicitly provide total UF (100%)
-  valorFinanciadoUf?: number;     // Optional: explicitly provide financed UF
-  porcentajeFinanciamiento: number; // 0.8, 0.9, etc.
+  // STANDARDIZED CONTRACT: valorUf MUST ALWAYS represent the TOTAL property value in UF (100%).
+  // The financed UF amount is ALWAYS derived: montoFinanciadoUf = valorUf * porcentajeFinanciamiento
+  valorUf: number;                // Total property value in UF (100% - always)
+  valorUfTotal?: number;          // DEPRECATED: Use valorUf instead. Kept for backward compatibility only.
+  valorFinanciadoUf?: number;     // DEPRECATED: Use valorUf * porcentajeFinanciamiento instead. Kept for backward compatibility only.
+  porcentajeFinanciamiento: number; // 0.8, 0.85, 0.9, etc. - fraction to be financed
 
   arriendoEstimadoClp: number;
   gastoComunClp: number;

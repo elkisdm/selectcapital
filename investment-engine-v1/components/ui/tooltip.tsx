@@ -10,9 +10,11 @@ interface TooltipProps {
   className?: string
 }
 
-export function Tooltip({ children, content, side = 'top', className }: TooltipProps) {
+export function Tooltip({ children, content, side = 'bottom', className }: TooltipProps) {
   const [isVisible, setIsVisible] = React.useState(false)
+  const [actualSide, setActualSide] = React.useState(side)
   const timeoutRef = React.useRef<NodeJS.Timeout>()
+  const tooltipRef = React.useRef<HTMLDivElement>(null)
 
   const handleMouseEnter = () => {
     if (timeoutRef.current) {
@@ -35,6 +37,32 @@ export function Tooltip({ children, content, side = 'top', className }: TooltipP
     }
   }, [])
 
+  // Ajustar posición según espacio disponible
+  React.useEffect(() => {
+    if (isVisible && tooltipRef.current) {
+      const rect = tooltipRef.current.getBoundingClientRect()
+      const viewportHeight = window.innerHeight
+      const viewportWidth = window.innerWidth
+      
+      // Si el tooltip se sale por arriba, cambiar a bottom
+      if (actualSide === 'top' && rect.top < 0) {
+        setActualSide('bottom')
+      }
+      // Si se sale por abajo, cambiar a top
+      else if (actualSide === 'bottom' && rect.bottom > viewportHeight) {
+        setActualSide('top')
+      }
+      // Si se sale por la izquierda, cambiar a right
+      else if (actualSide === 'left' && rect.left < 0) {
+        setActualSide('right')
+      }
+      // Si se sale por la derecha, cambiar a left
+      else if (actualSide === 'right' && rect.right > viewportWidth) {
+        setActualSide('left')
+      }
+    }
+  }, [isVisible, actualSide])
+
   const sideClasses = {
     top: 'bottom-full left-1/2 -translate-x-1/2 mb-2',
     bottom: 'top-full left-1/2 -translate-x-1/2 mt-2',
@@ -43,10 +71,10 @@ export function Tooltip({ children, content, side = 'top', className }: TooltipP
   }
 
   const arrowClasses = {
-    top: 'top-full left-1/2 -translate-x-1/2 border-t-border border-l-transparent border-r-transparent border-b-transparent',
-    bottom: 'bottom-full left-1/2 -translate-x-1/2 border-b-border border-l-transparent border-r-transparent border-t-transparent',
-    left: 'left-full top-1/2 -translate-y-1/2 border-l-border border-t-transparent border-b-transparent border-r-transparent',
-    right: 'right-full top-1/2 -translate-y-1/2 border-r-border border-t-transparent border-b-transparent border-l-transparent',
+    top: 'top-full left-1/2 -translate-x-1/2 border-t-popover border-l-transparent border-r-transparent border-b-transparent',
+    bottom: 'bottom-full left-1/2 -translate-x-1/2 border-b-popover border-l-transparent border-r-transparent border-t-transparent',
+    left: 'left-full top-1/2 -translate-y-1/2 border-l-popover border-t-transparent border-b-transparent border-r-transparent',
+    right: 'right-full top-1/2 -translate-y-1/2 border-r-popover border-t-transparent border-b-transparent border-l-transparent',
   }
 
   return (
@@ -58,18 +86,23 @@ export function Tooltip({ children, content, side = 'top', className }: TooltipP
       {children}
       {isVisible && (
         <div
+          ref={tooltipRef}
           className={cn(
-            'absolute z-50 px-3 py-2 text-sm text-popover-foreground bg-popover border rounded-md shadow-lg max-w-xs',
-            sideClasses[side],
+            'absolute z-50 px-4 py-3 text-sm text-popover-foreground bg-popover border border-border rounded-lg shadow-xl',
+            'w-[320px] md:w-[400px] max-w-[90vw]',
+            'overflow-y-auto max-h-[50vh]',
+            sideClasses[actualSide],
             className
           )}
           role="tooltip"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           {content}
           <div
             className={cn(
               'absolute w-0 h-0 border-4',
-              arrowClasses[side]
+              arrowClasses[actualSide]
             )}
           />
         </div>
@@ -77,4 +110,3 @@ export function Tooltip({ children, content, side = 'top', className }: TooltipP
     </div>
   )
 }
-

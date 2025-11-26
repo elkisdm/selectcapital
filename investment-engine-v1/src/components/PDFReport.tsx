@@ -16,9 +16,10 @@ interface AdvisorData {
 interface PDFReportProps {
   portfolio: PortfolioResult
   assumptions: GlobalAssumptions
+  onToast?: (title: string, type: 'success' | 'error' | 'info' | 'warning', description?: string) => void
 }
 
-export function PDFReport({ portfolio, assumptions }: PDFReportProps) {
+export function PDFReport({ portfolio, assumptions, onToast }: PDFReportProps) {
   const [isGenerating, setIsGenerating] = useState(false)
   const [showAdvisorForm, setShowAdvisorForm] = useState(false)
   const [advisorData, setAdvisorData] = useLocalStorage<AdvisorData>(
@@ -61,10 +62,12 @@ export function PDFReport({ portfolio, assumptions }: PDFReportProps) {
         document.body.removeChild(a)
         window.URL.revokeObjectURL(url)
       }, 100)
+
+      onToast?.('PDF generado', 'success', 'El reporte se ha descargado correctamente.')
     } catch (error) {
       console.error('Error generando PDF:', error)
       const message = error instanceof Error ? error.message : 'Error desconocido'
-      alert(`Error al generar el PDF: ${message}. Por favor, intenta nuevamente.`)
+      onToast?.('Error al generar PDF', 'error', `${message}. Por favor, intenta nuevamente.`)
     } finally {
       setIsGenerating(false)
     }
