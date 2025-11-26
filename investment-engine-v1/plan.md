@@ -126,7 +126,9 @@ function calcularDividendo(
   assumptions: GlobalAssumptions,
   montoFinanciadoUf: number
 ): { dividendoUf: number; dividendoClp: number } {
-  const tasaMensual = Math.pow(1 + assumptions.tasaAnual, 1 / 12) - 1;
+  // Excel-style: tasaAnual is treated as NOMINAL annual rate
+  // Monthly rate = tasaAnual / 12 (NOT effective rate)
+  const tasaMensual = assumptions.tasaAnual / 12;
   const nMeses = assumptions.plazoAnios * 12;
 
   if (tasaMensual <= 0 || nMeses <= 0 || montoFinanciadoUf <= 0) {
@@ -512,7 +514,8 @@ Sigue este pseudocódigo y conviértelo a TypeScript real:
 
 calcularDividendo:
 
-tasaMensual = (1 + tasaAnual)^(1/12) - 1
+// Excel-style: tasaAnual is treated as NOMINAL annual rate
+tasaMensual = tasaAnual / 12
 
 nMeses = plazoAnios * 12
 

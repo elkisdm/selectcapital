@@ -20,6 +20,10 @@ export function PropertyCard({ result }: PropertyCardProps) {
     return roi >= 0 ? 'text-success' : 'text-destructive'
   }
 
+  // Debug: Verificar que los deltas existen
+  // console.log('Delta con pie:', result.deltaMensualConPieClp)
+  // console.log('Delta sin pie:', result.deltaMensualSinPieClp)
+
   return (
     <Card>
       <CardHeader>
@@ -62,10 +66,10 @@ export function PropertyCard({ result }: PropertyCardProps) {
           </div>
         </div>
 
-        {/* Flujos mensuales */}
+        {/* Flujos mensuales - Delta */}
         <div className="grid grid-cols-2 gap-4 pt-4 border-t">
-          <div>
-            <div className="text-sm text-muted-foreground">Delta Mensual (con pie)</div>
+          <div className="p-3 rounded-lg bg-muted/30 border border-border/50">
+            <div className="text-sm text-muted-foreground mb-1">Delta Mensual (con pie)</div>
             <div
               className={`text-lg font-semibold flex items-center gap-1 ${getDeltaColor(
                 result.deltaMensualConPieClp
@@ -78,10 +82,15 @@ export function PropertyCard({ result }: PropertyCardProps) {
               )}
               {formatCLP(result.deltaMensualConPieClp)}
             </div>
+            <div className="text-xs text-muted-foreground/70 mt-1">
+              Arriendo - Dividendo - Gasto Común
+              {result.input.otrosGastosMensualesClp > 0 && ' - Otros Gastos'}
+              {' - Cuota Pie'}
+            </div>
           </div>
 
-          <div>
-            <div className="text-sm text-muted-foreground">Delta Mensual (sin pie)</div>
+          <div className="p-3 rounded-lg bg-muted/30 border border-border/50">
+            <div className="text-sm text-muted-foreground mb-1">Delta Mensual (sin pie)</div>
             <div
               className={`text-lg font-semibold flex items-center gap-1 ${getDeltaColor(
                 result.deltaMensualSinPieClp
@@ -93,6 +102,10 @@ export function PropertyCard({ result }: PropertyCardProps) {
                 <TrendingDown className="h-4 w-4" />
               )}
               {formatCLP(result.deltaMensualSinPieClp)}
+            </div>
+            <div className="text-xs text-muted-foreground/70 mt-1">
+              Arriendo - Dividendo - Gasto Común
+              {result.input.otrosGastosMensualesClp > 0 && ' - Otros Gastos'}
             </div>
           </div>
         </div>

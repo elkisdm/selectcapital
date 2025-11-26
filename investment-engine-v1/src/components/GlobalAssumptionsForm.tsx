@@ -27,7 +27,7 @@ export function GlobalAssumptionsForm({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Supuestos Globales</CardTitle>
+        <CardTitle>Parámetros Base</CardTitle>
         <CardDescription>
           Configura los parámetros generales para todos los cálculos
         </CardDescription>
@@ -65,15 +65,13 @@ export function GlobalAssumptionsForm({
             id="tasaAnual"
             label="Tasa Anual (%)"
             type="number"
-            step="0.001"
-            value={assumptions.tasaAnual * 100}
-            onChange={(value) =>
-              handleChange('tasaAnual', ((value as number) || 0) / 100)
-            }
-            min={2}
-            max={10}
+            value={assumptions.tasaAnual}
+            onChange={(value) => handleChange('tasaAnual', value as number)}
+            min={0.02}
+            max={0.10}
             fieldName="Tasa Anual"
             placeholder="4.5"
+            isPercentage={true}
           />
 
           <ValidatedInput
@@ -92,60 +90,52 @@ export function GlobalAssumptionsForm({
             id="plusvaliaAnio1"
             label="Plusvalía Año 1 (%)"
             type="number"
-            step="0.001"
-            value={assumptions.plusvaliaAnio1 * 100}
-            onChange={(value) =>
-              handleChange('plusvaliaAnio1', ((value as number) || 0) / 100)
-            }
+            value={assumptions.plusvaliaAnio1}
+            onChange={(value) => handleChange('plusvaliaAnio1', value as number)}
             min={0}
-            max={20}
+            max={0.20}
             fieldName="Plusvalía Año 1"
             placeholder="5.4"
+            isPercentage={true}
           />
 
           <ValidatedInput
             id="plusvaliaDesdeAnio2"
             label="Plusvalía Años 2+ (%)"
             type="number"
-            step="0.001"
-            value={assumptions.plusvaliaDesdeAnio2 * 100}
-            onChange={(value) =>
-              handleChange('plusvaliaDesdeAnio2', ((value as number) || 0) / 100)
-            }
+            value={assumptions.plusvaliaDesdeAnio2}
+            onChange={(value) => handleChange('plusvaliaDesdeAnio2', value as number)}
             min={0}
-            max={15}
+            max={0.15}
             fieldName="Plusvalía Años 2+"
             placeholder="5.0"
+            isPercentage={true}
           />
 
           <ValidatedInput
             id="porcentajePieTeorico"
             label="% Pie Teórico"
             type="number"
-            step="0.01"
-            value={assumptions.porcentajePieTeorico * 100}
-            onChange={(value) =>
-              handleChange('porcentajePieTeorico', ((value as number) || 0) / 100)
-            }
-            min={5}
-            max={30}
+            value={assumptions.porcentajePieTeorico}
+            onChange={(value) => handleChange('porcentajePieTeorico', value as number)}
+            min={0.05}
+            max={0.30}
             fieldName="% Pie Teórico"
             placeholder="10"
+            isPercentage={true}
           />
 
           <ValidatedInput
             id="porcentajeBonoPie"
             label="% Bono Pie"
             type="number"
-            step="0.01"
-            value={assumptions.porcentajeBonoPie * 100}
-            onChange={(value) =>
-              handleChange('porcentajeBonoPie', ((value as number) || 0) / 100)
-            }
+            value={assumptions.porcentajeBonoPie}
+            onChange={(value) => handleChange('porcentajeBonoPie', value as number)}
             min={0}
-            max={20}
+            max={0.20}
             fieldName="% Bono Pie"
             placeholder="10"
+            isPercentage={true}
           />
 
           <ValidatedInput
@@ -164,45 +154,39 @@ export function GlobalAssumptionsForm({
             id="porcentajeGastosBanco"
             label="% Gastos Banco"
             type="number"
-            step="0.001"
-            value={assumptions.porcentajeGastosBanco * 100}
-            onChange={(value) =>
-              handleChange('porcentajeGastosBanco', ((value as number) || 0) / 100)
-            }
+            value={assumptions.porcentajeGastosBanco}
+            onChange={(value) => handleChange('porcentajeGastosBanco', value as number)}
             min={0}
-            max={5}
+            max={0.05}
             fieldName="% Gastos Banco"
             placeholder="1.0"
+            isPercentage={true}
           />
 
           <ValidatedInput
             id="ivaPorcentaje"
             label="IVA (%)"
             type="number"
-            step="0.01"
-            value={assumptions.ivaPorcentaje * 100}
-            onChange={(value) =>
-              handleChange('ivaPorcentaje', ((value as number) || 0) / 100)
-            }
+            value={assumptions.ivaPorcentaje}
+            onChange={(value) => handleChange('ivaPorcentaje', value as number)}
             min={0}
-            max={25}
+            max={0.25}
             fieldName="IVA"
             placeholder="19"
+            isPercentage={true}
           />
 
           <ValidatedInput
             id="ivaFactorRecuperable"
             label="Factor IVA Recuperable (%)"
             type="number"
-            step="0.01"
-            value={assumptions.ivaFactorRecuperable * 100}
-            onChange={(value) =>
-              handleChange('ivaFactorRecuperable', ((value as number) || 0) / 100)
-            }
+            value={assumptions.ivaFactorRecuperable}
+            onChange={(value) => handleChange('ivaFactorRecuperable', value as number)}
             min={0}
-            max={100}
+            max={1.0}
             fieldName="Factor IVA Recuperable"
             placeholder="70"
+            isPercentage={true}
           />
 
           <ValidatedInput

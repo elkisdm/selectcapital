@@ -1,8 +1,9 @@
 'use client'
 
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Download, Upload, Trash2, FileSpreadsheet } from 'lucide-react'
+import { Download, Upload, Trash2, FileSpreadsheet, ChevronDown, ChevronUp, FileText } from 'lucide-react'
 import type { GlobalAssumptions, PropertyInput } from '@/src/types/investment'
 
 interface DataManagementProps {
@@ -10,6 +11,7 @@ interface DataManagementProps {
   properties: PropertyInput[]
   onImport: (data: { assumptions: GlobalAssumptions; properties: PropertyInput[] }) => void
   onClear: () => void
+  onToast?: (title: string, type: 'success' | 'error' | 'info' | 'warning', description?: string) => void
 }
 
 export function DataManagement({
@@ -17,7 +19,10 @@ export function DataManagement({
   properties,
   onImport,
   onClear,
+  onToast,
 }: DataManagementProps) {
+  const [isExpanded, setIsExpanded] = useState(false)
+  const [jsonInput, setJsonInput] = useState('')
   const handleExport = () => {
     try {
       const data = {
@@ -44,7 +49,7 @@ export function DataManagement({
       }, 100)
     } catch (error) {
       console.error('Error exportando JSON:', error)
-      alert('Error al exportar el archivo. Por favor, intenta nuevamente.')
+      onToast?.('Error al exportar', 'error', 'No se pudo exportar el archivo JSON. Por favor, intenta nuevamente.')
     }
   }
 
@@ -157,7 +162,7 @@ export function DataManagement({
       }, 100)
     } catch (error) {
       console.error('Error exportando CSV:', error)
-      alert('Error al exportar el archivo CSV. Por favor, intenta nuevamente.')
+      onToast?.('Error al exportar CSV', 'error', 'No se pudo exportar el archivo CSV. Por favor, intenta nuevamente.')
     }
   }
 
@@ -172,7 +177,7 @@ export function DataManagement({
 
         const reader = new FileReader()
         reader.onerror = () => {
-          alert('Error al leer el archivo. Por favor, intenta nuevamente.')
+          onToast?.('Error al leer archivo', 'error', 'No se pudo leer el archivo. Por favor, intenta nuevamente.')
         }
         reader.onload = (event) => {
           try {
@@ -227,11 +232,11 @@ export function DataManagement({
               properties: data.properties,
             })
             
-            alert('Datos importados correctamente')
+            onToast?.('Datos importados', 'success', 'Los datos se han importado correctamente.')
           } catch (error) {
             console.error('Error importing data:', error)
             const message = error instanceof Error ? error.message : 'Error desconocido'
-            alert(`Error al importar el archivo: ${message}`)
+            onToast?.('Error al importar', 'error', message)
           }
         }
         reader.readAsText(file, 'UTF-8')
@@ -239,7 +244,7 @@ export function DataManagement({
       input.click()
     } catch (error) {
       console.error('Error setting up file input:', error)
-      alert('Error al configurar la importación. Por favor, intenta nuevamente.')
+      onToast?.('Error', 'error', 'Error al configurar la importación. Por favor, intenta nuevamente.')
     }
   }
 
@@ -253,15 +258,88 @@ export function DataManagement({
     }
   }
 
+  const handleImportFromText = () => {
+    try {
+      if (!jsonInput || jsonInput.trim() === '') {
+        onToast?.('Campo vacío', 'warning', 'Por favor, pega el JSON en el campo de texto.')
+        return
+      }
+
+      const cleanedText = jsonInput.trim()
+      
+      let data
+      try {
+        data = JSON.parse(cleanedText)
+      } catch (parseError) {
+        if (parseError instanceof SyntaxError) {
+          const match = parseError.message.match(/position (\d+)/)
+          const position = match ? parseInt(match[1]) : null
+          if (position) {
+            const line = cleanedText.substring(0, position).split('\n').length
+            const column = cleanedText.substring(0, position).split('\n').pop()?.length || 0
+            throw new Error(
+              `Error de formato JSON en la línea ${line}, columna ${column + 1}. ` +
+              `Verifica que el JSON sea válido.`
+            )
+          }
+          throw new Error(`Error de formato JSON: ${parseError.message}`)
+        }
+        throw parseError
+      }
+      
+      // Validar estructura básica
+      if (!data || typeof data !== 'object') {
+        throw new Error('El JSON no tiene un formato válido')
+      }
+
+      if (!data.assumptions || typeof data.assumptions !== 'object') {
+        throw new Error('El JSON no contiene supuestos globales válidos')
+      }
+
+      if (!Array.isArray(data.properties)) {
+        throw new Error('El JSON no contiene un array de propiedades válido')
+      }
+
+      onImport({
+        assumptions: data.assumptions,
+        properties: data.properties,
+      })
+      
+      setJsonInput('')
+      onToast?.('Datos importados', 'success', 'Los datos se han importado correctamente desde el texto.')
+    } catch (error) {
+      console.error('Error importing from text:', error)
+      const message = error instanceof Error ? error.message : 'Error desconocido'
+      onToast?.('Error al importar', 'error', message)
+    }
+  }
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Gestión de Datos</CardTitle>
-        <CardDescription>
-          Exporta, importa o limpia tus datos del portafolio
-        </CardDescription>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle>Gestión de Datos</CardTitle>
+            <CardDescription>
+              Exporta, importa o limpia tus datos del portafolio
+            </CardDescription>
+          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="h-8 w-8 p-0"
+          >
+            {isExpanded ? (
+              <ChevronUp className="h-4 w-4" />
+            ) : (
+              <ChevronDown className="h-4 w-4" />
+            )}
+          </Button>
+        </div>
       </CardHeader>
-      <CardContent className="space-y-4">
+      {isExpanded && (
+        <CardContent className="space-y-4">
         {/* Sección de Exportación */}
         <div className="space-y-2">
           <h4 className="text-sm font-medium text-foreground">Exportar</h4>
@@ -299,8 +377,31 @@ export function DataManagement({
         <div className="border-t border-border" />
 
         {/* Sección de Importación y Limpieza */}
-        <div className="space-y-2">
+        <div className="space-y-3">
           <h4 className="text-sm font-medium text-foreground">Importar / Limpiar</h4>
+          
+          {/* Campo de texto para pegar JSON */}
+          <div className="space-y-2">
+            <label className="text-xs text-muted-foreground font-medium">
+              Pegar JSON directamente
+            </label>
+            <textarea
+              value={jsonInput}
+              onChange={(e) => setJsonInput(e.target.value)}
+              placeholder='Pega aquí el JSON exportado...'
+              className="w-full min-h-[120px] px-3 py-2 text-sm bg-background/50 border border-input rounded-md resize-y font-mono text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            />
+            <Button 
+              variant="outline" 
+              onClick={handleImportFromText}
+              className="w-full"
+              disabled={!jsonInput.trim()}
+            >
+              <FileText className="h-4 w-4 mr-2" />
+              Importar desde texto
+            </Button>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <Button 
               variant="outline" 
@@ -308,7 +409,7 @@ export function DataManagement({
               className="w-full"
             >
               <Upload className="h-4 w-4 mr-2" />
-              Importar JSON
+              Importar desde archivo
             </Button>
             <Button
               variant="destructive"
@@ -328,7 +429,8 @@ export function DataManagement({
             Usa exportar para hacer una copia de respaldo. El CSV es compatible con Excel y Google Sheets.
           </p>
         </div>
-      </CardContent>
+        </CardContent>
+      )}
     </Card>
   )
 }
