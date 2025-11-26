@@ -71,18 +71,22 @@ export default function CalculatorPage() {
           const data = await response.json()
           setValorUF(data.uf)
           // Solo actualizar si el valor guardado es el default
-          if (assumptions.ufActual === defaultAssumptions.ufActual) {
-            setAssumptions((prev) => ({
-              ...prev,
-              ufActual: data.uf,
-            }))
-          }
+          setAssumptions((prev) => {
+            if (prev.ufActual === defaultAssumptions.ufActual) {
+              return {
+                ...prev,
+                ufActual: data.uf,
+              }
+            }
+            return prev
+          })
         }
       } catch (error) {
         console.error('Error obteniendo UF:', error)
       }
     }
     fetchUF()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Calcular resultados del portafolio (solo después de montar para evitar hidratación)
@@ -287,7 +291,6 @@ export default function CalculatorPage() {
         onSkip={skipOnboarding}
         totalSteps={6}
       />
-      </main>
 
       {/* Footer */}
       <footer className="border-t border-border mt-16">

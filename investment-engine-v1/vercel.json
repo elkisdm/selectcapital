@@ -9,6 +9,7 @@
     "app/api/generate-pdf/route.ts": {
       "maxDuration": 30
     }
-  }
+  },
+  "domains": ["app.selectcapital.cl"]
 }
 
