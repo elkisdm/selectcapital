@@ -3,10 +3,16 @@ import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer'
 import type { PortfolioResult, GlobalAssumptions } from '@/src/types/investment'
 import { formatCLP, formatPercentage } from '@/lib/utils'
 
+interface AdvisorData {
+  nombre: string
+  telefono: string
+}
+
 interface PDFDocumentProps {
   portfolio: PortfolioResult
   assumptions: GlobalAssumptions
   fecha: string
+  advisor?: AdvisorData
 }
 
 // Paleta de colores premium
@@ -371,7 +377,11 @@ export const PDFDocument: React.FC<PDFDocumentProps> = ({
   portfolio,
   assumptions,
   fecha,
+  advisor,
 }) => {
+  // Valores por defecto si no se proporciona advisor
+  const advisorNombre = advisor?.nombre || 'Asesor'
+  const advisorTelefono = advisor?.telefono || ''
   // Calcular proyección de plusvalía para la primera propiedad
   const firstProperty = portfolio.properties[0]
   const annualProjection = firstProperty
@@ -400,9 +410,11 @@ export const PDFDocument: React.FC<PDFDocumentProps> = ({
               {portfolio.properties[0].input.nombreProyecto}
             </Text>
           )}
-          <Text style={styles.headerContact}>
-            Elkis Daza – Asesor | WhatsApp: +56 9 6601 3182
-          </Text>
+          {advisorTelefono && (
+            <Text style={styles.headerContact}>
+              {advisorNombre} – Asesor | WhatsApp: {advisorTelefono}
+            </Text>
+          )}
         </View>
 
         {/* Hero Section - Métricas Principales */}
@@ -619,9 +631,11 @@ export const PDFDocument: React.FC<PDFDocumentProps> = ({
             "Construimos inversión con análisis, estrategia y claridad."
           </Text>
           <Text style={styles.footerInfo}>
-            Elkis Daza – Asesor Inmobiliario
+            {advisorNombre} – Asesor Inmobiliario
           </Text>
-          <Text style={styles.footerInfo}>WhatsApp: +56 9 6601 3182</Text>
+          {advisorTelefono && (
+            <Text style={styles.footerInfo}>WhatsApp: {advisorTelefono}</Text>
+          )}
           <Text style={styles.footerInfo}>contacto@selectcapital.cl</Text>
           <Text style={styles.footerBrand}>SELECT CAPITAL</Text>
         </View>

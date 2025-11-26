@@ -4,12 +4,18 @@ import { renderToBuffer } from '@react-pdf/renderer'
 import { PDFDocument } from '@/src/components/PDFDocument'
 import type { PortfolioResult, GlobalAssumptions } from '@/src/types/investment'
 
+interface AdvisorData {
+  nombre: string
+  telefono: string
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { portfolio, assumptions } = body as {
+    const { portfolio, assumptions, advisor } = body as {
       portfolio: PortfolioResult
       assumptions: GlobalAssumptions
+      advisor?: AdvisorData
     }
 
     if (!portfolio || !assumptions) {
@@ -30,6 +36,7 @@ export async function POST(request: NextRequest) {
       portfolio,
       assumptions,
       fecha,
+      advisor,
     })
 
     const pdfBuffer = await renderToBuffer(pdfDoc as any)

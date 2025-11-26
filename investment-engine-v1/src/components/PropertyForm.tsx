@@ -199,19 +199,14 @@ export function PropertyForm({
                 id="porcentajeFinanciamiento"
                 label="% Financiamiento"
                 type="number"
-                step="0.01"
-                value={formData.porcentajeFinanciamiento ? formData.porcentajeFinanciamiento * 100 : ''}
-                onChange={(value) =>
-                  handleChange(
-                    'porcentajeFinanciamiento',
-                    ((value as number) || 0) / 100
-                  )
-                }
-                min={50}
-                max={100}
+                value={formData.porcentajeFinanciamiento}
+                onChange={(value) => handleChange('porcentajeFinanciamiento', value as number)}
+                min={0.5}
+                max={1.0}
                 fieldName="% Financiamiento"
                 placeholder="80"
                 required
+                isPercentage={true}
               />
             </div>
           </div>
@@ -261,7 +256,6 @@ export function PropertyForm({
                 fieldName="Otros Gastos Mensuales"
                 placeholder="50000"
                 allowZero={true}
-                required
               />
             </div>
           </div>
@@ -294,7 +288,6 @@ export function PropertyForm({
                 fieldName="Abonos Iniciales"
                 placeholder="2000000"
                 allowZero={true}
-                required
               />
 
               <ValidatedInput
@@ -321,7 +314,6 @@ export function PropertyForm({
                 fieldName="Costos Gestión"
                 placeholder="300000"
                 allowZero={true}
-                required
               />
             </div>
           </div>

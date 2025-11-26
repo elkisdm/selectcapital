@@ -7,8 +7,10 @@ import { PropertyCard } from '@/src/components/PropertyCard'
 import { PortfolioSummary } from '@/src/components/PortfolioSummary'
 import { PDFReport } from '@/src/components/PDFReport'
 import { DataManagement } from '@/src/components/DataManagement'
+import { OnboardingTutorial } from '@/src/components/OnboardingTutorial'
 import { calcularPortfolioResult } from '@/src/lib/investmentCalculator'
 import { useLocalStorage } from '@/src/hooks/useLocalStorage'
+import { useOnboarding } from '@/src/hooks/useOnboarding'
 import type {
   GlobalAssumptions,
   PropertyInput,
@@ -43,6 +45,17 @@ export default function CalculatorPage() {
     []
   )
   const [valorUF, setValorUF] = useState<number>(39643)
+
+  // Onboarding
+  const {
+    isActive,
+    currentStep,
+    startOnboarding,
+    completeOnboarding,
+    skipOnboarding,
+    nextStep,
+    previousStep,
+  } = useOnboarding()
 
   // Marcar como montado después de la hidratación
   useEffect(() => {
@@ -131,8 +144,20 @@ export default function CalculatorPage() {
                   Calcula la rentabilidad de tu portafolio
                 </p>
               </div>
-              <div className="text-xs md:text-sm text-muted-foreground/70 font-light">
-                UF: <span className="font-medium">${valorUF.toLocaleString('es-CL')}</span>
+              <div className="flex items-center gap-4">
+                <div className="text-xs md:text-sm text-muted-foreground/70 font-light">
+                  UF: <span className="font-medium">${valorUF.toLocaleString('es-CL')}</span>
+                </div>
+                {isMounted && (
+                  <button
+                    onClick={startOnboarding}
+                    className="text-xs md:text-sm text-muted-foreground/70 hover:text-primary transition-colors flex items-center gap-1.5 px-2 py-1 rounded-md hover:bg-white/5"
+                    title="Ver tutorial de uso"
+                  >
+                    <span className="hidden md:inline">Ayuda</span>
+                    <span className="text-base font-semibold w-5 h-5 flex items-center justify-center rounded-full border border-current">?</span>
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -143,28 +168,34 @@ export default function CalculatorPage() {
       <main className="container mx-auto px-4 py-6 md:py-8 max-w-7xl">
         {/* Mobile: Formularios y resultados apilados */}
         <div className="flex flex-col gap-6 lg:hidden">
-          <GlobalAssumptionsForm
-            assumptions={assumptions}
-            onChange={setAssumptions}
-          />
+          <div data-onboarding="global-assumptions">
+            <GlobalAssumptionsForm
+              assumptions={assumptions}
+              onChange={setAssumptions}
+            />
+          </div>
 
-          <PropertyList
-            properties={properties}
-            onAdd={handleAddProperty}
-            onUpdate={handleUpdateProperty}
-            onDelete={handleDeleteProperty}
-            onDuplicate={handleDuplicateProperty}
-          />
+          <div data-onboarding="properties">
+            <PropertyList
+              properties={properties}
+              onAdd={handleAddProperty}
+              onUpdate={handleUpdateProperty}
+              onDelete={handleDeleteProperty}
+              onDuplicate={handleDuplicateProperty}
+            />
+          </div>
 
-          <DataManagement
-            assumptions={assumptions}
-            properties={properties}
-            onImport={handleImportData}
-            onClear={handleClearData}
-          />
+          <div data-onboarding="data-management">
+            <DataManagement
+              assumptions={assumptions}
+              properties={properties}
+              onImport={handleImportData}
+              onClear={handleClearData}
+            />
+          </div>
 
           {portfolioResult && (
-            <>
+            <div data-onboarding="results">
               <PortfolioSummary portfolio={portfolioResult} />
               
               <PDFReport portfolio={portfolioResult} assumptions={assumptions} />
@@ -175,7 +206,7 @@ export default function CalculatorPage() {
                   <PropertyCard key={result.input.id} result={result} />
                 ))}
               </div>
-            </>
+            </div>
           )}
 
           {properties.length === 0 && (
@@ -192,31 +223,37 @@ export default function CalculatorPage() {
         <div className="hidden lg:grid lg:grid-cols-2 gap-8">
           {/* Columna izquierda: Formularios */}
           <div className="lg:sticky lg:top-24 lg:h-fit space-y-6">
-            <GlobalAssumptionsForm
-              assumptions={assumptions}
-              onChange={setAssumptions}
-            />
+            <div data-onboarding="global-assumptions">
+              <GlobalAssumptionsForm
+                assumptions={assumptions}
+                onChange={setAssumptions}
+              />
+            </div>
 
-            <PropertyList
-              properties={properties}
-              onAdd={handleAddProperty}
-              onUpdate={handleUpdateProperty}
-              onDelete={handleDeleteProperty}
-              onDuplicate={handleDuplicateProperty}
-            />
+            <div data-onboarding="properties">
+              <PropertyList
+                properties={properties}
+                onAdd={handleAddProperty}
+                onUpdate={handleUpdateProperty}
+                onDelete={handleDeleteProperty}
+                onDuplicate={handleDuplicateProperty}
+              />
+            </div>
 
-            <DataManagement
-              assumptions={assumptions}
-              properties={properties}
-              onImport={handleImportData}
-              onClear={handleClearData}
-            />
+            <div data-onboarding="data-management">
+              <DataManagement
+                assumptions={assumptions}
+                properties={properties}
+                onImport={handleImportData}
+                onClear={handleClearData}
+              />
+            </div>
           </div>
 
           {/* Columna derecha: Resultados */}
           <div className="space-y-6">
             {portfolioResult ? (
-              <>
+              <div data-onboarding="results">
                 <PortfolioSummary portfolio={portfolioResult} />
                 
                 <PDFReport portfolio={portfolioResult} assumptions={assumptions} />
@@ -227,7 +264,7 @@ export default function CalculatorPage() {
                     <PropertyCard key={result.input.id} result={result} />
                   ))}
                 </div>
-              </>
+              </div>
             ) : (
               <div className="glass rounded-lg p-12 text-center">
                 <p className="text-muted-foreground">
@@ -238,6 +275,18 @@ export default function CalculatorPage() {
             )}
           </div>
         </div>
+      </main>
+
+      {/* Onboarding Tutorial */}
+      <OnboardingTutorial
+        isActive={isActive}
+        currentStep={currentStep}
+        onNext={nextStep}
+        onPrevious={previousStep}
+        onComplete={completeOnboarding}
+        onSkip={skipOnboarding}
+        totalSteps={6}
+      />
       </main>
 
       {/* Footer */}

@@ -2,9 +2,16 @@
 
 import { Button } from '@/components/ui/button'
 import { Download } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Loader2 } from 'lucide-react'
+import { AdvisorForm } from './AdvisorForm'
+import { useLocalStorage } from '@/src/hooks/useLocalStorage'
 import type { PortfolioResult, GlobalAssumptions } from '@/src/types/investment'
+
+interface AdvisorData {
+  nombre: string
+  telefono: string
+}
 
 interface PDFReportProps {
   portfolio: PortfolioResult
@@ -13,8 +20,13 @@ interface PDFReportProps {
 
 export function PDFReport({ portfolio, assumptions }: PDFReportProps) {
   const [isGenerating, setIsGenerating] = useState(false)
+  const [showAdvisorForm, setShowAdvisorForm] = useState(false)
+  const [advisorData, setAdvisorData] = useLocalStorage<AdvisorData>(
+    'advisor-data',
+    { nombre: '', telefono: '' }
+  )
 
-  const handleGeneratePDF = async () => {
+  const handleGeneratePDF = async (advisor: AdvisorData) => {
     setIsGenerating(true)
     try {
       const response = await fetch('/api/generate-pdf', {
@@ -22,7 +34,7 @@ export function PDFReport({ portfolio, assumptions }: PDFReportProps) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ portfolio, assumptions }),
+        body: JSON.stringify({ portfolio, assumptions, advisor }),
       })
 
       if (!response.ok) {
@@ -58,25 +70,49 @@ export function PDFReport({ portfolio, assumptions }: PDFReportProps) {
     }
   }
 
+  const handleButtonClick = () => {
+    // Si ya hay datos guardados, usar esos directamente
+    if (advisorData.nombre && advisorData.telefono) {
+      handleGeneratePDF(advisorData)
+    } else {
+      // Mostrar formulario para ingresar datos
+      setShowAdvisorForm(true)
+    }
+  }
+
+  const handleAdvisorSubmit = (data: AdvisorData) => {
+    setAdvisorData(data)
+    handleGeneratePDF(data)
+  }
+
   return (
-    <Button
-      onClick={handleGeneratePDF}
-      disabled={isGenerating}
-      size="lg"
-      className="w-full"
-    >
-      {isGenerating ? (
-        <>
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Generando PDF...
-        </>
-      ) : (
-        <>
-          <Download className="mr-2 h-4 w-4" />
-          Descargar Reporte PDF
-        </>
-      )}
-    </Button>
+    <>
+      <Button
+        onClick={handleButtonClick}
+        disabled={isGenerating}
+        size="lg"
+        className="w-full"
+      >
+        {isGenerating ? (
+          <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Generando PDF...
+          </>
+        ) : (
+          <>
+            <Download className="mr-2 h-4 w-4" />
+            Descargar Reporte PDF
+          </>
+        )}
+      </Button>
+      <AdvisorForm
+        open={showAdvisorForm}
+        onClose={() => setShowAdvisorForm(false)}
+        onSubmit={handleAdvisorSubmit}
+        defaultNombre={advisorData.nombre}
+        defaultTelefono={advisorData.telefono}
+      />
+    </>
   )
 }
 
