@@ -18,7 +18,9 @@ export const ufFormatter = new Intl.NumberFormat('es-CL', {
 })
 
 export function formatCLP(value: number): string {
-  if (!Number.isFinite(value) || value <= 0) return '—'
+  // Manejar valores no finitos o NaN
+  if (!Number.isFinite(value) || isNaN(value)) return '—'
+  // Permitir valores negativos (importante para deltas negativos)
   return clpFormatter.format(Math.round(value))
 }
 

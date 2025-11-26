@@ -107,11 +107,17 @@ export default function CalculatorPage() {
   }, [])
 
   // Calcular resultados del portafolio (solo después de montar para evitar hidratación)
+  // Se recalcula automáticamente cuando cambian assumptions o properties
   const portfolioResult = useMemo(() => {
     if (!isMounted || properties.length === 0) {
       return null
     }
-    return calcularPortfolioResult(assumptions, properties)
+    try {
+      return calcularPortfolioResult(assumptions, properties)
+    } catch (error) {
+      console.error('Error calculando portafolio:', error)
+      return null
+    }
   }, [assumptions, properties, isMounted])
 
   // Scroll automático a resultados cuando se generan
@@ -128,9 +134,12 @@ export default function CalculatorPage() {
   }
 
   const handleUpdateProperty = (property: PropertyInput) => {
-    setProperties((prev) =>
-      prev.map((p) => (p.id === property.id ? property : p))
-    )
+    // Actualizar la propiedad y forzar recálculo del portafolio
+    setProperties((prev) => {
+      const updated = prev.map((p) => (p.id === property.id ? property : p))
+      // Retornar nuevo array para garantizar que React detecte el cambio
+      return [...updated]
+    })
   }
 
   const handleDeleteProperty = (id: string) => {

@@ -199,12 +199,18 @@ export function calcularPropertyResult(
   // 5) Flujos mensuales
   const ingresoBrutoMensualClp = input.arriendoEstimadoClp
 
+  // Gastos mensuales base: dividendo + gasto común + otros gastos (si existen)
+  // Nota: otrosGastosMensualesClp puede ser 0 si no hay otros gastos
+  const otrosGastosClp = input.otrosGastosMensualesClp || 0
   const gastosBaseSinPieClp =
-    dividendoClp + input.gastoComunClp + input.otrosGastosMensualesClp
+    dividendoClp + input.gastoComunClp + otrosGastosClp
 
   const gastosMensualesSinPieClp = gastosBaseSinPieClp
   const gastosMensualesConPieClp = gastosBaseSinPieClp + cuotaPieMensualClp
 
+  // Delta mensual = Ingresos - Gastos
+  // Delta positivo = flujo positivo (ganancia mensual)
+  // Delta negativo = flujo negativo (pérdida mensual)
   const deltaMensualSinPieClp =
     ingresoBrutoMensualClp - gastosMensualesSinPieClp
   const deltaMensualConPieClp =

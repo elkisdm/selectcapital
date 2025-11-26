@@ -388,6 +388,37 @@ const styles = StyleSheet.create({
     backgroundColor: colors.grayLight,
     marginVertical: 24,
   },
+  // Glosario
+  glossaryContainer: {
+    backgroundColor: colors.white,
+    borderRadius: 8,
+    padding: 20,
+    borderWidth: 1,
+    borderColor: colors.grayLight,
+  },
+  glossaryTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: colors.navy,
+    marginBottom: 16,
+  },
+  glossaryItem: {
+    marginBottom: 16,
+    paddingBottom: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.grayLight,
+  },
+  glossaryTerm: {
+    fontSize: 11,
+    fontWeight: 'bold',
+    color: colors.navy,
+    marginBottom: 4,
+  },
+  glossaryDefinition: {
+    fontSize: 9,
+    color: colors.grayDark,
+    lineHeight: 1.4,
+  },
 })
 
 // Componente para calcular proyección anual de plusvalía
@@ -557,8 +588,7 @@ export const PDFDocument: React.FC<PDFDocumentProps> = ({
           </View>
         </View>
 
-        {/* Tabla Comparativa - Solo si hay múltiples propiedades */}
-        {portfolio.properties.length > 1 && (
+        {/* Tabla Comparativa - Análisis de Portafolio (siempre visible) */}
         <View style={styles.content}>
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Análisis de Portafolio</Text>
@@ -601,8 +631,7 @@ export const PDFDocument: React.FC<PDFDocumentProps> = ({
               ))}
             </View>
           </View>
-          </View>
-        )}
+        </View>
 
         {/* Si solo hay 1 propiedad, mostrar su card en la primera página */}
         {portfolio.properties.length === 1 && (
@@ -810,47 +839,161 @@ export const PDFDocument: React.FC<PDFDocumentProps> = ({
           </Page>
         ))}
 
-      {/* Última página: Proyección de Plusvalía (solo si hay 1-2 propiedades) */}
+      {/* Página: Proyección de Plusvalía (solo si hay 1-2 propiedades) */}
       {firstProperty &&
         annualProjection.length > 0 &&
         portfolio.properties.length <= 2 && (
           <Page size="A4" style={styles.page} wrap={false}>
             <HeaderComponent />
             <View style={styles.content}>
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>
-                Proyección de Plusvalía ({assumptions.horizonteAnios} años)
-              </Text>
-              <View style={styles.chartContainer}>
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>
+                  Proyección de Plusvalía ({assumptions.horizonteAnios} años)
+                </Text>
+                <View style={styles.chartContainer}>
                   {annualProjection.map((projection) => {
-                  const percentage =
-                    (projection.value / maxProjectionValue) * 100
-                  return (
-                    <View key={projection.year} style={styles.chartBar}>
+                    const percentage =
+                      (projection.value / maxProjectionValue) * 100
+                    return (
+                      <View key={projection.year} style={styles.chartBar}>
                         <Text style={styles.chartBarLabel}>
                           {projection.year}
                         </Text>
-                      <View style={styles.chartBarContainer}>
-                        <View
-                          style={[
-                            styles.chartBarFill,
-                            { width: `${percentage}%` },
-                          ]}
-                        >
-                          <Text style={styles.chartBarValue}>
-                            {formatCLP(projection.value)}
-                          </Text>
+                        <View style={styles.chartBarContainer}>
+                          <View
+                            style={[
+                              styles.chartBarFill,
+                              { width: `${percentage}%` },
+                            ]}
+                          >
+                            <Text style={styles.chartBarValue}>
+                              {formatCLP(projection.value)}
+                            </Text>
+                          </View>
                         </View>
                       </View>
-                    </View>
-                  )
-                })}
+                    )
+                  })}
+                </View>
               </View>
             </View>
-        </View>
             <FooterComponent />
           </Page>
         )}
+
+      {/* Página: Glosario de Términos */}
+      <Page size="A4" style={styles.page} wrap={false}>
+        <HeaderComponent />
+        <View style={styles.content}>
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Glosario de Términos</Text>
+            <Text style={[styles.sectionTitle, { fontSize: 12, fontWeight: 'normal', marginBottom: 20, color: colors.grayMedium }]}>
+              Guía para entender los conceptos del reporte
+            </Text>
+            
+            <View style={styles.glossaryContainer}>
+              <View style={styles.glossaryItem}>
+                <Text style={styles.glossaryTerm}>Valor Propiedad</Text>
+                <Text style={styles.glossaryDefinition}>
+                  Precio total de la propiedad expresado en CLP y UF. Corresponde al 100% del valor a escriturar.
+                </Text>
+              </View>
+
+              <View style={styles.glossaryItem}>
+                <Text style={styles.glossaryTerm}>Dividendo Mensual</Text>
+                <Text style={styles.glossaryDefinition}>
+                  Pago mensual del crédito hipotecario. Se calcula usando la tasa anual dividida entre 12 (tasa nominal mensual) sobre el monto financiado.
+                </Text>
+              </View>
+
+              <View style={styles.glossaryItem}>
+                <Text style={styles.glossaryTerm}>Inversión Total</Text>
+                <Text style={styles.glossaryDefinition}>
+                  Monto total que debes desembolsar inicialmente: pie, reserva, abonos iniciales, gastos bancarios, costos de mobiliario y gestión.
+                </Text>
+              </View>
+
+              <View style={styles.glossaryItem}>
+                <Text style={styles.glossaryTerm}>Delta Mensual</Text>
+                <Text style={styles.glossaryDefinition}>
+                  Flujo de caja mensual neto. Resultado de restar todos los gastos (dividendo, gasto común, otros gastos, y opcionalmente cuota de pie) del arriendo estimado. Un delta positivo indica ganancia mensual, negativo indica pérdida.
+                </Text>
+              </View>
+
+              <View style={styles.glossaryItem}>
+                <Text style={styles.glossaryTerm}>Plusvalía</Text>
+                <Text style={styles.glossaryDefinition}>
+                  Aumento del valor de la propiedad a lo largo del tiempo. Se proyecta según tasas de crecimiento anuales (diferentes para el primer año y años siguientes).
+                </Text>
+              </View>
+
+              <View style={styles.glossaryItem}>
+                <Text style={styles.glossaryTerm}>Ganancia Bruta</Text>
+                <Text style={styles.glossaryDefinition}>
+                  Suma de la plusvalía proyectada más el bono pie (si aplica). No incluye el flujo mensual ni el IVA recuperable.
+                </Text>
+              </View>
+
+              <View style={styles.glossaryItem}>
+                <Text style={styles.glossaryTerm}>Ganancia Neta</Text>
+                <Text style={styles.glossaryDefinition}>
+                  Ganancia bruta más el flujo de caja acumulado durante el horizonte de inversión (delta mensual × 12 meses × años). No incluye IVA recuperable.
+                </Text>
+              </View>
+
+              <View style={styles.glossaryItem}>
+                <Text style={styles.glossaryTerm}>ROI (Return on Investment)</Text>
+                <Text style={styles.glossaryDefinition}>
+                  Retorno sobre la inversión. Porcentaje que representa la ganancia total (incluyendo IVA recuperable) dividida por la inversión total. Un ROI de 100% significa que duplicaste tu inversión.
+                </Text>
+              </View>
+
+              <View style={styles.glossaryItem}>
+                <Text style={styles.glossaryTerm}>Rentabilidad Bruta</Text>
+                <Text style={styles.glossaryDefinition}>
+                  Porcentaje del arriendo anual sobre el valor de la propiedad. Mide el rendimiento del arriendo sin considerar gastos.
+                </Text>
+              </View>
+
+              <View style={styles.glossaryItem}>
+                <Text style={styles.glossaryTerm}>Rentabilidad Neta</Text>
+                <Text style={styles.glossaryDefinition}>
+                  Porcentaje del flujo neto anual (después de todos los gastos) sobre el valor de la propiedad o sobre la inversión total.
+                </Text>
+              </View>
+
+              <View style={styles.glossaryItem}>
+                <Text style={styles.glossaryTerm}>Bono Pie</Text>
+                <Text style={styles.glossaryDefinition}>
+                  Beneficio otorgado por el proyecto que cubre parte o todo el pie inicial. Reduce la inversión requerida del cliente.
+                </Text>
+              </View>
+
+              <View style={styles.glossaryItem}>
+                <Text style={styles.glossaryTerm}>IVA Recuperable</Text>
+                <Text style={styles.glossaryDefinition}>
+                  Parte del IVA de la inversión que puede ser recuperado según la normativa vigente. Se calcula sobre el valor de la propiedad y el factor de recuperación aplicable.
+                </Text>
+              </View>
+
+              <View style={styles.glossaryItem}>
+                <Text style={styles.glossaryTerm}>Porcentaje de Financiamiento</Text>
+                <Text style={styles.glossaryDefinition}>
+                  Porcentaje del valor de la propiedad que será financiado mediante crédito hipotecario. El resto corresponde al pie inicial. Ejemplo: 90% financiamiento = 10% pie.
+                </Text>
+              </View>
+
+              <View style={[styles.glossaryItem, { borderBottomWidth: 0, marginBottom: 0, paddingBottom: 0 }]}>
+                <Text style={styles.glossaryTerm}>Horizonte de Inversión</Text>
+                <Text style={styles.glossaryDefinition}>
+                  Período de tiempo (en años) para el cual se proyectan las ganancias y la plusvalía. Por defecto se usa 4 años, pero puede variar según el análisis.
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <FooterComponent />
+      </Page>
     </Document>
   )
 }

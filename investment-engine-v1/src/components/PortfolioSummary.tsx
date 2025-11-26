@@ -59,10 +59,11 @@ export function PortfolioSummary({ portfolio }: PortfolioSummaryProps) {
           </div>
         </div>
 
-        {/* Flujos mensuales */}
+        {/* Flujos mensuales - Delta */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t">
-          <div className="p-4 rounded-lg border">
-            <div className="text-sm text-muted-foreground mb-2">
+          <div className="p-4 rounded-lg bg-muted/30 border border-border/50">
+            <div className="text-sm text-muted-foreground mb-2 flex items-center gap-1">
+              <DollarSign className="h-3 w-3" />
               Delta Mensual (con pie)
             </div>
             <div
@@ -77,10 +78,16 @@ export function PortfolioSummary({ portfolio }: PortfolioSummaryProps) {
               )}
               {formatCLP(portfolio.deltaMensualConPieTotalClp)}
             </div>
+            <div className="text-xs text-muted-foreground/70 mt-1">
+              Arriendo - Dividendo - Gasto Común
+              {portfolio.properties.some(p => p.input.otrosGastosMensualesClp > 0) && ' - Otros Gastos'}
+              {' - Cuota Pie'}
+            </div>
           </div>
 
-          <div className="p-4 rounded-lg border">
-            <div className="text-sm text-muted-foreground mb-2">
+          <div className="p-4 rounded-lg bg-muted/30 border border-border/50">
+            <div className="text-sm text-muted-foreground mb-2 flex items-center gap-1">
+              <DollarSign className="h-3 w-3" />
               Delta Mensual (sin pie)
             </div>
             <div
@@ -94,6 +101,10 @@ export function PortfolioSummary({ portfolio }: PortfolioSummaryProps) {
                 <TrendingDown className="h-5 w-5" />
               )}
               {formatCLP(portfolio.deltaMensualSinPieTotalClp)}
+            </div>
+            <div className="text-xs text-muted-foreground/70 mt-1">
+              Arriendo - Dividendo - Gasto Común
+              {portfolio.properties.some(p => p.input.otrosGastosMensualesClp > 0) && ' - Otros Gastos'}
             </div>
           </div>
         </div>

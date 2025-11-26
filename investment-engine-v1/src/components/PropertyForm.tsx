@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -55,6 +55,13 @@ export function PropertyForm({
   const [formData, setFormData] = useState<PropertyInput>(
     property || { ...defaultProperty, id: `prop-${Date.now()}` }
   )
+
+  // Actualizar formData cuando cambia la propiedad (para edición)
+  useEffect(() => {
+    if (property) {
+      setFormData(property)
+    }
+  }, [property])
 
   const handleChange = (field: keyof PropertyInput, value: any) => {
     setFormData((prev) => ({
