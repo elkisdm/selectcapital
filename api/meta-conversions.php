@@ -200,3 +200,4 @@ function generate_meta_event_id(array $data): string {
   return hash('sha256', implode('|', $seed));
 }
 
+

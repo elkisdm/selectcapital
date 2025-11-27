@@ -210,3 +210,4 @@ Para problemas o mejoras relacionadas con móvil, contactar al equipo de desarro
 **Última actualización:** 2025-01-18
 **Versión:** 1.0
 
+

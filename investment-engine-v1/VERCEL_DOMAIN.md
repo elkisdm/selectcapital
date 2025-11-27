@@ -75,3 +75,4 @@ Una vez configurado, tu aplicación estará disponible en:
 - `app.selectcapital.cl` → Motor de Inversión (este proyecto) ✅
 - `www.selectcapital.cl` → Redirect a selectcapital.cl
 
+
